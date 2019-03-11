@@ -35,9 +35,15 @@ int main(int argc, char *argv[])
 //if (1)
 //{
     //qmlRegisterType<TableModel>("TableModel", 1, 0, "TableModel");
+
     app.setOrganizationName("PASA");
     app.setOrganizationDomain("PASA");
     app.setApplicationName("UDP Loger Application");
+
+
+
+
+
     //QQmlApplicationEngine engine;
     //engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 //    if (engine.rootObjects().isEmpty())
@@ -50,7 +56,7 @@ int main(int argc, char *argv[])
 
     //engine.rootContext()->setContextProperty("someModel", &someModel);
     qmlRegisterType <ModelServiseUDP> ("ModuleName", 1, 0, "ModelServiseUDP");
-    qmlRegisterType<ClientUDP>("com.ics.demo", 1, 0, "ClientUDP");
+    qmlRegisterType <ClientUDP>("com.ics.demo", 1, 0, "ClientUDP");
 
 
     //ClientUDP *base = new ClientUDP();

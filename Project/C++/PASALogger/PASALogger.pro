@@ -1,5 +1,6 @@
 QT += qml quick
 QT += core
+QT += quick
 CONFIG += c++11
 QT += quickcontrols2
 TEMPLATE = app

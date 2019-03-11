@@ -4,6 +4,7 @@
 #include "workerudp.h"
 #include "modelserviseudp.h"
 #include <QQmlEngine>
+#include <QQuickView>
 
 //ClientUDP::ClientUDP(Server  *m_server, CLIENT_TYPE const &m_type) : ClientBase(m_server,m_type)
 ClientUDP::ClientUDP() : ClientBase()
@@ -19,14 +20,26 @@ ClientUDP::ClientUDP() : ClientBase()
     case UDP_CLIENT_TYPE:
         this-> worker = new WorkerUDP(this, type);
         this-> model = new ModelServiseUDP();//this, type);
-        this-> someProperty = new ModelServiseUDP();
+      //  this-> someProperty = model;
          //someProperty=100;
+
+//       QQuickView view;
+
+//       view.engine()->rootContext()->setContextProperty("someProperty", someProperty);
+//       view.setSource(QUrl::fromLocalFile("MyItem.qml"));
+//       view.show();
+
         break;
     default:
         break;
     }
 
 }
+
+//void ClientUDP::setSomeProperty(ModelServiseUDP * property)
+//{
+
+//}
 
 //ModelServiseUDP *ClientUDP::getSomeProperty() const
 //{
