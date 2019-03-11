@@ -14,15 +14,19 @@ import "../ItemDelegat/RowDelegat"
 import "../../ContextMenu/TableViewContexMenu/HeaderContexMenu"
 import "../../ContextMenu/TableViewContexMenu/ItemContexMenu"
 import "../"
-//https://stackoverrun.com/ru/q/11938643 //table
-//https://stackoverflow.com/questions/50099412/custom-tableviewcolumn-delegate-problems
-//https://doc.qt.io/qt-5/qml-qtquick-text.html about HorizontalAlignment
+
 //import "src/TableView/ItemDelegat/ItemDelegate"
 //import "../TableView/ItemDelegat/HeaderDelegate"
 import "../ItemDelegat/HeaderDelegate"
+
 //https://github.com/todbot/blink1/tree/master/qt/blink1control/qml/qml/Base style
 //https://github.com/hdweiss/qt-creator-visualizer/blob/master/lib/qtcreator/qtcomponents/TableView.qml //++
 //https://doc.qt.io/qt-5/qml-qtquick-tableview.html Docs
+//https://habr.com/ru/post/138837/ - QML - C++
+//https://stackoverrun.com/ru/q/11938643 //table
+//https://stackoverflow.com/questions/50099412/custom-tableviewcolumn-delegate-problems
+//https://doc.qt.io/qt-5/qml-qtquick-text.html about HorizontalAlignment
+
 //Item
 //{
 // anchors.fill:paret
@@ -84,14 +88,19 @@ C1.TableView
 
     ClientUDP
     {
-        id: model2
+        id: client
+        Component.onCompleted:
+        {
+            //client.someProperty
+
+        }
     }
 
 
 
 
     // model: model2//someModel
-    model: sourceModel
+    model: client.someProperty
     // model: sourceModel//TableModel {}
     //Also see BasicTableViewStyle.qml from E:\QT\5.13.0\mingw73_32\qml\QtQuick\Controls
 
@@ -167,33 +176,33 @@ C1.TableView
     headerDelegate: HeaderDelegate { id:headDelegat }
 
 
-    ListModel
-    {
-        id: sourceModel
-        ListElement {
-            date: "Moby-Dick"
-            timeStamp: "Herman Melville"
-            count:"1"
-            zoneId:"3"
-            serviceName:"3"
-            functionName:"4"
-            lineNumber:"5"
-            message:"6"
+//    ListModel
+//    {
+//        id: sourceModel
+//        ListElement {
+//            date: "Moby-Dick"
+//            timeStamp: "Herman Melville"
+//            count:"1"
+//            zoneId:"3"
+//            serviceName:"3"
+//            functionName:"4"
+//            lineNumber:"5"
+//            message:"6"
 
-        }
+//        }
 
-        ListElement
-        {
-            date: "DickMoby"
-            timeStamp: "lle"
-            count:"6"
-            zoneId:"5"
-            serviceName:"4"
-            functionName:"3"
-            lineNumber:"2"
-            message:"1"
-        }
-    }
+//        ListElement
+//        {
+//            date: "DickMoby"
+//            timeStamp: "lle"
+//            count:"6"
+//            zoneId:"5"
+//            serviceName:"4"
+//            functionName:"3"
+//            lineNumber:"2"
+//            message:"1"
+//        }
+//    }
 
     rowDelegate:RowDelegat{}
     ItemContexMenu{id:itemContexMenu}

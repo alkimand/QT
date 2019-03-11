@@ -8,6 +8,6 @@ ClientBase::ClientBase()
 {
 
     //type = UDP_CLIENT_TYPE;
-    this->type = UDP_CLIENT_TYPE;
+
     //server = m_server;
 }
