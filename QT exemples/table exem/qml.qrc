@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>RowDelegat.qml</file>
+        <file>MyColumn.qml</file>
+        <file>role1.qml</file>
+        <file>ListModel.qml</file>
+        <file>Delegat.qml</file>
+    </qresource>
+</RCC>

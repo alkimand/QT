@@ -1,0 +1,36 @@
+//MainFormWidth 
+MainFormWidth - 2089
+MainFormheight - 1061
+
+//MainView 
+MainViewWidth - 1139
+MainViewColumn_1_Width - 101
+MainViewColumn_2_Width - 71
+MainViewColumn_3_Width - 83
+MainViewColumn_4_Width - 74
+MainViewColumn_5_Width - 319
+MainViewColumn_6_Width - 100
+
+//ContactsView 
+ContactsViewWidth - 869
+ContactsViewColumn_2_Width - 110
+ContactsViewColumn_3_Width - 110
+ContactsViewColumn_4_Width - 110
+ContactsViewColumn_5_Width - 110
+ContactsViewColumn_6_Width - 61
+ContactsViewColumn_7_Width - 110
+ContactsViewColumn_8_Width - 231
+
+//VisitsView 
+VisitsViewWidth - 869
+VisitsViewColumn_2_Width - 270
+VisitsViewColumn_3_Width - 95
+VisitsViewColumn_4_Width - 170
+VisitsViewColumn_5_Width - 132
+VisitsViewColumn_6_Width - 175
+
+//leftSplitter 
+leftSplitter_Width - 1163
+
+//rightSplitter 
+rightSplitter_Width - 893

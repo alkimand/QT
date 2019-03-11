@@ -1,0 +1,21 @@
+1.
+http://www.cyberforum.ru/qt/thread843094.html
+    QByteArray postDataByteArray;
+    QByteArray postData;
+    QString userName;
+   userName = "alkimand@mail.ru";
+    QString password;
+   password = "qwertyop";
+    postData+= "&vb_login_username=" +  QUrl::toPercentEncoding( userName.toUtf8() );
+    postData+= "&cookieuser=1";
+    postData+= "&vb_login_password="+  QUrl::toPercentEncoding( password.toUtf8() );
+    postData+= "&s=&securitytoken=guest";
+    postData+= "&do=login";
+    postData+= "&vb_login_md5password=";
+    postData+= "&vb_login_md5password_utf=";
+    url = requestedUrl;
+    QNetworkRequest Newrequest(url);
+    Newrequest.setHeader(QNetworkRequest::ContentTypeHeader,"application/x-www-form-urlencoded");
+    Newrequest.setRawHeader("Accept-Encoding","identity");
+    reply = this->qnam->post(Newrequest,postData);
+2.

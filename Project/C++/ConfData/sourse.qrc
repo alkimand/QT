@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/">
+        <file>sourse/images_button/copy.png</file>
+        <file>sourse/images_button/cut.png</file>
+        <file>sourse/images_button/document.png</file>
+        <file>sourse/images_button/icon.png</file>
+        <file>sourse/images_button/new.png</file>
+        <file>sourse/images_button/open.png</file>
+        <file>sourse/images_button/paste.png</file>
+        <file>sourse/images_button/save.png</file>
+        <file>sourse/images_button/raketa.png</file>
+    </qresource>
+</RCC>
