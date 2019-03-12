@@ -78,9 +78,10 @@ OTHER_FILES += \
     src/TableView/ItemDelegat/ItemDelegate/ItemDelegate.qml \
     src/TableView/ItemDelegat/HeaderDelegate/HeaderDelegate.qml \
     src/TableView/TableWithHeader.qml \
-    src/TableView/TableView/Table.qml \
     src/TableView/ItemDelegat/Loaders/HeaderLoader.qml \
     src/TableView/ItemDelegat/RowDelegat/RowDelegat.qml \
+    src/TableView/TableView/BaseTableView.qml \
+    src/TableView/TableView/TableUDP.qml \
 #ToolBar
     src/ToolBar/ToolBar.qml \
     src/ToolBar/CustomComboBox/CustomComboBox.qml \
@@ -132,6 +133,7 @@ DISTFILES += \
     src/images/TableViewIcon/sort_ascending.png \
     src/images/TableViewIcon/sort_descending.png \
     src/images/ToolBarIcon/rename.jpg \
+
 
 
 #   src/images/ToolBarIcon/qt-logo.png \

@@ -27,7 +27,7 @@ C1.TabView
     {
         id:newTabComponent
         //TableWithHeader{}
-        Table{}
+        TableUDP{}
     }
 
     function onCurIndChangeHeandler()

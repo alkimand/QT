@@ -5,11 +5,6 @@ import QtQuick.Controls 1.4 as C1
 import QtQuick.Controls 2.4
 import QtQuick.Controls.Styles 1.4
 
-import ClientUDP 1.0
-
-//import ModuleName 1.0
-//import TableModel 1.0
-
 import "../ItemDelegat/ItemDelegate"
 import "../ItemDelegat/HeaderDelegate"
 import "../ItemDelegat/RowDelegat"
@@ -79,99 +74,8 @@ C1.TableView
     ItemContexMenu{id:itemContexMenu}
     HeaderContexMenu{id:headerContexMenu }
 
-    ClientUDP
-    {
-        id: client
-        Component.onCompleted:
-        {
-          //  client.someProperty
-        }
-    }
-    // model: model2//someModel
-    model: client.model
-
     property int test: implicitWidth/10
     implicitWidth:window.width
 
-    C1.TableViewColumn
-    {
-        role: "date"
-        title: "Date/Time"
-        //width: window.width/5
-    }
-    C1.TableViewColumn
-    {
-        role: "time"
-        title: "TimeStamp"
-      //  width: window.width/5
-    }
-
-    C1.TableViewColumn
-    {
-        role: "count"    // Эти роли совпадают с названиями ролей в C++ модели
-        title: "Count"
-        width: window.width/5
-    }
-        C1.TableViewColumn
-        {
-            role: "zone"    // Эти роли совпадают с названиями ролей в C++ модели
-            title: "Zone Id"
-            width: window.width/5
-        }
-
-        C1.TableViewColumn
-        {
-            role: "serviceName"    // Эти роли совпадают с названиями ролей в C++ модели
-            title: "Service Name"
-            width: window.width/5
-        }
-
-        C1.TableViewColumn
-        {
-            role: "functionName"    // Эти роли совпадают с названиями ролей в C++ модели
-            title: "Function Name"
-            width: window.width/5
-        }
-
-        C1.TableViewColumn
-        {
-            role: "lineNumber"    // Эти роли совпадают с названиями ролей в C++ модели
-            title: "Line Number"
-            width: window.width/5
-        }
-
-        C1.TableViewColumn
-        {
-            role: "message"    // Эти роли совпадают с названиями ролей в C++ модели
-            title: "Message"
-            width: window.width/5
-        }
 }
 
-//ListModel
-//{
-//    id: sourceModel
-//    ListElement {
-//        date: "Moby-Dick"
-//        timeStamp: "Herman Melville"
-//        count:"1"
-//        zoneId:"3"
-//        serviceName:"3"
-//        functionName:"4"
-//        lineNumber:"5"
-//        message:"6"
-
-//    }
-
-//    ListElement
-//    {
-//        date: "DickMoby"
-//        timeStamp: "lle"
-//        count:"6"
-//        zoneId:"5"
-//        serviceName:"4"
-//        functionName:"3"
-//        lineNumber:"2"
-//        message:"1"
-//    }
-//}
