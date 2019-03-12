@@ -6,28 +6,22 @@
 #include <QQmlEngine>
 #include <QQuickView>
 
-//ClientUDP::ClientUDP(Server  *m_server, CLIENT_TYPE const &m_type) : ClientBase(m_server,m_type)
 ClientUDP::ClientUDP() : ClientBase()
 {
     qDebug()<< "create ClientUDP";
     this->child = this;
     this->type = UDP_CLIENT_TYPE;
 
-    qmlRegisterType <ModelServiseUDP> ("ModuleName", 1, 0, "ModelServiseUDP");
+    //qmlRegisterType <ModelServiseUDP> ("ModuleName", 1, 0, "ModelServiseUDP");
 
     switch (type)
     {
     case UDP_CLIENT_TYPE:
         this-> worker = new WorkerUDP(this, type);
-        this-> model = new ModelServiseUDP();//this, type);
-      //  this-> someProperty = model;
-         //someProperty=100;
+     // this-> model
 
-//       QQuickView view;
+        this-> model = static_cast<ModelServiseUDP*> (this-> worker->getModeltoQMLService());
 
-//       view.engine()->rootContext()->setContextProperty("someProperty", someProperty);
-//       view.setSource(QUrl::fromLocalFile("MyItem.qml"));
-//       view.show();
 
         break;
     default:
@@ -36,40 +30,6 @@ ClientUDP::ClientUDP() : ClientBase()
 
 }
 
-//void ClientUDP::setSomeProperty(ModelServiseUDP * property)
-//{
-
-//}
-
-//ModelServiseUDP *ClientUDP::getSomeProperty() const
-//{
-//    return someProperty;
-//}
-
-//void ClientUDP::setSomeProperty(const ModelServiseUDP &)
-//{
-
-//}
-
-//int ClientUDP::getSomeProperty() const
-//{
-
-//}
-
-//void ClientUDP::setSomeProperty(const int &)
-//{
-
-//}
-
-//ModelServiseUDP *ClientUDP::getSomeProperty() const
-//{
-
-//}
-
-//void ClientUDP::setSomeProperty(const ModelServiseUDP &)
-//{
-
-//}
 
 
 

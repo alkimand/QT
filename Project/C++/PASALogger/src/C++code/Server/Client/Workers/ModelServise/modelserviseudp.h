@@ -13,11 +13,6 @@ struct SomeStruct
 
 class ModelServiseUDP: public ModelServiseBaseClass
 {
-//    enum TableRoles{
-//        TableDataRole = Qt::UserRole + 1,
-//        HeadingRole
-//    };
-
     enum Roles
         {
             CHECK, DESCRIPTION, VALUE
@@ -27,7 +22,9 @@ Q_OBJECT
 
 
 public:
-     explicit  ModelServiseUDP();//WorkerBaseClass *, CLIENT_TYPE const &);
+    // explicit  ModelServiseUDP();//WorkerBaseClass *, CLIENT_TYPE const &);
+    explicit  ModelServiseUDP(WorkerBaseClass *, CLIENT_TYPE const &);
+
     int rowCount(const QModelIndex &parent = QModelIndex()) const {
       Q_UNUSED(parent); return list.count();
     }

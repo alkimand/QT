@@ -6,9 +6,8 @@
 //#include "tablemodel.h"
 #include "clientbase.h"
 #include "clientudp.h"
-
 #include "modelserviseudp.h"
-#include "modelservisebaseclass.h"
+
 //https://habr.com/ru/post/140899/
 #include <QObject>
 #include <QQmlComponent>
@@ -55,22 +54,16 @@ int main(int argc, char *argv[])
 
 
     //engine.rootContext()->setContextProperty("someModel", &someModel);
-    qmlRegisterType <ModelServiseUDP> ("ModuleName", 1, 0, "ModelServiseUDP");
-    qmlRegisterType <ClientUDP>("com.ics.demo", 1, 0, "ClientUDP");
+
+    // qmlRegisterType <ModelServiseUDP> ("ModuleName", 1, 0, "ModelServiseUDP");
+     qmlRegisterType <ClientUDP>("ClientUDP", 1, 0, "ClientUDP");
 
 
-    //ClientUDP *base = new ClientUDP();
+
     QQmlEngine engine;
     QQmlComponent *component = new QQmlComponent(&engine);
     component->loadUrl(QUrl("main.qml"));
-    //ModelServiseBaseClass *model = new ModelServiseUDP();
-    //int d1 = 0;
-    //QString name  = "testmodel";
-    //name.append(QString("%1").arg(d1));
-    //QString name = "testmodel"+"1";
-    //engine.rootContext()->setContextProperty(name, model);
 
-    //
 
 
 

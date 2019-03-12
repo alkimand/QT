@@ -13,8 +13,9 @@ class  ModelServiseBaseClass: public QAbstractTableModel
 {
     Q_OBJECT
 public:
-     explicit  ModelServiseBaseClass();//WorkerBaseClass *, CLIENT_TYPE const &);
-     //WorkerBaseClass *worker;
+    // explicit  ModelServiseBaseClass();//WorkerBaseClass *, CLIENT_TYPE const &);
+    explicit  ModelServiseBaseClass(WorkerBaseClass *, CLIENT_TYPE const &);
+     WorkerBaseClass *worker;
      ModelServiseBaseClass *parent;
      ModelServiseBaseClass *child;
 

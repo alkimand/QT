@@ -28,6 +28,11 @@ void WorkerBaseClass::send_message(QByteArray   const & msg)
     emit dataloader->sendData(msg);
 }
 
+ModelServiseBaseClass *WorkerBaseClass::getModeltoQMLService()
+{
+    return this->model;
+}
+
 void WorkerBaseClass::receive_data_loader_slot(QByteArray  const & message)
 {
         //qDebug()<< "receive_data_loader_slot ";

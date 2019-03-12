@@ -2,7 +2,7 @@
 #include <QDebug>
 
 
-ModelServiseUDP::ModelServiseUDP()//WorkerBaseClass *m_worker, CLIENT_TYPE const & m_type):ModelServiseBaseClass(m_worker, m_type)
+ModelServiseUDP::ModelServiseUDP(WorkerBaseClass *m_worker, CLIENT_TYPE const & m_type):ModelServiseBaseClass(m_worker, m_type)
 {
     this->child = this;
     fillModel();

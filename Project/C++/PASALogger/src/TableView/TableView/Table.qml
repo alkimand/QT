@@ -4,19 +4,18 @@ import QtQuick.Controls 1.4 as C1
 //import QtQuick.Controls 2.4
 import QtQuick.Controls 2.4
 import QtQuick.Controls.Styles 1.4
-import com.ics.demo 1.0
 
-import ModuleName 1.0
+import ClientUDP 1.0
+
+//import ModuleName 1.0
 //import TableModel 1.0
+
 import "../ItemDelegat/ItemDelegate"
 import "../ItemDelegat/HeaderDelegate"
 import "../ItemDelegat/RowDelegat"
 import "../../ContextMenu/TableViewContexMenu/HeaderContexMenu"
 import "../../ContextMenu/TableViewContexMenu/ItemContexMenu"
 import "../"
-
-//import "src/TableView/ItemDelegat/ItemDelegate"
-//import "../TableView/ItemDelegat/HeaderDelegate"
 import "../ItemDelegat/HeaderDelegate"
 
 //https://github.com/todbot/blink1/tree/master/qt/blink1control/qml/qml/Base style
@@ -91,8 +90,7 @@ C1.TableView
         id: client
         Component.onCompleted:
         {
-            //client.someProperty
-
+            client.someProperty
         }
     }
 
@@ -101,7 +99,7 @@ C1.TableView
 
     // model: model2//someModel
     model: client.someProperty
-    // model: sourceModel//TableModel {}
+    //model: sourceModel//TableModel {}
     //Also see BasicTableViewStyle.qml from E:\QT\5.13.0\mingw73_32\qml\QtQuick\Controls
 
     //headerDelegate
@@ -176,33 +174,33 @@ C1.TableView
     headerDelegate: HeaderDelegate { id:headDelegat }
 
 
-//    ListModel
-//    {
-//        id: sourceModel
-//        ListElement {
-//            date: "Moby-Dick"
-//            timeStamp: "Herman Melville"
-//            count:"1"
-//            zoneId:"3"
-//            serviceName:"3"
-//            functionName:"4"
-//            lineNumber:"5"
-//            message:"6"
+    ListModel
+    {
+        id: sourceModel
+        ListElement {
+            date: "Moby-Dick"
+            timeStamp: "Herman Melville"
+            count:"1"
+            zoneId:"3"
+            serviceName:"3"
+            functionName:"4"
+            lineNumber:"5"
+            message:"6"
 
-//        }
+        }
 
-//        ListElement
-//        {
-//            date: "DickMoby"
-//            timeStamp: "lle"
-//            count:"6"
-//            zoneId:"5"
-//            serviceName:"4"
-//            functionName:"3"
-//            lineNumber:"2"
-//            message:"1"
-//        }
-//    }
+        ListElement
+        {
+            date: "DickMoby"
+            timeStamp: "lle"
+            count:"6"
+            zoneId:"5"
+            serviceName:"4"
+            functionName:"3"
+            lineNumber:"2"
+            message:"1"
+        }
+    }
 
     rowDelegate:RowDelegat{}
     ItemContexMenu{id:itemContexMenu}

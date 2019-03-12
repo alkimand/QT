@@ -15,6 +15,7 @@
 class ParseServiceBaseClass;
 class ClientBase;
 class ModelServiseBaseClass;
+
 class WorkerBaseClass: public QObject
 {
     Q_OBJECT
@@ -30,6 +31,8 @@ public:
     virtual void receive_data_loader_handler(QByteArray  const &) = 0;
     virtual void receive_data_parser_handler(QStringList &) = 0;
     QVector <QStringList> line_vector;
+    ModelServiseBaseClass * getModeltoQMLService();
+    ModelServiseBaseClass *model;
 
 public slots:
 void receive_data_loader_slot(QByteArray  const &);
@@ -40,7 +43,7 @@ ClientBase *client;
 CLIENT_TYPE type;
 DataLoaderBaseClass *dataloader;
 ParseServiceBaseClass *parser;
-//ModelServiseBaseClass *model;
+
 
 
 

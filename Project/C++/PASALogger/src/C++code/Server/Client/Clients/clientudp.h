@@ -2,29 +2,37 @@
 #define CLIENTUDP_H
 #include "clientbase.h"
 #include <QObject>
-//https://stackoverflow.com/questions/6728615/warning-about-non-notifyable-properties-in-qml
+#include "modelserviseudp.h"
 
-class ModelServiseBaseClass;
-class ModelServiseUDP;
+//https://habr.com/ru/post/140899/
+
+
+
+
 class ClientUDP: public ClientBase
 {
     Q_OBJECT
     //Q_PROPERTY(ModelServiseUDP* someProperty READ getSomeProperty WRITE setSomeProperty NOTIFY somePropertyChanged)
-    Q_PROPERTY(ModelServiseUDP * someProperty READ someProperty)
+    Q_PROPERTY(ModelServiseUDP * someProperty READ readsomeProperty)
+    //Q_PROPERTY(int someProperty READ someProperty)
+
 
 public:
     explicit ClientUDP(); //no const
     ModelServiseUDP *model;
 
-    //int getSomeProperty()const;
+   // int someProperty;
+
    // void setSomeProperty(ModelServiseUDP *){};
 
 
    // ModelServiseUDP* getSomeProperty()const;
     //void setSomeProperty(const ModelServiseUDP & );
-    //ModelServiseUDP * someProperty;
+    ModelServiseUDP * someProperty;
 
-    ModelServiseUDP *someProperty() const {
+
+    ModelServiseUDP *readsomeProperty() const
+    {
         return model;
     }
 

@@ -3,6 +3,7 @@
 //#include <QtNetwork>
 #include <QObject>
 #include "settingmap.h"
+#include "modelserviseudp.h"
 
 //class QUdpSocket;
 
