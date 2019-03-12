@@ -16,9 +16,9 @@ WorkerUDP::WorkerUDP(ClientBase *m_client, CLIENT_TYPE const & m_type):WorkerBas
     switch (type)
     {
     case UDP_CLIENT_TYPE:
-        dataloader = new  DateLoaderUDP (this, type);
-        parser = new ParseServiceUDP (this, type);
-        model = new ModelServiseUDP (this, type);
+        this->dataloader = new  DateLoaderUDP (this, type);
+        this->parser = new ParseServiceUDP (this, type);
+        this->model = new ModelServiseUDP (this, type);
         break;
     default:
         break;
@@ -47,6 +47,7 @@ void WorkerUDP::receive_data_parser_handler(QStringList & str_list)
        // for (int j=0; j<size;j++)
             //qDebug()<< str_list.at(j);
     }
+    this->model->data_model_handler(str_list);
 
 }
 
@@ -56,7 +57,7 @@ void WorkerUDP::receive_data_loader_handler(QByteArray const & message)
 
 
 
-    parser->data_parser_handler(message);
+   this-> parser->data_parser_handler(message);
 
 
 }

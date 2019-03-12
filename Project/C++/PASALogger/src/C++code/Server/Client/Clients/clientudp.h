@@ -13,31 +13,19 @@ class ClientUDP: public ClientBase
 {
     Q_OBJECT
     //Q_PROPERTY(ModelServiseUDP* someProperty READ getSomeProperty WRITE setSomeProperty NOTIFY somePropertyChanged)
-    Q_PROPERTY(ModelServiseUDP * someProperty READ readsomeProperty)
-    //Q_PROPERTY(int someProperty READ someProperty)
-
+    Q_PROPERTY(ModelServiseUDP * model READ readModel)
 
 public:
     explicit ClientUDP(); //no const
     ModelServiseUDP *model;
 
-   // int someProperty;
-
-   // void setSomeProperty(ModelServiseUDP *){};
-
-
-   // ModelServiseUDP* getSomeProperty()const;
-    //void setSomeProperty(const ModelServiseUDP & );
-    ModelServiseUDP * someProperty;
-
-
-    ModelServiseUDP *readsomeProperty() const
+    ModelServiseUDP *readModel() const
     {
         return model;
     }
 
 signals:
-   //void somePropertyChanged();
+    //void somePropertyChanged();
 
 public slots:
 

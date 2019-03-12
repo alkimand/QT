@@ -19,6 +19,8 @@ public:
      ModelServiseBaseClass *parent;
      ModelServiseBaseClass *child;
 
+     virtual  void data_model_handler(QStringList &) = 0;
+
 //     enum Roles{
 //         DataRole = Qt::UserRole + 1,
 //         TimeStampRole,
@@ -117,6 +119,7 @@ public:
 
 //protected:
     CLIENT_TYPE type;
+    QVector <QStringList> v_data;
 //    //virtual void create_connect_to_worker() = 0;
 //    //QString first_line;
 //   // QString last_line;
@@ -127,7 +130,9 @@ public:
 
 ////void model_sendData(QStringList & );
 
-//private:
+private:
+
+
 //   // virtual  QStringList sl_parse_line(QString ) = 0;
 ////CLIENT_TYPE type;
 };

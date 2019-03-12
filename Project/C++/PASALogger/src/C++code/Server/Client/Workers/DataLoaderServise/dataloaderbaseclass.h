@@ -11,13 +11,11 @@ class DataLoaderBaseClass: public QObject
     Q_OBJECT
 public:
     explicit  DataLoaderBaseClass(WorkerBaseClass *, CLIENT_TYPE const &);
-    //DataLoaderBaseClass();
     WorkerBaseClass *worker;
     DataLoaderBaseClass *parent;
     DataLoaderBaseClass *child;
 private:
     CLIENT_TYPE type;
-
 
 
 

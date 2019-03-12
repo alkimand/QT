@@ -18,7 +18,7 @@ ClientUDP::ClientUDP() : ClientBase()
     {
     case UDP_CLIENT_TYPE:
         this-> worker = new WorkerUDP(this, type);
-     // this-> model
+        // this-> model
 
         this-> model = static_cast<ModelServiseUDP*> (this-> worker->getModeltoQMLService());
 
