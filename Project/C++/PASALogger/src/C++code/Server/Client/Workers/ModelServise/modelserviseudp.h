@@ -3,7 +3,7 @@
 #include "modelservisebaseclass.h"
 
 #include <QObject>
-
+//https://evileg.com/ru/forum/topic/785/
 struct SomeStruct
 {
     bool check;
@@ -29,6 +29,7 @@ public:
     int rowCount(const QModelIndex &parent = QModelIndex()) const {
       Q_UNUSED(parent); return v_data.length();
     }
+
     int columnCount(const QModelIndex &parent = QModelIndex()) const {
       Q_UNUSED(parent); return 8;
     }

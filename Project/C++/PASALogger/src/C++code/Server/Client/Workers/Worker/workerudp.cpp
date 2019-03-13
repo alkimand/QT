@@ -36,7 +36,7 @@ void WorkerUDP::receive_data_parser_handler(QStringList & str_list)
     int size = str_list.length();
     if ((size == 8) || (size == 1))
     {
-        line_vector.append(str_list);
+        line_vector.append(str_list);//?
 
        // for (int j=0; j<size; j++)
            // qDebug()<< str_list.at(j);
@@ -54,12 +54,7 @@ void WorkerUDP::receive_data_parser_handler(QStringList & str_list)
 void WorkerUDP::receive_data_loader_handler(QByteArray const & message)
 {
     //qDebug()<< "1: WorkerUDP::receive_data_loader_handler in" ;
-
-
-
    this-> parser->data_parser_handler(message);
-
-
 }
 
 

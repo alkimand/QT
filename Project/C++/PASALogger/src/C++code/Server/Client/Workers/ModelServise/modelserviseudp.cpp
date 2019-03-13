@@ -5,15 +5,32 @@
 ModelServiseUDP::ModelServiseUDP(WorkerBaseClass *m_worker, CLIENT_TYPE const & m_type):ModelServiseBaseClass(m_worker, m_type)
 {
     this->child = this;
-    fillModel();
+    //fillModel();
     qDebug()<< "create ModelServiseUDP";
 
 }
 
 void ModelServiseUDP::data_model_handler(QStringList & list)
 {
+    beginResetModel();
+    if (list.size() !=8){return ;}
     this->v_data.append(list);
+   // QModelIndex startIndex=createIndex(0, 0);
+    //QModelIndex stopIndex=createIndex(v_data.size(), 8 );
+    //emit dataChanged(startIndex, stopIndex);
+    //QStringList lst = this->v_data.last();
+    //auto topLeftIndex = createIndex(0, 0, m_root.get());
+
+     //emit dataChanged(createIndex(0,0),createIndex(v_data.size(),7));
+    QModelIndex index = createIndex(0, 0, static_cast<void *>(0));
+     //emit dataChanged(index, index, { role });
+        emit dataChanged(index, index);
+    //emit dataChanged(index, index, Qt::EditRole);
+     //qDebug()<< "data add" << list.first();
+     endResetModel();
 }
+
+
 
 QHash<int, QByteArray> ModelServiseUDP::roleNames() const
 {
@@ -85,5 +102,7 @@ void ModelServiseUDP::fillModel()
             list.append(QString::number(j));
         }
         this->v_data.append(list);
+
+
     }
 }
