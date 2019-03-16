@@ -1,14 +1,9 @@
 #ifndef CLIENTBASE_H
 #define CLIENTBASE_H
 //#include <QtNetwork>
-
 #include <QObject>
 #include "settingmap.h"
-
 #include "modelserviseudp.h"
-#include "modelservistext.h"
-
-//#include "clienttext.h"//+-
 
 //class QUdpSocket;
 

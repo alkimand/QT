@@ -4,19 +4,16 @@
 #include <QtQml>
 #include "Server.h"
 //#include "tablemodel.h"
-//#include "clientbase.h"
+#include "clientbase.h"
 #include "clientudp.h"
-#include "clienttext.h"
-
-//#include "modelserviseudp.h"
+#include "modelserviseudp.h"
 
 //https://habr.com/ru/post/140899/
 #include <QObject>
 #include <QQmlComponent>
 #include <QQmlEngine>
 #include <QQuickWindow>
-
-
+#include "clientudp.h"
 int main(int argc, char *argv[])
 {
     Q_INIT_RESOURCE(qml);
@@ -55,15 +52,14 @@ int main(int argc, char *argv[])
     //ModelServiseBaseClass
 
 
-    //ClientText cliend();
+
     //engine.rootContext()->setContextProperty("someModel", &someModel);
 
     // qmlRegisterType <ModelServiseUDP> ("ModuleName", 1, 0, "ModelServiseUDP");
      qmlRegisterType <ClientUDP>("ClientUDP", 1, 0, "ClientUDP");
-     //qmlRegisterType <ClientText>("ClientText", 1, 0, "ClientText");
 
 
-    //
+
     QQmlEngine engine;
     QQmlComponent *component = new QQmlComponent(&engine);
     component->loadUrl(QUrl("main.qml"));

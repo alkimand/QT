@@ -1,6 +1,6 @@
 #include "workerudp.h"
 
-//#include "workerbaseclass.h"
+#include "workerbaseclass.h"
 #include "parseserviceudp.h"
 #include "modelserviseudp.h"
 

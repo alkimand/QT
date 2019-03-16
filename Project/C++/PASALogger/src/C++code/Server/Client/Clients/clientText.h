@@ -10,14 +10,14 @@
 
 
 
-class ClientUDP: public ClientBase
+class ClientText: public ClientBase
 {
     Q_OBJECT
     //Q_PROPERTY(ModelServiseUDP* someProperty READ getSomeProperty WRITE setSomeProperty NOTIFY somePropertyChanged)
     Q_PROPERTY(ModelServiseUDP * model READ readModel WRITE setVin NOTIFY modelChanged)
 
 public:
-    explicit ClientUDP(); //no const
+    explicit ClientText(); //no const
     ModelServiseUDP *model;
 
     void setVin(const ModelServiseUDP* model){};

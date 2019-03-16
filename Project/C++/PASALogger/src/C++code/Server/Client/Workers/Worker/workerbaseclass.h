@@ -9,6 +9,7 @@
 //class DataLoaderBaseClass;
 #include "dataloaderbaseclass.h"
 #include "dateloaderudp.h"
+#include "dataloaderbaseclass.h"
 
 
 class ParseServiceBaseClass;

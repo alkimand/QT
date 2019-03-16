@@ -1,12 +1,13 @@
-#include "clientudp.h"
+#include "clientText.h"
 #include <QDebug>
 #include "workerbaseclass.h"
+
 #include "workerudp.h"
 #include "modelserviseudp.h"
 #include <QQmlEngine>
 #include <QQuickView>
 
-ClientUDP::ClientUDP() : ClientBase()
+ClientText::ClientText() : ClientBase()
 {
     qDebug()<< "create ClientUDP";
     this->child = this;

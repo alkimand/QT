@@ -1,8 +1,6 @@
-#ifndef WORKERUDPT_H
-#define WORKERUDPT_H
+#ifndef WORKERUDP_H
+#define WORKERUDP_H
 #include "workerbaseclass.h"
-//#include "dateloadertext.h"
-//#include "dateloadertext.h"
 #include <QObject>
 
 
