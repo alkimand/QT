@@ -10,7 +10,6 @@ import ClientUDP 1.0
 
 BaseTableView
 {
-
     ClientUDP
     {
         id: client
@@ -25,7 +24,7 @@ BaseTableView
     {
         role: "date"
         title: "Date/Time"
-        //width: window.width/5
+        width: window.width/5
     }
     C1.TableViewColumn
     {

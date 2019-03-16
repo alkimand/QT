@@ -40,7 +40,8 @@ SOURCES += \
     src/C++code/Server/Client/Workers/Worker/workerudp.cpp \
     src/C++code/Setting/setting.cpp \
     src/C++code/Setting/settingmap.cpp \
-    src/C++code/Server/Server/Server.cpp
+    src/C++code/Server/Server/Server.cpp \
+    src/C++code/Server/Client/Clients/clientText.cpp
 
 
 RESOURCES += qml.qrc
@@ -89,8 +90,9 @@ OTHER_FILES += \
     src/ToolBar/CustomToolButton/CustomToolButtonIcon.qml \
     src/ToolBar/CustomToolButton/CustomToolButtonText.qml \
     src/ToolBar/CustomToolButton/ToolButtonLoader.qml \
-    src/ToolBar/CustomToolButton/CustomToolButton.qml
-
+    src/ToolBar/CustomToolButton/CustomToolButton.qml \
+#ChoiceItem
+    src/ChoiceItem/ChoiceItemBase.qml
 
 # Additional import path used to resolve QML modules just for Qt Quick Designer
 QML_DESIGNER_IMPORT_PATH =
@@ -153,7 +155,8 @@ HEADERS += \
     src/C++code/Server/Client/Workers/Worker/workerudp.h \
     src/C++code/Setting/setting.h \
     src/C++code/Setting/settingmap.h \
-    src/C++code/Server/Server/Server.h
+    src/C++code/Server/Server/Server.h \
+    src/C++code/Server/Client/Clients/clientText.h
 
 
 

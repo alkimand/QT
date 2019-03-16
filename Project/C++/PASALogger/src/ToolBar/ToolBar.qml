@@ -49,7 +49,6 @@ ToolBar
     Row
     {
         spacing: 0
-        
         CustomToolButton{action: actions.fileOpenAction}
         CustomToolButton{action: actions.fileSaveAction}
         CustomToolButton{action: actions.downloadAction}

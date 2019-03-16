@@ -10,6 +10,7 @@ import "../TabView/Style"
 import "../TabView/Style/Tab"
 import "../TableView/ItemDelegat/HeaderDelegate"
 import "../TableView/TableView" as MyTable
+import "../ChoiceItem"
 C1.TabView
 {
     id:tabView
@@ -23,21 +24,61 @@ C1.TabView
     onRenametab:{}
     style: TabViewStyle{}
 
+    //    Component
+    //    {
+    //        id:tableComponent
+    //        TableUDP{}
+    //    }
+
+    //    Component
+    //    {
+    //        id:choiceComponent
+    //        ChoiceItemBase{}
+    //    }
+
     Component
     {
         id:newTabComponent
-        //TableWithHeader{}
-        TableUDP{}
+        Loader
+        {
+            id: loader
+            anchors.fill: parent
+            source: "../ChoiceItem/ChoiceWindow.qml"
+
+            function setTable(name)
+            {
+
+                loader.source = ""
+                console.log("name:" + name)
+                switch (name)
+                {
+                case "UDP logger" :
+                    console.log("UDP logger")
+                    source= "../TableView/TableView/TableUDP.qml"
+                    break
+                case "Text logger" :
+                    console.log("Text logger")
+                    break
+                }
+            }
+        }
+
     }
+
+
 
     function onCurIndChangeHeandler()
     {
         addNewTab()
     }
 
+
+
+
     function addNewTab()
     {
         tabView.addTab(newWindowTitle,newTabComponent)
+        //tabView.addTab(newWindowTitle,newChoiceComponent)
         tabView.currentIndex = tabView.count - 1
         tabView.contexMenuIndex = tabView.currentIndex
     }
@@ -47,9 +88,9 @@ C1.TabView
     }
     function closeAllButThisTab(index)
     {
-//        console.log("closeAction")
-//        console.log("tabView.currentIndex:" + tabView.currentIndex)
-//        console.log("tabView.count:" + tabView.count)
+        //        console.log("closeAction")
+        //        console.log("tabView.currentIndex:" + tabView.currentIndex)
+        //        console.log("tabView.count:" + tabView.count)
         if (index < tabView.count - 1)
         {   //console.log("if  true")
             for (var i = tabView.count - 1 ;i > index;i--)
@@ -83,27 +124,27 @@ C1.TabView
     {
         tabView.renametab()
         console.log("renametab()")
-       // tabView.getTab(index).title = name
+        // tabView.getTab(index).title = name
 
         //tabView.getTab(index).style. ="123"
-       // console.log("renameTab index:"+index)
+        // console.log("renameTab index:"+index)
 
-       // console.log("0: "+ tabView.__styleItem.children.length)
-       //console.log("1: "+ tabView.__styleItem.item.test)
+        // console.log("0: "+ tabView.__styleItem.children.length)
+        //console.log("1: "+ tabView.__styleItem.item.test)
         //console.log("2: "+ tabView.style.__styleItem.children[0].item.test)
         //console.log("3: "+ tabView.style.__styleItem.item.children[0].test)
-//        console.log("1: "+ tabView.style.children[0].item.test)
-//        console.log("2: "+ tabView.style.children[0].test)
-//        console.log("1: "+ tabView.getTab(index).item.children.length)//children[0].
-//        console.log("2: "+ tabView.getTab(index).children[0].textHeight)
-//        console.log("3: "+ tabView.getTab(index).children[0].item.textHeight)
-//        console.log("4: "+ tabView.getTab(index).sourceComponent.children.length)
+        //        console.log("1: "+ tabView.style.children[0].item.test)
+        //        console.log("2: "+ tabView.style.children[0].test)
+        //        console.log("1: "+ tabView.getTab(index).item.children.length)//children[0].
+        //        console.log("2: "+ tabView.getTab(index).children[0].textHeight)
+        //        console.log("3: "+ tabView.getTab(index).children[0].item.textHeight)
+        //        console.log("4: "+ tabView.getTab(index).sourceComponent.children.length)
     }
 
     function openInExplorer()
     {
-//        text.selectAll()
-//        text.forceActiveFocus()
+        //        text.selectAll()
+        //        text.forceActiveFocus()
         console.log("openInExplorer")
     }
 }

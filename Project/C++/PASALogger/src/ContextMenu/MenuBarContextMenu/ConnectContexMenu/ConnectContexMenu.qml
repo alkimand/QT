@@ -11,7 +11,7 @@ ContextMenuBase
     {
         control.insertAction(0, actions.playAction)
         control.insertAction(1, actions.stopAction)
-        control.insertAction(1, actions.pauseAction)
-        control.insertAction(1, actions.clearAction)
+        control.insertAction(2, actions.pauseAction)
+        control.insertAction(3, actions.clearAction)
     }
 }
