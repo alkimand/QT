@@ -1,7 +1,9 @@
 #ifndef CLIENTUDP_H
 #define CLIENTUDP_H
 #include "clientbase.h"
+
 #include <QObject>
+
 #include "modelserviseudp.h"
 
 //https://habr.com/ru/post/140899/

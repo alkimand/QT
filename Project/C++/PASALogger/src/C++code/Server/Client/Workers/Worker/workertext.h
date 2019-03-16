@@ -1,18 +1,18 @@
-#ifndef WORKERUDPT_H
-#define WORKERUDPT_H
+#ifndef WORKERTEXT_H
+#define WORKERTEXT_H
 #include "workerbaseclass.h"
 //#include "dateloadertext.h"
 //#include "dateloadertext.h"
 #include <QObject>
 
 
-class WorkerUDP: public WorkerBaseClass
+class WorkerText: public WorkerBaseClass
 {
 
     Q_OBJECT
 
 public:
-    explicit WorkerUDP(ClientBase * m_client, CLIENT_TYPE  const &);
+    explicit WorkerText(ClientBase * m_client, CLIENT_TYPE  const &);
     void test();
     //WorkerBaseClass *child;
    // WorkerUDP *child2;

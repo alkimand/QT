@@ -30,6 +30,7 @@ SOURCES += \
     main.cpp \
     src/C++code/Server/Client/Clients/clientbase.cpp \
     src/C++code/Server/Client/Clients/clientudp.cpp \
+    src/C++code/Server/Client/Clients/clienttext.cpp \
     src/C++code/Server/Client/Workers/DataLoaderServise/dataloaderbaseclass.cpp \
     src/C++code/Server/Client/Workers/DataLoaderServise/dateloaderudp.cpp \
     src/C++code/Server/Client/Workers/ModelServise/modelservisebaseclass.cpp \
@@ -38,11 +39,14 @@ SOURCES += \
     src/C++code/Server/Client/Workers/ParserService/parseserviceudp.cpp \
     src/C++code/Server/Client/Workers/Worker/workerbaseclass.cpp \
     src/C++code/Server/Client/Workers/Worker/workerudp.cpp \
+    src/C++code/Server/Client/Workers/Worker/workertext.cpp \
     src/C++code/Setting/setting.cpp \
     src/C++code/Setting/settingmap.cpp \
     src/C++code/Server/Server/Server.cpp \
-    src/C++code/Server/Client/Clients/clientText.cpp
-
+    src/C++code/Server/Client/Workers/DataLoaderServise/dateloadertext.cpp \
+    src/C++code/Server/Client/Workers/Worker/workertext.cpp \
+    src/C++code/Server/Client/Workers/ModelServise/modelservistext.cpp \
+    src/C++code/Server/Client/Workers/ParserService/parseservicetext.cpp \
 
 RESOURCES += qml.qrc
 INCLUDEPATH +=$$PWD/src
@@ -143,6 +147,7 @@ DISTFILES += \
 HEADERS += \
     src/C++code/Server/Client/Clients/clientbase.h \
     src/C++code/Server/Client/Clients/clientudp.h \
+    src/C++code/Server/Client/Clients/clienttext.h \
     src/C++code/Server/Client/Workers/DataLoaderServise/dataloaderbaseclass.h \
     src/C++code/Server/Client/Workers/DataLoaderServise/dateloaderudp.h \
     src/C++code/Server/Client/Workers/ModelServise/modelservisebaseclass.h \
@@ -152,13 +157,10 @@ HEADERS += \
     src/C++code/Server/Client/Workers/ParserService/parseservicebaseclass.h \
     src/C++code/Server/Client/Workers/ParserService/parseserviceudp.h \
     src/C++code/Server/Client/Workers/Worker/workerbaseclass.h \
-    src/C++code/Server/Client/Workers/Worker/workerudp.h \
     src/C++code/Setting/setting.h \
     src/C++code/Setting/settingmap.h \
     src/C++code/Server/Server/Server.h \
-    src/C++code/Server/Client/Clients/clientText.h
-
-
-
-
-
+    src/C++code/Server/Client/Workers/DataLoaderServise/dateloadertext.h \
+    src/C++code/Server/Client/Workers/Worker/workertext.h \
+    src/C++code/Server/Client/Workers/ModelServise/modelservistext.h \
+    src/C++code/Server/Client/Workers/ParserService/parseservicetext.h

@@ -1,8 +1,10 @@
-#include "clientudp.h"
+
 #include <QDebug>
-#include "workerbaseclass.h"
+#include "clientudp.h"
+//#include "workerbaseclass.h"
 #include "workerudp.h"
 #include "modelserviseudp.h"
+
 #include <QQmlEngine>
 #include <QQuickView>
 
@@ -22,6 +24,10 @@ ClientUDP::ClientUDP() : ClientBase()
 
         this-> model = static_cast<ModelServiseUDP*> (this-> worker->getModeltoQMLService());
 
+        //    case TXT_CLIENT_TYPE:
+        //        this-> worker = new WorkerText(this, type);
+        //        this-> model = static_cast<ModelServiseText*> (this-> worker->getModeltoQMLService());
+        //        break;
 
         break;
     default:
