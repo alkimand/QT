@@ -12,7 +12,7 @@ Item
         anchors.fill: parent
         border.width:1
         border.color:"black"//(styleData.row===tableView.selectRow)?"#e200ff":"black"
-        color :(styleData.row % 2===0)?"#77a9ef":"white"//"#00ff17"
+        color :getRowColor() //(styleData.row % 2===0 && styleData.)?"#77a9ef":"white"//"#00ff17"
         Text
         {
             id:textItemDelegate
@@ -55,6 +55,16 @@ Item
             }
 
         }
+    }
+    function getRowColor()
+    {
+        if (styleData.selected)
+            return "#00C919";
+        /// settingData.children[4].setting.tableViewhRowDelegatSelectColorSetting
+        if (styleData.row % 2===0 )
+            return "#77a9ef";
+        else
+            return "white";
     }
 
 }

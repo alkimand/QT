@@ -5,13 +5,13 @@ import QtQuick.Controls 1.4 as C1
 import QtQuick.Controls 2.4
 import QtQuick.Controls.Styles 1.4
 
-import ClientUDP 1.0
+import ClientText 1.0
 
 
 BaseTableView
 {
     id: control
-    ClientUDP
+    ClientText
     {
         id: client
         Component.onCompleted:
@@ -20,7 +20,8 @@ BaseTableView
         }
     }
 
-    onWidthChanged:functionColumn.width = Math.max(100, control.width - timeColumn.width - countColumn.width - zoneColumn.width-serviceColumn.width-lineColumn.width-messageColumn.width)
+
+    //onWidthChanged:functionColumn.width = Math.max(100, control.width - timeColumn.width - countColumn.width - zoneColumn.width-serviceColumn.width-lineColumn.width-messageColumn.width)
 
     model: client.model
 
@@ -68,7 +69,7 @@ BaseTableView
         id:functionColumn
         role: "functionName"
         title: "Function Name"
-        width: 300
+        width: 400
     }
 
     C1.TableViewColumn
@@ -84,7 +85,6 @@ BaseTableView
         id:messageColumn
         role: "message"
         title: "Message"
-        width: 300
-    }
+        width: control.width-dateColumn.width-timeColumn.width-countColumn.width-zoneColumn.width-serviceColumn.width-functionColumn.width-lineColumn.width - 20
 }
-
+}

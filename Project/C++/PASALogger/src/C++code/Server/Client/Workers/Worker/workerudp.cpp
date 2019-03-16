@@ -16,9 +16,9 @@ WorkerUDP::WorkerUDP(ClientBase *m_client, CLIENT_TYPE const & m_type):WorkerBas
     switch (type)
     {
     case UDP_CLIENT_TYPE:
-        this->dataloader = new  DateLoaderUDP (this, type);
         this->parser = new ParseServiceUDP (this, type);
         this->model = new ModelServiseUDP (this, type);
+        this->dataloader = new  DateLoaderUDP (this, type);
         break;
     default:
         break;

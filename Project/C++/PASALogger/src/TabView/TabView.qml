@@ -49,7 +49,7 @@ C1.TabView
             {
 
                 loader.source = ""
-                console.log("name:" + name)
+                //console.log("name:" + name)
                 switch (name)
                 {
                 case "UDP logger" :
@@ -58,6 +58,7 @@ C1.TabView
                     break
                 case "Text logger" :
                     console.log("Text logger")
+                    source= "../TableView/TableView/TableText.qml"
                     break
                 }
             }

@@ -1,30 +1,35 @@
-#ifndef DATELOADERUDP_H
-#define DATELOADERUDP_H
+#ifndef DATELOADERTEXT_H
+#define DATELOADERTEXT_H
 #include "dataloaderbaseclass.h"
 
-class QUdpSocket;
+//class QUdpSocket;
 
-class DateLoaderUDP: public DataLoaderBaseClass
+class DateLoaderText: public DataLoaderBaseClass
         //:DataLoaderBaseClass
 {
     Q_OBJECT
 
 public:
-    explicit  DateLoaderUDP(WorkerBaseClass *, CLIENT_TYPE const &);
+    explicit DateLoaderText(WorkerBaseClass *, CLIENT_TYPE const &);
 
 
 private:
-    QUdpSocket* udp_socket;
-    int port;
+    //QUdpSocket* udp_socket;
+    QString fileName;
     void create_connect_to_worker();
+
 
 signals:
     //void sendData(QString); //move to Base class
+    void readyRead();
+
+
 
 private slots:
     void start();
     void stop();
     void slotProcessDatagrams();
+
 
 };
 

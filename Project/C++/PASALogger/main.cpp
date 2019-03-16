@@ -1,12 +1,17 @@
 #include <QGuiApplication>
+#include <QApplication>
 #include <QQmlApplicationEngine>
 #include <QAbstractTableModel>
 #include <QtQml>
 #include "Server.h"
 //#include "tablemodel.h"
-#include "clientbase.h"
+//#include "clientbase.h"
+
 #include "clientudp.h"
+#include "clienttext.h"
+
 #include "modelserviseudp.h"
+
 
 //https://habr.com/ru/post/140899/
 #include <QObject>
@@ -19,7 +24,8 @@ int main(int argc, char *argv[])
     Q_INIT_RESOURCE(qml);
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
-    QGuiApplication app(argc, argv);
+   // QGuiApplication app(argc, argv);
+    QApplication app(argc, argv);
 
 
 //    QStringList paths = QCoreApplication::libraryPaths();
@@ -57,8 +63,9 @@ int main(int argc, char *argv[])
 
     // qmlRegisterType <ModelServiseUDP> ("ModuleName", 1, 0, "ModelServiseUDP");
      qmlRegisterType <ClientUDP>("ClientUDP", 1, 0, "ClientUDP");
+     qmlRegisterType <ClientText>("ClientText", 1, 0, "ClientText");
 
-
+    //ClientText cca();
 
     QQmlEngine engine;
     QQmlComponent *component = new QQmlComponent(&engine);

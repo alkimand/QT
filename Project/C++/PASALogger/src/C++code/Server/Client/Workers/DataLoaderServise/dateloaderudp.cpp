@@ -5,10 +5,6 @@
 #include <QtGui>
 
 #include <QDebug>
-//DateLoaderUDP::DateLoaderUDP(QWidget *pwgt)
-//{
-
-//}
 
 DateLoaderUDP::DateLoaderUDP(WorkerBaseClass *m_worker, CLIENT_TYPE const & m_type): DataLoaderBaseClass(m_worker, m_type)
 {

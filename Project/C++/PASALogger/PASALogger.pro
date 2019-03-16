@@ -41,7 +41,11 @@ SOURCES += \
     src/C++code/Setting/setting.cpp \
     src/C++code/Setting/settingmap.cpp \
     src/C++code/Server/Server/Server.cpp \
-    src/C++code/Server/Client/Clients/clientText.cpp
+    src/C++code/Server/Client/Clients/clienttext.cpp \
+    src/C++code/Server/Client/Workers/Worker/workertext.cpp \
+    src/C++code/Server/Client/Workers/DataLoaderServise/dateloadertext.cpp \
+    src/C++code/Server/Client/Workers/ParserService/parseservicetext.cpp \
+    src/C++code/Server/Client/Workers/ModelServise/modelservisetext.cpp
 
 
 RESOURCES += qml.qrc
@@ -83,6 +87,7 @@ OTHER_FILES += \
     src/TableView/ItemDelegat/RowDelegat/RowDelegat.qml \
     src/TableView/TableView/BaseTableView.qml \
     src/TableView/TableView/TableUDP.qml \
+    src/TableView/TableView/TableText.qml \
 #ToolBar
     src/ToolBar/ToolBar.qml \
     src/ToolBar/CustomComboBox/CustomComboBox.qml \
@@ -156,7 +161,11 @@ HEADERS += \
     src/C++code/Setting/setting.h \
     src/C++code/Setting/settingmap.h \
     src/C++code/Server/Server/Server.h \
-    src/C++code/Server/Client/Clients/clientText.h
+    src/C++code/Server/Client/Clients/clienttext.h \
+    src/C++code/Server/Client/Workers/Worker/workertext.h \
+    src/C++code/Server/Client/Workers/DataLoaderServise/dateloadertext.h \
+    src/C++code/Server/Client/Workers/ParserService/parseservicetext.h \
+    src/C++code/Server/Client/Workers/ModelServise/modelservisetext.h
 
 
 

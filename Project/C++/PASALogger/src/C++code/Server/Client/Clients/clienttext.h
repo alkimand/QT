@@ -1,5 +1,5 @@
-#ifndef CLIENTUDP_H
-#define CLIENTUDP_H
+#ifndef CLIENTEXT_H
+#define CLIENTEXT_H
 #include "clientbase.h"
 #include <QObject>
 #include "modelserviseudp.h"

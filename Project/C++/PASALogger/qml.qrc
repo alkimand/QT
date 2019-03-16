@@ -17,6 +17,7 @@
         <file>src/ContextMenu/MenuBarContextMenu/TableContexMenu/TableContexMenu.qml</file>
         <file>src/TableView/ItemDelegat/ItemDelegate/ItemDelegate.qml</file>
         <file>src/TableView/TableView/TableUDP.qml</file>
+		<file>src/TableView/TableView/TableText.qml</file>
         <file>src/TableView/ItemDelegat/HeaderDelegate/HeaderDelegate.qml</file>
         <file>src/TableView/TableWithHeader.qml</file>
         <file>src/TableView/ItemDelegat/Loaders/HeaderLoader.qml</file>
@@ -34,7 +35,7 @@
         <file>src/ToolBar/CustomComboBox/CustomComboBox.qml</file>
         <file>src/ToolBar/ToolBar.qml</file>
         <file>src/Action/Actions.qml</file>
-		<file>src/ChoiceItem/ChoiceItemBase.qml</file>
+        <file>src/ChoiceItem/ChoiceItemBase.qml</file>
         <file>src/ChoiceItem/ChoiceWindow.qml</file>
         <file>src/images/ToolBarIcon/editcopy.png</file>
         <file>src/images/ToolBarIcon/editcut.png</file>
@@ -78,6 +79,6 @@
         <file>src/images/ToolBarIcon/rename.jpg</file>
         <file>src/images/ToolBarIcon/rename.png</file>
         <file>src/images/ToolBarIcon/explorer.png</file>
-
+        
     </qresource>
 </RCC>

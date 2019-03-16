@@ -35,7 +35,7 @@ ModelServiseBaseClass *WorkerBaseClass::getModeltoQMLService()
 
 void WorkerBaseClass::receive_data_loader_slot(QByteArray  const & message)
 {
-        //qDebug()<< "receive_data_loader_slot ";
+        //qDebug()<< " WorkerBaseClass receive_data_loader_slot ";
         //qDebug()<< "message:" + message;
         this->child->receive_data_loader_handler(message);
        //this->child->receive_data_loader_handler(message);

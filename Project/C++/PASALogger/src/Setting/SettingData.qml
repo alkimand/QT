@@ -130,6 +130,9 @@ Item {
     {
         property string t2ableViewhHederImageSortDescendingIconSetting: "./../../../images/TableViewIcon/sort_descending.png"
         //TableView - item
+        property color tableViewhRowDelegatSelectColorSetting: "#00C919"
+
+        //#00C919
         //ToDo
 
     }

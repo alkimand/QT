@@ -19,7 +19,6 @@ MouseArea
     z:0
     onClicked:
     {
-
         //console.log("onClicked" )
         if (mouse.button === Qt.RightButton)
         {

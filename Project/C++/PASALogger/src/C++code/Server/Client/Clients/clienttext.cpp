@@ -1,33 +1,31 @@
-#include "clientText.h"
+#include "clienttext.h"
 #include <QDebug>
 #include "workerbaseclass.h"
 
-#include "workerudp.h"
+#include "workertext.h"
 #include "modelserviseudp.h"
 #include <QQmlEngine>
 #include <QQuickView>
 
 ClientText::ClientText() : ClientBase()
 {
-    qDebug()<< "create ClientUDP";
+    qDebug()<< "create ClientText";
     this->child = this;
-    this->type = UDP_CLIENT_TYPE;
+    this->type = TXT_CLIENT_TYPE;
 
     //qmlRegisterType <ModelServiseUDP> ("ModuleName", 1, 0, "ModelServiseUDP");
 
-    switch (type)
-    {
-    case UDP_CLIENT_TYPE:
-        this-> worker = new WorkerUDP(this, type);
-        // this-> model
-
+    //switch (type)
+    //{
+    //case UDP_CLIENT_TYPE:
+        this-> worker = new WorkerText(this, type);
         this-> model = static_cast<ModelServiseUDP*> (this-> worker->getModeltoQMLService());
 
 
-        break;
-    default:
-        break;
-    }
+//        break;
+//    default:
+//        break;
+    //}
 
 }
 
