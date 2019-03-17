@@ -45,7 +45,8 @@ SOURCES += \
     src/C++code/Server/Client/Workers/Worker/workertext.cpp \
     src/C++code/Server/Client/Workers/DataLoaderServise/dateloadertext.cpp \
     src/C++code/Server/Client/Workers/ParserService/parseservicetext.cpp \
-    src/C++code/Server/Client/Workers/ModelServise/modelservisetext.cpp
+    src/C++code/Server/Client/Workers/ModelServise/modelservisetext.cpp \
+    src/C++code/Server/Client/Workers/ProxiModel/proximodelservisebaseclass.cpp
 
 
 RESOURCES += qml.qrc
@@ -165,7 +166,8 @@ HEADERS += \
     src/C++code/Server/Client/Workers/Worker/workertext.h \
     src/C++code/Server/Client/Workers/DataLoaderServise/dateloadertext.h \
     src/C++code/Server/Client/Workers/ParserService/parseservicetext.h \
-    src/C++code/Server/Client/Workers/ModelServise/modelservisetext.h
+    src/C++code/Server/Client/Workers/ModelServise/modelservisetext.h \
+    src/C++code/Server/Client/Workers/ProxiModel/proximodelservisebaseclass.h
 
 
 

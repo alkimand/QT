@@ -6,6 +6,10 @@
 #include <QObject>
 #include <QAbstractTableModel>
 
+//Proxi model
+//https://stackoverrun.com/ru/q/10878631
+//https://doc.qt.io/qt-5/qtwidgets-itemviews-customsortfiltermodel-example.html
+//https://doc.qt.io/archives/qt-4.8/qsortfilterproxyModel.html
 
 //https://evileg.com/ru/forum/topic/785/
 
@@ -13,7 +17,6 @@ class  ModelServiseBaseClass: public QAbstractTableModel
 {
     Q_OBJECT
 public:
-    // explicit  ModelServiseBaseClass();//WorkerBaseClass *, CLIENT_TYPE const &);
     explicit  ModelServiseBaseClass(WorkerBaseClass *, CLIENT_TYPE const &);
      WorkerBaseClass *worker;
      ModelServiseBaseClass *parent;
