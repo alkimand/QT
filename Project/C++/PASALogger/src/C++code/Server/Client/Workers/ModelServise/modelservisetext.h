@@ -3,13 +3,6 @@
 #include "modelservisebaseclass.h"
 
 #include <QObject>
-//https://evileg.com/ru/forum/topic/785/
-//struct SomeStruct
-//{
-//    bool check;
-//    QString description;
-//    int value;
-//};
 
 class ModelServiseText : public ModelServiseBaseClass
 {
@@ -40,11 +33,10 @@ public:
 signals:
 
 public slots:
+
 private:
-    //QVector<QVector<QString>> table;
     void fillModel();
 
- //QVector<SomeStruct> list;
 };
 
 #endif // MODELSERVISEUDP_H

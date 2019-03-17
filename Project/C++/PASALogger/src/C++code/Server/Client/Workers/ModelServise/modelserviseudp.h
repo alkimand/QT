@@ -4,25 +4,18 @@
 
 #include <QObject>
 //https://evileg.com/ru/forum/topic/785/
-struct SomeStruct
-{
-    bool check;
-    QString description;
-    int value;
-};
 
 class ModelServiseUDP: public ModelServiseBaseClass
 {
     enum Roles
         {
-            DATE, TIME, COUNT, ZONE, SERVICENAME, FUNCTIONNAME, LINENUMBER, MESSAGE
+            ROW, CHECK ,DATE, TIME, COUNT, ZONE, SERVICENAME, FUNCTIONNAME, LINENUMBER, MESSAGE
         };
 
 Q_OBJECT
 
 
 public:
-    // explicit  ModelServiseUDP();//WorkerBaseClass *, CLIENT_TYPE const &);
     explicit  ModelServiseUDP(WorkerBaseClass *, CLIENT_TYPE const &);
     void data_model_handler(QStringList &);
 
@@ -31,7 +24,7 @@ public:
     }
 
     int columnCount(const QModelIndex &parent = QModelIndex()) const {
-      Q_UNUSED(parent); return 8;
+      Q_UNUSED(parent); return 10;
     }
     QHash<int, QByteArray> roleNames() const;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
@@ -42,10 +35,8 @@ signals:
 
 public slots:
 private:
-    //QVector<QVector<QString>> table;
     void fillModel();
 
- //QVector<SomeStruct> list;
 };
 
 #endif // MODELSERVISEUDP_H

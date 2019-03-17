@@ -13,23 +13,12 @@ ModelServiseText::ModelServiseText(WorkerBaseClass *m_worker, CLIENT_TYPE const 
 void ModelServiseText::data_model_handler(QStringList & list)
 {
    // qDebug()<< "ModelServiseText data_model_handler";
-    beginResetModel();
+    //beginResetModel();
     if (list.size() !=8){return ;}
     this->v_data.append(list);
-   // QModelIndex startIndex=createIndex(0, 0);
-    //QModelIndex stopIndex=createIndex(v_data.size(), 8 );
-    //emit dataChanged(startIndex, stopIndex);
-    //QStringList lst = this->v_data.last();
-    //auto topLeftIndex = createIndex(0, 0, m_root.get());
-
-     //emit dataChanged(createIndex(0,0),createIndex(v_data.size(),7));
     QModelIndex index = createIndex(0, 0, static_cast<void *>(0));
      //emit dataChanged(index, index, { role });
         emit dataChanged(index, index);
-
-    //emit dataChanged(index, index, Qt::EditRole);
-     //qDebug()<< "data add" << list.first();
-     //endResetModel();
 }
 
 
@@ -52,8 +41,6 @@ QVariant ModelServiseText::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid())
         return QVariant();
-
-    //SomeStruct s = v_data.at(index.row());
     switch (role)
     {
     case Qt::UserRole+DATE: return this->v_data.at(index.row()).at(0);
@@ -69,32 +56,10 @@ QVariant ModelServiseText::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-//  void ModelServiseText::setAllChecked(bool value)
-//  {
-//    beginResetModel();
-//    qDebug() << 1;
-//    for (SomeStruct &s : list) {
-//        s.check = value;
-//        qDebug() << value;
-//      }
-//    endResetModel();
-//  }
-
-//  void ModelServiseText::setRowChecked(int row, bool value)
-//  {
-//    if (row < 0 || row >= list.count())
-//      return;
-//    SomeStruct &s = list[row];
-//    s.check = value;
-//    emit dataChanged(index(row,0), index(row, columnCount()-1));
-//  }
 
 void ModelServiseText::fillModel()
 {
-    //    SomeStruct one = {true, "Some definition", 100};
-    //    SomeStruct two = {false, "Some definition again", 200};
-//    //    SomeStruct three = {true, "Definition", 1000};
-     QStringList list;
+    QStringList list;
     for (int i =0; i<8; i++)
     {
 

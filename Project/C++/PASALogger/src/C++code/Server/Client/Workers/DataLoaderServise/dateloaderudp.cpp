@@ -18,17 +18,14 @@ DateLoaderUDP::DateLoaderUDP(WorkerBaseClass *m_worker, CLIENT_TYPE const & m_ty
     create_connect_to_worker();
 
     this->status = DATALOAD;
-    connect(udp_socket, SIGNAL(readyRead()), SLOT(slotProcessDatagrams()));
-
-    QString str = "123";
-    //emit sendData(str);
+    connect(udp_socket, SIGNAL(readyRead()),this->child, SLOT(slotProcessDatagrams()));
 }
 
 void DateLoaderUDP::create_connect_to_worker()
 {
     //send data to worker
     //qDebug()<< "DateLoaderUDP::create_connect_to_worker";
-     connect(this, SIGNAL(sendData(QByteArray const &)), worker, SLOT(receive_data_loader_slot(QByteArray const &)));
+     connect(this->child, SIGNAL(sendData(QByteArray const &)), worker, SLOT(receive_data_loader_slot(QByteArray const &)));
 }
 
 void DateLoaderUDP::start()

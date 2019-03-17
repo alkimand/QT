@@ -78,36 +78,5 @@ void DateLoaderText::slotProcessDatagrams()
             qDebug() << "No file";
         }
     }
-
-    //    while(udp_socket->hasPendingDatagrams())
-    //    {
-    //        //qDebug()<< "1";
-    //        baDatagram.resize(udp_socket->pendingDatagramSize());
-    //        //qDebug()<< "2";
-    //        udp_socket->readDatagram(baDatagram.data(), baDatagram.size());
-    //        //qDebug()<< "3";
-    //        QDataStream in(&baDatagram, QIODevice::ReadOnly);
-    //        //qDebug()<< "4";
-    //        in.setVersion(QDataStream::Qt_5_3); //+?
-    //        //qDebug()<< "4.0";
-    //        if (udp_socket->hasPendingDatagrams())
-    //        {
-    //            //qDebug()<< "4.2" + udp_socket->pendingDatagramSize();
-    //            in.readRawData(baDatagram.data(), udp_socket->pendingDatagramSize());
-    //        }
-    //        else
-    //        {
-    //            //qDebug()<< "4.2 has no PendingDatagrams";
-    //        }
-
-    //        //QString first_line;
-    //        //qint32 i;
-    //        //in >> i;
-
-    //       // in >> first_line;
-    //        //first_line(baDatagram);
-    //        emit sendData(baDatagram);
-    //    }
-
 }
 

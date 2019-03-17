@@ -25,6 +25,16 @@ BaseTableView
 
     model: client.model
 
+//    C1.TableViewColumn
+//    {
+//        id:rowNumberColumn
+//        role: "date"
+//        title: "Date/Time"
+//        //onWidthChanged: ccDate.width = Math.max(60, ccPanel.width - ccSize.width - ccName.width)
+//        width: 100
+//    }
+
+
     C1.TableViewColumn
     {
         id:dateColumn

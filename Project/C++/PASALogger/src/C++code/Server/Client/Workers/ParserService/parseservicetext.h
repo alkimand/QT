@@ -1,9 +1,8 @@
 #ifndef PARSESERVICETEXT_H
 #define PARSESERVICETEXT_H
-#include "parseservicebaseclass.h"
+#include "parseserviceudp.h"
 
-
-class ParseServiceText: public ParseServiceBaseClass
+class ParseServiceText: public ParseServiceUDP
 {
 
     Q_OBJECT
@@ -15,15 +14,15 @@ public:
 
 private:
     //QString* udp_socket;
-    int port;
-    QStringList sl_parse_line(QString const);
+    //int port;
+    //QStringList sl_parse_line(QString const);
 
 
 
 signals:
 
 protected:
-    void create_connect_to_worker();
+    //void create_connect_to_worker();
 
 
 

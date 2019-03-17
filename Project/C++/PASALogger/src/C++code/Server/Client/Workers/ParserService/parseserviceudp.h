@@ -10,22 +10,18 @@ class ParseServiceUDP: public ParseServiceBaseClass
 public:
     explicit  ParseServiceUDP (WorkerBaseClass *, CLIENT_TYPE const &);
 
-    void data_parser_handler(QByteArray const &);
+    virtual void data_parser_handler(QByteArray const &);
 
 
 private:
     //QString* udp_socket;
-    int port;
-    QStringList sl_parse_line(QString const);
-
-
 
 signals:
 
 protected:
     void create_connect_to_worker();
-
-
+    QStringList sl_parse_line(QString const);
+    int port;
 
 private:
 

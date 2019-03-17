@@ -2,7 +2,9 @@
 
 #include "workerbaseclass.h"
 #include "parseservicetext.h"
+#include "parseserviceudp.h"
 #include "modelservisetext.h"
+#include "modelserviseudp.h"
 
 #include <QDebug>
 
@@ -14,7 +16,8 @@ WorkerText::WorkerText(ClientBase *m_client, CLIENT_TYPE const & m_type):WorkerB
     {
     case TXT_CLIENT_TYPE:
         this->parser = new ParseServiceText (this, type);
-        this->model = new ModelServiseText (this, type);
+        this->model = new ModelServiseUDP (this, type);
+       // this->model = new  ModelServiseText (this, type);
         this->dataloader = new DateLoaderText (this, type);
         break;
     default:

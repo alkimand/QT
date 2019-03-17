@@ -28,31 +28,45 @@ void ParseServiceUDP:: data_parser_handler( QByteArray const &  stream)
     //qDebug()<< "New session";
     QRegExp rx("(^[0-1]{1})+([0-9]{1})+([/]{1})+([0-3]{1})+([0-9]{1})+([/]{1})");
     QString line(stream);
-   // qDebug()<< " line:" <<  line;
-    if ( !line.contains(rx))
+    // qDebug()<< " line:" <<  line;
+    switch (type)
     {
+    case  (UDP_CLIENT_TYPE):
+    {
+        if ( !line.contains(rx))
+        {
 
-        line = last_line + line;
-        //qDebug()<< "last_line:" << last_line;
-    }
-    else
-    {
-        //qDebug()<< "line do not  contains(rx)";
-    }
-    QStringList parse_line=line.split("\r\n"); //temporary object
-    last_line = parse_line.last();
-    //qDebug()<< "last_line = parse_line.last():" << last_line;
-    parse_line.removeLast();
-    for (int i=0;i<parse_line.length();i++)
-    {
-        //qDebug()<< "i:" << i;
-        //qDebug()<< "parse start for:" + parse_line.at(i);
-        str_data_list = sl_parse_line(parse_line.at(i));
+            line = last_line + line;
+            //qDebug()<< "last_line:" << last_line;
+        }
+        else
+        {
+            //qDebug()<< "line do not  contains(rx)";
+        }
+        QStringList parse_line=line.split("\r\n"); //temporary object
+        last_line = parse_line.last();
+        //qDebug()<< "last_line = parse_line.last():" << last_line;
+        parse_line.removeLast();
+        for (int i=0;i<parse_line.length();i++)
+        {
+            //qDebug()<< "i:" << i;
+            //qDebug()<< "parse start for:" + parse_line.at(i);
+            str_data_list = sl_parse_line(parse_line.at(i));
 
+            emit parser_sendData (str_data_list);
+            //for (int j=0;j<str_data_list.size();j++)
+            // qDebug()<< str_data_list.at(j);
+            str_data_list.clear();
+        }
+    }
+        break;
+    case  (TXT_CLIENT_TYPE):
+        str_data_list = sl_parse_line(line);
         emit parser_sendData (str_data_list);
-        //for (int j=0;j<str_data_list.size();j++)
-        // qDebug()<< str_data_list.at(j);
         str_data_list.clear();
+        break;
+    default:
+        break;
     }
     return;
 }
