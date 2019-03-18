@@ -8,3 +8,13 @@ ClientBase::ClientBase()
 {
 
 }
+
+ClientBase::~ClientBase()
+{
+    this->wait();
+}
+
+void ClientBase::run()
+{
+    //exec();
+}

@@ -1,5 +1,6 @@
 #ifndef CLIENTBASE_H
 #define CLIENTBASE_H
+#include <QThread>
 //#include <QtNetwork>
 #include <QObject>
 #include "settingmap.h"
@@ -10,19 +11,21 @@
 class Server;
 class WorkerBaseClass;
 
-class ClientBase: public QObject
+//class ClientBase: public QObject
+class ClientBase: public QThread
 {
     Q_OBJECT
 
 public:
     explicit ClientBase();//no const
 
-
-
+//virtual
+  virtual ~ClientBase();
+    void run();
 protected:
     WorkerBaseClass *worker;
     CLIENT_TYPE type; //const no pointer
-    Server *server;
+    //Server *server;
     ClientBase *child;
 
 

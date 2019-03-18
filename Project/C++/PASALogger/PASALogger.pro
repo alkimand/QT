@@ -141,6 +141,7 @@ DISTFILES += \
     src/images/TableViewIcon/sort_ascending.png \
     src/images/TableViewIcon/sort_descending.png \
     src/images/ToolBarIcon/rename.jpg \
+    src/TableView/TableView/TableUDPBaseTable.qml
 
 
 

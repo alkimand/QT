@@ -8,9 +8,10 @@
 
 DateLoaderUDP::DateLoaderUDP(WorkerBaseClass *m_worker, CLIENT_TYPE const & m_type): DataLoaderBaseClass(m_worker, m_type)
 {
-    qDebug()<< "create DateLoaderUDP";
+    qDebug()<< "+create DateLoaderUDP";
     this->child = this;
     udp_socket = new QUdpSocket(this);
+    //udp_socket->moveToThread(this);
     this->port = 3500;
     // udp_socket->bind(this->port);
     udp_socket->bind(3500);
@@ -18,7 +19,15 @@ DateLoaderUDP::DateLoaderUDP(WorkerBaseClass *m_worker, CLIENT_TYPE const & m_ty
     create_connect_to_worker();
 
     this->status = DATALOAD;
+    //qDebug()<< "=create DateLoaderUDP";
     connect(udp_socket, SIGNAL(readyRead()),this->child, SLOT(slotProcessDatagrams()));
+    //qDebug()<< "-create DateLoaderUDP";
+}
+
+DateLoaderUDP::~DateLoaderUDP()
+{
+    delete udp_socket;
+    qDebug()<< "~DateLoaderUDP";
 }
 
 void DateLoaderUDP::create_connect_to_worker()
@@ -64,12 +73,13 @@ void DateLoaderUDP::slotProcessDatagrams()
             //qDebug()<< "4.2 has no PendingDatagrams";
         }
 
-        //QString first_line;
+       // QString line(baDatagram);
         //qint32 i;
         //in >> i;
 
        // in >> first_line;
-        //first_line(baDatagram);
+        //line(baDatagram);
+
         emit sendData(baDatagram);
     }
 

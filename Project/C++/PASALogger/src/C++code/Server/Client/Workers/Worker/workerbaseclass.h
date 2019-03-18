@@ -25,6 +25,7 @@ public:
     WorkerBaseClass *parent;
     WorkerBaseClass *child;
 
+    virtual~WorkerBaseClass();
     void send_message(QByteArray  const &);
     QStringList message_list;
     //interfase for child class - all hendler are using in child class

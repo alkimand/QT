@@ -2,6 +2,7 @@
 
 #include "workerbaseclass.h"
 #include "parseserviceudp.h"
+#include "modelservisetext.h"
 #include "modelserviseudp.h"
 
 #include <QDebug>
@@ -18,6 +19,7 @@ WorkerUDP::WorkerUDP(ClientBase *m_client, CLIENT_TYPE const & m_type):WorkerBas
     case UDP_CLIENT_TYPE:
         this->parser = new ParseServiceUDP (this, type);
         this->model = new ModelServiseUDP (this, type);
+        //this->model = new ModelServiseText (this, type);
         this->dataloader = new  DateLoaderUDP (this, type);
         break;
     default:

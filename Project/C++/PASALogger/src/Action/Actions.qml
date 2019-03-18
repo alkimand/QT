@@ -18,8 +18,9 @@ Item
 
         onTriggered:
         {
-            fileDialog.selectExisting = true
-            fileDialog.open()
+            //fileDialog.selectExisting = true
+            //fileDialog.open()
+            tabView.openFile()
         }
     }
 

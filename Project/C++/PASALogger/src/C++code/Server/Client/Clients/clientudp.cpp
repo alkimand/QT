@@ -19,7 +19,7 @@ ClientUDP::ClientUDP() : ClientBase()
     case UDP_CLIENT_TYPE:
         this-> worker = new WorkerUDP(this, type);
         // this-> model
-
+        //worker->moveToThread(this);
         this-> model = static_cast<ModelServiseUDP*> (this-> worker->getModeltoQMLService());
 
 
@@ -27,6 +27,20 @@ ClientUDP::ClientUDP() : ClientBase()
     default:
         break;
     }
+
+}
+
+void ClientUDP::run()
+{
+     exec();
+}
+
+ClientUDP::~ClientUDP()
+{
+    delete worker;
+    //delete model;
+    this->wait();
+    qDebug()<< "~ClientUDP";
 
 }
 

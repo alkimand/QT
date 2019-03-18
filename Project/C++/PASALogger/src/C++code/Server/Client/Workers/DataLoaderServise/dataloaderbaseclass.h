@@ -14,6 +14,7 @@ public:
     WorkerBaseClass *worker;
     DataLoaderBaseClass *parent;
     DataLoaderBaseClass *child;
+    virtual ~DataLoaderBaseClass();
 private:
     CLIENT_TYPE type;
 

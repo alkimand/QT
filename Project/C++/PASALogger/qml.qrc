@@ -17,7 +17,7 @@
         <file>src/ContextMenu/MenuBarContextMenu/TableContexMenu/TableContexMenu.qml</file>
         <file>src/TableView/ItemDelegat/ItemDelegate/ItemDelegate.qml</file>
         <file>src/TableView/TableView/TableUDP.qml</file>
-		<file>src/TableView/TableView/TableText.qml</file>
+        <file>src/TableView/TableView/TableText.qml</file>
         <file>src/TableView/ItemDelegat/HeaderDelegate/HeaderDelegate.qml</file>
         <file>src/TableView/TableWithHeader.qml</file>
         <file>src/TableView/ItemDelegat/Loaders/HeaderLoader.qml</file>
@@ -79,6 +79,6 @@
         <file>src/images/ToolBarIcon/rename.jpg</file>
         <file>src/images/ToolBarIcon/rename.png</file>
         <file>src/images/ToolBarIcon/explorer.png</file>
-        
+        <file>src/TableView/TableView/TableUDPBaseTable.qml</file>
     </qresource>
 </RCC>

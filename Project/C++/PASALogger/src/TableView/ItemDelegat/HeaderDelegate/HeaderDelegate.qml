@@ -10,12 +10,13 @@ import QtGraphicalEffects 1.0
 //https://stackoverflow.com/questions/50373489/is-it-possible-customize-the-qml-tableview-headerdelegate-individually  style
 //https://stackoverflow.com/questions/42849848/how-do-i-correctly-handle-mouse-events-in-a-qml-tableview-with-overlapping-mouse event mouse area
 //https://forum.qt.io/topic/62636/how-can-i-get-the-tableview-column-header-click-qml/5
+
 Rectangle
 {
     id:rect
     //width: tableView.widthSetting
     height: 60
-    border.width: 0
+    border.width: 2
     //anchors.right: (styleData.column===4)?parent.right:""
     visible: (styleData.column<tableView.tittleCount && styleData.column>-1)?true:false
     //visible: false

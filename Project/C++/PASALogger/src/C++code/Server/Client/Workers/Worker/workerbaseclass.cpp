@@ -22,6 +22,15 @@ void WorkerBaseClass::test()
     qDebug()<< "WorkerBaseClass test";
 }
 
+WorkerBaseClass::~WorkerBaseClass()
+{
+    delete dataloader;
+    delete model;
+    delete parser;
+    qDebug()<< "~WorkerBaseClass()";
+
+}
+
 void WorkerBaseClass::send_message(QByteArray   const & msg)
 {
     //qDebug()<< "Send_message: ";

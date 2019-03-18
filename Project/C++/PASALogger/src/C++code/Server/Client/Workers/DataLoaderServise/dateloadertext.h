@@ -11,7 +11,7 @@ class DateLoaderText: public DataLoaderBaseClass
 
 public:
     explicit DateLoaderText(WorkerBaseClass *, CLIENT_TYPE const &);
-
+    ~DateLoaderText();
 
 private:
     //QUdpSocket* udp_socket;

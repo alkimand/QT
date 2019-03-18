@@ -32,6 +32,11 @@ DateLoaderText::DateLoaderText(WorkerBaseClass *m_worker, CLIENT_TYPE const & m_
 
 }
 
+DateLoaderText::~DateLoaderText()
+{
+    qDebug()<< "~DateLoaderText";
+}
+
 void DateLoaderText::create_connect_to_worker()
 {
     //send data to worker

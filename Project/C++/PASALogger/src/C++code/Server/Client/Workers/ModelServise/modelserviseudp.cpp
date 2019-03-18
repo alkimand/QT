@@ -7,15 +7,13 @@ ModelServiseUDP::ModelServiseUDP(WorkerBaseClass *m_worker, CLIENT_TYPE const & 
     this->child = this;
     //fillModel();
     qDebug()<< "create ModelServiseUDP";
-
+   // beginResetModel();
+    //endResetModel();
 }
 
 void ModelServiseUDP::data_model_handler(QStringList & list)
 {
-   // qDebug()<< "ModelServiseUDP::data_model_handler";
-    beginResetModel();
     if (list.size() !=8){return ;}
-
     QStringList tempStringList;
     int size =v_data.size();
     tempStringList.append(QString::number(size));
@@ -24,22 +22,11 @@ void ModelServiseUDP::data_model_handler(QStringList & list)
     {
         tempStringList.append(list.at(i));
     }
-    //this->v_data.append(list);
+    beginInsertRows(QModelIndex(),size,size);
     this->v_data.append(tempStringList);
-   // QModelIndex startIndex=createIndex(0, 0);
-    //QModelIndex stopIndex=createIndex(v_data.size(), 8 );
-    //emit dataChanged(startIndex, stopIndex);
-    //QStringList lst = this->v_data.last();
-    //auto topLeftIndex = createIndex(0, 0, m_root.get());
-
-     //emit dataChanged(createIndex(0,0),createIndex(v_data.size(),7));
+    endInsertRows();
     QModelIndex index = createIndex(0, 0, static_cast<void *>(0));
-     //emit dataChanged(index, index, { role });
     emit dataChanged(index, index);
-    //emit dataChanged(index, index, Qt::EditRole);
-     //qDebug()<< "data add" << list.first();
-     //emit dataChanged(index, index);
-     endResetModel();
 }
 
 

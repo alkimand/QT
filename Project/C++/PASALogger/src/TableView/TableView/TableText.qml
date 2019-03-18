@@ -8,93 +8,15 @@ import QtQuick.Controls.Styles 1.4
 import ClientText 1.0
 
 
-BaseTableView
+TableUDPBaseTable
 {
     id: control
-    ClientText
+    Item
     {
-        id: client
-        Component.onCompleted:
+        ClientText
         {
-
+            id: client
         }
     }
 
-
-    //onWidthChanged:functionColumn.width = Math.max(100, control.width - timeColumn.width - countColumn.width - zoneColumn.width-serviceColumn.width-lineColumn.width-messageColumn.width)
-
-    model: client.model
-
-//    C1.TableViewColumn
-//    {
-//        id:rowNumberColumn
-//        role: "date"
-//        title: "Date/Time"
-//        //onWidthChanged: ccDate.width = Math.max(60, ccPanel.width - ccSize.width - ccName.width)
-//        width: 100
-//    }
-
-
-    C1.TableViewColumn
-    {
-        id:dateColumn
-        role: "date"
-        title: "Date/Time"
-        //onWidthChanged: ccDate.width = Math.max(60, ccPanel.width - ccSize.width - ccName.width)
-        width: 100
-    }
-    C1.TableViewColumn
-    {
-        id:timeColumn
-        role: "time"
-        title: "TimeStamp"
-         width: 100
-    }
-
-    C1.TableViewColumn
-    {
-        id:countColumn
-        role: "count"
-        title: "Count"
-        width: 100
-    }
-    C1.TableViewColumn
-    {
-        id:zoneColumn
-        role: "zone"
-        title: "Zone Id"
-        width:100
-    }
-
-    C1.TableViewColumn
-    {
-        id:serviceColumn
-        role: "serviceName"
-        title: "Service Name"
-        width: 300
-    }
-
-    C1.TableViewColumn
-    {
-        id:functionColumn
-        role: "functionName"
-        title: "Function Name"
-        width: 400
-    }
-
-    C1.TableViewColumn
-    {
-         id:lineColumn
-        role: "lineNumber"
-        title: "Line Number"
-        width: 60
-    }
-
-    C1.TableViewColumn
-    {
-        id:messageColumn
-        role: "message"
-        title: "Message"
-        width: control.width-dateColumn.width-timeColumn.width-countColumn.width-zoneColumn.width-serviceColumn.width-functionColumn.width-lineColumn.width - 20
-}
 }

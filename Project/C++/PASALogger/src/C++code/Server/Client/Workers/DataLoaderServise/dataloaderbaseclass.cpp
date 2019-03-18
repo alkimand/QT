@@ -7,5 +7,10 @@ DataLoaderBaseClass::DataLoaderBaseClass(WorkerBaseClass * m_worker,  CLIENT_TYP
     worker = static_cast<WorkerBaseClass*>(m_worker);
     type = m_type;
     parent = this;
-  //  qDebug()<< "create DataLoaderBaseClass";
+    //  qDebug()<< "create DataLoaderBaseClass";
+}
+
+DataLoaderBaseClass::~DataLoaderBaseClass()
+{
+    qDebug()<< "~DataLoaderBaseClass";
 }

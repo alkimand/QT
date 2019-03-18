@@ -18,15 +18,26 @@ ClientText::ClientText() : ClientBase()
     //switch (type)
     //{
     //case UDP_CLIENT_TYPE:
-        this-> worker = new WorkerText(this, type);
-        this-> model = static_cast<ModelServiseUDP*> (this-> worker->getModeltoQMLService());
+    this-> worker = new WorkerText(this, type);
+    worker->moveToThread(this);
+    this-> model = static_cast<ModelServiseUDP*> (this-> worker->getModeltoQMLService());
 
 
-//        break;
-//    default:
-//        break;
+    //        break;
+    //    default:
+    //        break;
     //}
 
+}
+
+void ClientText::run()
+{
+    exec();
+}
+
+ClientText::~ClientText()
+{
+    this->wait();
 }
 
 

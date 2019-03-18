@@ -68,6 +68,18 @@ C1.TabView
 
 
 
+    function openFile()
+    {
+        //var tab = tabView.getTab(tabView.currentIndex)
+       // var item = tabView.contentItem
+       // tabView.setTable(name)
+        //var component =
+        //component.source= "../TableView/TableView/TableText.qml"
+        //tabView.addTab(newWindowTitle,component)
+    }
+
+
+
     function onCurIndChangeHeandler()
     {
         addNewTab()
@@ -89,11 +101,8 @@ C1.TabView
     }
     function closeAllButThisTab(index)
     {
-        //        console.log("closeAction")
-        //        console.log("tabView.currentIndex:" + tabView.currentIndex)
-        //        console.log("tabView.count:" + tabView.count)
         if (index < tabView.count - 1)
-        {   //console.log("if  true")
+        {
             for (var i = tabView.count - 1 ;i > index;i--)
             {
                 tabView.removeTab(i)
@@ -103,7 +112,6 @@ C1.TabView
         {
             tabView.removeTab(i)
         }
-
     }
     function saveTab(index) //ToDo
     {

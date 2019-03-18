@@ -26,6 +26,7 @@ void ParseServiceUDP:: data_parser_handler( QByteArray const &  stream)
 {
     //qDebug()<< "ParseServiceUDP receive_data_parser_handler";
     //qDebug()<< "New session";
+   // QString ln= QString::fromUtf8(stream);
     QRegExp rx("(^[0-1]{1})+([0-9]{1})+([/]{1})+([0-3]{1})+([0-9]{1})+([/]{1})");
     QString line(stream);
     // qDebug()<< " line:" <<  line;
@@ -44,6 +45,9 @@ void ParseServiceUDP:: data_parser_handler( QByteArray const &  stream)
             //qDebug()<< "line do not  contains(rx)";
         }
         QStringList parse_line=line.split("\r\n"); //temporary object
+    for (int t=0;t<15;t++)
+        parse_line.append("02/24/2019 21:57:07.083/1833/27/NS_NPPService/NS_NPPService/PasReaction/359/=Publish Notfn request, src=vs_can, name=vs_can/VS_CAN_BUS_STATUS_EVENT, len=4");
+
         last_line = parse_line.last();
         //qDebug()<< "last_line = parse_line.last():" << last_line;
         parse_line.removeLast();
@@ -68,6 +72,9 @@ void ParseServiceUDP:: data_parser_handler( QByteArray const &  stream)
     default:
         break;
     }
+
+
+     //emit parser_sendData ();
     return;
 }
 
