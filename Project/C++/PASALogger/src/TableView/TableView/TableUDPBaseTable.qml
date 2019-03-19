@@ -71,7 +71,7 @@ BaseTableView
         id:messageColumn
         role: "message"
         title: "Message"
-        width: control.width-dateColumn.width-timeColumn.width-countColumn.width-zoneColumn.width-serviceColumn.width-functionColumn.width-lineColumn.width - 20
+      //  width: control.width-dateColumn.width-timeColumn.width-countColumn.width-zoneColumn.width-serviceColumn.width-functionColumn.width-lineColumn.width - 20
     }
 }
 
