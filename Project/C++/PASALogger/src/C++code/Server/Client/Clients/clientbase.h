@@ -11,8 +11,8 @@
 class Server;
 class WorkerBaseClass;
 
-//class ClientBase: public QObject
-class ClientBase: public QThread
+class ClientBase: public QObject
+//class ClientBase: public QThread
 {
     Q_OBJECT
 
@@ -27,6 +27,7 @@ protected:
     CLIENT_TYPE type; //const no pointer
     //Server *server;
     ClientBase *child;
+   // virtual void setStatus(const int &){};
 
 
 private:

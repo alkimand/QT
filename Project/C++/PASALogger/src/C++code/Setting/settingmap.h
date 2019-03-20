@@ -5,9 +5,10 @@ enum STATUS
 {
 
   STARTPROGRAM = 0,
-  DATALOAD,
-  PAUSE,
-  STOP,
+  PLAY = 1,
+  PAUSE = 2,
+  STOP = 3,
+  CLEAR = 4,
 };
 
 enum CLIENT_TYPE

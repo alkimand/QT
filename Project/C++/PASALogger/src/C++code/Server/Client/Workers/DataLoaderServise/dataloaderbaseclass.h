@@ -15,6 +15,7 @@ public:
     DataLoaderBaseClass *parent;
     DataLoaderBaseClass *child;
     virtual ~DataLoaderBaseClass();
+    virtual void setStatus(const int &)=0;
 private:
     CLIENT_TYPE type;
 

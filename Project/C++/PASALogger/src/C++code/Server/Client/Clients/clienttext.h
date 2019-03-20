@@ -34,7 +34,7 @@ signals:
    void modelChanged();
 
 public slots:
-
+   void setStatus(int const & ){};
 
 protected:
 

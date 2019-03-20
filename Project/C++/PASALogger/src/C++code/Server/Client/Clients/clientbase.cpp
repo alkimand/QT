@@ -11,7 +11,7 @@ ClientBase::ClientBase()
 
 ClientBase::~ClientBase()
 {
-    this->wait();
+    //this->wait();
 }
 
 void ClientBase::run()

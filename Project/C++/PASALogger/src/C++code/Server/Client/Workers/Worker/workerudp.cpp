@@ -53,6 +53,17 @@ void WorkerUDP::receive_data_parser_handler(QStringList & str_list)
 
 }
 
+void WorkerUDP::setStatus(const int & status)
+{
+    qDebug()<< "WorkerUDP::setStatus";
+    this->dataloader->setStatus(status);
+}
+
+WorkerUDP::~WorkerUDP()
+{
+    qDebug()<< "WorkerUDP";
+}
+
 void WorkerUDP::receive_data_loader_handler(QByteArray const & message)
 {
     //qDebug()<< "1: WorkerUDP::receive_data_loader_handler in" ;

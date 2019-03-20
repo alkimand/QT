@@ -34,6 +34,7 @@ public:
     QVector <QStringList> line_vector;
     ModelServiseBaseClass * getModeltoQMLService();
     ModelServiseBaseClass *model;
+    virtual void setStatus(const int &) = 0;
 
 public slots:
 void receive_data_loader_slot(QByteArray  const &);

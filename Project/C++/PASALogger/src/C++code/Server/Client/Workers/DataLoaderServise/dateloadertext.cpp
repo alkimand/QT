@@ -25,7 +25,7 @@ DateLoaderText::DateLoaderText(WorkerBaseClass *m_worker, CLIENT_TYPE const & m_
 
     //fileName = QFileDialog::getOpenFileName(0,tr("Open text files"), templatePath, tr("Text Files (*.txt)"));//++
     create_connect_to_worker();
-    this->status = DATALOAD;
+    this->status = PLAY;
     connect(this, SIGNAL(readyRead()), SLOT(slotProcessDatagrams()));
 
     emit readyRead();

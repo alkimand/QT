@@ -12,6 +12,7 @@ class DateLoaderUDP: public DataLoaderBaseClass
 public:
     explicit  DateLoaderUDP(WorkerBaseClass *, CLIENT_TYPE const &);
     ~DateLoaderUDP();
+    void setStatus(const int &);
 
 private:
     QUdpSocket* udp_socket;

@@ -85,7 +85,12 @@ C1.TabView
         addNewTab()
     }
 
-
+    function setStatus(status)
+    {
+        abView.getTab(tabView.currentIndex).item.children[0].client.setStatus(status)
+        console.log("tabView.getTab(tabView.currentIndex).item.children[0].client.setStatus(status)")
+        //tabView.getTab(0).item.children[0].test
+    }
 
 
     function addNewTab()

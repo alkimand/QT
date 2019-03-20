@@ -51,6 +51,11 @@ void WorkerText::receive_data_parser_handler(QStringList & str_list)
 
 }
 
+WorkerText::~WorkerText()
+{
+    qDebug()<< "WorkerText::~WorkerText" ;
+}
+
 void WorkerText::receive_data_loader_handler(QByteArray const & message)
 {
  //qDebug()<< "WorkerText::receive_data_loader_handler in" ;

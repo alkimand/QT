@@ -14,7 +14,8 @@ public:
     void test();
     void receive_data_loader_handler(QByteArray const &);
     void receive_data_parser_handler(QStringList  &);
-
+    void setStatus(const int &){};
+    ~WorkerText();
 
 protected:
 

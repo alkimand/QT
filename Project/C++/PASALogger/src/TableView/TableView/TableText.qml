@@ -11,12 +11,12 @@ import ClientText 1.0
 TableUDPBaseTable
 {
     id: control
-    Item
-    {
+   // Item
+    //{
         ClientText
         {
             id: client
         }
-    }
+   // }
 
 }

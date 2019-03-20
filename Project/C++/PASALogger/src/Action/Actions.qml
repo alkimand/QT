@@ -133,6 +133,7 @@ Item
 
         onTriggered:
         {
+            tabView.setStatus(3)
             console.log("stopAction")
         }
     }
@@ -147,6 +148,7 @@ Item
 
         onTriggered:
         {
+            tabView.setStatus(1)
             console.log("playAction")
             //fileDialog.open()
         }
@@ -163,6 +165,7 @@ Item
 
         onTriggered:
         {
+            tabView.setStatus(2)
             console.log("pauseAction")
             //fileDialog.open()
         }
@@ -179,6 +182,7 @@ Item
         onTriggered:
         {
             console.log("pauseAction")
+            tabView.setStatus(4)
             //fileDialog.open()
         }
     }

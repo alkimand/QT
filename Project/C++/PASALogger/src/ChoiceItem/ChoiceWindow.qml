@@ -3,6 +3,7 @@ import QtQuick 2.12
 ChoiceItemBase
 {
     id:control
+    property string test: "+"
     Component.onCompleted:
     {
 

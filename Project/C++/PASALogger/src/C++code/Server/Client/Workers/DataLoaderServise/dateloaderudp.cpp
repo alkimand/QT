@@ -18,7 +18,7 @@ DateLoaderUDP::DateLoaderUDP(WorkerBaseClass *m_worker, CLIENT_TYPE const & m_ty
 
     create_connect_to_worker();
 
-    this->status = DATALOAD;
+    this->status = PLAY;
     //qDebug()<< "=create DateLoaderUDP";
     connect(udp_socket, SIGNAL(readyRead()),this->child, SLOT(slotProcessDatagrams()));
     //qDebug()<< "-create DateLoaderUDP";
@@ -28,6 +28,12 @@ DateLoaderUDP::~DateLoaderUDP()
 {
     delete udp_socket;
     qDebug()<< "~DateLoaderUDP";
+}
+
+void DateLoaderUDP::setStatus(const int & status)
+{
+    qDebug()<< "DateLoaderUDP::setStatus";
+    this->status = STATUS(status);
 }
 
 void DateLoaderUDP::create_connect_to_worker()
@@ -52,7 +58,8 @@ void DateLoaderUDP::slotProcessDatagrams()
 {
     // qDebug()<< "DateLoaderUDP::slotProcessDatagrams()";
     QByteArray baDatagram;
-    while(udp_socket->hasPendingDatagrams())
+
+    while((udp_socket->hasPendingDatagrams()) && (status == PLAY))
     {
         //qDebug()<< "1";
         baDatagram.resize(udp_socket->pendingDatagramSize());

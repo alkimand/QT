@@ -68,14 +68,15 @@ C1.TableView
     property int mouseMoveStartX: 0
     property int mouseMoveFinishX: 0
     property int selectRow: -1
-    itemDelegate: ItemDelegate {}
-    headerDelegate: HeaderDelegate { id:headDelegat }
-    rowDelegate:RowDelegat{}
-    ItemContexMenu{id:itemContexMenu}
-    HeaderContexMenu{id:headerContexMenu }
-
+//++
+//    itemDelegate: ItemDelegate {}
+//    headerDelegate: HeaderDelegate { id:headDelegat }
+//    rowDelegate:RowDelegat{}
+//    ItemContexMenu{id:itemContexMenu}
+//    HeaderContexMenu{id:headerContexMenu }
+//--
     property int test: implicitWidth/10
-    implicitWidth:window.width
+    //implicitWidth:window.width
 
 }
 
