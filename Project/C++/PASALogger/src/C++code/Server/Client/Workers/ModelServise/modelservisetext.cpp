@@ -73,3 +73,12 @@ void ModelServiseText::fillModel()
 
     }
 }
+
+
+void ModelServiseText::clearDataPool()
+{
+    //qDebug()<< "ModelServiseUDP::clearDataPool()";
+    beginResetModel();
+    this->v_data.clear();
+    endResetModel();
+}

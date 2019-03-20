@@ -34,6 +34,7 @@ void DateLoaderUDP::setStatus(const int & status)
 {
     qDebug()<< "DateLoaderUDP::setStatus:" + status;
     this->status = STATUS(status);
+    emit udp_socket->readyRead();
 }
 
 void DateLoaderUDP::create_connect_to_worker()

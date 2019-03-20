@@ -64,6 +64,12 @@ WorkerUDP::~WorkerUDP()
     qDebug()<< "WorkerUDP";
 }
 
+void WorkerUDP::clearDataPool()
+{
+    //qDebug()<< "WorkerUDP::clearDataPool()";
+    this->model->clearDataPool();
+}
+
 void WorkerUDP::receive_data_loader_handler(QByteArray const & message)
 {
     //qDebug()<< "1: WorkerUDP::receive_data_loader_handler in" ;

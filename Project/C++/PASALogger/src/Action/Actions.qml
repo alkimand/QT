@@ -182,7 +182,7 @@ Item
 
         onTriggered:
         {
-            //console.log("clearAction")
+           console.log("Action clearAction")
             tabView.clearDataPool()
             //tabView.setStatus(4)
             //fileDialog.open()

@@ -7,7 +7,7 @@ ModelServiseUDP::ModelServiseUDP(WorkerBaseClass *m_worker, CLIENT_TYPE const & 
     this->child = this;
     //fillModel();
     qDebug()<< "create ModelServiseUDP";
-   // beginResetModel();
+    // beginResetModel();
     //endResetModel();
 }
 
@@ -27,6 +27,14 @@ void ModelServiseUDP::data_model_handler(QStringList & list)
     endInsertRows();
     QModelIndex index = createIndex(0, 0, static_cast<void *>(0));
     emit dataChanged(index, index);
+}
+
+void ModelServiseUDP::clearDataPool()
+{
+    qDebug()<< "ModelServiseUDP::clearDataPool()";
+    beginResetModel();
+    this->v_data.clear();
+    endResetModel();
 }
 
 
@@ -90,20 +98,20 @@ QVariant ModelServiseUDP::data(const QModelIndex &index, int role) const
 
 void ModelServiseUDP::fillModel()
 {
-     QStringList list;
-     int size =v_data.size();
-     list.append(QString::number(size));
-     list.append("");
-     list.append(QDate::currentDate().toString("MM/dd/yy"));
-     list.append(QTime::currentTime().toString("HH:mm:ss"));
-     list.append("");
-     list.append("");
-     list.append("Open file");
-     list.append("");
-     list.append("");
-     list.append("");
-     this->v_data.append(list);
-     QModelIndex index = createIndex(0, 0, static_cast<void *>(0));
-      //emit dataChanged(index, index, { role });
-     emit dataChanged(index, index);
+    QStringList list;
+    int size =v_data.size();
+    list.append(QString::number(size));
+    list.append("");
+    list.append(QDate::currentDate().toString("MM/dd/yy"));
+    list.append(QTime::currentTime().toString("HH:mm:ss"));
+    list.append("");
+    list.append("");
+    list.append("Open file");
+    list.append("");
+    list.append("");
+    list.append("");
+    this->v_data.append(list);
+    QModelIndex index = createIndex(0, 0, static_cast<void *>(0));
+    //emit dataChanged(index, index, { role });
+    emit dataChanged(index, index);
 }

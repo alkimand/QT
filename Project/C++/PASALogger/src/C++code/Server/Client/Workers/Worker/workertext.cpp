@@ -56,6 +56,11 @@ WorkerText::~WorkerText()
     qDebug()<< "WorkerText::~WorkerText" ;
 }
 
+void WorkerText::clearDataPool()
+{
+    this->model->clearDataPool();
+}
+
 void WorkerText::receive_data_loader_handler(QByteArray const & message)
 {
  //qDebug()<< "WorkerText::receive_data_loader_handler in" ;

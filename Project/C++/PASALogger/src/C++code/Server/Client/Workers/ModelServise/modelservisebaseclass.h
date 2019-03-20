@@ -23,6 +23,7 @@ public:
      ModelServiseBaseClass *child;
 
      virtual  void data_model_handler(QStringList &) = 0;
+     virtual void clearDataPool() = 0;
 
 //     enum Roles{
 //         DataRole = Qt::UserRole + 1,

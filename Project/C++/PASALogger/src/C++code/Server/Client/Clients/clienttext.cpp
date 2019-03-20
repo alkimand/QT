@@ -42,9 +42,14 @@ ClientText::~ClientText()
 
 void ClientText::clearDataPool()
 {
-  qDebug()<< "ClientText::clearDataPool";
-  this->worker->clearDataPool();
+    this->worker->clearDataPool();
 }
+
+//void ClientText::clearDataPool()
+//{
+//  qDebug()<< "ClientText::clearDataPool";
+//  this->worker->clearDataPool();
+//}
 
 
 
