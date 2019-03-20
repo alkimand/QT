@@ -33,15 +33,33 @@ DateLoaderUDP::~DateLoaderUDP()
 void DateLoaderUDP::setStatus(const int & status)
 {
     qDebug()<< "DateLoaderUDP::setStatus:" + status;
-    this->status = STATUS(status);
-    emit udp_socket->readyRead();
+//    if (this->status == PLAY)
+//    {
+//        this->status = STATUS(status);
+//        if (this->status == PLAY)
+//        {
+//            if (udp_socket!=nullptr){
+//                udp_socket = new QUdpSocket(this);
+//                udp_socket->bind(3500);
+//                connect(udp_socket, SIGNAL(readyRead()),this->child, SLOT(slotProcessDatagrams()));}
+//            // udp_socket->open(QIODevice::ReadOnly);
+
+//        }
+//    }
+//        else if (this->status ==PAUSE |this->status ==STOP)
+//        {
+//            udp_socket->close();
+//            delete udp_socket;
+//        }
+//        emit udp_socket->readyRead();
+
 }
 
 void DateLoaderUDP::create_connect_to_worker()
 {
     //send data to worker
     //qDebug()<< "DateLoaderUDP::create_connect_to_worker";
-     connect(this->child, SIGNAL(sendData(QByteArray const &)), worker, SLOT(receive_data_loader_slot(QByteArray const &)));
+    connect(this->child, SIGNAL(sendData(QByteArray const &)), worker, SLOT(receive_data_loader_slot(QByteArray const &)));
 }
 
 void DateLoaderUDP::start()
@@ -81,11 +99,11 @@ void DateLoaderUDP::slotProcessDatagrams()
             //qDebug()<< "4.2 has no PendingDatagrams";
         }
 
-       // QString line(baDatagram);
+        // QString line(baDatagram);
         //qint32 i;
         //in >> i;
 
-       // in >> first_line;
+        // in >> first_line;
         //line(baDatagram);
 
         emit sendData(baDatagram);

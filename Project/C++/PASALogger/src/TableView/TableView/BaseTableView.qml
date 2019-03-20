@@ -71,11 +71,11 @@ C1.TableView
     property string type: "NONE"
 
 //++
-//    itemDelegate: ItemDelegate {}
-//    headerDelegate: HeaderDelegate { id:headDelegat }
-//    rowDelegate:RowDelegat{}
-//    ItemContexMenu{id:itemContexMenu}
-//    HeaderContexMenu{id:headerContexMenu }
+    itemDelegate: ItemDelegate {}
+    headerDelegate: HeaderDelegate { id:headDelegat }
+    rowDelegate:RowDelegat{}
+    ItemContexMenu{id:itemContexMenu}
+    HeaderContexMenu{id:headerContexMenu }
 //--
     property int test: implicitWidth/10
     //implicitWidth:window.width
