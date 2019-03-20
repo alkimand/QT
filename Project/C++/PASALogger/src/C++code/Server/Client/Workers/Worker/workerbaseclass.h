@@ -35,7 +35,7 @@ public:
     ModelServiseBaseClass * getModeltoQMLService();
     ModelServiseBaseClass *model;
     virtual void setStatus(const int &) = 0;
-
+    virtual void clearDataPool();
 public slots:
 void receive_data_loader_slot(QByteArray  const &);
 void receive_data_parser_slot(QStringList  &);

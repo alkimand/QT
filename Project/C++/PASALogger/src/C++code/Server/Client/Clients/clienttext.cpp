@@ -37,7 +37,13 @@ void ClientText::run()
 
 ClientText::~ClientText()
 {
-  //  this->wait();
+    //  this->wait();
+}
+
+void ClientText::clearDataPool()
+{
+  qDebug()<< "ClientText::clearDataPool";
+  this->worker->clearDataPool();
 }
 
 

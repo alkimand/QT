@@ -36,6 +36,8 @@ signals:
 public slots:
 void setStatus(const int &);
 
+void clearDataPool();
+
 protected:
 
 private:

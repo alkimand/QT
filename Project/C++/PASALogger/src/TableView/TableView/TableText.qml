@@ -10,6 +10,7 @@ import ClientText 1.0
 
 TableUDPBaseTable
 {
+    type: "TXT_CLIENT_TYPE"
     id: control
    // Item
     //{

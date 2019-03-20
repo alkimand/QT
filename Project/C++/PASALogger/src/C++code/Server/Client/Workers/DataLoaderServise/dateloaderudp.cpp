@@ -32,7 +32,7 @@ DateLoaderUDP::~DateLoaderUDP()
 
 void DateLoaderUDP::setStatus(const int & status)
 {
-    qDebug()<< "DateLoaderUDP::setStatus";
+    qDebug()<< "DateLoaderUDP::setStatus:" + status;
     this->status = STATUS(status);
 }
 

@@ -20,7 +20,8 @@ Item
         {
             //fileDialog.selectExisting = true
             //fileDialog.open()
-            tabView.openFile()
+            tabView.addTextComponent()
+
         }
     }
 
@@ -181,8 +182,9 @@ Item
 
         onTriggered:
         {
-            console.log("pauseAction")
-            tabView.setStatus(4)
+            //console.log("clearAction")
+            tabView.clearDataPool()
+            //tabView.setStatus(4)
             //fileDialog.open()
         }
     }

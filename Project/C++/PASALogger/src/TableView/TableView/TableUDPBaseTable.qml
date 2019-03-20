@@ -74,5 +74,6 @@ BaseTableView
             title: "Message"
             width: control.width-dateColumn.width-timeColumn.width-countColumn.width-zoneColumn.width-serviceColumn.width-functionColumn.width-lineColumn.width - 20
         }
+
 }
 

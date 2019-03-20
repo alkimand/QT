@@ -32,14 +32,14 @@ ClientUDP::ClientUDP() : ClientBase()
 
 void ClientUDP::run()
 {
-  //   exec();
+    //   exec();
 }
 
 ClientUDP::~ClientUDP()
 {
     delete worker;
     //delete model;
-  //  this->wait();
+    //  this->wait();
     qDebug()<< "~ClientUDP";
 
 }
@@ -48,6 +48,12 @@ void ClientUDP::setStatus(const int & status)
 {
     qDebug()<< "ClientUDP::setStatus";
     this->worker->setStatus(status);
+}
+
+void ClientUDP::clearDataPool()
+{
+    qDebug()<< "ClientUDP::clearDataPool";
+    //this-> model->resetInternalData();
 }
 
 

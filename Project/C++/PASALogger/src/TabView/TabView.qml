@@ -66,6 +66,24 @@ C1.TabView
 
     }
 
+    Component
+    {
+        id:newTextComponent
+        Loader
+        {
+            id: loader
+            anchors.fill: parent
+            source: "../TableView/TableView/TableText.qml"
+        }
+
+    }
+
+    function addTextComponent()
+    {
+       tabView.addTab(newWindowTitle,newTextComponent)
+       tabView.currentIndex = tabView.count - 1
+    }
+
 
 
     function openFile()
@@ -87,9 +105,17 @@ C1.TabView
 
     function setStatus(status)
     {
-        abView.getTab(tabView.currentIndex).item.children[0].client.setStatus(status)
-        console.log("tabView.getTab(tabView.currentIndex).item.children[0].client.setStatus(status)")
+        console.log("setStatus(status):" + status )
+        if (tabView.getTab(tabView.currentIndex).item.children[0].type === "UDP_CLIENT_TYPE")
+        tabView.getTab(tabView.currentIndex).item.children[0].setStatus(status)
+        //console.log("tabView.getTab(tabView.currentIndex).item.children[0].client.setStatus(status)")
         //tabView.getTab(0).item.children[0].test
+    }
+
+    function clearDataPool()
+    {
+        //console.log("clearDataPool")
+        tabView.getTab(tabView.currentIndex).item.children[0].clearDataPool()
     }
 
 
@@ -100,6 +126,10 @@ C1.TabView
         tabView.currentIndex = tabView.count - 1
         tabView.contexMenuIndex = tabView.currentIndex
     }
+
+
+
+
     function closeTab(index)
     {
         tabView.removeTab(index)

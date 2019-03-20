@@ -68,6 +68,8 @@ C1.TableView
     property int mouseMoveStartX: 0
     property int mouseMoveFinishX: 0
     property int selectRow: -1
+    property string type: "NONE"
+
 //++
 //    itemDelegate: ItemDelegate {}
 //    headerDelegate: HeaderDelegate { id:headDelegat }
@@ -77,6 +79,12 @@ C1.TableView
 //--
     property int test: implicitWidth/10
     //implicitWidth:window.width
+
+    function clearDataPool()
+    {
+        console.log("clearDataPool")
+        client.clearDataPool()
+    }
 
 }
 

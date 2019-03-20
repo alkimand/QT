@@ -30,6 +30,9 @@ protected:
    // virtual void setStatus(const int &){};
 
 
+public slots:
+
+
 private:
 
 

@@ -16,7 +16,7 @@ public:
     void receive_data_parser_handler(QStringList  &);
     void setStatus(const int &){};
     ~WorkerText();
-
+    void clearDataPool();
 protected:
 
 
