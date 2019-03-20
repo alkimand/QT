@@ -23,12 +23,11 @@ private:
 signals:
     //void sendData(QString); //move to Base class
     void readyRead();
+    void sendData(QByteArray const &);
 
 
 
 private slots:
-    void start();
-    void stop();
     void slotProcessDatagrams();
 
 

@@ -12,6 +12,7 @@ ClientBase::ClientBase()
 ClientBase::~ClientBase()
 {
     //this->wait();
+     qDebug()<< "~ClientBase()";
 }
 
 void ClientBase::run()

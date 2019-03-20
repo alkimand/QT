@@ -21,6 +21,7 @@ private:
 
 signals:
     //void sendData(QString); //move to Base class
+    void sendData(QByteArray const &);
 
 private slots:
     void start();

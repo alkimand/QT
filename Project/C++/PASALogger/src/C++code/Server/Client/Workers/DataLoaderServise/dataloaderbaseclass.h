@@ -22,7 +22,7 @@ private:
 
 
 signals:
-    void sendData(QByteArray const &);
+  //  void sendData(QByteArray const &);
 
 
 protected:

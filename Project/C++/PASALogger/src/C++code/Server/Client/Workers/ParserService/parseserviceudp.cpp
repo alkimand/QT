@@ -78,6 +78,11 @@ void ParseServiceUDP:: data_parser_handler( QByteArray const &  stream)
     return;
 }
 
+ParseServiceUDP::~ParseServiceUDP()
+{
+    qDebug()<< "~ParseServiceUDP()";
+}
+
 QStringList ParseServiceUDP::sl_parse_line(QString  const message )
 {
     QStringList parse_string;

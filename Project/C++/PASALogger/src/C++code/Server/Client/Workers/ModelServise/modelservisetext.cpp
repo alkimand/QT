@@ -18,7 +18,12 @@ void ModelServiseText::data_model_handler(QStringList & list)
     this->v_data.append(list);
     QModelIndex index = createIndex(0, 0, static_cast<void *>(0));
      //emit dataChanged(index, index, { role });
-        emit dataChanged(index, index);
+    emit dataChanged(index, index);
+}
+
+ModelServiseText::~ModelServiseText()
+{
+    qDebug()<< "~ModelServiseText()";
 }
 
 

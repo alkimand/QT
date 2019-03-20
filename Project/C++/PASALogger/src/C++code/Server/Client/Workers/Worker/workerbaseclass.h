@@ -7,10 +7,11 @@
 #include <QStringList>
 
 //class DataLoaderBaseClass;
+
 #include "dataloaderbaseclass.h"
 #include "dateloaderudp.h"
 #include "dateloadertext.h"
-
+#include "modelservisebaseclass.h"
 
 class ParseServiceBaseClass;
 class ClientBase;
@@ -25,7 +26,7 @@ public:
     WorkerBaseClass *parent;
     WorkerBaseClass *child;
 
-    virtual~WorkerBaseClass();
+    virtual ~WorkerBaseClass();
     void send_message(QByteArray  const &);
     QStringList message_list;
     //interfase for child class - all hendler are using in child class

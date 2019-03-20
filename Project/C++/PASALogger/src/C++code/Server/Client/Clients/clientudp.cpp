@@ -32,15 +32,21 @@ ClientUDP::ClientUDP() : ClientBase()
 
 void ClientUDP::run()
 {
-   //  exec();
+    //  exec();
+}
+
+void ClientUDP::setVin(const ModelServiseUDP *model)
+{
+    qDebug()<< "ClientUDP::setVin";
 }
 
 ClientUDP::~ClientUDP()
 {
+    qDebug()<< "~ClientUDP";
     delete worker;
     //delete model;
     //this->wait();
-    qDebug()<< "~ClientUDP";
+
 
 }
 

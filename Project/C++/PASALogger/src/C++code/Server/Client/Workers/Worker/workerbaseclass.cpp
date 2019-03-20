@@ -6,7 +6,7 @@
 
 WorkerBaseClass::WorkerBaseClass(ClientBase *m_client, CLIENT_TYPE const & m_type)
 {
-    //qDebug()<< "WorkerBaseClass+";
+    //qDebug()<< "create WorkerBaseClass";
     parent = this;
     this->client = static_cast<ClientBase*>(m_client);
 
@@ -24,17 +24,16 @@ void WorkerBaseClass::test()
 
 WorkerBaseClass::~WorkerBaseClass()
 {
+    qDebug()<< "~WorkerBaseClass()";
     delete dataloader;
     delete model;
     delete parser;
-    qDebug()<< "~WorkerBaseClass()";
-
 }
 
-void WorkerBaseClass::send_message(QByteArray   const & msg)
+void WorkerBaseClass::send_message(QByteArray   const & msg)//--
 {
     //qDebug()<< "Send_message: ";
-    emit dataloader->sendData(msg);
+    //emit dataloader->sendData(msg);
 }
 
 ModelServiseBaseClass *WorkerBaseClass::getModeltoQMLService()

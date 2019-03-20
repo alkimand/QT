@@ -12,23 +12,22 @@ WorkerText::WorkerText(ClientBase *m_client, CLIENT_TYPE const & m_type):WorkerB
 {
     qDebug()<< "create WorkerText";
     this-> child = this;
-    switch (type)
-    {
-    case TXT_CLIENT_TYPE:
+//    switch (type)
+//    {
+    //case TXT_CLIENT_TYPE:
         this->parser = new ParseServiceText (this, type);
-        this->model = new ModelServiseUDP (this, type);
-       // this->model = new  ModelServiseText (this, type);
+        this->model = new ModelServiseText (this, type);
+        //this->model = new  ModelServiseText (this, type);
         this->dataloader = new DateLoaderText (this, type);
-        break;
-    default:
-        break;
-    }
+       // break;
+//    default:
+//        break;
+//    }
 }
 
 void WorkerText::test()
 {
     qDebug()<< "WorkerText test";
-
 }
 
 void WorkerText::receive_data_parser_handler(QStringList & str_list)
@@ -53,7 +52,11 @@ void WorkerText::receive_data_parser_handler(QStringList & str_list)
 
 WorkerText::~WorkerText()
 {
-    qDebug()<< "WorkerText::~WorkerText" ;
+    qDebug()<< "~WorkerText" ;
+//    delete parser;
+//    delete model;
+//    delete dataloader;
+
 }
 
 void WorkerText::clearDataPool()

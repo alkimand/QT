@@ -17,6 +17,7 @@ Q_OBJECT
 public:
     explicit  ModelServiseText(WorkerBaseClass *, CLIENT_TYPE const &);
     void data_model_handler(QStringList &);
+    ~ ModelServiseText();
 
     void clearDataPool();
 

@@ -115,6 +115,7 @@ C1.TabView
     function clearDataPool()
     {
         //console.log("clearDataPool")
+        if (tabView.getTab(tabView.currentIndex).item.children[0].type === "UDP_CLIENT_TYPE" | tabView.getTab(tabView.currentIndex).item.children[0].type === "TXT_CLIENT_TYPE")
         tabView.getTab(tabView.currentIndex).item.children[0].clearDataPool()
     }
 

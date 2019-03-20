@@ -19,7 +19,7 @@ public:
      ParseServiceBaseClass *parent;
      ParseServiceBaseClass *child;
      virtual  void data_parser_handler(QByteArray const &) = 0;
-
+    virtual ~ParseServiceBaseClass();
  //    QVector <QStringList> getData();
 
 protected:

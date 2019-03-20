@@ -26,8 +26,9 @@ DateLoaderUDP::DateLoaderUDP(WorkerBaseClass *m_worker, CLIENT_TYPE const & m_ty
 
 DateLoaderUDP::~DateLoaderUDP()
 {
-    delete udp_socket;
     qDebug()<< "~DateLoaderUDP";
+    delete udp_socket;
+
 }
 
 void DateLoaderUDP::setStatus(const int & status)

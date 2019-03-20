@@ -20,7 +20,7 @@ public:
     explicit ClientText(); //no const
     ModelServiseUDP *model;
     void run();
-    void setVin(const ModelServiseUDP* model){};
+    void setVin(const ModelServiseUDP *model);
     ~ClientText();
     ModelServiseUDP *readModel() const
     {

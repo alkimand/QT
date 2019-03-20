@@ -32,16 +32,24 @@ ClientText::ClientText() : ClientBase()
 
 void ClientText::run()
 {
-   // exec();
+    // exec();
+}
+
+void ClientText::setVin(const ModelServiseUDP *model)
+{
+    qDebug()<< "ClientText::setVin";
 }
 
 ClientText::~ClientText()
 {
     //  this->wait();
+    qDebug()<< "~ClientText";
+    delete worker;
 }
 
 void ClientText::clearDataPool()
 {
+
     this->worker->clearDataPool();
 }
 

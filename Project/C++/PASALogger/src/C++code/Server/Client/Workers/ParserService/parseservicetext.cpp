@@ -32,5 +32,10 @@ void ParseServiceText:: data_parser_handler( QByteArray const &  stream)
         str_data_list = sl_parse_line(line);
         emit parser_sendData (str_data_list);
         str_data_list.clear();
-    return;
+        return;
+}
+
+ParseServiceText::~ParseServiceText()
+{
+    qDebug()<< "~ParseServiceText()";
 }

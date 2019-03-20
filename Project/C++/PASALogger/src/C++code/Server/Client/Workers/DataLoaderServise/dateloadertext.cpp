@@ -29,6 +29,7 @@ DateLoaderText::DateLoaderText(WorkerBaseClass *m_worker, CLIENT_TYPE const & m_
     connect(this, SIGNAL(readyRead()), SLOT(slotProcessDatagrams()));
 
     emit readyRead();
+    qDebug()<< "create DateLoaderText-";
 
 }
 
@@ -44,20 +45,10 @@ void DateLoaderText::create_connect_to_worker()
     connect(this, SIGNAL(sendData(QByteArray const &)), worker, SLOT(receive_data_loader_slot(QByteArray const &)));
 }
 
-void DateLoaderText::start()
-{
-
-
-}
-
-void DateLoaderText::stop()
-{
-
-}
 
 void DateLoaderText::slotProcessDatagrams()
 {
-    //qDebug()<< "DateLoaderText::slotProcessDatagrams()";
+    //qDebug()<< "DateLoaderText::slotProcessDatagrams()+";
     QByteArray baDatagram;
     QFile file (fileName);
     if(file.open(QIODevice::ReadOnly))
@@ -83,5 +74,6 @@ void DateLoaderText::slotProcessDatagrams()
             qDebug() << "No file";
         }
     }
+    //qDebug()<< "DateLoaderText::slotProcessDatagrams()-";
 }
 

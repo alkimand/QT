@@ -18,7 +18,7 @@ Q_OBJECT
 public:
     explicit  ModelServiseUDP(WorkerBaseClass *, CLIENT_TYPE const &);
     void data_model_handler(QStringList &);
-
+    ~ModelServiseUDP();
     void clearDataPool();
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const {

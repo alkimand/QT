@@ -29,6 +29,11 @@ void ModelServiseUDP::data_model_handler(QStringList & list)
     emit dataChanged(index, index);
 }
 
+ModelServiseUDP::~ModelServiseUDP()
+{
+     qDebug()<< "~ModelServiseUDP()";
+}
+
 void ModelServiseUDP::clearDataPool()
 {
     qDebug()<< "ModelServiseUDP::clearDataPool()";

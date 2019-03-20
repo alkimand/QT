@@ -9,3 +9,8 @@ ParseServiceBaseClass::ParseServiceBaseClass(WorkerBaseClass * m_worker,  CLIENT
     parent = this;
 }
 
+ParseServiceBaseClass::~ParseServiceBaseClass()
+{
+    qDebug()<< "~ParseServiceBaseClass()";
+}
+

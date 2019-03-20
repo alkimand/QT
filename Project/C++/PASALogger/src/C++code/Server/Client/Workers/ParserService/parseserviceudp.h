@@ -11,7 +11,7 @@ public:
     explicit  ParseServiceUDP (WorkerBaseClass *, CLIENT_TYPE const &);
 
     virtual void data_parser_handler(QByteArray const &);
-
+    ~ParseServiceUDP();
 
 private:
     //QString* udp_socket;

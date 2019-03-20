@@ -8,6 +8,11 @@ ModelServiseBaseClass::ModelServiseBaseClass(WorkerBaseClass * m_worker,  CLIENT
     parent = this;
 
 
-    qDebug()<< "ModelServiseBaseClass loaded";
+    qDebug()<< "create ModelServiseBaseClass";
+}
+
+ModelServiseBaseClass::~ModelServiseBaseClass()
+{
+    qDebug()<< "~ModelServiseBaseClass()";
 }
 
