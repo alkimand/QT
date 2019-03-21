@@ -84,16 +84,30 @@ C1.TableView
 
     function clearDataPool()
     {
-        console.log("clearDataPool")
+        //console.log("clearDataPool")
         client.clearDataPool()
     }
 
     function saveAs()
     {
-        console.log("saveAs()")
+        //if (tableView.type!== "NONE")
         client.saveAsSlot()
+        //console.log("saveAs()")
     }
 
+    function save()
+    {
+        if (tableView.type!== "NONE")
+        client.saveSlot()
+        //console.log("saveAs()")
+    }
+
+    function openInExplorer()
+    {
+        if (tableView.type!== "NONE")
+        client.openInExplorerSlot()
+        //console.log("openInExplorer()")
+    }
 
 }
 

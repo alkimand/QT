@@ -80,8 +80,8 @@ C1.TabView
 
     function addTextComponent()
     {
-       tabView.addTab(newWindowTitle,newTextComponent)
-       tabView.currentIndex = tabView.count - 1
+        tabView.addTab(newWindowTitle,newTextComponent)
+        tabView.currentIndex = tabView.count - 1
     }
 
 
@@ -89,8 +89,8 @@ C1.TabView
     function openFile()
     {
         //var tab = tabView.getTab(tabView.currentIndex)
-       // var item = tabView.contentItem
-       // tabView.setTable(name)
+        // var item = tabView.contentItem
+        // tabView.setTable(name)
         //var component =
         //component.source= "../TableView/TableView/TableText.qml"
         //tabView.addTab(newWindowTitle,component)
@@ -107,22 +107,33 @@ C1.TabView
     {
         console.log("C1.TabView setStatus(status):" + status )
         if (tabView.getTab(tabView.currentIndex).item.children[0].type === "UDP_CLIENT_TYPE")
-        tabView.getTab(tabView.currentIndex).item.children[0].setStatus(status)
+            tabView.getTab(tabView.currentIndex).item.children[0].setStatus(status)
         //console.log("tabView.getTab(tabView.currentIndex).item.children[0].client.setStatus(status)")
         //tabView.getTab(0).item.children[0].test
     }
 
     function saveAs()
     {
-       console.log("C1.TabView saveAs()")
-       tabView.getTab(tabView.currentIndex).item.children[0].saveAs()
+        //console.log("C1.TabView saveAs()")
+        if (tabView.getTab(tabView.currentIndex).item.children[0].type !== "NONE")
+            tabView.getTab(tabView.currentIndex).item.children[0].saveAs()
 
     }
+
+    function save()
+    {
+        //console.log("C1.TabView save()")
+        //console.log(tabView.getTab(tabView.currentIndex).item.children[0].type)
+        if (tabView.getTab(tabView.currentIndex).item.children[0].type !== "NONE")
+            tabView.getTab(tabView.currentIndex).item.children[0].save()
+
+    }
+
     function clearDataPool()
     {
         //console.log("clearDataPool")
         if (tabView.getTab(tabView.currentIndex).item.children[0].type === "UDP_CLIENT_TYPE" | tabView.getTab(tabView.currentIndex).item.children[0].type === "TXT_CLIENT_TYPE")
-        tabView.getTab(tabView.currentIndex).item.children[0].clearDataPool()
+            tabView.getTab(tabView.currentIndex).item.children[0].clearDataPool()
     }
 
 
@@ -197,5 +208,7 @@ C1.TabView
         //        text.selectAll()
         //        text.forceActiveFocus()
         console.log("openInExplorer")
+        if (tabView.getTab(tabView.currentIndex).item.children[0].type !== "NONE")
+            tabView.getTab(tabView.currentIndex).item.children[0].openInExplorer()
     }
 }

@@ -8,7 +8,7 @@ class ModelServiseText : public ModelServiseBaseClass
 {
     enum Roles
         {
-            DATE, TIME, COUNT, ZONE, SERVICENAME, FUNCTIONNAME, LINENUMBER, MESSAGE
+            ROW, CHECK ,DATE, TIME, COUNT, ZONE, SERVICENAME, FUNCTIONNAME, LINENUMBER, MESSAGE
         };
 
 Q_OBJECT
@@ -27,7 +27,7 @@ public:
     }
 
     int columnCount(const QModelIndex &parent = QModelIndex()) const {
-      Q_UNUSED(parent); return 8;
+      Q_UNUSED(parent); return 10;
     }
     QHash<int, QByteArray> roleNames() const;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;

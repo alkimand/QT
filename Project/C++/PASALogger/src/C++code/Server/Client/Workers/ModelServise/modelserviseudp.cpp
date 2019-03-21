@@ -106,8 +106,10 @@ void ModelServiseUDP::fillModel()
     list.append("");
     list.append("");
     list.append("");
+    beginInsertRows(QModelIndex(),size,size);
     this->v_data.append(list);
     QModelIndex index = createIndex(0, 0, static_cast<void *>(0));
     //emit dataChanged(index, index, { role });
     emit dataChanged(index, index);
+    endInsertRows();
 }

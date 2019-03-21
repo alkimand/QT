@@ -25,7 +25,6 @@ public:
 protected:
     CLIENT_TYPE type;
     virtual void create_connect_to_worker() = 0;
-    //QString first_line;
     QString last_line;
     QStringList str_data_list;
 

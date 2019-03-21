@@ -6,6 +6,7 @@ import QtQuick.Controls 2.12
 Item
 {
     id:control
+    property string type: "NONE"
     Rectangle
     {
         id:rectangle

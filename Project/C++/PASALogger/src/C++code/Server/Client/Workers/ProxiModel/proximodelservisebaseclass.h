@@ -21,7 +21,7 @@ public:
      WorkerBaseClass *worker;
      ProxiModelServiseBaseClass *parent;
      ProxiModelServiseBaseClass *child;
-
+     virtual ~ProxiModelServiseBaseClass();
    // bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
 
     // virtual  void data_model_handler(QStringList &) = 0;

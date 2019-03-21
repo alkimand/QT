@@ -6,12 +6,15 @@
 #include <QObject>
 #include <QAbstractTableModel>
 
+
 //Proxi model
 //https://stackoverrun.com/ru/q/10878631
 //https://doc.qt.io/qt-5/qtwidgets-itemviews-customsortfiltermodel-example.html
 //https://doc.qt.io/archives/qt-4.8/qsortfilterproxyModel.html
 
 //https://evileg.com/ru/forum/topic/785/
+//class QDir;
+
 
 class  ModelServiseBaseClass: public QAbstractTableModel
 {
@@ -25,7 +28,14 @@ public:
      virtual  void data_model_handler(QStringList &) = 0;
      virtual void clearDataPool();
      virtual void saveAs();
+     virtual void save();
      virtual ~ModelServiseBaseClass();
+     QString fileName;
+     QString defoultFileName;
+     void getSaveFileName();
+     void saveData();
+     void openInExplorer();
+     //QDir dir;
 //     enum Roles{
 //         DataRole = Qt::UserRole + 1,
 //         TimeStampRole,

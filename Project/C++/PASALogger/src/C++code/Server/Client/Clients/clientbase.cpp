@@ -25,11 +25,20 @@ void ClientBase::saveAsSlot()
     this->worker->saveAs();
 }
 
+void ClientBase::saveSlot()
+{
+    this->worker->save();
+}
 
 void ClientBase::clearDataPool()
 {
 
     this->worker->clearDataPool();
+}
+
+void ClientBase::openInExplorerSlot()
+{
+    this->worker->openInExplorer();
 }
 
 

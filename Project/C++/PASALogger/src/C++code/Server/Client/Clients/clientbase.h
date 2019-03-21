@@ -34,8 +34,10 @@ protected:
 
 public slots:
 void saveAsSlot();
+void saveSlot();
 void setStatus(const int &);
 void clearDataPool();
+void openInExplorerSlot();
 
 private:
 

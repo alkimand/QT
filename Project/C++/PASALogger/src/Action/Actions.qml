@@ -49,7 +49,8 @@ Item
 
         onTriggered:
         {
-            console.log("fileSaveAction")
+           //console.log("fileSaveAction")
+            tabView.save()
         }
     }
 
@@ -63,7 +64,7 @@ Item
 
         onTriggered:
         {
-            console.log("fileSaveAsAction")
+            //console.log("fileSaveAsAction")
             tabView.saveAs()
         }
     }
@@ -271,7 +272,7 @@ Item
         id: openInExplorerAction
         icon.source: "../images/ToolBarIcon/explorer.png"
         //shortcut : QKeySequence::Open)
-        icon.name: "rename"
+        icon.name: "Open"
         text: "Open in Explorer"
 
         onTriggered:

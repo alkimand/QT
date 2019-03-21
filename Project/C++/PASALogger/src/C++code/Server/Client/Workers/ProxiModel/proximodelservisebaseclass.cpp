@@ -8,6 +8,11 @@ ProxiModelServiseBaseClass::ProxiModelServiseBaseClass(WorkerBaseClass * m_worke
     parent = this;
 
 
-    qDebug()<< "ModelServiseBaseClass loaded";
+    qDebug()<< "ProxiModelServiseBaseClass loaded";
+}
+
+ProxiModelServiseBaseClass::~ProxiModelServiseBaseClass()
+{
+    qDebug()<< "~ProxiModelServiseBaseClass()";
 }
 

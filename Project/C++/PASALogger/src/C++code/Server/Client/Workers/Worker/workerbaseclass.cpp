@@ -46,6 +46,16 @@ void WorkerBaseClass::saveAs()
     this->model->saveAs();
 }
 
+void WorkerBaseClass::save()
+{
+    this->model->save();
+}
+
+void WorkerBaseClass::openInExplorer()
+{
+    this->model->openInExplorer();
+}
+
 void WorkerBaseClass::receive_data_loader_slot(QByteArray  const & message)
 {
         //qDebug()<< " WorkerBaseClass receive_data_loader_slot ";

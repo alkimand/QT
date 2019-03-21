@@ -173,8 +173,7 @@ Rectangle
                     tabView.contexMenuIndex = index
                     tabView.currentIndex = index
                     console.log("savebutton cliked")
-                    console.log(styleData.title)
-                    //console.log(text.length)
+                    tabView.save()
                 }
             }
         }
