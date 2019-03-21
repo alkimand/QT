@@ -25,8 +25,11 @@ void WorkerBaseClass::test()
 WorkerBaseClass::~WorkerBaseClass()
 {
     qDebug()<< "~WorkerBaseClass()";
+
     delete dataloader;
     delete model;
+   // if (proximodel!=nullptr)
+   // delete proximodel;
     delete parser;
 }
 

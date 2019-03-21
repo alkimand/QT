@@ -4,6 +4,7 @@
 #include "parseserviceudp.h"
 #include "modelservisetext.h"
 #include "modelserviseudp.h"
+#include "proximodelserviseudp.h"
 
 #include <QDebug>
 
@@ -14,17 +15,18 @@ WorkerUDP::WorkerUDP(ClientBase *m_client, CLIENT_TYPE const & m_type):WorkerBas
     //send_message("567");
     //child->test();
 
-    switch (type)
-    {
-    case UDP_CLIENT_TYPE:
+//    switch (type)
+//    {
+//    case UDP_CLIENT_TYPE:
         this->parser = new ParseServiceUDP (this, type);
         this->model = new ModelServiseUDP (this, type);
+        this->proximodel = new ProxiModelServiseUDP (this, model, type);
         //this->model = new ModelServiseText (this, type);
         this->dataloader = new  DateLoaderUDP (this, type);
-        break;
-    default:
-        break;
-    }
+//        break;
+//    default:
+//        break;
+//    }
 }
 
 void WorkerUDP::test()

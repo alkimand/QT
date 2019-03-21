@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
     app.setOrganizationDomain("PASA");
     app.setApplicationName("UDP Loger Application");
      QCoreApplication::setAttribute(Qt::AA_UseSoftwareOpenGL);
-    // QQuickWindow::setSceneGraphBackend(QSGRendererInterface::Software);
+     //QQuickWindow::setSceneGraphBackend(QSGRendererInterface::Software);
 
 
 

@@ -12,10 +12,13 @@
 #include "dateloaderudp.h"
 #include "dateloadertext.h"
 #include "modelservisebaseclass.h"
+#include "proximodelservisebaseclass.h"
+
 
 class ParseServiceBaseClass;
 class ClientBase;
 class ModelServiseBaseClass;
+class ProxiModelServiseBaseClass;
 
 class WorkerBaseClass: public QObject
 {
@@ -35,6 +38,8 @@ public:
     QVector <QStringList> line_vector;
     ModelServiseBaseClass * getModeltoQMLService();
     ModelServiseBaseClass *model;
+    ProxiModelServiseBaseClass * proximodel;
+
     virtual void setStatus(const int &);
     virtual void clearDataPool();
     virtual void saveAs();

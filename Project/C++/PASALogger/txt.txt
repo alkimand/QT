@@ -1,4 +1,4 @@
-03/22/19 01:32:17////Open file//
+03/22/19 02:07:19////Open file//
 02/24/2019 21:57:02.198/691/30/Positioning.exe/0440_NAV_GPS_MAIN/DEV_Gps_ErrorOut/142/= ERROR CODE = -1
 02/24/2019 21:57:02.198/691/30/Positioning.exe/0440_NAV_GPS_MAIN/DEV_Gps_ErrorOut/142/= ERROR CODE = -1
 02/24/2019 21:57:02.198/692/30/Positioning.exe/0440_NAV_GPS_MAIN/DEV_Gps_ErrorOut/146/= COMMENT = CreateFile error

@@ -13,6 +13,7 @@ INCLUDEPATH += "src/C++code/Server/Server/" \
                "src/C++code/Server/Client/Workers/Worker/" \
                "src/C++code/Server/Client/Workers/ModelServise/" \
                "src/C++code/Server/Client/Workers/ParserService/" \
+               "src/C++code/Server/Client/Workers/ProxiModel/" \
                "src/C++code/Server/Client/Workers/DataLoaderServise/"
 
 # The following define makes your compiler emit warnings if you use
@@ -46,7 +47,8 @@ SOURCES += \
     src/C++code/Server/Client/Workers/DataLoaderServise/dateloadertext.cpp \
     src/C++code/Server/Client/Workers/ParserService/parseservicetext.cpp \
     src/C++code/Server/Client/Workers/ModelServise/modelservisetext.cpp \
-    src/C++code/Server/Client/Workers/ProxiModel/proximodelservisebaseclass.cpp
+    src/C++code/Server/Client/Workers/ProxiModel/proximodelservisebaseclass.cpp \
+    src/C++code/Server/Client/Workers/ProxiModel/proximodelserviseudp.cpp
 
 
 RESOURCES += qml.qrc
@@ -168,7 +170,8 @@ HEADERS += \
     src/C++code/Server/Client/Workers/DataLoaderServise/dateloadertext.h \
     src/C++code/Server/Client/Workers/ParserService/parseservicetext.h \
     src/C++code/Server/Client/Workers/ModelServise/modelservisetext.h \
-    src/C++code/Server/Client/Workers/ProxiModel/proximodelservisebaseclass.h
+    src/C++code/Server/Client/Workers/ProxiModel/proximodelservisebaseclass.h \
+    src/C++code/Server/Client/Workers/ProxiModel/proximodelserviseudp.h
 
 
 
