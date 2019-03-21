@@ -17,13 +17,13 @@ public:
 private:
     //QUdpSocket* udp_socket;
     QString fileName;
-    void create_connect_to_worker();
+   // void create_connect_to_worker();
 
 
 signals:
     //void sendData(QString); //move to Base class
     void readyRead();
-    void sendData(QByteArray const &);
+   // void sendData(QByteArray const &);
 
 
 

@@ -47,23 +47,3 @@ ClientText::~ClientText()
     delete worker;
 }
 
-void ClientText::clearDataPool()
-{
-
-    this->worker->clearDataPool();
-}
-
-void ClientText::saveAsSlot()
-{
-    this->worker->saveAsSlot();
-}
-
-//void ClientText::clearDataPool()
-//{
-//  qDebug()<< "ClientText::clearDataPool";
-//  this->worker->clearDataPool();
-//}
-
-
-
-

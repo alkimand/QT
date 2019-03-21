@@ -46,22 +46,4 @@ ClientUDP::~ClientUDP()
     delete worker;
     //delete model;
     //this->wait();
-
-
 }
-
-void ClientUDP::clearDataPool()
-{
-  qDebug()<< "ClientUDP::clearDataPool";
-  this->worker->clearDataPool();
-}
-
-void ClientUDP::setStatus(const int & status)
-{
- qDebug()<< "ClientUDP::setStatus";
- this->worker->setStatus(status);
-}
-
-
-
-

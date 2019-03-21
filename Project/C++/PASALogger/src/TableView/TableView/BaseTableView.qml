@@ -70,6 +70,8 @@ C1.TableView
     property int selectRow: -1
     property string type: "NONE"
 
+//https://stackoverflow.com/questions/30818886/qml-window-resize-move-flicker - resize bug
+
 //++
     itemDelegate: ItemDelegate {}
     headerDelegate: HeaderDelegate { id:headDelegat }
@@ -88,8 +90,10 @@ C1.TableView
 
     function saveAs()
     {
-        console.log("saveAs")
+        console.log("saveAs()")
         client.saveAsSlot()
     }
+
+
 }
 

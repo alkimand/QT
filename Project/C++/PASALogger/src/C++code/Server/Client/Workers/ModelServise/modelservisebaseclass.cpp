@@ -16,3 +16,18 @@ ModelServiseBaseClass::~ModelServiseBaseClass()
     qDebug()<< "~ModelServiseBaseClass()";
 }
 
+
+void ModelServiseBaseClass::saveAs()
+{
+    qDebug()<< "ModelServiseBaseClass::saveAs()";
+
+
+}
+
+void ModelServiseBaseClass::clearDataPool()
+{
+    //qDebug()<< "ModelServiseUDP::clearDataPool()";
+    beginResetModel();
+    this->v_data.clear();
+    endResetModel();
+}

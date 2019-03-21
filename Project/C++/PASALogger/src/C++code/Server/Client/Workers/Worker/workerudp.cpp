@@ -53,26 +53,10 @@ void WorkerUDP::receive_data_parser_handler(QStringList & str_list)
 
 }
 
-void WorkerUDP::setStatus(const int & status)
-{
-    qDebug()<< "WorkerUDP::setStatus";
-    this->dataloader->setStatus(status);
-}
 
 WorkerUDP::~WorkerUDP()
 {
     qDebug()<< "WorkerUDP";
-}
-
-void WorkerUDP::clearDataPool()
-{
-    //qDebug()<< "WorkerUDP::clearDataPool()";
-    this->model->clearDataPool();
-}
-
-void WorkerUDP::saveAsSlot()
-{
-    this->model->saveAsSlot();
 }
 
 void WorkerUDP::receive_data_loader_handler(QByteArray const & message)
@@ -80,10 +64,3 @@ void WorkerUDP::receive_data_loader_handler(QByteArray const & message)
     //qDebug()<< "1: WorkerUDP::receive_data_loader_handler in" ;
    this-> parser->data_parser_handler(message);
 }
-
-
-
-//void WorkerUDP::receive_data_loader_slot(QString massage)
-//{
-//    qDebug()<< "massage:" + massage;
-//}

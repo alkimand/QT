@@ -38,14 +38,6 @@ DateLoaderText::~DateLoaderText()
     qDebug()<< "~DateLoaderText";
 }
 
-void DateLoaderText::create_connect_to_worker()
-{
-    //send data to worker
-    //qDebug()<< "DateLoaderText::create_connect_to_worker";
-    connect(this, SIGNAL(sendData(QByteArray const &)), worker, SLOT(receive_data_loader_slot(QByteArray const &)));
-}
-
-
 void DateLoaderText::slotProcessDatagrams()
 {
     //qDebug()<< "DateLoaderText::slotProcessDatagrams()+";

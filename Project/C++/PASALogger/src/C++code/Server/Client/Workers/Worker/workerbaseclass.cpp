@@ -41,6 +41,11 @@ ModelServiseBaseClass *WorkerBaseClass::getModeltoQMLService()
     return this->model;
 }
 
+void WorkerBaseClass::saveAs()
+{
+    this->model->saveAs();
+}
+
 void WorkerBaseClass::receive_data_loader_slot(QByteArray  const & message)
 {
         //qDebug()<< " WorkerBaseClass receive_data_loader_slot ";
@@ -65,3 +70,15 @@ void WorkerBaseClass::receive_data_parser_slot(QStringList & list)
     //QStringList list;
     this->child->receive_data_parser_handler(list);
 }
+
+void  WorkerBaseClass::clearDataPool()
+{
+    this->model->clearDataPool();
+}
+
+void WorkerBaseClass::setStatus(const int & status)
+{
+    qDebug()<< "WorkerBaseClass::setStatus";
+    this->dataloader->setStatus(status);
+}
+

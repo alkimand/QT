@@ -34,9 +34,9 @@ signals:
    void modelChanged();
 
 public slots:
-   void setStatus(int const & ){};
-   void clearDataPool();
-   void saveAsSlot();
+//   void setStatus(int const & ){};
+//   void clearDataPool();
+  // void saveAsSlot();
   // void clearDataPool();
 
 protected:

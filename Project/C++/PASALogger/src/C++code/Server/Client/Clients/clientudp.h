@@ -34,8 +34,8 @@ signals:
 void modelChanged();
 
 public slots:
-void setStatus(const int &);
-void clearDataPool();
+//void setStatus(const int &);
+//void clearDataPool();
 //void clearDataPool();
 
 protected:

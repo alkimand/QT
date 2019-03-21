@@ -16,10 +16,10 @@ public:
    // WorkerUDP *child2;
     void receive_data_loader_handler(QByteArray const &);
     void receive_data_parser_handler(QStringList  &);
-    void setStatus(const int &);
+    //void setStatus(const int &);
     ~WorkerUDP();
-    void clearDataPool();
-    void saveAsSlot();
+   // void clearDataPool();
+    ///void saveAsSlot();
 
 protected:
 

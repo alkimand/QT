@@ -34,20 +34,6 @@ ModelServiseUDP::~ModelServiseUDP()
      qDebug()<< "~ModelServiseUDP()";
 }
 
-void ModelServiseUDP::clearDataPool()
-{
-    qDebug()<< "ModelServiseUDP::clearDataPool()";
-    beginResetModel();
-    this->v_data.clear();
-    endResetModel();
-}
-
-void ModelServiseUDP::saveAsSlot()
-{
-    qDebug()<< "ModelServiseUDP::saveAsSlot()";
-}
-
-
 
 QHash<int, QByteArray> ModelServiseUDP::roleNames() const
 {

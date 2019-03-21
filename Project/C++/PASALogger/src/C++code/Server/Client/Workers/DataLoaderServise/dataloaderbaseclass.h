@@ -23,10 +23,11 @@ private:
 
 signals:
   //  void sendData(QByteArray const &);
+    void sendData(QByteArray const &);
 
 
 protected:
-    virtual void create_connect_to_worker()=0;
+    virtual void create_connect_to_worker();
     STATUS status;
 
 };

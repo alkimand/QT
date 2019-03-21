@@ -22,16 +22,20 @@ public:
 //virtual
   virtual ~ClientBase();
     void run();
+
 protected:
     WorkerBaseClass *worker;
     CLIENT_TYPE type; //const no pointer
     //Server *server;
     ClientBase *child;
+
    // virtual void setStatus(const int &){};
 
 
 public slots:
-
+void saveAsSlot();
+void setStatus(const int &);
+void clearDataPool();
 
 private:
 

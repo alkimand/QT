@@ -15,3 +15,8 @@ DataLoaderBaseClass::~DataLoaderBaseClass()
 {
     qDebug()<< "~DataLoaderBaseClass";
 }
+
+void DataLoaderBaseClass::create_connect_to_worker()
+{
+    connect(child, SIGNAL(sendData(QByteArray const &)), worker, SLOT(receive_data_loader_slot(QByteArray const &)));
+}

@@ -20,3 +20,22 @@ void ClientBase::run()
     //exec();
 }
 
+void ClientBase::saveAsSlot()
+{
+    this->worker->saveAs();
+}
+
+
+void ClientBase::clearDataPool()
+{
+
+    this->worker->clearDataPool();
+}
+
+
+void ClientBase::setStatus(const int & status)
+{
+ qDebug()<< "ClientBase::setStatus";
+ if (type == UDP_CLIENT_TYPE)
+ this->worker->setStatus(status);
+}
