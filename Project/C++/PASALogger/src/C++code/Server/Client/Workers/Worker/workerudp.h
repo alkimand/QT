@@ -19,6 +19,7 @@ public:
     void setStatus(const int &);
     ~WorkerUDP();
     void clearDataPool();
+    void saveAsSlot();
 
 protected:
 

@@ -20,6 +20,7 @@ public:
     ~ ModelServiseText();
 
     void clearDataPool();
+    void saveAsSlot();
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const {
       Q_UNUSED(parent); return v_data.length();

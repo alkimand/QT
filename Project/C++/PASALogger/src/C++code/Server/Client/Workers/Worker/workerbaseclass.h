@@ -37,6 +37,7 @@ public:
     ModelServiseBaseClass *model;
     virtual void setStatus(const int &) = 0;
     virtual void clearDataPool()=0;
+    virtual void saveAsSlot()=0;
 public slots:
 void receive_data_loader_slot(QByteArray  const &);
 void receive_data_parser_slot(QStringList  &);

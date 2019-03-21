@@ -91,7 +91,8 @@ ApplicationWindow
     //footer: TabView {id:tabView}
     //toolBar:mainToolBar
     TabView
-    { id:tabView
+    {
+        id:tabView
 
 //        id:tabView
 //        anchors.topMargin:  0

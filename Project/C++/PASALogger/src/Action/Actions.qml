@@ -64,6 +64,7 @@ Item
         onTriggered:
         {
             console.log("fileSaveAsAction")
+            tabView.saveAs()
         }
     }
 

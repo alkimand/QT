@@ -87,3 +87,8 @@ void ModelServiseText::clearDataPool()
     this->v_data.clear();
     endResetModel();
 }
+
+void ModelServiseText::saveAsSlot()
+{
+    qDebug()<< "ModelServiseUDP::saveAsSlot()";
+}

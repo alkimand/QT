@@ -24,6 +24,7 @@ public:
 
      virtual  void data_model_handler(QStringList &) = 0;
      virtual void clearDataPool() = 0;
+     virtual void saveAsSlot() = 0;
      virtual ~ModelServiseBaseClass();
 //     enum Roles{
 //         DataRole = Qt::UserRole + 1,

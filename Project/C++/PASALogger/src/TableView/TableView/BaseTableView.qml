@@ -86,5 +86,10 @@ C1.TableView
         client.clearDataPool()
     }
 
+    function saveAs()
+    {
+        console.log("saveAs")
+        client.saveAsSlot()
+    }
 }
 

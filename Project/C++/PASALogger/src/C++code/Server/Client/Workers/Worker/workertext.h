@@ -17,6 +17,7 @@ public:
     void setStatus(const int &){};
     ~WorkerText();
     void clearDataPool();
+    void saveAsSlot();
 protected:
 
 

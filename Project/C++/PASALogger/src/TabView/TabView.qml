@@ -105,13 +105,19 @@ C1.TabView
 
     function setStatus(status)
     {
-        console.log("setStatus(status):" + status )
+        console.log("C1.TabView setStatus(status):" + status )
         if (tabView.getTab(tabView.currentIndex).item.children[0].type === "UDP_CLIENT_TYPE")
         tabView.getTab(tabView.currentIndex).item.children[0].setStatus(status)
         //console.log("tabView.getTab(tabView.currentIndex).item.children[0].client.setStatus(status)")
         //tabView.getTab(0).item.children[0].test
     }
 
+    function saveAs()
+    {
+       console.log("C1.TabView saveAs()")
+       tabView.getTab(tabView.currentIndex).item.children[0].saveAs()
+
+    }
     function clearDataPool()
     {
         //console.log("clearDataPool")
