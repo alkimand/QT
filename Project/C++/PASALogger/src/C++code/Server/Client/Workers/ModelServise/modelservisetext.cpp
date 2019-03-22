@@ -5,7 +5,7 @@
 ModelServiseText::ModelServiseText(WorkerBaseClass *m_worker, CLIENT_TYPE const & m_type):ModelServiseBaseClass(m_worker, m_type)
 {
     this->child = this;
-    fillModel();
+    //fillModel();
 
     qDebug()<< "create ModelServiseText";
 

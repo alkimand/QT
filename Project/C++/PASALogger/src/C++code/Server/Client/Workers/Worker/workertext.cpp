@@ -5,6 +5,7 @@
 #include "parseserviceudp.h"
 #include "modelservisetext.h"
 #include "modelserviseudp.h"
+#include "proximodelserviseudp.h"
 
 #include <QDebug>
 
@@ -12,17 +13,10 @@ WorkerText::WorkerText(ClientBase *m_client, CLIENT_TYPE const & m_type):WorkerB
 {
     qDebug()<< "create WorkerText";
     this-> child = this;
-//    switch (type)
-//    {
-    //case TXT_CLIENT_TYPE:
-        this->parser = new ParseServiceText (this, type);
-        this->model = new ModelServiseText (this, type);
-        //this->model = new  ModelServiseText (this, type);
-        this->dataloader = new DateLoaderText (this, type);
-       // break;
-//    default:
-//        break;
-//    }
+    this->parser = new ParseServiceText (this, type);
+    this->model = new ModelServiseText (this, type);
+    this->proximodel = new ProxiModelServiseUDP (this, model, type);
+    this->dataloader = new DateLoaderText (this, type);
 }
 
 void WorkerText::test()
@@ -37,14 +31,14 @@ void WorkerText::receive_data_parser_handler(QStringList & str_list)
     {
         line_vector.append(str_list);//?
 
-      //  for (int j=0; j<size; j++)
+        //  for (int j=0; j<size; j++)
         //    qDebug()<< str_list.at(j);
     }
     else
     {
         qDebug()<< "Wrong parse string in class WorkerText::receive_data_loader_handler:";
         //for (int j=0; j<size;j++)
-         //  qDebug()<< str_list.at(j);
+        //  qDebug()<< str_list.at(j);
     }
     this->model->data_model_handler(str_list);
 
@@ -53,17 +47,7 @@ void WorkerText::receive_data_parser_handler(QStringList & str_list)
 WorkerText::~WorkerText()
 {
     qDebug()<< "~WorkerText" ;
-//    delete parser;
-//    delete model;
-//    delete dataloader;
-
 }
 
-
-void WorkerText::receive_data_loader_handler(QByteArray const & message)
-{
- //qDebug()<< "WorkerText::receive_data_loader_handler in" ;
-   this-> parser->data_parser_handler(message);
-}
 
 

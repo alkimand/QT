@@ -19,6 +19,7 @@ class ClientUDP: public ClientBase
 public:
     explicit ClientUDP(); //no const
     ModelServiseUDP *model;
+    ProxiModelServiseUDP *proximodel;
     void run();
     void setVin(const ModelServiseUDP *model);
     ~ClientUDP();

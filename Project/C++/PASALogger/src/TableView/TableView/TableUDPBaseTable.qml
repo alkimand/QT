@@ -9,7 +9,9 @@ BaseTableView
 {
     id: control
 
-      model: client.model
+      //model: client.model
+
+        model: client.proximodel
 
         C1.TableViewColumn
         {

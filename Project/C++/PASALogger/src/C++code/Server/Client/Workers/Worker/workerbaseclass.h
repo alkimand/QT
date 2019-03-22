@@ -33,10 +33,11 @@ public:
     void send_message(QByteArray  const &);
     QStringList message_list;
     //interfase for child class - all hendler are using in child class
-    virtual void receive_data_loader_handler(QByteArray  const &) = 0;
+    virtual void receive_data_loader_handler(QByteArray  const &);
     virtual void receive_data_parser_handler(QStringList &) = 0;
     QVector <QStringList> line_vector;
     ModelServiseBaseClass * getModeltoQMLService();
+    ProxiModelServiseBaseClass *getProxiModeltoQMLService();
     ModelServiseBaseClass *model;
     ProxiModelServiseBaseClass * proximodel;
 

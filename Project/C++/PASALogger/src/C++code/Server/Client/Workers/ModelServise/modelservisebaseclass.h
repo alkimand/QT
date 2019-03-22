@@ -134,7 +134,7 @@ public:
 
 //protected:
     CLIENT_TYPE type;
-    QVector <QStringList> v_data;
+    QVector <QStringList> v_data; //change to list
 //    //virtual void create_connect_to_worker() = 0;
 //    //QString first_line;
 //   // QString last_line;

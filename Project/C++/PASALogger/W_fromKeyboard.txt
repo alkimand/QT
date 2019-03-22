@@ -1,14 +1,3 @@
-*/*/*/*/*/*/=PASALogger 0.2.3 beta 20150508 SESSION START- 20190301192856694
-//////=/139/= GpsCommCtl.lib:C:/ide-5.0-workspace/CORAL_DR_NAFTA/CORAL_DR_Core/Vehicle/make/variant/QNX/../../../thread/GpsCommCtl_thread/common/MDev_Gps_Main_Sierra.c : LINE  1441
-//////=
-02/24/2019 21:57:02.198/691/30/Positioning.exe/0440_NAV_GPS_MAIN/DEV_Gps_ErrorOut/142/= ERROR CODE = -1
-//////=
-02/24/2019 21:57:02.198/692/30/Positioning.exe/0440_NAV_GPS_MAIN/DEV_Gps_ErrorOut/146/= COMMENT = CreateFile error
-//////=
-02/24/2019 21:57:02.198/693/30/Positioning.exe/0440_NAV_GPS_MAIN/DEV_Gps_DetectComPort/1445/=#Sierra DEV_Gps_DetectComPort1# NG cnt=142  
-//////=
-02/24/2019 21:57:02.231/106/29/CORAL_CELL//WaitForModemReady/5517/=TIMEOUT COUNTER = 76
-
 02/24/2019 21:57:02.282/968/30/BtStack/08B1_BTSTACK_ADPT/BT_Adapter_LogOut/561/=[Aug 20 2018][23405] BTSTK 08B1 1A 06 000C 0C00000010000000D2030000
 02/24/2019 21:57:02.283/969/30/BtStack/08B1_BTSTACK_ADPT/BT_Adapter_LogOut/561/=[Aug 20 2018][23406] BTSTK 08B1 1A 04 0008 0500000010000000
 02/24/2019 21:57:02.283/970/30/BtStack/08B1_BTSTACK_ADPT/bt_stk_pbap_fnc_DataController_ReqTim_stop/2797/=PullvCardData_timer_handle is illegal handle:-1

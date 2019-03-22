@@ -16,6 +16,7 @@
 //https://doc.qt.io/archives/qt-4.8/qsortfilterproxyModel.html
 
 class ModelServiseBaseClass;
+class QRegExp;
 
 class  ProxiModelServiseBaseClass: public QSortFilterProxyModel
 {
@@ -33,7 +34,7 @@ public:
 
     // virtual  void data_model_handler(QStringList &) = 0;
 
-
+     virtual bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override = 0;
     CLIENT_TYPE type;
 
 
@@ -41,8 +42,7 @@ public:
 //signals:
 
 protected:
-    //QVector <QStringList> v_data;
-    QStringList filters;
+
 
 private:
     //QRegExp nameRegExp;

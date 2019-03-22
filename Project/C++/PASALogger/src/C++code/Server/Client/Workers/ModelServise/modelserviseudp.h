@@ -9,7 +9,7 @@ class ModelServiseUDP: public ModelServiseBaseClass
 {
     enum Roles
         {
-            ROW, CHECK ,DATE, TIME, COUNT, ZONE, SERVICENAME, FUNCTIONNAME, LINENUMBER, MESSAGE
+            ROW , CHECK ,DATE, TIME, COUNT, ZONE, SERVICENAME, FUNCTIONNAME, LINENUMBER, MESSAGE
         };
 
 Q_OBJECT

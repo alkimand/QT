@@ -2,6 +2,7 @@
 #define MODELSERVISETEXT_H
 #include "modelservisebaseclass.h"
 
+
 #include <QObject>
 
 class ModelServiseText : public ModelServiseBaseClass

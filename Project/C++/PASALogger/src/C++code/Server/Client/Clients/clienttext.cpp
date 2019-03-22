@@ -21,7 +21,7 @@ ClientText::ClientText() : ClientBase()
     this-> worker = new WorkerText(this, type);
     //worker->moveToThread(this);
     this-> model = static_cast<ModelServiseUDP*> (this-> worker->getModeltoQMLService());
-
+    this-> proximodel = static_cast<ProxiModelServiseUDP*> (this-> worker->getProxiModeltoQMLService());
 
     //        break;
     //    default:
@@ -38,6 +38,11 @@ void ClientText::run()
 void ClientText::setVin(const ModelServiseUDP *model)
 {
     qDebug()<< "ClientText::setVin";
+}
+
+void ClientText::setproximodel(const ProxiModelServiseUDP *proximodel)
+{
+
 }
 
 ClientText::~ClientText()

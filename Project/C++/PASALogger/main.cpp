@@ -24,7 +24,6 @@ int main(int argc, char *argv[])
     Q_INIT_RESOURCE(qml);
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
-   // QGuiApplication app(argc, argv);
     QApplication app(argc, argv);
 
 
@@ -35,7 +34,7 @@ int main(int argc, char *argv[])
     //paths.append("sqldrivers");
     //app.setQuitOnLastWindowClosed(false);
     //app.setAttribute(Qt::WA_DeleteOnClose);
-    //app.setWindowIcon(QPixmap(":/src/images/AppImages/programmer.png"));
+    app.setWindowIcon(QIcon(":/src/images/AppImages/programmer.png"));
 //++/0
 //if (1)
 //{

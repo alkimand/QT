@@ -29,7 +29,7 @@ WorkerBaseClass::~WorkerBaseClass()
     delete dataloader;
     delete model;
    // if (proximodel!=nullptr)
-   // delete proximodel;
+    delete proximodel;
     delete parser;
 }
 
@@ -39,9 +39,19 @@ void WorkerBaseClass::send_message(QByteArray   const & msg)//--
     //emit dataloader->sendData(msg);
 }
 
+void WorkerBaseClass::receive_data_loader_handler(const QByteArray & message)
+{
+    this-> parser->data_parser_handler(message);
+}
+
 ModelServiseBaseClass *WorkerBaseClass::getModeltoQMLService()
 {
     return this->model;
+}
+
+ProxiModelServiseBaseClass *WorkerBaseClass::getProxiModeltoQMLService()
+{
+    return this->proximodel;
 }
 
 void WorkerBaseClass::saveAs()

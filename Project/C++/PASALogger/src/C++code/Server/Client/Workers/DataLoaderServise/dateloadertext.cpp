@@ -47,7 +47,7 @@ void DateLoaderText::slotProcessDatagrams()
     {
         QTextStream stream(&file);
         QString str;
-
+       //str = "O"//ToDo
         while (!stream.atEnd())
         {
             str = stream.readLine().simplified();

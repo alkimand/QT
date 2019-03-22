@@ -11,10 +11,25 @@
 
 class  ProxiModelServiseUDP: public ProxiModelServiseBaseClass
 {
+    enum Roles
+        {
+            ROW, CHECK ,DATE, TIME, COUNT, ZONE, SERVICENAME, FUNCTIONNAME, LINENUMBER, MESSAGE
+        };
+
     Q_OBJECT
 public:
     explicit  ProxiModelServiseUDP(WorkerBaseClass *,ModelServiseBaseClass *, CLIENT_TYPE const &);
       ~ProxiModelServiseUDP();
+
+    bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
+
+
+
+
+    QVector <QStringList> v_filters;
+    QVector <QRegExp> r_filters;
+    QStringList filters;
+
 
 
 
