@@ -25,7 +25,7 @@ ModelServiseBaseClass::~ModelServiseBaseClass()
 void ModelServiseBaseClass::getSaveFileName()
 {
 
-    QString filters("Music files (*.mp3);;Text files (*.txt);;All files (*.*)");
+    QString filters("Excel files (*.xlsx , *.xls);;Text files (*.txt);;All files (*.*)");
     QString defaultFilter("Text files (*.txt)");
     this->fileName = QFileDialog::getSaveFileName(0, "Save file", QDir::currentPath(), filters, &defaultFilter);
     this->defoultFileName = this->fileName;

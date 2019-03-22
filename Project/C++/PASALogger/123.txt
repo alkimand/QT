@@ -1,4 +1,4 @@
-03/22/19 01:32:17////Open file//
+03/22/19 15:47:21////Open file//
 02/24/2019 21:57:02.198/691/30/Positioning.exe/0440_NAV_GPS_MAIN/DEV_Gps_ErrorOut/142/= ERROR CODE = -1
 02/24/2019 21:57:02.198/691/30/Positioning.exe/0440_NAV_GPS_MAIN/DEV_Gps_ErrorOut/142/= ERROR CODE = -1
 02/24/2019 21:57:02.198/692/30/Positioning.exe/0440_NAV_GPS_MAIN/DEV_Gps_ErrorOut/146/= COMMENT = CreateFile error
@@ -11567,8 +11567,3 @@
 02/24/2019 21:57:26.084/7584/29/sa_vp4_sal_service/sa_vp4_sal_service/SAL_NTFY_CANVS_CAN_BUS_STATUS_EVENTHandler/8892/=status sent to Kona: 2
 02/24/2019 21:57:26.084/7585/29/sa_vp4_sal_service/sa_vp4_sal_service/PublishcanDownReasonEvent/8480/=Message successfully sent to SAL Service
 02/24/2019 21:57:26.084/7585/29/sa_vp4_sal_service/sa_vp4_sal_service/PublishcanDownReasonEvent/8480/=Message successfully sent to SAL Service
-03/22/19 01:32:52////Save file at//F:/QT/Project/C++/PASALogger/txt.txt
-03/22/19 01:33:11////Save file at//
-03/22/19 01:33:16////Save file at//F:/QT/Project/C++/PASALogger/123.txt
-03/22/19 01:33:17////Save file at//F:/QT/Project/C++/PASALogger/123.txt
-03/22/19 01:33:18////Save file at//F:/QT/Project/C++/PASALogger/123.txt
