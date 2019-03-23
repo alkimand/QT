@@ -8,7 +8,6 @@ ParseServiceText:: ParseServiceText(WorkerBaseClass *m_worker, CLIENT_TYPE const
 {
     qDebug()<< "create ParseServiceText";
     this->child = this;
-    create_connect_to_worker();
 }
 
 

@@ -6,7 +6,7 @@
 //ClientBase::ClientBase( Server  *m_server,  CLIENT_TYPE const & m_type)
 ClientBase::ClientBase()
 {
-
+    tittle = "DEFAULT";
 }
 
 ClientBase::~ClientBase()
@@ -18,6 +18,12 @@ ClientBase::~ClientBase()
 void ClientBase::run()
 {
     //exec();
+}
+
+void ClientBase::sendTittle(const QString & m_tittle)
+{
+    tittle = m_tittle;
+    //qDebug()<< " ClientBase::sendTittle:"+ tittle ;
 }
 
 void ClientBase::saveAsSlot()
@@ -44,7 +50,12 @@ void ClientBase::openInExplorerSlot()
 void ClientBase::filterChangedSlot(const int & column, const QString & text)
 {
      //qDebug()<< "ClientBase::filterChangedSlot";
-     this->worker->filterChanged(column,text);
+    this->worker->filterChanged(column,text);
+}
+
+void ClientBase::setNameDocumentSlot(const QString & tittle)
+{
+    this->worker->setNameDocument(tittle);
 }
 
 

@@ -12,12 +12,15 @@ TableUDPBaseTable
 {
     type: "TXT_CLIENT_TYPE"
     id: control
-   // Item
+    // Item
     //{
-        ClientText
-        {
-            id: client
-        }
-   // }
-
+    ClientText
+    {
+        id: client
+    }
+    // }
+    Component.onCompleted:
+    {
+        tabView.getTab(tabView.currentIndex).title = client.documentTittle
+    }
 }

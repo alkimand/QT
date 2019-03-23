@@ -70,15 +70,15 @@ C1.TableView
     property int selectRow: -1
     property string type: "NONE"
 
-//https://stackoverflow.com/questions/30818886/qml-window-resize-move-flicker - resize bug
+    //https://stackoverflow.com/questions/30818886/qml-window-resize-move-flicker - resize bug
 
-//++
+    //++
     itemDelegate: ItemDelegate {}
     headerDelegate: HeaderDelegate { id:headDelegat }
     rowDelegate:RowDelegat{}
     ItemContexMenu{id:itemContexMenu}
     HeaderContexMenu{id:headerContexMenu }
-//--
+    //--
     property int test: implicitWidth/10
     //implicitWidth:window.width
 
@@ -92,28 +92,41 @@ C1.TableView
     {
         //if (tableView.type!== "NONE")
         client.saveAsSlot()
-        //console.log("saveAs()")
+        console.log("client.documentTittle:"+client.documentTittle)
+        if (client.documentTittle !== "DEFAULT")
+        tabView.getTab(tabView.contexMenuIndex).title = client.documentTittle
+        console.log("saveAs()")
     }
 
     function save()
     {
         if (tableView.type!== "NONE")
-        client.saveSlot()
+        {
+            client.saveSlot()
+            if (client.documentTittle !== "DEFAULT")
+            tabView.getTab(tabView.contexMenuIndex).title = client.documentTittle
+        }
+
         //console.log("saveAs()")
     }
 
     function openInExplorer()
     {
         if (tableView.type!== "NONE")
-        client.openInExplorerSlot()
+            client.openInExplorerSlot()
         //console.log("openInExplorer()")
     }
 
+    function sendNameDocument(tittle)
+    {
+        if (tableView.type!== "NONE")
+            client.setNameDocumentSlot(tittle)
+    }
 
     function filterChanged(column, text)
     {
         if (tableView.type!== "NONE")
-        client.filterChangedSlot(column, text)
+            client.filterChangedSlot(column, text)
         //console.log("tableView.filterChanged(column, text)")
     }
 

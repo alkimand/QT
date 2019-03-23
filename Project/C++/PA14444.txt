@@ -11560,8 +11560,3 @@
 02/24/2019 21:57:26.084/7584/29/sa_vp4_sal_service/sa_vp4_sal_service/SAL_NTFY_CANVS_CAN_BUS_STATUS_EVENTHandler/8892/=status sent to Kona: 2
 02/24/2019 21:57:26.084/7585/29/sa_vp4_sal_service/sa_vp4_sal_service/PublishcanDownReasonEvent/8480/=Message successfully sent to SAL Service
 02/24/2019 21:57:26.084/7585/29/sa_vp4_sal_service/sa_vp4_sal_service/PublishcanDownReasonEvent/8480/=Message successfully sent to SAL Service
-03/23/19 22:34:53////Save file at//F:/QT/Project/C++/PASALogger/txt.txt
-03/23/19 22:41:04////Save file at//F:/QT/Project/C++/PASALogger/txt.txt
-03/23/19 22:41:07////Save file at//F:/QT/Project/C++/PASALogger/txt.txt
-03/23/19 22:41:08////Save file at//F:/QT/Project/C++/PASALogger/txt.txt
-03/23/19 22:41:08////Save file at//F:/QT/Project/C++/PASALogger/txt.txt

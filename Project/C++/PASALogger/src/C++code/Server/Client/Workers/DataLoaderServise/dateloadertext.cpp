@@ -13,29 +13,40 @@
 
 DateLoaderText::DateLoaderText(WorkerBaseClass *m_worker, CLIENT_TYPE const & m_type): DataLoaderBaseClass(m_worker, m_type)
 {
-    qDebug()<< "create DateLoaderText";
-    QString templatePath = QDir::current().canonicalPath();
+    //qDebug()<< "create DateLoaderText";
+
+    //QString templatePath = QDir::current().canonicalPath();
     this->child = this;
     //--
-    QString path = QDir::currentPath();
+    ;
    // QString FolderPath = "/sourse/";
-    QString FilePath = "W_fromKeyboard.txt";
-    fileName = path  + "/" + FilePath;
+
+    getOpenFileName();
+
+
     //--
 
-    //fileName = QFileDialog::getOpenFileName(0,tr("Open text files"), templatePath, tr("Text Files (*.txt)"));//++
     create_connect_to_worker();
     this->status = PLAY;
     connect(this, SIGNAL(readyRead()), SLOT(slotProcessDatagrams()));
-
     emit readyRead();
     qDebug()<< "create DateLoaderText-";
-
 }
 
 DateLoaderText::~DateLoaderText()
 {
     qDebug()<< "~DateLoaderText";
+}
+
+void DateLoaderText::getOpenFileName()
+{
+    qDebug()<< "DDateLoaderText::getOpenFileName()+";
+    QString path = QDir::currentPath();
+    QString FilePath = "W_fromKeyboard — копия.txt";
+    fileName = path  + "/" + FilePath;
+    //fileName = QFileDialog::getOpenFileName(0,tr("Open text files"), templatePath, tr("Text Files (*.txt)"));//++
+    this->worker->sendFileName(fileName);
+   // qDebug()<< "DDateLoaderText::getOpenFileName()-";
 }
 
 void DateLoaderText::slotProcessDatagrams()

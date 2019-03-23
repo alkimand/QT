@@ -45,6 +45,12 @@ void ClientText::setproximodel(const ProxiModelServiseUDP *proximodel)
 
 }
 
+void ClientText::setDocumentTittle(const QString m_tittle)
+{
+
+    tittle =  m_tittle;
+}
+
 ClientText::~ClientText()
 {
     //  this->wait();

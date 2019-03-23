@@ -8,7 +8,7 @@
 
 DateLoaderUDP::DateLoaderUDP(WorkerBaseClass *m_worker, CLIENT_TYPE const & m_type): DataLoaderBaseClass(m_worker, m_type)
 {
-    qDebug()<< "+create DateLoaderUDP";
+    //qDebug()<< "create DateLoaderUDP";
     this->child = this;
     udp_socket = new QUdpSocket(this);
     //udp_socket->moveToThread(this);

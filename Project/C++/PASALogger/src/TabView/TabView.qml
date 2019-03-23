@@ -21,7 +21,7 @@ C1.TabView
     property int indexUnderMouse: -1
     //property string newWindowTitle: M_TabNew.title
     signal renametab()
-    onRenametab:{}
+    //onRenametab:{}
     style: TabViewStyle{}
 
     //    Component
@@ -53,14 +53,18 @@ C1.TabView
                 switch (name)
                 {
                 case "UDP logger" :
+
                     console.log("UDP logger")
                     source= "../TableView/TableView/TableUDP.qml"
+
                     break
                 case "Text logger" :
                     console.log("Text logger")
                     source= "../TableView/TableView/TableText.qml"
+
                     break
                 }
+              //  tabView.getTab(contexMenuIndex).title = tabView.getTab(contexMenuIndex).title + ".txt"
             }
         }
 
@@ -185,7 +189,8 @@ C1.TabView
     function renameTab(index)
     {
         tabView.renametab()
-        console.log("renametab()")
+
+        //console.log("renametab()")
         // tabView.getTab(index).title = name
 
         //tabView.getTab(index).style. ="123"
@@ -203,12 +208,24 @@ C1.TabView
         //        console.log("4: "+ tabView.getTab(index).sourceComponent.children.length)
     }
 
+    function sendTittleName(tittle)
+    {
+     //if (tabView.getTab(tabView.currentIndex).item.children[0].type !== "NONE")
+    // {
+         tabView.getTab(tabView.contexMenuIndex).item.children[0].sendNameDocument(tittle)
+     //}
+    }
+
+
     function openInExplorer()
     {
         //        text.selectAll()
         //        text.forceActiveFocus()
         console.log("openInExplorer")
-        if (tabView.getTab(tabView.currentIndex).item.children[0].type !== "NONE")
-            tabView.getTab(tabView.currentIndex).item.children[0].openInExplorer()
+        if (tabView.getTab(tabView.contexMenuIndex).item.children[0].type !== "NONE")
+            tabView.getTab(tabView.contexMenuIndex).item.children[0].openInExplorer()
     }
+
+
+
 }

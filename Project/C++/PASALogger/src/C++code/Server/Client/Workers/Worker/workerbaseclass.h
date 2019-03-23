@@ -46,7 +46,9 @@ public:
     virtual void saveAs();
     virtual void save();
     virtual void filterChanged(const int & , const QString & );
+    virtual void setNameDocument(const QString & );
     virtual void openInExplorer();
+    virtual void sendFileName(const QString & );
 
 public slots:
 void receive_data_loader_slot(QByteArray  const &);

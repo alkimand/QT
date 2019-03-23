@@ -23,12 +23,15 @@ public:
 //virtual
   virtual ~ClientBase();
     void run();
+    void sendTittle(const QString &);
 
 protected:
     WorkerBaseClass *worker;
     CLIENT_TYPE type; //const no pointer
     //Server *server;
     ClientBase *child;
+    QString tittle;
+
 
    // virtual void setStatus(const int &){};
 
@@ -40,7 +43,13 @@ void setStatus(const int &);
 void clearDataPool();
 void openInExplorerSlot();
 void filterChangedSlot(const int &, const QString &);
+void setNameDocumentSlot(const QString &);
+
+
+
 private:
+
+
 
 
 
