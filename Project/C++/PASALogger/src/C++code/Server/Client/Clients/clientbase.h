@@ -39,7 +39,7 @@ void saveSlot();
 void setStatus(const int &);
 void clearDataPool();
 void openInExplorerSlot();
-
+void filterChangedSlot(const int &, const QString &);
 private:
 
 

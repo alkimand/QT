@@ -227,6 +227,8 @@ Rectangle
                 // Layout.alignment:Qt.AlignHCenter
                 // Layout.alignment:Qt.AlignCenter
 
+
+
             }
             Button
             {
@@ -308,13 +310,23 @@ Rectangle
                 placeholderText: "Search..."//(searchTextArea.text.length!==0)?"Search...":searchTextArea.text //{ rect.curentIndex +"/" + index}//"Search..."//rect.curentIndex
                 inputMethodHints: Qt.ImhNoPredictiveText
                 hoverEnabled:true
-                textFormat: Qt.RichText
+                //textFormat: Qt.RichText
                 background : Rectangle
                 {
                     anchors.fill: parent
                     color:backgroundcolor
                 }
-                onPressed: console.log("TextField cliked")
+               // onPressed: console.log("TextField cliked")
+//                onEditingFinished:
+//                {
+//                  console.log("searchTextArea onEditingFinished")
+//                }
+                onTextChanged:
+                {
+                    //console.log("searchTextArea  onTextChanged")
+                    //console.log("searchTextArea.text" + searchTextArea.text)
+                    tableView.filterChanged(styleData.column, searchTextArea.text)
+                }
             }
         }
     }

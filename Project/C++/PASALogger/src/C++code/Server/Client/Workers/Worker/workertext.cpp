@@ -15,7 +15,7 @@ WorkerText::WorkerText(ClientBase *m_client, CLIENT_TYPE const & m_type):WorkerB
     this-> child = this;
     this->parser = new ParseServiceText (this, type);
     this->model = new ModelServiseText (this, type);
-    this->proximodel = new ProxiModelServiseUDP (this, model, type);
+    this->proximodel = new ProxiModelServiseUDP (this, type);
     this->dataloader = new DateLoaderText (this, type);
 }
 

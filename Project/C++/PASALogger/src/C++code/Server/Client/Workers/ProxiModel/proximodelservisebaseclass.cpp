@@ -2,11 +2,17 @@
 #include <QRegExp>
 #include <QDebug>
 
-ProxiModelServiseBaseClass::ProxiModelServiseBaseClass(WorkerBaseClass * m_worker, ModelServiseBaseClass * m_model, CLIENT_TYPE const  & m_type)
+ProxiModelServiseBaseClass::ProxiModelServiseBaseClass(WorkerBaseClass * m_worker, CLIENT_TYPE const  & m_type)
 {
     worker = static_cast<WorkerBaseClass*>(m_worker);
     type = m_type;
     parent = this;
+
+
+
+
+
+
     //model = m_model;
 
 
@@ -22,5 +28,18 @@ ProxiModelServiseBaseClass::ProxiModelServiseBaseClass(WorkerBaseClass * m_worke
 ProxiModelServiseBaseClass::~ProxiModelServiseBaseClass()
 {
     qDebug()<< "~ProxiModelServiseBaseClass()";
+}
+
+void ProxiModelServiseBaseClass::filterChanged(const int &column, const QString &text)
+{
+    //qDebug()<< "ProxiModelServiseBaseClass() filterChanged column:"  << column << "text:" << text ;
+
+     QRegExp regExp(text);
+     regExp.setCaseSensitivity(Qt::CaseInsensitive);
+     regExp.setPatternSyntax(QRegExp::RegExp);
+     if (column > -1 && column < sourceModel()->columnCount())
+     r_filters.replace(column + 2,regExp);
+     this->invalidateFilter();
+
 }
 

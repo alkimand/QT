@@ -64,6 +64,11 @@ void WorkerBaseClass::save()
     this->model->save();
 }
 
+void WorkerBaseClass::filterChanged(const int & column, const QString & text)
+{
+     this->proximodel->filterChanged(column,text);
+}
+
 void WorkerBaseClass::openInExplorer()
 {
     this->model->openInExplorer();

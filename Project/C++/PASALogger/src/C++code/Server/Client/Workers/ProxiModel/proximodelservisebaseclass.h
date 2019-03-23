@@ -22,7 +22,7 @@ class  ProxiModelServiseBaseClass: public QSortFilterProxyModel
 {
     Q_OBJECT
 public:
-    explicit  ProxiModelServiseBaseClass(WorkerBaseClass *, ModelServiseBaseClass *, CLIENT_TYPE const &);
+    explicit  ProxiModelServiseBaseClass(WorkerBaseClass *,  CLIENT_TYPE const &);
      WorkerBaseClass *worker;
      ProxiModelServiseBaseClass *parent;
      ProxiModelServiseBaseClass *child;
@@ -34,9 +34,13 @@ public:
 
     // virtual  void data_model_handler(QStringList &) = 0;
 
-     virtual bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override = 0;
+     virtual bool filterAcceptsRow(int , const QModelIndex &) const override = 0;
+     virtual void filterChanged(const int &, const QString & );
     CLIENT_TYPE type;
 
+    QVector <QStringList> v_filters;
+    QVector <QRegExp> r_filters;
+    QStringList filters;
 
 
 //signals:

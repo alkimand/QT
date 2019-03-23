@@ -109,5 +109,13 @@ C1.TableView
         //console.log("openInExplorer()")
     }
 
+
+    function filterChanged(column, text)
+    {
+        if (tableView.type!== "NONE")
+        client.filterChangedSlot(column, text)
+        //console.log("tableView.filterChanged(column, text)")
+    }
+
 }
 

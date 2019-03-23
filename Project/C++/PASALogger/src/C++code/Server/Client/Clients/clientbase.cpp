@@ -41,6 +41,12 @@ void ClientBase::openInExplorerSlot()
     this->worker->openInExplorer();
 }
 
+void ClientBase::filterChangedSlot(const int & column, const QString & text)
+{
+     //qDebug()<< "ClientBase::filterChangedSlot";
+     this->worker->filterChanged(column,text);
+}
+
 
 void ClientBase::setStatus(const int & status)
 {

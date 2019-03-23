@@ -45,7 +45,9 @@ public:
     virtual void clearDataPool();
     virtual void saveAs();
     virtual void save();
+    virtual void filterChanged(const int & , const QString & );
     virtual void openInExplorer();
+
 public slots:
 void receive_data_loader_slot(QByteArray  const &);
 void receive_data_parser_slot(QStringList  &);
