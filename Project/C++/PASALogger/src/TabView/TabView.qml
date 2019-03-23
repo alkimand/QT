@@ -19,6 +19,7 @@ C1.TabView
     property string newWindowTitle: "new window " + tabView.count
     property int contexMenuIndex: -1
     property int indexUnderMouse: -1
+    property int renamedIndex: -1
     //property string newWindowTitle: M_TabNew.title
     signal renametab()
     //onRenametab:{}
@@ -126,8 +127,9 @@ C1.TabView
 
     function save()
     {
-        //console.log("C1.TabView save()")
+        console.log("C1.TabView save()")
         //console.log(tabView.getTab(tabView.currentIndex).item.children[0].type)
+        console.log(tabView.getTab(tabView.currentIndex).tittle)
         if (tabView.getTab(tabView.currentIndex).item.children[0].type !== "NONE")
             tabView.getTab(tabView.currentIndex).item.children[0].save()
 
@@ -212,6 +214,8 @@ C1.TabView
     {
      //if (tabView.getTab(tabView.currentIndex).item.children[0].type !== "NONE")
     // {
+
+        console.log("tabView sendTittleName(tittle)"+ tittle)
          tabView.getTab(tabView.contexMenuIndex).item.children[0].sendNameDocument(tittle)
      //}
     }

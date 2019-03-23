@@ -11544,3 +11544,5 @@
 02/24/2019 21:57:26.025/154/30/nv_location/nv_location/updateLocationNoMMData/506/=[updateLocationNoMMData] : eInfoType : 3
 02/24/2019 21:57:26.077/1636/30/Positioning.exe/0440_NAV_GPS_MAIN/DEV_Gps_ErrorOut/139/= GpsCommCtl.lib:C:/ide-5.0-workspace/CORAL_DR_NAFTA/CORAL_DR_Core/Vehicle/make/variant/QNX/../../../thread/GpsCommCtl_thread/common/MDev_Gps_Main_Sierra.c : LINE 1441
 02/24/2019 21:57:26.077/1636/30/Positioning.exe/0440_NAV_GPS_MAIN/DEV_Gps_ErrorOut/139/= GpsCommCtl.lib:C:/ide-5.0-workspace/CORAL_DR_NAFTA/CORAL_DR_Core/Vehicle/make/variant/QNX/../../../thread/GpsCommCtl_thread/common/MDev_Gps_Main_Sierra.c : LINE 1441
+02/24/2019 21:57:26.077/1637/30/Positioning.exe/0440_NAV_GPS_MAIN/DEV_Gps_ErrorOut/142/= ERROR CODE = -1
+02/24/2019 21:57:26.077/1637/30/Positioning.exe/0440_NAV_GPS_MAIN/DEV_Gps_ErrorOut/142/= ERROR CODE = -1

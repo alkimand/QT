@@ -12,18 +12,9 @@ class WorkerUDP: public WorkerBaseClass
 public:
     explicit WorkerUDP(ClientBase * m_client, CLIENT_TYPE  const &);
     void test();
-    //WorkerBaseClass *child;
-   // WorkerUDP *child2;
-    //void receive_data_loader_handler(QByteArray const &);
     void receive_data_parser_handler(QStringList  &);
-    //void setStatus(const int &);
     ~WorkerUDP();
-
 protected:
-
-
-
-
 private:
 
 };

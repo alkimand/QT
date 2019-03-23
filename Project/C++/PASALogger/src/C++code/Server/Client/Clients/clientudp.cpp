@@ -14,20 +14,11 @@ ClientUDP::ClientUDP() : ClientBase()
 
     //qmlRegisterType <ModelServiseUDP> ("ModuleName", 1, 0, "ModelServiseUDP");
 
-    switch (type)
-    {
-    case UDP_CLIENT_TYPE:
         this-> worker = new WorkerUDP(this, type);
         // this-> model
         //worker->moveToThread(this);
         this-> model = static_cast<ModelServiseUDP*> (this-> worker->getModeltoQMLService());
-
-
-        break;
-    default:
-        break;
-    }
-
+        this-> proximodel = static_cast<ProxiModelServiseUDP*> (this-> worker->getProxiModeltoQMLService());
 }
 
 void ClientUDP::run()
@@ -47,3 +38,9 @@ ClientUDP::~ClientUDP()
     //delete model;
     //this->wait();
 }
+
+void ClientUDP::setproximodel(const ProxiModelServiseUDP *proximodel)
+{
+
+}
+

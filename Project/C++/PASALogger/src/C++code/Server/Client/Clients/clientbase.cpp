@@ -26,6 +26,16 @@ void ClientBase::sendTittle(const QString & m_tittle)
     //qDebug()<< " ClientBase::sendTittle:"+ tittle ;
 }
 
+void ClientBase::setDocumentTittle(const QString m_tittle)
+{
+    tittle =  m_tittle;
+}
+
+QString ClientBase::readDocumentTittle()
+{
+    return tittle;
+}
+
 void ClientBase::saveAsSlot()
 {
     this->worker->saveAs();
@@ -55,6 +65,7 @@ void ClientBase::filterChangedSlot(const int & column, const QString & text)
 
 void ClientBase::setNameDocumentSlot(const QString & tittle)
 {
+    qDebug()<< "ClientBase::setNameDocumentSlot" + tittle;
     this->worker->setNameDocument(tittle);
 }
 
