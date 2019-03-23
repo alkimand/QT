@@ -14,8 +14,8 @@ WorkerUDP::WorkerUDP(ClientBase *m_client, CLIENT_TYPE const & m_type):WorkerBas
     this-> child = this;
     this->parser = new ParseServiceUDP (this, type);
     this->model = new ModelServiseUDP (this, type);
-    this->proximodel = new ProxiModelServiseUDP (this, type);
     this->dataloader = new  DateLoaderUDP (this, type);
+    this->proximodel = new ProxiModelServiseUDP (this, type);   
 }
 
 void WorkerUDP::test()

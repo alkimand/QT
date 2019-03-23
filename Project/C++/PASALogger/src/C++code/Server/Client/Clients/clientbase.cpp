@@ -26,6 +26,16 @@ void ClientBase::sendTittle(const QString & m_tittle)
     //qDebug()<< " ClientBase::sendTittle:"+ tittle ;
 }
 
+void ClientBase::setproximodel(const ProxiModelServiseUDP *proximodel)
+{
+
+}
+
+void ClientBase::setDocumentTittle(const QString m_tittle)
+{
+    tittle =  m_tittle;
+}
+
 void ClientBase::saveAsSlot()
 {
     this->worker->saveAs();
