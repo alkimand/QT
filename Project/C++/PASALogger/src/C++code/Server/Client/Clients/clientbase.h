@@ -16,8 +16,6 @@ class ClientBase: public QObject
 //class ClientBase: public QThread
 {
     Q_OBJECT
-    Q_PROPERTY(QString documentTittle READ readDocumentTittle WRITE setDocumentTittle NOTIFY documentTittleChanged)
-    Q_PROPERTY(ProxiModelServiseUDP * proximodel READ readproxiModel WRITE setproximodel NOTIFY proxiModelChanged)
 
 public:
     explicit ClientBase();//no const
@@ -26,21 +24,6 @@ public:
   virtual ~ClientBase();
     void run();
     void sendTittle(const QString &);
-    void setproximodel(const ProxiModelServiseUDP *proximodel);
-
-    void setDocumentTittle(const QString );
-
-    QString readDocumentTittle()
-    {
-        return tittle;
-    }
-
-    ProxiModelServiseUDP *readproxiModel() const
-    {
-        return proximodel;
-    }
-
-    ProxiModelServiseUDP *proximodel;
 
 protected:
     WorkerBaseClass *worker;
@@ -66,9 +49,8 @@ void setNameDocumentSlot(const QString &);
 
 private:
 
-signals:
-void documentTittleChanged();
-void proxiModelChanged();
+
+
 
 
 

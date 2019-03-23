@@ -13,13 +13,24 @@
 
 DateLoaderText::DateLoaderText(WorkerBaseClass *m_worker, CLIENT_TYPE const & m_type): DataLoaderBaseClass(m_worker, m_type)
 {
-    qDebug()<< "create DateLoaderText";
+    //qDebug()<< "create DateLoaderText";
+
+    //QString templatePath = QDir::current().canonicalPath();
     this->child = this;
+    //--
+    ;
+   // QString FolderPath = "/sourse/";
+
     getOpenFileName();
+
+
+    //--
+
     create_connect_to_worker();
     this->status = PLAY;
     connect(this, SIGNAL(readyRead()), SLOT(slotProcessDatagrams()));
     emit readyRead();
+    qDebug()<< "create DateLoaderText-";
 }
 
 DateLoaderText::~DateLoaderText()
@@ -29,7 +40,7 @@ DateLoaderText::~DateLoaderText()
 
 void DateLoaderText::getOpenFileName()
 {
-    //qDebug()<< "DateLoaderText::getOpenFileName()+";
+    qDebug()<< "DDateLoaderText::getOpenFileName()+";
     QString path = QDir::currentPath();
     QString FilePath = "W_fromKeyboard — копия.txt";
     fileName = path  + "/" + FilePath;

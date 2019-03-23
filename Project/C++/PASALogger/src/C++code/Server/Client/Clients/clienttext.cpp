@@ -40,16 +40,16 @@ void ClientText::setVin(const ModelServiseUDP *model)
     qDebug()<< "ClientText::setVin";
 }
 
-//void ClientText::setproximodel(const ProxiModelServiseUDP *proximodel)
-//{
+void ClientText::setproximodel(const ProxiModelServiseUDP *proximodel)
+{
 
-//}
+}
 
-//void ClientText::setDocumentTittle(const QString m_tittle)
-//{
+void ClientText::setDocumentTittle(const QString m_tittle)
+{
 
-//    tittle =  m_tittle;
-//}
+    tittle =  m_tittle;
+}
 
 ClientText::~ClientText()
 {

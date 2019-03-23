@@ -64,6 +64,7 @@ C1.TabView
 
                     break
                 }
+              //  tabView.getTab(contexMenuIndex).title = tabView.getTab(contexMenuIndex).title + ".txt"
             }
         }
 
@@ -169,7 +170,6 @@ C1.TabView
             tabView.removeTab(i)
         }
     }
-
     function saveTab(index) //ToDo
     {
         //tabView.removeTab(index)
@@ -186,18 +186,34 @@ C1.TabView
         // tableView.selection.select(row)
         //tabView.removeTab(index)
     }
-
     function renameTab(index)
     {
         tabView.renametab()
+
+        //console.log("renametab()")
+        // tabView.getTab(index).title = name
+
+        //tabView.getTab(index).style. ="123"
+        // console.log("renameTab index:"+index)
+
+        // console.log("0: "+ tabView.__styleItem.children.length)
+        //console.log("1: "+ tabView.__styleItem.item.test)
+        //console.log("2: "+ tabView.style.__styleItem.children[0].item.test)
+        //console.log("3: "+ tabView.style.__styleItem.item.children[0].test)
+        //        console.log("1: "+ tabView.style.children[0].item.test)
+        //        console.log("2: "+ tabView.style.children[0].test)
+        //        console.log("1: "+ tabView.getTab(index).item.children.length)//children[0].
+        //        console.log("2: "+ tabView.getTab(index).children[0].textHeight)
+        //        console.log("3: "+ tabView.getTab(index).children[0].item.textHeight)
+        //        console.log("4: "+ tabView.getTab(index).sourceComponent.children.length)
     }
 
     function sendTittleName(tittle)
     {
-        //if (tabView.getTab(tabView.currentIndex).item.children[0].type !== "NONE")
-        // {
-        tabView.getTab(tabView.contexMenuIndex).item.children[0].sendNameDocument(tittle)
-        //}
+     //if (tabView.getTab(tabView.currentIndex).item.children[0].type !== "NONE")
+    // {
+         tabView.getTab(tabView.contexMenuIndex).item.children[0].sendNameDocument(tittle)
+     //}
     }
 
 
