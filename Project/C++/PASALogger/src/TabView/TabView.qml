@@ -39,11 +39,13 @@ C1.TabView
     Component
     {
         id:newTabComponent
+        //property string type: "NONE1"
         Loader
         {
             id: loader
             anchors.fill: parent
             source: "../ChoiceItem/ChoiceWindow.qml"
+            property string type: "NONE0"
 
             function setTable(name)
             {
@@ -90,7 +92,7 @@ C1.TabView
 
 
 
-    function openFile()
+    function openFile()//--
     {
         //var tab = tabView.getTab(tabView.currentIndex)
         // var item = tabView.contentItem
@@ -112,8 +114,6 @@ C1.TabView
         console.log("C1.TabView setStatus(status):" + status )
         if (tabView.getTab(tabView.currentIndex).item.children[0].type === "UDP_CLIENT_TYPE")
             tabView.getTab(tabView.currentIndex).item.children[0].setStatus(status)
-        //console.log("tabView.getTab(tabView.currentIndex).item.children[0].client.setStatus(status)")
-        //tabView.getTab(0).item.children[0].test
     }
 
     function saveAs()
@@ -188,32 +188,27 @@ C1.TabView
     }
     function renameTab(index)
     {
+        console.log("TabView:renametab()")
         tabView.renametab()
-
-        //console.log("renametab()")
-        // tabView.getTab(index).title = name
-
-        //tabView.getTab(index).style. ="123"
-        // console.log("renameTab index:"+index)
-
-        // console.log("0: "+ tabView.__styleItem.children.length)
-        //console.log("1: "+ tabView.__styleItem.item.test)
-        //console.log("2: "+ tabView.style.__styleItem.children[0].item.test)
-        //console.log("3: "+ tabView.style.__styleItem.item.children[0].test)
-        //        console.log("1: "+ tabView.style.children[0].item.test)
-        //        console.log("2: "+ tabView.style.children[0].test)
-        //        console.log("1: "+ tabView.getTab(index).item.children.length)//children[0].
-        //        console.log("2: "+ tabView.getTab(index).children[0].textHeight)
-        //        console.log("3: "+ tabView.getTab(index).children[0].item.textHeight)
-        //        console.log("4: "+ tabView.getTab(index).sourceComponent.children.length)
     }
 
-    function sendTittleName(tittle)
+    function sendTittleName(m_index, tittle)
     {
-     //if (tabView.getTab(tabView.currentIndex).item.children[0].type !== "NONE")
-    // {
-         tabView.getTab(tabView.contexMenuIndex).item.children[0].sendNameDocument(tittle)
-     //}
+     console.log("TabView:sendTittleName:index:" + m_index)
+     console.log("TabView:sendTittleName:tittle:" + tittle)
+
+ //    if (tabView.getTab(m_index).item.children[0].type !== "NONE")
+
+//     if (tabView.getTab(m_index).item.children[0].type !== "NONE")
+     {
+        //console.log("BaseTableView:sendTittleName:" + tittle)
+        //console.log("tabView.getTab(m_index).item.children[0].type:" + tabView.getTab(m_index).type)
+        //console.log("tabView.getTab(m_index).item.children[0].type:" + tabView.getTab(m_index).item.type)
+        //console.log("tabView.getTab(m_index).item.children[0].type:" + tabView.getTab(m_index).item.children[0].type)
+        console.log("tabView.getTab(m_index).item.children[0].type:" + tabView.getTab(m_index).type)
+        tabView.getTab(m_index).item.children[0].sendNameDocument(tittle)
+         //sendTittleName(m_index, tittle)
+     }
     }
 
 
@@ -224,6 +219,15 @@ C1.TabView
         console.log("openInExplorer")
         if (tabView.getTab(tabView.contexMenuIndex).item.children[0].type !== "NONE")
             tabView.getTab(tabView.contexMenuIndex).item.children[0].openInExplorer()
+    }
+
+    function openInDesktopServices()
+    {
+        //        text.selectAll()
+        //        text.forceActiveFocus()
+        console.log("openInDesktopServices")
+        if (tabView.getTab(tabView.contexMenuIndex).item.children[0].type !== "NONE")
+            tabView.getTab(tabView.contexMenuIndex).item.children[0].openInDesktopServices()
     }
 
 

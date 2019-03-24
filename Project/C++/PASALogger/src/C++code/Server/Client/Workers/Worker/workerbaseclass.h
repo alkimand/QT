@@ -41,15 +41,17 @@ public:
     ModelServiseBaseClass *model;
     ProxiModelServiseBaseClass * proximodel;
 
+    //QML/C++ relations
     virtual void setStatus(const int &);
     virtual void clearDataPool();
     virtual void saveAs();
     virtual void save();
     virtual void filterChanged(const int & , const QString & );
-    virtual void setNameDocument(const QString & );
+    virtual void setNameDocument(const QString & ); //Filename to Client to QML
     virtual void openInExplorer();
-    virtual void sendFileName(const QString & );
-
+    virtual void openInDesktopServices();
+    virtual void sendFileName(const QString & ); //send Filename to other service
+     virtual void sendFilePath(const QString & );
 public slots:
 void receive_data_loader_slot(QByteArray  const &);
 void receive_data_parser_slot(QStringList  &);

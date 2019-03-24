@@ -24,7 +24,7 @@ public:
     //void saveAs();
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const {
-      Q_UNUSED(parent); return v_data.length();
+      Q_UNUSED(parent); return l_data.length();
     }
 
     int columnCount(const QModelIndex &parent = QModelIndex()) const {

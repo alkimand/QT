@@ -255,6 +255,7 @@ Item
     {
         id: renameTabAction
         icon.source: "../images/ToolBarIcon/rename.png"
+        //icon.source: "../images/ToolBarIcon/rename.jpg"
         //shortcut : QKeySequence::Open)
         icon.name: "rename"
         text: "Rename Tab"
@@ -280,6 +281,20 @@ Item
             console.log("openInExplorerAction")
             tabView.openInExplorer()
             //tabView.removeTab(tabView.currentIndex)
+        }
+    }
+
+    property Action openDesktopServicesAction:Action
+    {
+        id: openDesktopServicesAction
+        icon.source: "../images/ToolBarIcon/explore.png"
+        //shortcut : QKeySequence::Open)
+        icon.name: "Open"
+        text: "Open in desktop services"
+        onTriggered:
+        {
+            console.log("openInDesktopServicesAction")
+            tabView.openInDesktopServices()
         }
     }
 }

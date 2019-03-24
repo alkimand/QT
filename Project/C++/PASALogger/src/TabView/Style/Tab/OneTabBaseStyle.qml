@@ -26,7 +26,7 @@ Rectangle
     color: getActiveTabColor()//styleData.selected?settingData.children[2].tabRectangleColorIsSelictedSetting: settingData.children[2].tabRectangleColorIsNotSelictedSetting
     border.width:settingData.children[2].tabBorderWidthSetting//tabBarRectColor//
     property string test:  "test Rectangle"
-    implicitWidth:Math.round(text.implicitWidth + imageFilesave.width + closebutton.width + settingData.children[2].tabIndentSetting)
+    implicitWidth:Math.round(textArea.implicitWidth + imageFilesave.width + closebutton.width + settingData.children[2].tabIndentSetting)
 
 
     signal senTab()
@@ -181,7 +181,7 @@ Rectangle
 
     TextArea
     {
-        id: text
+        id: textArea
         anchors.left: savebutton.right//Math.round(image.right+100)
         anchors.leftMargin: 0
         // anchors.horizontalCenter: parent.horizontalCenter
@@ -192,16 +192,22 @@ Rectangle
         color: tabBarTextColor
         inputMethodHints: Qt.ImhNoPredictiveText
 
-        onEditingFinished:
-        {
-            tabView.getTab(index).title = text.text
-            tabView.sendTittleName(tabView.getTab(index).title)
-            //tabView.getTab(tabView.currentIndex).item.children[0].filterChangedSlot(tabView.getTab(index).title)
+//        onEditingFinished:
+//        {
+//            tabView.getTab(index).title = text.text
+//            tabView.sendTittleName(index, tabView.getTab(index).title)
+//            //tabView.getTab(tabView.currentIndex).item.children[0].filterChangedSlot(tabView.getTab(index).title)
 
+//        }
+        onTextChanged:
+        {
+            tabView.getTab(index).title = textArea.text
+            tabView.sendTittleName(index, tabView.getTab(index).title)
         }
 //        Keys.onEnterPressed:
 //        {
-//           text.editingFinished()
+//            console.log("Keys.onEnterPressed")
+//            //text.editingFinished()
 //        }
 
 
@@ -226,7 +232,11 @@ Rectangle
         }
 
         Keys.onReturnPressed: { _onEnterPressed(event) }
-        Keys.onEnterPressed: { _onEnterPressed(event) }
+        Keys.onEnterPressed:
+        {
+            _onEnterPressed(event)
+            console.log("Keys.onEnterPressed")
+        }
     }
 
     Rectangle
@@ -278,7 +288,7 @@ Rectangle
         width: buttonImageHeight
         height: buttonImageHeight
         anchors.verticalCenter: parent.verticalCenter
-        anchors.left: text.right//Math.round(image.right+100)
+        anchors.left: textArea.right//Math.round(image.right+100)
         anchors.leftMargin: 5
         visible: true
         Rectangle
@@ -398,9 +408,9 @@ Rectangle
 
     function renameTab()
     {
-        text.selectAll()
-        text.forceActiveFocus()
+        textArea.select(0,textArea.text.lastIndexOf("."))
+        //textArea.selectAll()
+        textArea.forceActiveFocus()
     }
-
 }
 

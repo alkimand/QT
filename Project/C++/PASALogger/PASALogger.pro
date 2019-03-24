@@ -89,6 +89,7 @@ OTHER_FILES += \
     src/TableView/ItemDelegat/Loaders/HeaderLoader.qml \
     src/TableView/ItemDelegat/RowDelegat/RowDelegat.qml \
     src/TableView/TableView/BaseTableView.qml \
+    src/TableView/TableView/TableUDPBaseTable.qml \
     src/TableView/TableView/TableUDP.qml \
     src/TableView/TableView/TableText.qml \
 #ToolBar
@@ -143,7 +144,8 @@ DISTFILES += \
     src/images/TableViewIcon/sort_ascending.png \
     src/images/TableViewIcon/sort_descending.png \
     src/images/ToolBarIcon/rename.jpg \
-    src/TableView/TableView/TableUDPBaseTable.qml
+    src/images/ToolBarIcon/explorer.png \
+
 
 
 

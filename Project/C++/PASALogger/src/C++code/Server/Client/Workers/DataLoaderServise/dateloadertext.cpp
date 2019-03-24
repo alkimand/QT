@@ -19,7 +19,6 @@ DateLoaderText::DateLoaderText(WorkerBaseClass *m_worker, CLIENT_TYPE const & m_
     this->child = this;
     //--
     ;
-   // QString FolderPath = "/sourse/";
 
     getOpenFileName();
 
@@ -40,35 +39,35 @@ DateLoaderText::~DateLoaderText()
 
 void DateLoaderText::getOpenFileName()
 {
-    qDebug()<< "DDateLoaderText::getOpenFileName()+";
+    //qDebug()<< "DDateLoaderText::getOpenFileName()+";
     QString path = QDir::currentPath();
-    QString FilePath = "W_fromKeyboard — копия.txt";
-    fileName = path  + "/" + FilePath;
+    QString fileName = "W_fromKeyboard — копия.txt";
+    fullFilePath = path  + "/" + fileName;
     //fileName = QFileDialog::getOpenFileName(0,tr("Open text files"), templatePath, tr("Text Files (*.txt)"));//++
-    this->worker->sendFileName(fileName);
-   // qDebug()<< "DDateLoaderText::getOpenFileName()-";
+    this->worker->sendFilePath(fullFilePath);
+    //qDebug()<< "DDateLoaderText::getOpenFileName(): "+ fullFilePath;
 }
 
 void DateLoaderText::slotProcessDatagrams()
 {
     //qDebug()<< "DateLoaderText::slotProcessDatagrams()+";
     QByteArray baDatagram;
-    QFile file (fileName);
+    QFile file (fullFilePath);
     if(file.open(QIODevice::ReadOnly))
     {
         QTextStream stream(&file);
         QString str;
-       //str = "O"//ToDo
+        //str = "O"//ToDo
         while (!stream.atEnd())
         {
+
             str = stream.readLine().simplified();
             if (str.isEmpty() || str.contains("//",Qt::CaseInsensitive)){}
             else
             {
-                {
-                    baDatagram = str.toLatin1();
-                    sendData(baDatagram);
-                }
+                baDatagram = str.toLatin1();
+                sendData(baDatagram);
+                //qDebug()<< "DateLoaderText::slotProcessDatagrams(): " + str;
             }
         }
         file.close();
@@ -77,6 +76,12 @@ void DateLoaderText::slotProcessDatagrams()
             qDebug() << "No file";
         }
     }
+    else
+    {
+       qDebug() << "No file";
+    }
+
+
     //qDebug()<< "DateLoaderText::slotProcessDatagrams()-";
 }
 

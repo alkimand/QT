@@ -1,3 +1,4 @@
+#include "clientbase.h"
 #include "workerbaseclass.h"
 #include "workerudp.h"
 #include "parseserviceudp.h"
@@ -66,12 +67,38 @@ void WorkerBaseClass::save()
 
 void WorkerBaseClass::filterChanged(const int & column, const QString & text)
 {
-     this->proximodel->filterChanged(column,text);
+    this->proximodel->filterChanged(column,text);
+}
+
+void WorkerBaseClass::setNameDocument(const QString & tittle)
+{
+ this->client->setDocumentTittle(tittle);
 }
 
 void WorkerBaseClass::openInExplorer()
 {
     this->model->openInExplorer();
+}
+
+void WorkerBaseClass::openInDesktopServices()
+{
+    this->model->openInDesktopServices();
+}
+
+void WorkerBaseClass::sendFilePath(const QString & fullFilePath)
+{
+
+    this->model->setFilePath(fullFilePath);
+
+    QStringList list = fullFilePath.split("/");
+    QString fileName = list.last();
+    this->client->setDocumentTittle(fileName);
+}
+
+void WorkerBaseClass::sendFileName(const QString & fileName)
+{
+    this->model->setFileName(fileName);
+    this->client->setDocumentTittle(fileName);
 }
 
 void WorkerBaseClass::receive_data_loader_slot(QByteArray  const & message)

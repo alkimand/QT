@@ -15,6 +15,7 @@ class ClientUDP: public ClientBase
     Q_OBJECT
     //Q_PROPERTY(ModelServiseUDP* someProperty READ getSomeProperty WRITE setSomeProperty NOTIFY somePropertyChanged)
     Q_PROPERTY(ModelServiseUDP * model READ readModel WRITE setVin NOTIFY modelChanged)
+    Q_PROPERTY(ProxiModelServiseUDP * proximodel READ readproxiModel WRITE setproximodel NOTIFY proxiModelChanged)
 
 public:
     explicit ClientUDP(); //no const
@@ -28,12 +29,18 @@ public:
         return model;
     }
 
+    ProxiModelServiseUDP *readproxiModel() const
+    {
+        return proximodel;
+    }
 
+
+void setproximodel(const ProxiModelServiseUDP *proximodel);
 
 
 signals:
 void modelChanged();
-
+void proxiModelChanged();
 public slots:
 //void setStatus(const int &);
 //void clearDataPool();

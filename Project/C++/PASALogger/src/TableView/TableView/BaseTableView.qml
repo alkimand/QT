@@ -91,8 +91,9 @@ C1.TableView
     function saveAs()
     {
         //if (tableView.type!== "NONE")
+        console.log("BaseTableView:saveAs()")
         client.saveAsSlot()
-        console.log("client.documentTittle:"+client.documentTittle)
+        console.log("BaseTableView:client.documentTittle: "+client.documentTittle)
         if (client.documentTittle !== "DEFAULT")
         tabView.getTab(tabView.contexMenuIndex).title = client.documentTittle
         console.log("saveAs()")
@@ -100,20 +101,28 @@ C1.TableView
 
     function save()
     {
+        console.log("BaseTableView:save()")
         if (tableView.type!== "NONE")
         {
             client.saveSlot()
             if (client.documentTittle !== "DEFAULT")
             tabView.getTab(tabView.contexMenuIndex).title = client.documentTittle
-        }
+            console.log(" client.documentTittle: "+ client.documentTittle)
 
-        //console.log("saveAs()")
+        }
     }
 
     function openInExplorer()
     {
         if (tableView.type!== "NONE")
             client.openInExplorerSlot()
+        //console.log("openInExplorer()")
+    }
+
+    function openInDesktopServices()
+    {
+        if (tableView.type!== "NONE")
+            client.openInDesktopServicesSlot()
         //console.log("openInExplorer()")
     }
 
@@ -129,6 +138,5 @@ C1.TableView
             client.filterChangedSlot(column, text)
         //console.log("tableView.filterChanged(column, text)")
     }
-
 }
 

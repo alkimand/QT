@@ -15,7 +15,7 @@ void ModelServiseUDP::data_model_handler(QStringList & list)
 {
     if (list.size() !=8){return ;}
     QStringList tempStringList;
-    int size =v_data.size();
+    int size =l_data.size();
     tempStringList.append(QString::number(size));
     tempStringList.append("false");
     for (int i =0; i<8;i++)
@@ -23,7 +23,7 @@ void ModelServiseUDP::data_model_handler(QStringList & list)
         tempStringList.append(list.at(i));
     }
     beginInsertRows(QModelIndex(),size,size);
-    this->v_data.append(tempStringList);
+    this->l_data.append(tempStringList);
     endInsertRows();
     QModelIndex index = createIndex(0, 0, static_cast<void *>(0));
     emit dataChanged(index, index);
@@ -57,16 +57,16 @@ QVariant ModelServiseUDP::data(const QModelIndex &index, int role) const
         return QVariant();
     switch (role)
     {
-    case Qt::UserRole+ROW: return this->v_data.at(index.row()).at(0);
-    case Qt::UserRole+CHECK: return this->v_data.at(index.row()).at(1);
-    case Qt::UserRole+DATE: return this->v_data.at(index.row()).at(2);
-    case Qt::UserRole+TIME: return this->v_data.at(index.row()).at(3);
-    case Qt::UserRole+COUNT: return this->v_data.at(index.row()).at(4);
-    case Qt::UserRole+ZONE: return this->v_data.at(index.row()).at(5);
-    case Qt::UserRole+SERVICENAME: return this->v_data.at(index.row()).at(6);
-    case Qt::UserRole+FUNCTIONNAME: return this->v_data.at(index.row()).at(7);
-    case Qt::UserRole+LINENUMBER: return this->v_data.at(index.row()).at(8);
-    case Qt::UserRole+MESSAGE: return this->v_data.at(index.row()).at(9);
+    case Qt::UserRole+ROW: return this->l_data.at(index.row()).at(0);
+    case Qt::UserRole+CHECK: return this->l_data.at(index.row()).at(1);
+    case Qt::UserRole+DATE: return this->l_data.at(index.row()).at(2);
+    case Qt::UserRole+TIME: return this->l_data.at(index.row()).at(3);
+    case Qt::UserRole+COUNT: return this->l_data.at(index.row()).at(4);
+    case Qt::UserRole+ZONE: return this->l_data.at(index.row()).at(5);
+    case Qt::UserRole+SERVICENAME: return this->l_data.at(index.row()).at(6);
+    case Qt::UserRole+FUNCTIONNAME: return this->l_data.at(index.row()).at(7);
+    case Qt::UserRole+LINENUMBER: return this->l_data.at(index.row()).at(8);
+    case Qt::UserRole+MESSAGE: return this->l_data.at(index.row()).at(9);
     }
 
     return QVariant();
@@ -95,7 +95,7 @@ QVariant ModelServiseUDP::data(const QModelIndex &index, int role) const
 void ModelServiseUDP::fillModel()
 {
     QStringList list;
-    int size =v_data.size();
+    int size =l_data.size();
     list.append(QString::number(size));
     list.append("");
     list.append(QDate::currentDate().toString("MM/dd/yy"));
@@ -107,7 +107,7 @@ void ModelServiseUDP::fillModel()
     list.append("");
     list.append("");
     beginInsertRows(QModelIndex(),size,size);
-    this->v_data.append(list);
+    this->l_data.append(list);
     QModelIndex index = createIndex(0, 0, static_cast<void *>(0));
     //emit dataChanged(index, index, { role });
     emit dataChanged(index, index);

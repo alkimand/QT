@@ -16,7 +16,7 @@ public:
 
 private:
     //QUdpSocket* udp_socket;
-    QString fileName;
+    QString fullFilePath;
     void getOpenFileName();
    // void create_connect_to_worker();
 

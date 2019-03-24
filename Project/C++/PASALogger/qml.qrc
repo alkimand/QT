@@ -80,5 +80,6 @@
         <file>src/images/ToolBarIcon/rename.png</file>
         <file>src/images/ToolBarIcon/explorer.png</file>
         <file>src/TableView/TableView/TableUDPBaseTable.qml</file>
+        <file>src/images/ToolBarIcon/explore.png</file>
     </qresource>
 </RCC>

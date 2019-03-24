@@ -26,6 +26,11 @@ void ClientBase::sendTittle(const QString & m_tittle)
     //qDebug()<< " ClientBase::sendTittle:"+ tittle ;
 }
 
+void ClientBase::setDocumentTittle(const QString m_tittle)
+{
+    tittle =  m_tittle;
+}
+
 void ClientBase::saveAsSlot()
 {
     this->worker->saveAs();
@@ -47,6 +52,11 @@ void ClientBase::openInExplorerSlot()
     this->worker->openInExplorer();
 }
 
+void ClientBase::openInDesktopServicesSlot()
+{
+    this->worker->openInDesktopServices();
+}
+
 void ClientBase::filterChangedSlot(const int & column, const QString & text)
 {
      //qDebug()<< "ClientBase::filterChangedSlot";
@@ -55,7 +65,9 @@ void ClientBase::filterChangedSlot(const int & column, const QString & text)
 
 void ClientBase::setNameDocumentSlot(const QString & tittle)
 {
-    this->worker->setNameDocument(tittle);
+   //qDebug()<< "ClientBase::setNameDocumentSlot:"+tittle;
+
+   this->worker->sendFileName(tittle);
 }
 
 
