@@ -13,19 +13,17 @@ class Server;
 class WorkerBaseClass;
 
 class ClientBase: public QObject
-        //class ClientBase: public QThread
+//class ClientBase: public QThread
 {
     Q_OBJECT
-    Q_PROPERTY(QString documentTittle READ readDocumentTittle WRITE setDocumentTittle NOTIFY documentTittleChanged)
+
 public:
     explicit ClientBase();//no const
 
-    //virtual
-    virtual ~ClientBase();
+//virtual
+  virtual ~ClientBase();
     void run();
     void sendTittle(const QString &);
-    void setDocumentTittle(const QString );
-    QString readDocumentTittle();
 
 protected:
     WorkerBaseClass *worker;
@@ -35,14 +33,17 @@ protected:
     QString tittle;
 
 
+   // virtual void setStatus(const int &){};
+
+
 public slots:
-    void saveAsSlot();
-    void saveSlot();
-    void setStatus(const int &);
-    void clearDataPool();
-    void openInExplorerSlot();
-    void filterChangedSlot(const int &, const QString &);
-    void setNameDocumentSlot(const QString &);
+void saveAsSlot();
+void saveSlot();
+void setStatus(const int &);
+void clearDataPool();
+void openInExplorerSlot();
+void filterChangedSlot(const int &, const QString &);
+void setNameDocumentSlot(const QString &);
 
 
 
@@ -50,8 +51,12 @@ private:
 
 
 
-signals:
-    void documentTittleChanged();
+
+
+
+    //QUdpSocket* m_pudp;
+    //private slots:
+    //    void slotProcessDatagrams();
 };
 
 #endif // CLIENTBASE_H

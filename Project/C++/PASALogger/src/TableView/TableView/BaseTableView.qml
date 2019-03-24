@@ -68,7 +68,6 @@ C1.TableView
     property int mouseMoveStartX: 0
     property int mouseMoveFinishX: 0
     property int selectRow: -1
-
     property string type: "NONE"
 
     //https://stackoverflow.com/questions/30818886/qml-window-resize-move-flicker - resize bug
@@ -93,7 +92,7 @@ C1.TableView
     {
         //if (tableView.type!== "NONE")
         client.saveAsSlot()
-        //console.log("client.documentTittle:"+client.documentTittle)
+        console.log("client.documentTittle:"+client.documentTittle)
         if (client.documentTittle !== "DEFAULT")
         tabView.getTab(tabView.contexMenuIndex).title = client.documentTittle
         console.log("saveAs()")
@@ -101,12 +100,11 @@ C1.TableView
 
     function save()
     {
-        console.log("tabView.renamedIndex: "+tabView.renamedIndex)
         if (tableView.type!== "NONE")
         {
             client.saveSlot()
             if (client.documentTittle !== "DEFAULT")
-            tabView.getTab(tabView.renamedIndex).title = client.documentTittle
+            tabView.getTab(tabView.contexMenuIndex).title = client.documentTittle
         }
 
         //console.log("saveAs()")
@@ -122,10 +120,7 @@ C1.TableView
     function sendNameDocument(tittle)
     {
         if (tableView.type!== "NONE")
-        {
-            console.log("tableView.sendNameDocument(tittle)" + tittle)
             client.setNameDocumentSlot(tittle)
-        }
     }
 
     function filterChanged(column, text)
