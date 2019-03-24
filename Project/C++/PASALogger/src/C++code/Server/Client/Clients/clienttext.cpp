@@ -37,6 +37,16 @@ void ClientText::setproximodel(const ProxiModelServiseUDP *proximodel)
 
 }
 
+ModelServiseUDP *ClientText::readModel() const
+{
+    return model;
+}
+
+ProxiModelServiseUDP *ClientText::readproxiModel() const
+{
+    return proximodel;
+}
+
 //void ClientText::setDocumentTittle(const QString m_tittle)
 //{
 

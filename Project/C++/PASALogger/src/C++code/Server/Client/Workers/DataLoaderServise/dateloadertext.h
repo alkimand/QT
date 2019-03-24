@@ -15,16 +15,16 @@ public:
     void setStatus(const int &){};
 
 private:
-    //QUdpSocket* udp_socket;
+
     QString fullFilePath;
     void getOpenFileName();
-   // void create_connect_to_worker();
+
 
 
 signals:
-    //void sendData(QString); //move to Base class
+
     void readyRead();
-   // void sendData(QByteArray const &);
+
 
 
 

@@ -21,9 +21,7 @@ class  ModelServiseBaseClass: public QAbstractTableModel
     Q_OBJECT
 public:
     explicit  ModelServiseBaseClass(WorkerBaseClass *, CLIENT_TYPE const &);
-     WorkerBaseClass *worker;
-     ModelServiseBaseClass *parent;
-     ModelServiseBaseClass *child;
+
 
      virtual  void data_model_handler(QStringList &) = 0;
      virtual void clearDataPool();
@@ -41,10 +39,16 @@ public:
      void setFileName(const QString &);
      bool fileExists(QString & path);
 
-//protected:
+protected:
     CLIENT_TYPE type;
     QVector <QStringList> l_data; //change to list
     QProcess *process;
+    WorkerBaseClass *worker;
+    ModelServiseBaseClass *parent;
+    ModelServiseBaseClass *child;
+
+
+
 
 //    //virtual void create_connect_to_worker() = 0;
 //    //QString first_line;
@@ -54,13 +58,13 @@ public:
 
 //signals:
 
-////void model_sendData(QStringList & );
+//void model_sendData(QStringList & );
 
 private:
 
 
 //   // virtual  QStringList sl_parse_line(QString ) = 0;
-////CLIENT_TYPE type;
+//CLIENT_TYPE type;
 };
 
 

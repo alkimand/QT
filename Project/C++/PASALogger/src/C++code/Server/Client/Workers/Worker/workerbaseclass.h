@@ -26,20 +26,17 @@ class WorkerBaseClass: public QObject
 public:
     explicit WorkerBaseClass(ClientBase * , CLIENT_TYPE  const &);
     virtual void test();
-    WorkerBaseClass *parent;
-    WorkerBaseClass *child;
+
 
     virtual ~WorkerBaseClass();
     void send_message(QByteArray  const &);
-    QStringList message_list;
+    // QStringList message_list;//--
     //interfase for child class - all hendler are using in child class
     virtual void receive_data_loader_handler(QByteArray  const &);
     virtual void receive_data_parser_handler(QStringList &) = 0;
-    QVector <QStringList> line_vector;
+    QVector <QStringList> line_vector;//--
     ModelServiseBaseClass * getModeltoQMLService();
     ProxiModelServiseBaseClass *getProxiModeltoQMLService();
-    ModelServiseBaseClass *model;
-    ProxiModelServiseBaseClass * proximodel;
 
     //QML/C++ relations
     virtual void setStatus(const int &);
@@ -51,16 +48,23 @@ public:
     virtual void openInExplorer();
     virtual void openInDesktopServices();
     virtual void sendFileName(const QString & ); //send Filename to other service
-     virtual void sendFilePath(const QString & );
-public slots:
-void receive_data_loader_slot(QByteArray  const &);
-void receive_data_parser_slot(QStringList  &);
+    virtual void sendFilePath(const QString & );
 
 protected:
-ClientBase *client;
-CLIENT_TYPE type;
-DataLoaderBaseClass *dataloader;
-ParseServiceBaseClass *parser;
+    ModelServiseBaseClass *model;
+    ProxiModelServiseBaseClass * proximodel;
+    WorkerBaseClass *parent;
+    WorkerBaseClass *child;
+
+public slots:
+    void receive_data_loader_slot(QByteArray  const &);
+    void receive_data_parser_slot(QStringList  &);
+
+protected:
+    ClientBase *client;
+    CLIENT_TYPE type;
+    DataLoaderBaseClass *dataloader;
+    ParseServiceBaseClass *parser;
 
 
 

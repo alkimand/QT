@@ -19,8 +19,6 @@ public:
     explicit  ModelServiseUDP(WorkerBaseClass *, CLIENT_TYPE const &);
     void data_model_handler(QStringList &);
     ~ModelServiseUDP();
-    //void clearDataPool();
-    //void saveAs();
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const {
       Q_UNUSED(parent); return l_data.length();

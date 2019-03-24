@@ -20,31 +20,11 @@ class  ProxiModelServiseUDP: public ProxiModelServiseBaseClass
 public:
     explicit  ProxiModelServiseUDP(WorkerBaseClass *,CLIENT_TYPE const &);
       ~ProxiModelServiseUDP();
-
     bool filterAcceptsRow(int, const QModelIndex &) const override;
 
-
-
-
-
-
-
-
-
-
-
-//signals:
-
 protected:
-    //QVector <QStringList> v_data;
-  //  QStringList filters;
 
 private:
-
-    //QRegExp nameRegExp;
-   // QRegExp yearRegExp;
-
-
 
 };
 

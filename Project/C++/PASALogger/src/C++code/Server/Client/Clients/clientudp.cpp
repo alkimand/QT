@@ -36,6 +36,16 @@ void ClientUDP::setVin(const ModelServiseUDP *model)
     qDebug()<< "ClientUDP::setVin";
 }
 
+ModelServiseUDP *ClientUDP::readModel() const
+{
+    return model;
+}
+
+ProxiModelServiseUDP *ClientUDP::readproxiModel() const
+{
+    return proximodel;
+}
+
 ClientUDP::~ClientUDP()
 {
     qDebug()<< "~ClientUDP";

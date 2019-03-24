@@ -20,9 +20,6 @@ public:
     void data_model_handler(QStringList &);
     ~ ModelServiseText();
 
-    //void clearDataPool();
-    //void saveAs();
-
     int rowCount(const QModelIndex &parent = QModelIndex()) const {
       Q_UNUSED(parent); return l_data.length();
     }

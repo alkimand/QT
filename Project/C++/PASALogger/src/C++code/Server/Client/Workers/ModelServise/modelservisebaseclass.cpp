@@ -29,7 +29,10 @@ bool ModelServiseBaseClass::getSaveFileName()
 
     QString filters("Excel files (*.xlsx , *.xls);;Text files (*.txt);;All files (*.*)");
     QString defaultFilter("Text files (*.txt)");
-    QString fullFilePath = QFileDialog::getSaveFileName(0, "Save file", QDir::currentPath(), filters, &defaultFilter);
+    QString defaultPath = filePath;
+    if (filePath.isEmpty())
+        defaultPath = QDir::currentPath();
+    QString fullFilePath = QFileDialog::getSaveFileName(0, "Save file", defaultPath, filters, &defaultFilter);
     if (!fullFilePath.isEmpty())
     {
         QStringList list = fullFilePath.split("/");

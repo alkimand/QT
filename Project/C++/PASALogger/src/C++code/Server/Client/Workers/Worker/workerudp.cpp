@@ -49,9 +49,3 @@ WorkerUDP::~WorkerUDP()
 {
     qDebug()<< "WorkerUDP";
 }
-
-//void WorkerUDP::receive_data_loader_handler(QByteArray const & message)
-//{
-//    //qDebug()<< "1: WorkerUDP::receive_data_loader_handler in" ;
-//    this-> parser->data_parser_handler(message);
-//}

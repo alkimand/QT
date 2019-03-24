@@ -17,15 +17,11 @@ public:
 private:
     QUdpSocket* udp_socket;
     int port;
-    //void create_connect_to_worker();
 
 signals:
-    //void sendData(QString); //move to Base class
-    //void sendData(QByteArray const &);
+
 
 private slots:
-//    void start();
-//    void stop();
     void slotProcessDatagrams();
 
 };

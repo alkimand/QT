@@ -14,7 +14,6 @@ public:
     ~ParseServiceUDP();
 
 private:
-    //QString* udp_socket;
 
 signals:
 
