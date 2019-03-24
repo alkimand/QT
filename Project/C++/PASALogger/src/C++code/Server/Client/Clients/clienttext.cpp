@@ -18,15 +18,10 @@ ClientText::ClientText() : ClientBase()
     //switch (type)
     //{
     //case UDP_CLIENT_TYPE:
+
     this-> worker = new WorkerText(this, type);
-    //worker->moveToThread(this);
     this-> model = static_cast<ModelServiseUDP*> (this-> worker->getModeltoQMLService());
     this-> proximodel = static_cast<ProxiModelServiseUDP*> (this-> worker->getProxiModeltoQMLService());
-
-    //        break;
-    //    default:
-    //        break;
-    //}
 
 }
 
@@ -45,11 +40,11 @@ void ClientText::setproximodel(const ProxiModelServiseUDP *proximodel)
 
 }
 
-void ClientText::setDocumentTittle(const QString m_tittle)
-{
+//void ClientText::setDocumentTittle(const QString m_tittle)
+//{
 
-    tittle =  m_tittle;
-}
+//    tittle =  m_tittle;
+//}
 
 ClientText::~ClientText()
 {

@@ -195,7 +195,9 @@ Rectangle
         onEditingFinished:
         {
             tabView.getTab(index).title = text.text
+            tabView.renamedIndex = index
             tabView.sendTittleName(tabView.getTab(index).title)
+
             //tabView.getTab(tabView.currentIndex).item.children[0].filterChangedSlot(tabView.getTab(index).title)
 
         }

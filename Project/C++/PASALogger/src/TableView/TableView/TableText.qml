@@ -21,6 +21,8 @@ TableUDPBaseTable
     // }
     Component.onCompleted:
     {
+        console.log("Component.onCompleted:")
         tabView.getTab(tabView.currentIndex).title = client.documentTittle
+
     }
 }
