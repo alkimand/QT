@@ -26,13 +26,13 @@ TableUDPBaseTable
         id: columnComponent
         C1.TableViewColumn{width: 100 }
     }
-
-    titles: ["ROW", "CHECK" ,"DATE", "TIME", "COUNT"," ZONE", "SERVICENAME", "FUNCTIONNAME", "LINENUMBER", "MESSAGE"]
+    defaultTitles : ["Row", "Check" ,"Date/Time", "TimeStamp", "Count","Zone Id", "Service Name", "Function Name", "Line Number", "Message"]
+    titles : ["Row", "Check" ,"Date/Time", "TimeStamp", "Count","Zone Id", "Service Name", "Function Name", "Line Number", "Message"]
     roleList : ["row", "check" ,"date", "time", "count","zone", "serviceName", "functionName", "lineNumber", "message"]
     property var curTitles:
     {
         var t=[]
-        for(var i=2;i<columnCount;i++)
+        for(var i=0;i<columnCount;i++)
         {
             t.push(getColumn(i).title)
         }
@@ -61,5 +61,6 @@ TableUDPBaseTable
     Component.onCompleted:
     {
         tabView.getTab(tabView.currentIndex).title = client.documentTittle
+
     }
 }

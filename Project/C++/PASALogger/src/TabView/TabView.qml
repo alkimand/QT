@@ -246,6 +246,12 @@ C1.TabView
         tabView.getTab(tabView.contexMenuIndex).item.children[0].removeColumnTable()
     }
 
+    function restoreColumnTab()
+    {
+        //        text.selectAll()
+        //        text.forceActiveFocus()
+        console.log("restoreColumnTab")
 
-
+        tabView.getTab(tabView.contexMenuIndex).item.children[0].restoreColumnTable()
+    }
 }

@@ -82,5 +82,6 @@
         <file>src/TableView/TableView/TableUDPBaseTable.qml</file>
         <file>src/images/ToolBarIcon/explore.png</file>
         <file>src/images/ToolBarIcon/remove_column.png</file>
+        <file>src/images/ToolBarIcon/show_all_column.png</file>
     </qresource>
 </RCC>

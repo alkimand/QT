@@ -31,13 +31,18 @@ Rectangle
             if (mouse.button === Qt.RightButton)
             {
                 headerContexMenu.popup()
+                tableView.selectHeaderIndex = styleData.column
                 console.debug("mouse.button === Qt.RightButton")
             }
         }
+
         //        onMouseXChanged:
         //        {
         //            cursorShape = Qt.OpenHandCursor
         //        }
+
+
+
 
     }
     Connections {

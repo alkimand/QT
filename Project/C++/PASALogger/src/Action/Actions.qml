@@ -311,6 +311,20 @@ Item
             tabView.removeColumnTab()
         }
     }
+
+    property Action restoreColumnAction:Action
+    {
+        id: restoreColumnAction
+        icon.source: "../images/ToolBarIcon/show_all_column.png"
+        //shortcut : QKeySequence::Open)
+        icon.name: "Open"
+        text: "Show all columns"
+        onTriggered:
+        {
+            console.log("restoreColumnAction")
+            tabView.restoreColumnTab()
+        }
+    }
 }
 
 

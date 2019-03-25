@@ -69,7 +69,8 @@ C1.TableView
     property int mouseMoveFinishX: 0
     property int selectRow: -1
     property string type: "NONE"
-
+    property int selectHeaderIndex: -1
+    property var defaultTitles : []
     property var titles :[]
     property var roleList : []
 
@@ -88,70 +89,48 @@ C1.TableView
     ItemContexMenu{id:itemContexMenu}
     HeaderContexMenu{id:headerContexMenu }
     //--
-// https://stackoverflow.com/questions/27230818/qml-tableview-with-dynamic-number-of-columns
+    // https://stackoverflow.com/questions/27230818/qml-tableview-with-dynamic-number-of-columns
 
-//    property var titles:
-//    {
-//        var t=[]
-//        for(var i=0;i< columnCount; i++)
-//        {
-//            t.push(getColumn(i).title)
-//        }
-//        return t
-//    }
+    //    property var titles:
+    //    {
+    //        var t=[]
+    //        for(var i=0;i< columnCount; i++)
+    //        {
+    //            t.push(getColumn(i).title)
+    //        }
+    //        return t
+    //    }
 
-//       // ["0" , "2", "Date/Time", "TimeStamp", "Count", "Zone Id", "Servise Name", "Function Name", "Line Number", "Message"]
-//    property var curTitles:
-//    {
-//        var t=[]
-//        for(var i=0;i< columnCount; i++)
-//        {
-//            t.push(getColumn(i).title)
-//        }
-//        return t
-//    }
+    //       // ["0" , "2", "Date/Time", "TimeStamp", "Count", "Zone Id", "Servise Name", "Function Name", "Line Number", "Message"]
+    //    property var curTitles:
+    //    {
+    //        var t=[]
+    //        for(var i=0;i< columnCount; i++)
+    //        {
+    //            t.push(getColumn(i).title)
+    //        }
+    //        return t
+    //    }
 
-//    onTitlesChanged:
-//    {
-//        for(var i=0; i<titles.length; i++)
-//        {
-//            if(curTitles.indexOf(titles[i])==-1)
-//            {
-//                var column = addColumn(columnComponent)
-//                column.title=titles[i]
-//                column.role=titles[i]
-//            }
-//        }
-//        for(var i=curTitles.length-1;i>=0;i--)
-//        {
-//            if(titles.indexOf(curTitles[i])==-1)
-//            {
-//                removeColumn(i)
-//            }
-//        }
-//    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    //    onTitlesChanged:
+    //    {
+    //        for(var i=0; i<titles.length; i++)
+    //        {
+    //            if(curTitles.indexOf(titles[i])==-1)
+    //            {
+    //                var column = addColumn(columnComponent)
+    //                column.title=titles[i]
+    //                column.role=titles[i]
+    //            }
+    //        }
+    //        for(var i=curTitles.length-1;i>=0;i--)
+    //        {
+    //            if(titles.indexOf(curTitles[i])==-1)
+    //            {
+    //                removeColumn(i)
+    //            }
+    //        }
+    //    }
 
 
 
@@ -172,7 +151,7 @@ C1.TableView
         client.saveAsSlot()
         console.log("BaseTableView:client.documentTittle: "+client.documentTittle)
         if (client.documentTittle !== "DEFAULT")
-        tabView.getTab(tabView.contexMenuIndex).title = client.documentTittle
+            tabView.getTab(tabView.contexMenuIndex).title = client.documentTittle
         console.log("saveAs()")
     }
 
@@ -183,7 +162,7 @@ C1.TableView
         {
             client.saveSlot()
             if (client.documentTittle !== "DEFAULT")
-            tabView.getTab(tabView.contexMenuIndex).title = client.documentTittle
+                tabView.getTab(tabView.contexMenuIndex).title = client.documentTittle
             console.log(" client.documentTittle: "+ client.documentTittle)
 
         }
@@ -218,12 +197,35 @@ C1.TableView
 
     function removeColumnTable()
     {
-       // if (tableView.type!== "NONE")
-          //  client.filterChangedSlot(column, text)
-        console.log("tableView.removeColumnTable")
-        titles =  ["DATE", "TIME", "COUNT", "SERVICENAME", "LINENUMBER", "MESSAGE"]
-      //  titles.length
+        if (tableView.selectHeaderIndex > -1)
+        {
+            titles.splice(tableView.selectHeaderIndex, 1);
+        }
+//        for(var i=0;i<titles.length;i++)
+//        {
+//            console.log(titles[i])
+//        }
+        titlesChanged()
+    }
 
+    function restoreColumnTable()
+    {
+        console.log("restoreColumnTable")
+        if (tableView.selectHeaderIndex > -1)
+      {
+        for(var i=0;i< defaultTitles.length;i++)
+        {
+            titles[i] = defaultTitles[i]
+            console.log(titles[i])
+        }
+
+        }
+        titlesChanged()
+        //toDo
+       for(var i=0;i < defaultTitles.length;i++)
+       {
+           //console.log(titles[i])
+       }
     }
 }
 
