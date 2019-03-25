@@ -24,6 +24,8 @@ C1.TabView
     //onRenametab:{}
     style: TabViewStyle{}
 
+
+
     //    Component
     //    {
     //        id:tableComponent
@@ -36,6 +38,10 @@ C1.TabView
     //        ChoiceItemBase{}
     //    }
 
+
+    //https://stackoverflow.com/questions/27230818/qml-tableview-with-dynamic-number-of-columns
+
+
     Component
     {
         id:newTabComponent
@@ -45,7 +51,7 @@ C1.TabView
             id: loader
             anchors.fill: parent
             source: "../ChoiceItem/ChoiceWindow.qml"
-            property string type: "NONE0"
+            property string type: "NONE"
 
             function setTable(name)
             {
@@ -55,7 +61,6 @@ C1.TabView
                 switch (name)
                 {
                 case "UDP logger" :
-
                     console.log("UDP logger")
                     source= "../TableView/TableView/TableUDP.qml"
 
@@ -66,7 +71,7 @@ C1.TabView
 
                     break
                 }
-              //  tabView.getTab(contexMenuIndex).title = tabView.getTab(contexMenuIndex).title + ".txt"
+                //  tabView.getTab(contexMenuIndex).title = tabView.getTab(contexMenuIndex).title + ".txt"
             }
         }
 
@@ -194,21 +199,23 @@ C1.TabView
 
     function sendTittleName(m_index, tittle)
     {
-     console.log("TabView:sendTittleName:index:" + m_index)
-     console.log("TabView:sendTittleName:tittle:" + tittle)
+        //console.log("TabView:sendTittleName:index:" + m_index)
+        // console.log("TabView:sendTittleName:tittle:" + tittle)
 
- //    if (tabView.getTab(m_index).item.children[0].type !== "NONE")
+        //    if (tabView.getTab(m_index).item.children[0].type !== "NONE")
 
-//     if (tabView.getTab(m_index).item.children[0].type !== "NONE")
-     {
-        //console.log("BaseTableView:sendTittleName:" + tittle)
-        //console.log("tabView.getTab(m_index).item.children[0].type:" + tabView.getTab(m_index).type)
-        //console.log("tabView.getTab(m_index).item.children[0].type:" + tabView.getTab(m_index).item.type)
-        //console.log("tabView.getTab(m_index).item.children[0].type:" + tabView.getTab(m_index).item.children[0].type)
-        console.log("tabView.getTab(m_index).item.children[0].type:" + tabView.getTab(m_index).type)
-        tabView.getTab(m_index).item.children[0].sendNameDocument(tittle)
-         //sendTittleName(m_index, tittle)
-     }
+        if (tabView.getTab(m_index).item.children[0].type !== "NONE")
+        {
+            //console.log("BaseTableView:sendTittleName:" + tittle)
+            //console.log("tabView.getTab(m_index).item.children[0].type:" + tabView.getTab(m_index).type)
+            //console.log("tabView.getTab(m_index).item.children[0].type:" + tabView.getTab(m_index).item.type)
+            //console.log("0" + tabView.getTab(m_index).item.type)
+
+            //console.log("1" + tabView.getTab(m_index).item.children[0].type)
+            //console.log("tabView.getTab(m_index).item.children[0].type:" + tabView.getTab(m_index).type)
+            tabView.getTab(m_index).item.children[0].sendNameDocument(tittle)
+            //sendTittleName(m_index, tittle)
+        }
     }
 
 
@@ -216,6 +223,7 @@ C1.TabView
     {
         //        text.selectAll()
         //        text.forceActiveFocus()
+        console.log(tabView.getTab(tabView.contexMenuIndex).item.children[0].type)
         console.log("openInExplorer")
         if (tabView.getTab(tabView.contexMenuIndex).item.children[0].type !== "NONE")
             tabView.getTab(tabView.contexMenuIndex).item.children[0].openInExplorer()
@@ -228,6 +236,14 @@ C1.TabView
         console.log("openInDesktopServices")
         if (tabView.getTab(tabView.contexMenuIndex).item.children[0].type !== "NONE")
             tabView.getTab(tabView.contexMenuIndex).item.children[0].openInDesktopServices()
+    }
+
+    function removeColumnTab()
+    {
+        //        text.selectAll()
+        //        text.forceActiveFocus()
+        console.log("removeColumnTab")
+        tabView.getTab(tabView.contexMenuIndex).item.children[0].removeColumnTable()
     }
 
 

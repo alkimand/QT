@@ -34,8 +34,6 @@ ModelServiseText::~ModelServiseText()
     qDebug()<< "~ModelServiseText()";
 }
 
-
-
 QHash<int, QByteArray> ModelServiseText::roleNames() const
 {
     QHash<int, QByteArray> roles;

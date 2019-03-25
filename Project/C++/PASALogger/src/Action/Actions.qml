@@ -297,6 +297,20 @@ Item
             tabView.openInDesktopServices()
         }
     }
+
+    property Action removeColumnAction:Action
+    {
+        id: removeColumnAction
+        icon.source: "../images/ToolBarIcon/remove_column.png"
+        //shortcut : QKeySequence::Open)
+        icon.name: "Open"
+        text: "Remove column"
+        onTriggered:
+        {
+            console.log("removeColumnAction")
+            tabView.removeColumnTab()
+        }
+    }
 }
 
 

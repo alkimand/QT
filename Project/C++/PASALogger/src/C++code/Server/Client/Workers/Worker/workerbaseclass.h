@@ -27,7 +27,6 @@ public:
     explicit WorkerBaseClass(ClientBase * , CLIENT_TYPE  const &);
     virtual void test();
 
-
     virtual ~WorkerBaseClass();
     void send_message(QByteArray  const &);
     // QStringList message_list;//--
@@ -65,9 +64,6 @@ protected:
     CLIENT_TYPE type;
     DataLoaderBaseClass *dataloader;
     ParseServiceBaseClass *parser;
-
-
-
 
 private:
 

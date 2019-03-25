@@ -18,7 +18,7 @@ Rectangle
     height: 60
     border.width: 2
     //anchors.right: (styleData.column===4)?parent.right:""
-    visible: (styleData.column<tableView.tittleCount && styleData.column>-1)?true:false
+    visible:(styleData.column<tableView.titles.length && styleData.column>-1)?true:false
     //visible: false
     MouseArea
     {

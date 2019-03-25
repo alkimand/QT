@@ -18,13 +18,8 @@ DateLoaderText::DateLoaderText(WorkerBaseClass *m_worker, CLIENT_TYPE const & m_
     //QString templatePath = QDir::current().canonicalPath();
     this->child = this;
     //--
-    ;
-
     getOpenFileName();
-
-
     //--
-
     create_connect_to_worker();
     this->status = PLAY;
     connect(this, SIGNAL(readyRead()), SLOT(slotProcessDatagrams()));

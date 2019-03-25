@@ -11,6 +11,6 @@ ContextMenuBase
 
     Component.onCompleted:
     {
-       control.insertAction(0, actions.fileOpenAction)
+       control.insertAction(0, actions.removeColumnAction)
     }
 }

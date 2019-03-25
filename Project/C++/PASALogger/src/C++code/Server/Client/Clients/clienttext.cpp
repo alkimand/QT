@@ -47,12 +47,6 @@ ProxiModelServiseUDP *ClientText::readproxiModel() const
     return proximodel;
 }
 
-//void ClientText::setDocumentTittle(const QString m_tittle)
-//{
-
-//    tittle =  m_tittle;
-//}
-
 ClientText::~ClientText()
 {
     //  this->wait();

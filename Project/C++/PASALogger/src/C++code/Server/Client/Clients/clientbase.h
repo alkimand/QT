@@ -53,17 +53,8 @@ public slots:
 signals:
     void documentTittleChanged();
 
-
 private:
 
-
-
-
-
-
-    //QUdpSocket* m_pudp;
-    //private slots:
-    //    void slotProcessDatagrams();
 };
 
 #endif // CLIENTBASE_H
