@@ -74,9 +74,10 @@ C1.TableView
     property var titles :[]
     property var roleList : []
 
-
-
-
+    property var widthList : []
+    property var skipColumn : [] //if skip  first column
+    property var deletedHeader
+    property bool colmn
 
     //https://stackoverflow.com/questions/30818886/qml-window-resize-move-flicker - resize bug
 
@@ -131,7 +132,6 @@ C1.TableView
     //            }
     //        }
     //    }
-
 
 
 
@@ -199,33 +199,26 @@ C1.TableView
     {
         if (tableView.selectHeaderIndex > -1)
         {
-            titles.splice(tableView.selectHeaderIndex, 1);
+            //console.log("remove:"+titles[titles.indexOf(tableView.deletedHeader)])
+            titles.splice(titles.indexOf(tableView.deletedHeader),1);
+            tableView.selectHeaderIndex = -1
         }
-//        for(var i=0;i<titles.length;i++)
-//        {
-//            console.log(titles[i])
-//        }
         titlesChanged()
     }
 
     function restoreColumnTable()
     {
-        console.log("restoreColumnTable")
+        //console.log("restoreColumnTable")
         if (tableView.selectHeaderIndex > -1)
-      {
-        for(var i=0;i< defaultTitles.length;i++)
         {
-            titles[i] = defaultTitles[i]
-            console.log(titles[i])
-        }
+            for(var i=0;i< defaultTitles.length;i++)
+            {
+                titles[i] = defaultTitles[i]
+                //console.log(i+"="+titles[i])
 
+            }
+            titlesChanged()
         }
-        titlesChanged()
-        //toDo
-       for(var i=0;i < defaultTitles.length;i++)
-       {
-           //console.log(titles[i])
-       }
     }
 }
 

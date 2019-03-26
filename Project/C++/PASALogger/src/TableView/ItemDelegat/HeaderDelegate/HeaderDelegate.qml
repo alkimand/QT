@@ -32,7 +32,9 @@ Rectangle
             {
                 headerContexMenu.popup()
                 tableView.selectHeaderIndex = styleData.column
+                tableView.deletedHeader = styleData.value
                 console.debug("mouse.button === Qt.RightButton")
+                console.debug("tableView.selectHeaderIndex:" + styleData.column )
             }
         }
 

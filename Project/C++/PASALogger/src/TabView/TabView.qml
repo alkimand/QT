@@ -242,7 +242,7 @@ C1.TabView
     {
         //        text.selectAll()
         //        text.forceActiveFocus()
-        console.log("removeColumnTab")
+        //console.log("removeColumnTab")
         tabView.getTab(tabView.contexMenuIndex).item.children[0].removeColumnTable()
     }
 
@@ -250,7 +250,7 @@ C1.TabView
     {
         //        text.selectAll()
         //        text.forceActiveFocus()
-        console.log("restoreColumnTab")
+        //console.log("restoreColumnTab")
 
         tabView.getTab(tabView.contexMenuIndex).item.children[0].restoreColumnTable()
     }
