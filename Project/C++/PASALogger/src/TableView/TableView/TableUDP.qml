@@ -33,7 +33,17 @@ TableUDPBaseTable
 
     }
 
+    defaultTitles : ["Row", "Check" ,"Date/Time", "TimeStamp", "Count","Zone Id", "Service Name", "Function Name", "Line Number", "Message"]
+    titles : ["Row", "Check" ,"Date/Time", "TimeStamp", "Count","Zone Id", "Service Name", "Function Name", "Line Number", "Message"]
+    roleList : ["row", "check" ,"date", "time", "count","zone", "serviceName", "functionName", "lineNumber", "message"]
+    widthList : [ 50, 50, 100, 100, 200, 200, 200, 200, 200, 200 ]
+    skipColumn : [ "Row", "Check" ]
 
+    Component.onCompleted:
+    {
+        tabView.getTab(tabView.currentIndex).title = client.documentTittle
+
+    }
 
 
 //    Connections {

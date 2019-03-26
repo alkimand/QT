@@ -34,7 +34,7 @@ Rectangle
                 tableView.selectHeaderIndex = styleData.column
                 tableView.deletedHeader = styleData.value
                 console.debug("mouse.button === Qt.RightButton")
-                console.debug("tableView.selectHeaderIndex:" + styleData.column )
+                //console.debug("tableView.selectHeaderIndex:" + styleData.column )
             }
         }
 
@@ -137,7 +137,7 @@ Rectangle
     Rectangle
     {
         id:bottomBorder
-       visible:false // true
+        visible:false // true
         anchors.bottom: parent.bottom
         anchors.left: parent.left
         height: borderwidth
@@ -174,7 +174,7 @@ Rectangle
             //visible: false
             Button
             {
-               id:filterbutton
+                id:filterbutton
                 //visible: (styleData.column<5)?true:false
                 width: tableView.buttonImageHeight
                 height: tableView.buttonImageHeight
@@ -268,10 +268,10 @@ Rectangle
                 onClicked:
                 {
                     console.log("sortbutton cliked")
-//                    console.log("rect.x:" + rect.x)
-//                    console.log("rect.width:" + rect.width)
-//                    console.log(" window.width:" +  window.width)
-//                    console.log(" window.x:" +  window.x)
+                    //                    console.log("rect.x:" + rect.x)
+                    //                    console.log("rect.width:" + rect.width)
+                    //                    console.log(" window.width:" +  window.width)
+                    //                    console.log(" window.x:" +  window.x)
                 }
             }
 
@@ -323,16 +323,10 @@ Rectangle
                     anchors.fill: parent
                     color:backgroundcolor
                 }
-               // onPressed: console.log("TextField cliked")
-//                onEditingFinished:
-//                {
-//                  console.log("searchTextArea onEditingFinished")
-//                }
                 onTextChanged:
                 {
-                    //console.log("searchTextArea  onTextChanged")
-                    //console.log("searchTextArea.text" + searchTextArea.text)
-                    tableView.filterChanged(styleData.column, searchTextArea.text)
+                    console.log("titles.indexOf(styleData.value):"+titles.indexOf(styleData.value))
+                    tableView.filterChanged(titles.indexOf(styleData.value), searchTextArea.text)
                 }
             }
         }

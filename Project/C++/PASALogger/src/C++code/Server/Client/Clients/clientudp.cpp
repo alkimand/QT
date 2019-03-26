@@ -19,6 +19,7 @@ ClientUDP::ClientUDP() : ClientBase()
         this-> model = static_cast<ModelServiseUDP*> (this-> worker->getModeltoQMLService());
         this-> proximodel = static_cast<ProxiModelServiseUDP*> (this-> worker->getProxiModeltoQMLService());
 
+    tittle = "UDP";
 }
 
 void ClientUDP::setproximodel(const ProxiModelServiseUDP *proximodel)

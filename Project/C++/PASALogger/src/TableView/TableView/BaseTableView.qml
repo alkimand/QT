@@ -92,48 +92,12 @@ C1.TableView
     //--
     // https://stackoverflow.com/questions/27230818/qml-tableview-with-dynamic-number-of-columns
 
-    //    property var titles:
-    //    {
-    //        var t=[]
-    //        for(var i=0;i< columnCount; i++)
-    //        {
-    //            t.push(getColumn(i).title)
-    //        }
-    //        return t
-    //    }
 
-    //       // ["0" , "2", "Date/Time", "TimeStamp", "Count", "Zone Id", "Servise Name", "Function Name", "Line Number", "Message"]
-    //    property var curTitles:
-    //    {
-    //        var t=[]
-    //        for(var i=0;i< columnCount; i++)
-    //        {
-    //            t.push(getColumn(i).title)
-    //        }
-    //        return t
-    //    }
-
-    //    onTitlesChanged:
-    //    {
-    //        for(var i=0; i<titles.length; i++)
-    //        {
-    //            if(curTitles.indexOf(titles[i])==-1)
-    //            {
-    //                var column = addColumn(columnComponent)
-    //                column.title=titles[i]
-    //                column.role=titles[i]
-    //            }
-    //        }
-    //        for(var i=curTitles.length-1;i>=0;i--)
-    //        {
-    //            if(titles.indexOf(curTitles[i])==-1)
-    //            {
-    //                removeColumn(i)
-    //            }
-    //        }
-    //    }
-
-
+    Component
+    {
+        id: columnComponent
+        C1.TableViewColumn{}
+    }
 
     property int test: implicitWidth/10
     //implicitWidth:window.width
@@ -218,6 +182,55 @@ C1.TableView
 
             }
             titlesChanged()
+        }
+    }
+
+    property var curTitles:
+    {
+        console.log("curTitles")
+        var t=[]
+        for(var i=0;i<columnCount;i++)
+        {
+            t.push(getColumn(i).title)
+        }
+        return t
+    }
+
+
+    onColmnChanged:
+    {
+        console.log("onNameChanged")
+        var t=[]
+        for(var i=0;i<columnCount;i++)
+        {
+            t.push(getColumn(i).title)
+        }
+        curTitles =t
+    }
+
+    onTitlesChanged:
+    {
+        colmnChanged()
+        //console.log("onTitlesChanged:")
+        for(var i=0;i<titles.length;i++)
+        {
+            if((curTitles.indexOf(titles[i])==-1) && (skipColumn.indexOf(titles[i])==-1))
+            {
+                var column = addColumn(columnComponent)
+                column.title=titles[i]
+                column.role=roleList[i]
+                column.width = widthList[titles.indexOf(titles[i]) - skipColumn.length]//ToDo
+                control.moveColumn(columnCount-1, titles.indexOf(titles[i]) - skipColumn.length)
+            }
+        }
+        colmnChanged()
+        for(var i=curTitles.length-1;i>=0;i--)
+        {
+            if(titles.indexOf(curTitles[i])==-1 )
+            {
+                //console.log("onTitlesChanged:remove:i:"+i +" "+curTitles[i])
+                removeColumn(i)
+            }
         }
     }
 }

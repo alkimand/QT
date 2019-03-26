@@ -38,7 +38,7 @@ void ProxiModelServiseBaseClass::filterChanged(const int &column, const QString 
      regExp.setCaseSensitivity(Qt::CaseInsensitive);
      regExp.setPatternSyntax(QRegExp::RegExp);
      if (column > -1 && column < sourceModel()->columnCount())
-     r_filters.replace(column + 2,regExp);
+     r_filters.replace(column,regExp);
      this->invalidateFilter();
 
 }
