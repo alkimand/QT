@@ -92,6 +92,7 @@ OTHER_FILES += \
     src/TableView/TableView/TableUDPBaseTable.qml \
     src/TableView/TableView/TableUDP.qml \
     src/TableView/TableView/TableText.qml \
+    src/TableView/FilterDailog/FilterDialog.qml \
 #ToolBar
     src/ToolBar/ToolBar.qml \
     src/ToolBar/CustomComboBox/CustomComboBox.qml \

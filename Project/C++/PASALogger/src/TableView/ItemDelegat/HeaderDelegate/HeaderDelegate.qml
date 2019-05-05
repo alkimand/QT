@@ -4,6 +4,8 @@ import QtQuick.Layouts 1.3
 //import QtQuick.Controls 2.4
 import QtQuick.Controls 2.12
 import QtGraphicalEffects 1.0
+import "../../FilterDailog"
+
 //import "../../../ContextMenu/TableViewContexMenu/HeaderContexMenu"
 
 //https://v-silvansky.livejournal.com/25172.html edile mod for text
@@ -42,9 +44,6 @@ Rectangle
         //        {
         //            cursorShape = Qt.OpenHandCursor
         //        }
-
-
-
 
     }
     Connections {
@@ -207,6 +206,9 @@ Rectangle
                 onClicked:
                 {
                     console.log("filterbutton cliked")
+                    tableView.filterDialogActiveColumn = styleData.column
+                    //tableView.filterDialog.visible = true
+                    //visible: true
                 }
             }
             Text
@@ -331,5 +333,12 @@ Rectangle
             }
         }
     }
+
+   FilterDialog
+   {
+       id: filterDialog
+       //visible: true
+
+   }
 
 }

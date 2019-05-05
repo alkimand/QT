@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>main.cpp</file>
+        <file>src/qml/Button/UserButton.qml</file>
+        <file>src/qml/mainWindow/MainControlButton/MainControlButton.qml</file>
+		<file>src/qrc/images/Button/box-shadow.png</file>
+        <file>src/qrc/images/Button/busy.png</file>
+        <file>src/qrc/images/Button/cardboard.png</file>
+    </qresource>
+</RCC>

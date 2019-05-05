@@ -37,16 +37,16 @@ Item
             preventStealing: true//false
             anchors.fill: parent
             hoverEnabled: true
-//            onClicked:
-//            {
-//                if (mouse.button === Qt.RightButton)
-//                {
-//                console.debug("onClicked: ")
-//                //textItemDelegate.forceActiveFocus()
-//                //itemContexMenu.popup()
+            //            onClicked:
+            //            {
+            //                if (mouse.button === Qt.RightButton)
+            //                {
+            //                console.debug("onClicked: ")
+            //                //textItemDelegate.forceActiveFocus()
+            //                //itemContexMenu.popup()
 
-//                }
-//            }
+            //                }
+            //            }
             onDoubleClicked:
             {
                 //console.debug("Text : onDoubleClicked: "+item.row)
@@ -56,6 +56,7 @@ Item
 
         }
     }
+
     function getRowColor()
     {
         if (styleData.selected)
@@ -66,5 +67,4 @@ Item
         else
             return "white";
     }
-
 }

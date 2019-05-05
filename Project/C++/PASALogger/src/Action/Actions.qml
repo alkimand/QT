@@ -325,6 +325,77 @@ Item
             tabView.restoreColumnTab()
         }
     }
+
+    property Action addNewFilterAction:Action
+    {
+        id:addNewFilterAction
+        icon.source: "../images/ToolBarIcon/plus.png"
+        //shortcut : QKeySequence::Open)
+        //icon.name: "Open"
+        text: "Add"
+        onTriggered:
+        {
+            console.log("addFilterAction")
+            tabView.addNewFilterTab()
+        }
+    }
+
+    property Action deleteFilterAction:Action
+    {
+        id:deleteFilterAction
+        icon.source: "../images/ToolBarIcon/deleteFilter.png"
+        //shortcut : QKeySequence::Open)
+       // icon.name: "Open"
+        text: "Delete"
+        onTriggered:
+        {
+            console.log("deleteFilterAction")
+            //tabView.restoreColumnTab()
+        }
+    }
+
+    property Action activeAllFilterAction:Action
+    {
+        id:activeAllFilterAction
+        icon.source: "../images/ToolBarIcon/show_all_column.png"
+        //shortcut : QKeySequence::Open)
+       // icon.name: "Active all"
+        text: "Active all"
+        onTriggered:
+        {
+            console.log("activeAllFilterAction")
+            //tabView.restoreColumnTab()
+        }
+    }
+
+    property Action inactiveAllFilterAction:Action
+    {
+        id:inactiveAllFilterAction
+        icon.source: "../images/ToolBarIcon/show_all_column.png"
+        //shortcut : QKeySequence::Open)
+       // icon.name: "Inactive all"
+        text: "Inactive all"
+        onTriggered:
+        {
+            console.log("inactiveAllFilterAction")
+            //tabView.restoreColumnTab()
+        }
+    }
+
+    property Action closeFilterDialogAction:Action
+    {
+        id:closeFilterDialogAction
+        icon.source: "../images/ToolBarIcon/close.png"
+        //shortcut : QKeySequence::Open)
+       // icon.name: "Inactive all"
+        text: "Close"
+        onTriggered:
+        {
+            console.log("closeFilterDialogAction")
+            tabView.closeFilterDialogTab()
+        }
+    }
+
 }
 
 

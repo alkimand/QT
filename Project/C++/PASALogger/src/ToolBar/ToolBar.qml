@@ -42,7 +42,6 @@ ToolBar
     background: Rectangle
 
     {
-        //implicitHeight: 40
                color: "white"
                anchors.fill:parent
     }
@@ -51,13 +50,13 @@ ToolBar
         spacing: 0
         CustomToolButton{action: actions.fileOpenAction}
         CustomToolButton{action: actions.fileSaveAction}
-        CustomToolButton{action: actions.downloadAction}
+        //CustomToolButton{action: actions.downloadAction}
         CustomToolButton{action: actions.addAction}
         CustomToolButton{action: actions.stopAction}
         CustomToolButton{action: actions.playAction}
         CustomToolButton{action: actions.pauseAction}
-        CustomToolButton{action: actions.markerAction}
-        CustomToolButton{action: actions.searchAction}
+       // CustomToolButton{action: actions.markerAction}
+        //CustomToolButton{action: actions.searchAction}
         CustomToolButton{action: actions.clearAction}
 
 //        Item {

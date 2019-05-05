@@ -218,7 +218,6 @@ C1.TabView
         }
     }
 
-
     function openInExplorer()
     {
         //        text.selectAll()
@@ -231,8 +230,7 @@ C1.TabView
 
     function openInDesktopServices()
     {
-        //        text.selectAll()
-        //        text.forceActiveFocus()
+
         console.log("openInDesktopServices")
         if (tabView.getTab(tabView.contexMenuIndex).item.children[0].type !== "NONE")
             tabView.getTab(tabView.contexMenuIndex).item.children[0].openInDesktopServices()
@@ -240,18 +238,21 @@ C1.TabView
 
     function removeColumnTab()
     {
-        //        text.selectAll()
-        //        text.forceActiveFocus()
-        //console.log("removeColumnTab")
         tabView.getTab(tabView.contexMenuIndex).item.children[0].removeColumnTable()
     }
 
     function restoreColumnTab()
     {
-        //        text.selectAll()
-        //        text.forceActiveFocus()
-        //console.log("restoreColumnTab")
-
         tabView.getTab(tabView.contexMenuIndex).item.children[0].restoreColumnTable()
+    }
+
+    function closeFilterDialogTab()
+    {
+        tabView.getTab(tabView.currentIndex).item.children[0].closeFilterDialog()
+    }
+
+    function addNewFilterTab()
+    {
+        tabView.getTab(tabView.currentIndex).item.children[0].addNewFilter()
     }
 }

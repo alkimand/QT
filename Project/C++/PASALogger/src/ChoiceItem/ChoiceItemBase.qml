@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 
 //https://evileg.com/ru/post/179/
-
+//https://habr.com/ru/post/184416/
 Item
 {
     id:control

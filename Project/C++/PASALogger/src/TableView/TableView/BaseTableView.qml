@@ -1,7 +1,6 @@
 import QtQuick 2.12
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 1.4 as C1
-//import QtQuick.Controls 2.4
 import QtQuick.Controls 2.4
 import QtQuick.Controls.Styles 1.4
 
@@ -21,12 +20,6 @@ import "../ItemDelegat/HeaderDelegate"
 //https://stackoverflow.com/questions/50099412/custom-tableviewcolumn-delegate-problems
 //https://doc.qt.io/qt-5/qml-qtquick-text.html about HorizontalAlignment
 
-//Item
-//{
-// anchors.fill:paret
-//import ModuleName 1.0
-// qmlRegisterType <ModelServiseUDP> ("ModuleName", 1, 0, "TypeName");
-//TableViewTest3
 C1.TableView
 //C1.TableView
 {
@@ -68,6 +61,7 @@ C1.TableView
     property int mouseMoveStartX: 0
     property int mouseMoveFinishX: 0
     property int selectRow: -1
+    property int filterDialogActiveColumn: -1
     property string type: "NONE"
     property int selectHeaderIndex: -1
     property var defaultTitles : []
@@ -75,7 +69,7 @@ C1.TableView
     property var roleList : []
 
     property var widthList : []
-    property var skipColumn : [] //if skip  first column
+    property var skipColumn : [] //if skip  columns
     property var deletedHeader
     property bool colmn
 
@@ -214,12 +208,12 @@ C1.TableView
         //console.log("onTitlesChanged:")
         for(var i=0;i<titles.length;i++)
         {
-            if((curTitles.indexOf(titles[i])==-1) && (skipColumn.indexOf(titles[i])==-1))
+            if((curTitles.indexOf(titles[i])===-1) && (skipColumn.indexOf(titles[i])===-1))
             {
                 var column = addColumn(columnComponent)
                 column.title=titles[i]
                 column.role=roleList[i]
-                column.width = widthList[titles.indexOf(titles[i]) - skipColumn.length]//ToDo
+                column.width = widthList[i]//ToDo
                 control.moveColumn(columnCount-1, titles.indexOf(titles[i]) - skipColumn.length)
             }
         }
@@ -232,6 +226,24 @@ C1.TableView
                 removeColumn(i)
             }
         }
+    }
+     
+    function setStatus(status)
+    {
+        console.log("setStatus(status)")
+        client.setStatus(status)
+
+    }
+
+    function closeFilterDialog()
+    {
+        filterDialogActiveColumn=-1
+    }
+
+    function addNewFilter()
+    {
+        console.log("tableView addNewFilter()")
+        //filterDialogActiveColumn=-1
     }
 }
 
