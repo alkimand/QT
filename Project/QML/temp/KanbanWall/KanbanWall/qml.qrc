@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>src/image/cork.jpg</file>
+        <file>src/image/icon.png</file>
+        <file>src/image/NfcFlag.png</file>
+        <file>src/image/note-yellow.png</file>
+        <file>src/image/tack.png</file>
+    </qresource>
+</RCC>
