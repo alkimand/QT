@@ -18,7 +18,11 @@ import QtQuick.Dialogs 1.2
             id:clear
             text:"Clear"
             onClicked: {
-
+                var ctx = canvas.getContext("2d")
+                ctx.restore()
+                ctx.clearRect(0,0,canvas.width, canvas.height)
+                canvas.requestPaint()
+                mouse.clear()
 
             }
         }
@@ -27,6 +31,7 @@ import QtQuick.Dialogs 1.2
             id:save
             text:"Save"
             onClicked: {
+                mouse.save()
 
             }
         }
@@ -40,7 +45,7 @@ import QtQuick.Dialogs 1.2
         property int lastX:0
         property int lastY:0
         onPaint: {
-            var ctx = getContext("2d")
+            var ctx = canvas.getContext("2d")
             ctx.lineWidth = 2
             ctx.strokeStyle = color.red
             ctx.beginPath()
@@ -50,7 +55,8 @@ import QtQuick.Dialogs 1.2
             ctx.lineTo(lastX,lastY)
             ctx.stroke()
 
-            mouse.test()
+            //mouse.test()
+            mouse.add(lastX,lastY)
 
         }
         MouseArea{
