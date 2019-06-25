@@ -19,7 +19,7 @@ import QtQuick.Dialogs 1.2
             text:"Clear"
             onClicked: {
                 var ctx = canvas.getContext("2d")
-                ctx.restore()
+                //ctx.restore()
                 ctx.clearRect(0,0,canvas.width, canvas.height)
                 canvas.requestPaint()
                 mouse.clear()
