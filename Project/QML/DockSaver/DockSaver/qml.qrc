@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>source/QML/AlbumDelegate/AlbumDelegate.qml</file>
     </qresource>
 </RCC>
