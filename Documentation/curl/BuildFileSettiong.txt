@@ -1,0 +1,40 @@
+nmake /f Makefile.vc mode=dll VC=14 WITH_DEVEL=D:\curl-7.65.3\deps WITH_SSL=static WITH_ZLIB=static WITH_SSH2=static WITH_PREFIX=D:\curl-7.65.3\build DEBUG=YES MACHINE=X64 SSH2_PATH=D:\curl-7.65.3\deps SSL_PATH=D:\curl-7.65.3\deps ZLIB_PATH=D:\curl-7.65.3\deps
+
+cd D:\curl-7.65.3\curl-src\winbuild
+
+nmake /f Makefile.vc mode=dll WITH_DEVEL=D:\curl-7.65.3\deps
+
+
+
+nmake /f Makefile.vc mode=dll VC=14 WITH_DEVEL=D:\curl-7.65.3\deps WITH_SSL=DLL WITH_ZLIB=static WITH_SSH2=DLL WITH_PREFIX=D:\curl-7.65.3\build DEBUG=YES MACHINE=X64 SSH2_PATH=D:\curl-7.65.3\deps\libssh2-1.8.0-vc14-x64 SSL_PATH=D:\curl-7.65.3\deps\openssl-1.0.2r-vc14-x64 ZLIB_PATH=D:\curl-7.65.3\deps\zlib-1.2.8-vc14-x64
+
+ WITH_NGHTTP2=static
+ 
+ nmake /f Makefile.vc mode=dll VC=14 WITH_DEVEL=D:\curl-7.65.3\deps WITH_SSL=static WITH_ZLIB=static WITH_SSH2=static WITH_PREFIX=D:\curl-7.65.3\build DEBUG=NO  SSH2_PATH=D:\curl-7.65.3\deps\libssh2-1.8.0-vc14-x64 SSL_PATH=D:\curl-7.65.3\deps\openssl-1.0.2r-vc14-x64 ZLIB_PATH=D:\curl-7.65.3\deps\zlib-1.2.8-vc14-x64
+ 
+ nmake /f distclean
+ 
+ 
+  nmake /f Makefile.vc mode=dll VC=14 WITH_DEVEL=D:\curl-7.65.3\deps WITH_PREFIX=D:\curl-7.65.3\build DEBUG=YES   MACHINE=X64 
+  
+  
+  nmake /f Makefile.vc mode=dll WITH_DEVEL=D:\curl-7.65.3\deps WITH_SSL=static SSL_PATH=D:\curl-7.65.3\deps\openssl-1.0.2r-vc14-x64 ZLIB=static ZLIB_PATH=D:\curl-7.65.3\deps\zlib-1.2.8-vc14-x64 WITH_SSH2=static SSH2_PATH=D:\curl-7.65.3\deps\libssh2-1.8.0-vc14-x64 WITH_NGHTTP2=static NGHTTP2_PATH=D:\curl-7.65.3\deps\nghttp2-1.32.0-vc14-x64 MACHINE=x64 DEBUG=NO
+  
+  
+  nmake /f Makefile.vc mode=dll WITH_DEVEL=D:\curl-7.65.3\deps WITH_SSL=static SSL_PATH=D:\curl-7.65.3\deps\openssl-1.0.2r-vc14-x86 ZLIB=static ZLIB_PATH=D:\curl-7.65.3\deps\zlib-1.2.8-vc14-x86 WITH_SSH2=static SSH2_PATH=D:\curl-7.65.3\deps\libssh2-1.8.0-vc14-x86 MACHINE=x86 DEBUG=NO
+  --WITH_NGHTTP2=static NGHTTP2_PATH=D:\curl-7.65.3\deps\nghttp2-1.32.0-vc14-x86 // нужно перебилдить с новым именем
+  
+  nmake /f Makefile.vc mode=dll VC=14 DEBUG=NO MACHINE=x86  +works
+  
+  
+  
+  curl.exe -k https://www.youtube.com/watch?v=lb9j4128V0Y
+  curl.cainfo = D:\curl-7.65.3\deps\cacert.pem
+  
+  
+  D:\curl-7.65.3\deps\nghttp2-1.32.0-vc14-x86
+  
+  nmake /f Makefile.vc mode=dll MACHINE=x86 DEBUG=YES
+  D
+  libcurl.lib
+  
