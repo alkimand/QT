@@ -1,4 +1,4 @@
-nmake /f Makefile.vc mode=dll VC=14 WITH_DEVEL=D:\curl-7.65.3\deps WITH_SSL=static WITH_ZLIB=static WITH_SSH2=static WITH_PREFIX=D:\curl-7.65.3\build DEBUG=YES MACHINE=X64 SSH2_PATH=D:\curl-7.65.3\deps SSL_PATH=D:\curl-7.65.3\deps ZLIB_PATH=D:\curl-7.65.3\deps
+﻿nmake /f Makefile.vc mode=dll VC=14 WITH_DEVEL=D:\curl-7.65.3\deps WITH_SSL=static WITH_ZLIB=static WITH_SSH2=static WITH_PREFIX=D:\curl-7.65.3\build DEBUG=YES MACHINE=X64 SSH2_PATH=D:\curl-7.65.3\deps SSL_PATH=D:\curl-7.65.3\deps ZLIB_PATH=D:\curl-7.65.3\deps
 
 cd D:\curl-7.65.3\curl-src\winbuild
 
@@ -38,3 +38,11 @@ nmake /f Makefile.vc mode=dll VC=14 WITH_DEVEL=D:\curl-7.65.3\deps WITH_SSL=DLL 
   D
   libcurl.lib
   
+
+nmake /f Makefile.vc mode=dll MACHINE=x86 DEBUG=YES
+New Win
+1 cd E:\curl-7.65.3\curl-src\winbuild
+2 
+nmake /f Makefile.vc mode=dll VC=14 WITH_DEVEL=D:\curl-7.65.3\deps WITH_SSL=static WITH_ZLIB=static WITH_SSH2=static WITH_PREFIX=D:\curl-7.65.3\build DEBUG=YES MACHINE=X86 SSH2_PATH=D:\curl-7.65.3\deps\libssh2-1.8.0-vc14-x64 SSL_PATH=D:\curl-7.65.3\deps\openssl-1.0.2r-vc14-x64 ZLIB_PATH=D:\curl-7.65.3\deps\zlib-1.2.8-vc14-x64
+
+
