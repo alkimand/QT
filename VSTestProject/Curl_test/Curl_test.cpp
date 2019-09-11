@@ -2,7 +2,7 @@
 #include <iostream>
 #pragma warning(disable:4996)
 
-//#pragma comment(lib,"curllib.lib")
+#pragma comment(lib,"libcurl.lib")
 #include <stdio.h>
 #include <stdlib.h>
 #include <string>

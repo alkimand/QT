@@ -5,7 +5,7 @@
     <BaseRootPath>$(SolutionDir)..\..\</BaseRootPath>
     <BaseCommonFilesPath>$(BaseRootPath)CommonFiles\</BaseCommonFilesPath>
     <Base3rdpartyPath>$(BaseRootPath)3rdparty\</Base3rdpartyPath>
-    <CurlPath>$(Base3rdpartyPath)curl-7.65.3\</CurlPath>
+    <CurlPath>$(Base3rdpartyPath)curl-7.51.0_ossl_1.0.1\</CurlPath>
     <SSH2Path>$(Base3rdpartyPath)libssh2-1.8.0-vc14-x64\</SSH2Path>
     <Nghttp2Path>$(Base3rdPartyPath)nghttp2-1.32.0-vc14-x64\</Nghttp2Path>
     <OpenSSLPath>$(Base3rdPartyPath)openssl-1.0.2r-vc14-x64\</OpenSSLPath>
