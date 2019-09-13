@@ -1,10 +1,9 @@
 TEMPLATE = app
-CONFIG += console
+CONFIG += console c++11
 CONFIG -= app_bundle
 CONFIG -= qt
 
-SOURCES += \
-    main.cpp \
+SOURCES += main.cpp \
     src/api.cpp \
     src/attachment.cpp \
     src/messages.cpp
