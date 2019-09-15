@@ -3,6 +3,9 @@
 cd D:\curl-7.65.3\curl-src\winbuild
 cd C:\curl-7.51.0\winbuild
 
+доп либы:
+https://windows.php.net/downloads/php-sdk/deps
+
 nmake /f Makefile.vc mode=dll WITH_DEVEL=D:\curl-7.65.3\deps
 nmake /f Makefile.vc mode=dll WITH_DEVEL=D:\curl-7.65.3\deps
 
@@ -35,7 +38,7 @@ nmake /f Makefile.vc mode=dll VC=14 WITH_DEVEL=D:\curl-7.65.3\deps WITH_SSL=DLL 
   
   D:\curl-7.65.3\deps\nghttp2-1.32.0-vc14-x86
   
-  nmake /f Makefile.vc mode=dll MACHINE=x86 DEBUG=YES
+  nmake /f Makefile.vc mode=dll MACHINE=x64 DEBUG=NO
   D
   libcurl.lib
   
@@ -43,7 +46,14 @@ nmake /f Makefile.vc mode=dll MACHINE=x64 DEBUG=YES
 nmake /f Makefile.vc mode=dll MACHINE=x86 DEBUG=YES
 New Win
 1 cd E:\curl-7.65.3\curl-src\winbuild
-2 
+2.1 nmake /f Makefile.vc mode=dll MACHINE=x64 DEBUG=NO WITH_SSL=dll SSL_PATH=E:\curl-7.65.3\deps\openssl-1.1.1c-vc15-x64
++2.2 nmake /f Makefile.vc mode=dll MACHINE=x64 DEBUG=NO WITH_SSL=dll SSL_PATH=E:\curl-7.65.3\deps\openssl-1.1.1c-vc15-x64 WITH_SSH2=dll SSH2_PATH=E:\curl-7.65.3\deps\libssh2-1.8.2-vc15-x64
 nmake /f Makefile.vc mode=dll VC=14 WITH_DEVEL=D:\curl-7.65.3\deps WITH_SSL=static WITH_ZLIB=static WITH_SSH2=static WITH_PREFIX=D:\curl-7.65.3\build DEBUG=YES MACHINE=X86 SSH2_PATH=D:\curl-7.65.3\deps\libssh2-1.8.0-vc14-x64 SSL_PATH=D:\curl-7.65.3\deps\openssl-1.0.2r-vc14-x64 ZLIB_PATH=D:\curl-7.65.3\deps\zlib-1.2.8-vc14-x64
 
 
+
+libcurl_a.lib
+libcrypto-1_1-x64.dll
+libssh2.dll
+libssl-1_1-x64.dll
+nghttp2.dll
