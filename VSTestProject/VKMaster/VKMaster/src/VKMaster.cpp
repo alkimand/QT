@@ -1,68 +1,204 @@
-﻿// VKMaster.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-#include <iostream>
-#pragma warning(disable:4996)
+﻿#include <iostream>
+#include "api.h"
 
-#pragma comment(lib,"libcurl.lib")
-#include <stdio.h>
-#include <stdlib.h>
-#include <string>
-#include <sys/types.h>
-#include <sys/stat.h>
-namespace ui {
-    //#include <curl/curl.h>
-}
 #include <curl/curl.h>
 
-size_t write_data(char *ptr, size_t size, size_t nmemb, FILE* data)
-{
-    return fwrite(ptr, size, nmemb, data);
+using json = ::nlohmann::json;
+using namespace std;
+
+
+string fa2_callback() {
+    string res;
+    cout << "Enter 2fa code: ";
+    cin >> res;
+    return res;
 }
-//---------------------------------------------------------------------------
-int main()
-{
-    // Открываем файлы для заголовка и тела
-    std::string body_filename = "body.html";
-    FILE *body_file = fopen(body_filename.c_str(), "w");
-    if (body_file == NULL) return -1;
-    //std::string url = "https://www.it52.info";
-    std::string twitterLoginUrl = "https://twitter.com/login";
-    std::string twitterEntryUrl = "https://twitter.com/sessions";
-    std::string cookiefilename = "test";
-    CURL *curl_handle = curl_easy_init();
-    if (curl_handle)
-    {
-        curl_easy_setopt(curl_handle, CURLOPT_VERBOSE, 1L);
 
-        // сохранение в файл html-страницу
-        curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, body_file);
-        curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, write_data);
-        // заголовки ответа выводим в консоль
-        curl_easy_setopt(curl_handle, CURLOPT_WRITEHEADER, stdout);
-        /* HTTPs Запрос */
-        //curl_easy_setopt(curl_handle, CURLOPT_URL, twitterLoginUrl.c_str());
-        curl_easy_setopt(curl_handle, CURLOPT_URL, "http://www.cyberforum.ru/");
-        // не проверять SSL сертификат
-        curl_easy_setopt(curl_handle, CURLOPT_SSL_VERIFYPEER, 0);
-        // не проверять Host SSL сертификата
-        curl_easy_setopt(curl_handle, CURLOPT_SSL_VERIFYHOST, false);
-        curl_easy_setopt(curl_handle, CURLOPT_FOLLOWLOCATION, 1);
-        curl_easy_setopt(curl_handle, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 6.1;rv:16.0) Gecko / 20100101 Firefox / 16.0");
+string captcha_callback(const string &captcha_sid) {
+    string res;
+    cout << "Open image https://api.vk.com/captcha.php?sid=" << captcha_sid;
+    cout << " and enter text: " << endl;
+    cin >> res;
+    return res;
+}
 
-        //
-        curl_easy_setopt(curl_handle, CURLOPT_COOKIEJAR, cookiefilename.c_str());//
-       // curl_easy_setopt(curl_handle, CURLOPT_COOKIEFILE, cookiefilename.c_str());
-        //curl_easy_setopt(curl_handle, CURLOPT_REFERER, "https://twitter.com/login");
-        CURLcode res = curl_easy_perform(curl_handle);
-        if (res != CURLE_OK)
-            std::cout << "Error #" << res << " " << curl_easy_strerror(res) << std::endl;
+void print_man() {
+    cout << "Usage: [access_token] login pass" << endl;
+}
 
 
 
-        curl_easy_cleanup(curl_handle);
+string upload_file(const string &url, const string &parameter_name, const string &path) {
+
+    struct curl_httppost *formpost = nullptr;
+    struct curl_httppost *lastptr = nullptr;
+
+
+    CURL *curl = curl_easy_init();
+    if (!curl)
+        return "";
+
+    static char errorBuffer[CURL_ERROR_SIZE];
+    string curl_buffer;
+
+    curl_formadd(&formpost,
+        &lastptr,
+        CURLFORM_COPYNAME, parameter_name.c_str(),
+        CURLFORM_FILE, path.c_str(),
+        CURLFORM_END);
+
+
+    curl_easy_setopt(curl, CURLOPT_ERRORBUFFER, errorBuffer);
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
+    curl_easy_setopt(curl, CURLOPT_USERAGENT, "VK API Client");
+    curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+    curl_easy_setopt(curl, CURLOPT_HTTPPOST, formpost);
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, VK::Utils::CURL_WRITER);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &curl_buffer);
+
+    CURLcode result = curl_easy_perform(curl);
+    curl_easy_cleanup(curl);
+    curl_formfree(formpost);
+    if (result == CURLE_OK) {
+
+        json jres = result;
+
+        return curl_buffer;
+    }
+    else {
+        return errorBuffer;
+    }
+}
+
+int main(int argc, char *argv[]) {
+
+    const string peer_id = "100";
+    const string graffiti_file_path = "Add_cont.png";
+
+    //if (argc < 2 || argc > 4) {
+    //    print_man();
+    //    return 1;
+    //}
+
+    string access_token, login, pass;
+    access_token = "8a4d39180b6bc56188e4a9711caf33fffc68952feaba06071243f7013fa9fe66d43c0c97575a6aa306569";
+    login = "+79081674177";
+    pass = "qwertyop1";
+    //if (argc == 2) {
+    //    access_token = argv[1];
+    //}
+    //else if (argc == 3) {
+    //    login = argv[1];
+    //    pass = argv[2];
+    //}
+    //else if (argc == 4) {
+    //    access_token = argv[1];
+    //    login = argv[2];
+    //    pass = argv[3];
+    //}
+    //else {
+    //    print_man();
+    //    return 1;
+    //}
+
+
+    VK::Client api;
+    api.set_fa2_callback(fa2_callback);
+    api.set_cap_callback(captcha_callback);
+    if (api.auth(login, pass, access_token)) {
+        cout << "Auth ok" << endl;
+        cout << "Access token: " << api.access_token() << endl;
+
+        VK::params_map params = {
+            {"peer_id", peer_id},
+            {"type", "graffiti"}
+        };
+        cout << "API response: " << endl;
+        json jres = api.call("docs.getMessagesUploadServer", params);
+
+        cout << jres << endl;
+
+        if (jres.find("error") != jres.end()) {
+            return -1;
+        }
+
+        string upload_result;
+
+        try {
+            json response = jres.at("response").get<json>();
+            string upload_url = response.at("upload_url").get<string>();
+            if (upload_url.empty())
+                return -2;
+
+            cout << upload_url << endl;
+
+            upload_result = upload_file(upload_url, "file", graffiti_file_path);
+
+            if (upload_result.empty()) {
+                return -3;
+            }
+
+            cout << upload_result << endl;
+        }
+        catch (...) {
+            return -4;
+        }
+
+
+        try {
+            jres = json::parse(upload_result);
+
+            if (jres.find("error") != jres.end()) {
+                return -5;
+            }
+
+
+            params = {
+                {"file", jres.at("file").get<string>()},
+                {"title", "graffiti"}
+            };
+
+            jres = api.call("docs.save", params);
+
+            cout << jres << endl;
+
+            if (jres.find("error") != jres.end()) {
+                return -6;
+            }
+
+            jres = jres.at("response").get<json>();
+            jres = jres.begin().value();
+
+
+
+
+
+            string attachment = "doc" + to_string(jres.at("owner_id").get<int>())
+                + "_" +
+                to_string(jres.at("id").get<int>());
+            params = {
+                {"peer_id", peer_id},
+                {"attachment", attachment}
+            };
+
+            jres = api.call("messages.send", params);
+
+            cout << jres << endl;
+
+
+        }
+        catch (...) {
+            return -7;
+        }
+
+
+
+
+    }
+    else {
+        cout << "Auth fail: " << api.last_error() << endl;
+        return -1;
     }
 
-    std::cout << std::endl << "Done!";
-    getchar();
     return 0;
 }
-//--------------------------------------------------------------------------

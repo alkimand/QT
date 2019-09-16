@@ -172,6 +172,9 @@
     <ClInclude Include="src\json.hpp" />
     <ClInclude Include="src\messages.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="C:\Add_cont.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

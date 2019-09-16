@@ -357,7 +357,9 @@ string VK::Client::request(const string &url, const string &data) {
         CURLcode result = curl_easy_perform(curl);
         curl_easy_cleanup(curl);
         if (result == CURLE_OK) {
+            json test = result;
             return curl_buffer;
+            
         } else {
             return errorBuffer;
         }
