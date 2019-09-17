@@ -3,7 +3,7 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
     <BaseRootPath>$(SolutionDir)..\..\</BaseRootPath>
-    <BaseCommonFilesPath>$(BaseRootPath)CommonFiles\</BaseCommonFilesPath>
+    <BaseCommonFilesPath>$(BaseRootPath)Common\</BaseCommonFilesPath>
     <Base3rdpartyPath>$(BaseRootPath)3rdparty\</Base3rdpartyPath>
     <CurlPath>$(Base3rdpartyPath)libcurl-7.63.0-4-vc15-x64\</CurlPath>
     <SSH2Path>$(Base3rdpartyPath)libssh2-1.8.0-vc14-x64\</SSH2Path>
@@ -11,6 +11,7 @@
     <OpenSSLPath>$(Base3rdPartyPath)openssl-1.0.2r-vc14-x64\</OpenSSLPath>
     <ZlibPath>$(Base3rdPartyPath)zlib-1.2.8-vc14-x64\</ZlibPath>
     <CurlPath_x64>$(Base3rdpartyPath)libcurl-7.63.0-4-vc15-x64\</CurlPath_x64>
+    <BaseClientAPIPath>$(BaseCommonFilesPath)Client_IPI\</BaseClientAPIPath>
   </PropertyGroup>
   <PropertyGroup />
   <ItemDefinitionGroup />
@@ -45,6 +46,9 @@
     </BuildMacro>
     <BuildMacro Include="CurlPath_x64">
       <Value>$(CurlPath_x64)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BaseClientAPIPath">
+      <Value>$(BaseClientAPIPath)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>

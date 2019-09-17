@@ -14,6 +14,7 @@ namespace VK {
 using callback_func_cap = std::string(*)(const std::string &);
 using callback_func_fa2 = std::string(*)();
 
+
 using json = nlohmann::json;
 
 /* http params */
