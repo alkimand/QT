@@ -1,7 +1,8 @@
 ﻿
 #include <iostream>
 #include <curl/curl.h>
-#include <BaseClientAPIClass/BaseClientAPIClass.h>
+//#include <BaseClientAPIClass/BaseClientAPIClass.h>
+#include <BaseClientAPIClass/ClientAPIClass_VK.h>
 
 using json = ::nlohmann::json;
 using namespace std;
@@ -74,14 +75,14 @@ int main(int argc, char *argv[]) {
     access_token = "8a4d39180b6bc56188e4a9711caf33fffc68952feaba06071243f7013fa9fe66d43c0c97575a6aa306569";
     login = "+79081674177";
     pass = "qwertyop1";
-    BaseClientAPI::BaseClientAPIClass api;
+    BaseClientAPI::ClientAPIClass_VK api;
     api.set_fa2_callback(fa2_callback);
     api.set_cap_callback(captcha_callback);
     if (api.auth(login, pass, access_token)) {
         cout << "Auth ok" << endl;
         cout << "Access token: " << api.access_token() << endl;
 
-        BaseClientAPI::params_map params = {
+        CoomonClientAPIDefs::params_map params = {
             {"peer_id", peer_id},
             {"type", "graffiti"}
         };

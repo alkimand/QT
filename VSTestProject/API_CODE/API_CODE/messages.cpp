@@ -41,21 +41,21 @@ BaseClientAPI::vector_dialogs BaseClientAPI::Messages::get_dialogs(const size_t 
         return std::move(res);
     }
 
-    BaseClientAPI::params_map params = {
+    CoomonClientAPIDefs::params_map params = {
         {"count", std::to_string(count)},
         {"offset", std::to_string(offset)},
         {"preview_length", "1"},
 
     };
 
-    json jres = call("messages.getDialogs", params);
+    CoomonClientAPIDefs::json jres = call("messages.getDialogs", params);
     if(jres == nullptr) {
         return std::move(res);
     }
 
     if(jres.find("error") == jres.end()) {
 
-        json items = jres.at("response").get<json>().at("items").get<json>();
+        CoomonClientAPIDefs::json items = jres.at("response").get<json>().at("items").get<json>();
 
         for (json::iterator it = items.begin(); it != items.end(); ++it) {
             json item = it.value();
@@ -103,7 +103,7 @@ std::string BaseClientAPI::Messages::get_chat_title(const int chat_id) {
     if(chat_id < chat_offset) {
         return "";
     }
-    BaseClientAPI::params_map params = {
+    CoomonClientAPIDefs::params_map params = {
         {"chat_ids", std::to_string(chat_id - chat_offset)},
     };
 
@@ -118,7 +118,7 @@ std::string BaseClientAPI::Messages::get_chat_title(const int chat_id) {
 }
 
 std::string BaseClientAPI::Messages::get_username(const int user_id) {
-    BaseClientAPI::params_map params = {
+    CoomonClientAPIDefs::params_map params = {
         {"user_ids", std::to_string(user_id)},
     };
 
@@ -141,7 +141,7 @@ std::vector<T> BaseClientAPI::Messages::get_attachments(const int chat_id, const
     std::vector<T> res;
     size_t real_count = (count > 200 || count < 1) ? 200 : count;
     string next;
-    BaseClientAPI::params_map params = {
+    CoomonClientAPIDefs::params_map params = {
         {"peer_id", std::to_string(chat_id)},
         {"media_type", T::type},
         {"start_from", next},
@@ -160,7 +160,7 @@ std::vector<T> BaseClientAPI::Messages::get_attachments(const int chat_id, const
 
                 next = jres.at("response").get<json>().at("next_from").get<string>();
 
-                json items = jres.at("response").get<json>().at("items").get<json>();
+                CoomonClientAPIDefs::json items = jres.at("response").get<json>().at("items").get<json>();
 
                 for (json::iterator it = items.begin(); it != items.end(); ++it) {
                     json item = it.value();

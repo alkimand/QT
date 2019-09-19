@@ -1,26 +1,22 @@
 #include <BaseClientAPIClass/ClientAPIClass_VK.h>
 
 #include <string>
-using std::string;
+//using std::string;
 
-using ::std::string;
-using json = ::nlohmann::json;
+//using ::std::string;
+//using json = ::nlohmann::json;
 
-const string BaseClientAPI::ClientAPIClass_VK::api_url = "https://api.vk.com/method/";
-const string BaseClientAPI::ClientAPIClass_VK::app_id = "3140623";// android=2274003
-const string BaseClientAPI::ClientAPIClass_VK::app_secret = "VeWdmVclDCtn6ihuP1nt";// android=hHbZxrka2uZ6jB1inYsH
-const string BaseClientAPI::ClientAPIClass_VK::scope = "offline,groups,messages,friends,audio";
-const string BaseClientAPI::ClientAPIClass_VK::auth_url = "https://oauth.vk.com/token?";
+
 
 bool BaseClientAPI::ClientAPIClass_VK::oauth(const CoomonClientAPIDefs::callback_func_cap handler) {
     if (handler == nullptr) {
         return false;
     }
-    string oauth_url = "https://oauth.vk.com/authorize?";
+    CoomonClientAPIDefs::string oauth_url = "https://oauth.vk.com/authorize?";
     this->clear();
     oauth_url = "https://oauth.vk.com/authorize?";
 
-    params_map params = {
+    CoomonClientAPIDefs::params_map params = {
         {"BaseClientAPIClass_id", app_id},
         {"display", "page"},
         {"redirect_uri", "https://oauth.vk.com/blank.html"},
@@ -30,20 +26,20 @@ bool BaseClientAPI::ClientAPIClass_VK::oauth(const CoomonClientAPIDefs::callback
     };
 
     oauth_url += Utils::data2str(params);
-    string blank = handler(oauth_url);
+    CoomonClientAPIDefs::string blank = handler(oauth_url);
     if (blank.empty()) {
         return false;
     }
 
     auto it = blank.find("=");
-    if (it == string::npos) {
+    if (it == CoomonClientAPIDefs::string::npos) {
         return false;
     }
     it++;
     this->a_t = blank.substr(it);
 
     it = this->a_t.find("&expires_in");
-    if (it == string::npos) {
+    if (it == CoomonClientAPIDefs::string::npos) {
         this->clear();
         return false;
     }
@@ -54,39 +50,45 @@ bool BaseClientAPI::ClientAPIClass_VK::oauth(const CoomonClientAPIDefs::callback
 }
 
 
-BaseClientAPI::ClientAPIClass_VK::ClientAPIClass_VK(const string _version,
-    const string _lang,
-    const BaseClientAPI::callback_func_cap cap_callback,
-    const BaseClientAPI::callback_func_fa2 _fa2_callback) :
-    captcha_callback(cap_callback),
-    fa2_callback(_fa2_callback),
-    version(_version), lang(_lang) { }
+BaseClientAPI::ClientAPIClass_VK::ClientAPIClass_VK(const CoomonClientAPIDefs::string _version,
+    const CoomonClientAPIDefs::string _lang,
+    const CoomonClientAPIDefs::callback_func_cap cap_callback,
+    const CoomonClientAPIDefs::callback_func_fa2 _fa2_callback) 
+    :BaseClientAPIClass(_version, _lang, cap_callback, _fa2_callback) {
 
-string BaseClientAPI::ClientAPIClass_VK::access_token() const {
+    this->api_url = CoomonClientAPIDefs::string("https://api.vk.com/method/");
+    this->app_id = "7131946";//"3140623";// android=2274003
+    this->app_secret = "VeWdmVclDCtn6ihuP1nt";// android=hHbZxrka2uZ6jB1inYsH
+    this->scope = "offline,groups,messages,friends,audio";
+    this->auth_url = "https://oauth.vk.com/token?";
+}
+
+
+CoomonClientAPIDefs::string BaseClientAPI::ClientAPIClass_VK::access_token() const {
     return a_t;
 }
 
-string BaseClientAPI::ClientAPIClass_VK::last_error() const {
+CoomonClientAPIDefs::string BaseClientAPI::ClientAPIClass_VK::last_error() const {
     return l_error;
 }
 
 
-string BaseClientAPI::ClientAPIClass_VK::get_captcha_key(const string &captcha_sid) {
+CoomonClientAPIDefs::string BaseClientAPI::ClientAPIClass_VK::get_captcha_key(const CoomonClientAPIDefs::string &captcha_sid) {
     return (captcha_callback != nullptr) ? captcha_callback(captcha_sid) : "";
 }
 
-string BaseClientAPI::ClientAPIClass_VK::get_fa2_code() {
+CoomonClientAPIDefs::string BaseClientAPI::ClientAPIClass_VK::get_fa2_code() {
     return (fa2_callback != nullptr) ? fa2_callback() : "";
 }
 
 bool BaseClientAPI::ClientAPIClass_VK::check_access() {
-    json jres = call("users.get", "");
+    CoomonClientAPIDefs::json jres = call("users.get", "");
     if (jres.find("error") != jres.end()) {
         this->clear();
         return false;
     }
     try {
-        json info = jres.at("response").get<json>();
+        CoomonClientAPIDefs::json info = jres.at("response").get<json>();
         info = info.begin().value();
          user.parse(info);
     }
@@ -98,8 +100,8 @@ bool BaseClientAPI::ClientAPIClass_VK::check_access() {
     return true;
 }
 
-bool BaseClientAPI::ClientAPIClass_VK::auth(const string &login, const string &pass,
-    const string &access_token) {
+bool BaseClientAPI::ClientAPIClass_VK::auth(const CoomonClientAPIDefs::string &login, const CoomonClientAPIDefs::string &pass,
+    const CoomonClientAPIDefs::string &access_token) {
     if (!access_token.empty()) {
         this->a_t = access_token;
         if (check_access()) {
@@ -112,7 +114,7 @@ bool BaseClientAPI::ClientAPIClass_VK::auth(const string &login, const string &p
         return false;
     }
 
-    params_map params = {
+    CoomonClientAPIDefs::params_map params = {
         {"BaseClientAPIClass_id", app_id},
         {"grant_type", "password"},
         {"BaseClientAPIClass_secret", app_secret},
@@ -134,12 +136,12 @@ bool BaseClientAPI::ClientAPIClass_VK::auth(const string &login, const string &p
         params.insert({ "code", fa2_code });
     }
 
-    string data = BaseClientAPI::Utils::data2str(params);
+    CoomonClientAPIDefs::string data = BaseClientAPI::Utils::data2str(params);
     captcha_sid.clear();
     captcha_key.clear();
     fa2_code.clear();
 
-    string res = request(auth_url, data);
+    CoomonClientAPIDefs::string res = request(auth_url, data);
     if (res.empty()) {
         return false;
     }
@@ -149,13 +151,13 @@ bool BaseClientAPI::ClientAPIClass_VK::auth(const string &login, const string &p
         if (jres.find("error") == jres.end() ||
             jres.find("access_token") != jres.end()) {
 
-            this->a_t = jres.at("access_token").get<string>();
+           this->a_t = jres.at("access_token").get<CoomonClientAPIDefs::string>();
            this->user.user_id = jres.at("user_id").get<size_t>();
 
             return check_access();
         }
 
-        this->l_error = jres.at("error").get<string>();
+        this->l_error = jres.at("error").get<CoomonClientAPIDefs::string>();
 
         if (this->l_error == "invalid_BaseClientAPIClass" || this->l_error == "invalid_request") {
             return false;
@@ -170,7 +172,7 @@ bool BaseClientAPI::ClientAPIClass_VK::auth(const string &login, const string &p
         }
         else if (this->l_error == "need_captcha") {
 
-            captcha_sid = jres.at("captcha_sid").get<string>();
+            captcha_sid = jres.at("captcha_sid").get<CoomonClientAPIDefs::string>();
             captcha_key = get_captcha_key(captcha_sid);
             if (!captcha_key.empty()) {
                 return this->auth(login, pass);
@@ -186,14 +188,14 @@ bool BaseClientAPI::ClientAPIClass_VK::auth(const string &login, const string &p
     return false;
 }
 
-json BaseClientAPI::ClientAPIClass_VK::call(const string &method, const string &params) {
+CoomonClientAPIDefs::json BaseClientAPI::ClientAPIClass_VK::call(const CoomonClientAPIDefs::string &method, const CoomonClientAPIDefs::string &params) {
     if (method.empty()) {
         return nullptr;
     }
-    string url = api_url + method;
-    string data = params + ((params.empty()) ? "" : "&");
+    CoomonClientAPIDefs::string url = api_url + method;
+    CoomonClientAPIDefs::string data = params + ((params.empty()) ? "" : "&");
 
-    params_map tmp_params;
+    CoomonClientAPIDefs::params_map tmp_params;
     if (!captcha_sid.empty()) {
         tmp_params.insert({ "captcha_sid", captcha_sid });
         tmp_params.insert({ "captcha_key", captcha_key });
@@ -208,23 +210,23 @@ json BaseClientAPI::ClientAPIClass_VK::call(const string &method, const string &
     captcha_sid.clear();
     captcha_key.clear();
 
-    string res = request(url, data);
+    CoomonClientAPIDefs::string res = request(url, data);
     if (res.empty()) {
         return nullptr;
     }
 
     try {
-        json jres = json::parse(res);
+        CoomonClientAPIDefs::json jres = json::parse(res);
 
         if (jres.find("error") == jres.end()) {
             return jres;
         }
 
-        json item = jres.at("error").get<json>();
-        this->l_error = item.at("error_msg").get<string>();
+        CoomonClientAPIDefs::json item = jres.at("error").get<json>();
+        this->l_error = item.at("error_msg").get<CoomonClientAPIDefs::string>();
 
         if (this->l_error == "need_captcha") {
-            captcha_sid = item.at("captcha_sid").get<string>();
+            captcha_sid = item.at("captcha_sid").get<CoomonClientAPIDefs::string>();
             captcha_key = get_captcha_key(captcha_sid);
             if (!captcha_key.empty()) {
                 return this->call(method, params);
@@ -251,11 +253,11 @@ void BaseClientAPI::ClientAPIClass_VK::clear() {
     fa2_code.clear();
 }
 
-string BaseClientAPI::ClientAPIClass_VK::first_name() const {
+CoomonClientAPIDefs::string BaseClientAPI::ClientAPIClass_VK::first_name() const {
     return "";user.first_name;
 }
 
-string BaseClientAPI::ClientAPIClass_VK::last_name() const {
+CoomonClientAPIDefs::string BaseClientAPI::ClientAPIClass_VK::last_name() const {
     return "";user.last_name;
 }
 
@@ -263,20 +265,12 @@ size_t BaseClientAPI::ClientAPIClass_VK::user_id() const {
     return 100;user.user_id;
 }
 
-void BaseClientAPI::ClientAPIClass_VK::set_fa2_callback(const BaseClientAPI::callback_func_fa2 _fa2_callback) {
-    fa2_callback = _fa2_callback;
-}
-
-void BaseClientAPI::ClientAPIClass_VK::set_cap_callback(const BaseClientAPI::callback_func_cap cap_callback) {
-    captcha_callback = cap_callback;
-}
-
-json BaseClientAPI::ClientAPIClass_VK::call(const string &method, const params_map &params) {
+CoomonClientAPIDefs::json BaseClientAPI::ClientAPIClass_VK::call(const CoomonClientAPIDefs::string &method, const CoomonClientAPIDefs::params_map &params) {
     if (method.empty()) {
         return nullptr;
     }
 
-    string data;
+    CoomonClientAPIDefs::string data;
     if (params.size()) {
         data = BaseClientAPI::Utils::data2str(params);
     }
@@ -284,62 +278,8 @@ json BaseClientAPI::ClientAPIClass_VK::call(const string &method, const params_m
     return this->call(method, data);
 }
 
-string BaseClientAPI::Utils::char2hex(const char dec) {
-    char dig1 = (dec & 0xF0) >> 4;
-    char dig2 = (dec & 0x0F);
 
-    if (0 <= dig1 && dig1 <= 9) dig1 += 48;
-    if (10 <= dig1 && dig1 <= 15) dig1 += 87;
-    if (0 <= dig2 && dig2 <= 9) dig2 += 48;
-    if (10 <= dig2 && dig2 <= 15) dig2 += 87;
-
-    string r;
-    r.append(&dig1, 1);
-    r.append(&dig2, 1);
-    return r;
-}
-
-string BaseClientAPI::Utils::urlencode(const string &url) {
-
-    string escaped;
-    for (const char& c : url) {
-        if ((48 <= c && c <= 57) ||
-            (65 <= c && c <= 90) ||
-            (97 <= c && c <= 122) ||
-            (c == '~' || c == '!' || c == '*' || c == '(' || c == ')' || c == '\'')
-            ) {
-            escaped.append(&c, 1);
-        }
-        else {
-            escaped.append("%");
-            escaped.append(char2hex(c));
-        }
-    }
-
-    return escaped;
-}
-
-string BaseClientAPI::Utils::data2str(const params_map &data) {
-    string result;
-    for (auto &kv : data) {
-        result += kv.first + "=" + urlencode(kv.second) + "&";
-    }
-
-    return result;
-}
-
-
-int BaseClientAPI::Utils::CURL_WRITER(char *data, size_t size, size_t nmemb, string *buffer) {
-    int result = 0;
-    if (buffer != NULL) {
-        buffer->append(data, size * nmemb);
-        result = size * nmemb;
-    }
-
-    return result;
-}
-
-string BaseClientAPI::BaseClientAPIClass::request(const string &url, const string &data) {
+CoomonClientAPIDefs::string BaseClientAPI::ClientAPIClass_VK::request(const CoomonClientAPIDefs::string &url, const CoomonClientAPIDefs::string &data) {
     static char errorBuffer[CURL_ERROR_SIZE];
     curl_buffer.clear();
 

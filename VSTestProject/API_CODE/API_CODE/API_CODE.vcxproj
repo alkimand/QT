@@ -168,6 +168,7 @@
     <ClInclude Include="..\..\..\Common\Client_IPI\Attachment\BaseAttachment.h" />
     <ClInclude Include="..\..\..\Common\Client_IPI\BaseClientAPIClass\BaseClientAPIClass.h" />
     <ClInclude Include="..\..\..\Common\Client_IPI\BaseClientAPIClass\ClientAPIClass_VK.h" />
+    <ClInclude Include="..\..\..\Common\Client_IPI\BaseClientAPIClass\CommonClientAPIDefs.h" />
     <ClInclude Include="messages.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
