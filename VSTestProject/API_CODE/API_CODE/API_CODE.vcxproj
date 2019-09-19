@@ -159,6 +159,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\Common\Client_IPI\Attachment\BaseAttachment.cpp" />
     <ClCompile Include="..\..\..\Common\Client_IPI\BaseClientAPIClass\BaseClientAPIClass.cpp" />
+    <ClCompile Include="..\..\..\Common\Client_IPI\BaseClientAPIClass\ClientAPIClass_VK.cpp" />
     <ClCompile Include="API_CODE.cpp" />
     <ClCompile Include="messages.cpp" />
   </ItemGroup>
@@ -166,6 +167,7 @@
     <ClInclude Include="..\..\..\3rdparty\JSON\json.hpp" />
     <ClInclude Include="..\..\..\Common\Client_IPI\Attachment\BaseAttachment.h" />
     <ClInclude Include="..\..\..\Common\Client_IPI\BaseClientAPIClass\BaseClientAPIClass.h" />
+    <ClInclude Include="..\..\..\Common\Client_IPI\BaseClientAPIClass\ClientAPIClass_VK.h" />
     <ClInclude Include="messages.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

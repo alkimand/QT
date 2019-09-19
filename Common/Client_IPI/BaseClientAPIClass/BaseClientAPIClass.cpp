@@ -6,59 +6,67 @@
 using ::std::string;
 using json = ::nlohmann::json;
 
-const string BaseClientAPI::BaseClientAPIClass::api_url = "https://api.vk.com/method/";
-const string BaseClientAPI::BaseClientAPIClass::app_id = "3140623";// android=2274003
-const string BaseClientAPI::BaseClientAPIClass::app_secret = "VeWdmVclDCtn6ihuP1nt";// android=hHbZxrka2uZ6jB1inYsH
-const string BaseClientAPI::BaseClientAPIClass::scope = "offline,groups,messages,friends,audio";
-const string BaseClientAPI::BaseClientAPIClass::auth_url = "https://oauth.vk.com/token?";
+//const string BaseClientAPI::BaseClientAPIClass::api_url = "https://api.vk.com/method/";
+//const string BaseClientAPI::BaseClientAPIClass::app_id = "3140623";// android=2274003
+//const string BaseClientAPI::BaseClientAPIClass::app_secret = "VeWdmVclDCtn6ihuP1nt";// android=hHbZxrka2uZ6jB1inYsH
+//const string BaseClientAPI::BaseClientAPIClass::scope = "offline,groups,messages,friends,audio";
+//const string BaseClientAPI::BaseClientAPIClass::auth_url = "https://oauth.vk.com/token?";
 
-bool BaseClientAPI::BaseClientAPIClass::oauth(const callback_func_cap handler) {
+bool BaseClientAPI::BaseClientAPIClass::oauth(const CoomonClientAPIDefs::callback_func_cap handler) {
     if (handler == nullptr) {
         return false;
     }
 
     this->clear();
-    string oauth_url = "https://oauth.vk.com/authorize?";
-    params_map params = {
-        {"BaseClientAPIClass_id", app_id},
-        {"display", "page"},
-        {"redirect_uri", "https://oauth.vk.com/blank.html"},
-        {"scope", scope},
-        {"response_type", "token"},
-        {"v", version},
-    };
-    oauth_url += Utils::data2str(params);
-    string blank = handler(oauth_url);
-    if (blank.empty()) {
-        return false;
-    }
+    //string oauth_url = "https://oauth.vk.com/authorize?";
+    //params_map params = {
+    //    {"BaseClientAPIClass_id", app_id},
+    //    {"display", "page"},
+    //    {"redirect_uri", "https://oauth.vk.com/blank.html"},
+    //    {"scope", scope},
+    //    {"response_type", "token"},
+    //    {"v", version},
+    ////};
+    //oauth_url += Utils::data2str(params);
+    //string blank = handler(oauth_url);
+    //if (blank.empty()) {
+    //    return false;
+    //}
 
-    auto it = blank.find("=");
-    if (it == string::npos) {
-        return false;
-    }
-    it++;
-    this->a_t = blank.substr(it);
+    //auto it = blank.find("=");
+    //if (it == string::npos) {
+    //    return false;
+    //}
+    //it++;
+    //this->a_t = blank.substr(it);
 
-    it = this->a_t.find("&expires_in");
-    if (it == string::npos) {
-        this->clear();
-        return false;
-    }
-    this->a_t = a_t.substr(0, it);
+    //it = this->a_t.find("&expires_in");
+    //if (it == string::npos) {
+    //    this->clear();
+    //    return false;
+    //}
+    //this->a_t = a_t.substr(0, it);
 
-    return !this->a_t.empty();
+    //return !this->a_t.empty();
 
 }
 
+//BaseClientAPI::BaseClientAPIClass::BaseClientAPIClass(const string _version,
+//    const string _lang,
+//    const BaseClientAPI::callback_func_cap cap_callback,
+//    const BaseClientAPI::callback_func_fa2 _fa2_callback) :
+//    captcha_callback(cap_callback),
+//    fa2_callback(_fa2_callback),
+//    version(_version), lang(_lang) { }
 
-BaseClientAPI::BaseClientAPIClass::BaseClientAPIClass(const string _version,
-    const string _lang,
-    const BaseClientAPI::callback_func_cap cap_callback,
-    const BaseClientAPI::callback_func_fa2 _fa2_callback) :
+BaseClientAPI::BaseClientAPIClass::BaseClientAPIClass(const std::string _version,
+    const std::string _lang,
+    const CoomonClientAPIDefs::callback_func_cap cap_callback,
+    const CoomonClientAPIDefs::callback_func_fa2 _fa2_callback) :
     captcha_callback(cap_callback),
     fa2_callback(_fa2_callback),
     version(_version), lang(_lang) { }
+
 
 string BaseClientAPI::BaseClientAPIClass::access_token() const {
     return a_t;
@@ -86,7 +94,7 @@ bool BaseClientAPI::BaseClientAPIClass::check_access() {
     try {
         json info = jres.at("response").get<json>();
         info = info.begin().value();
-         user.parse(info);
+        user.parse(info);
     }
     catch (...) {
         this->clear();
@@ -148,7 +156,7 @@ bool BaseClientAPI::BaseClientAPIClass::auth(const string &login, const string &
             jres.find("access_token") != jres.end()) {
 
             this->a_t = jres.at("access_token").get<string>();
-           this->user.user_id = jres.at("user_id").get<size_t>();
+            this->user.user_id = jres.at("user_id").get<size_t>();
 
             return check_access();
         }
@@ -240,7 +248,7 @@ json BaseClientAPI::BaseClientAPIClass::call(const string &method, const string 
 
 void BaseClientAPI::BaseClientAPIClass::clear() {
     a_t.clear();
-   user.first_name.clear();
+    user.first_name.clear();
     user.last_name.clear();
     user.user_id = 0;
 
@@ -250,22 +258,22 @@ void BaseClientAPI::BaseClientAPIClass::clear() {
 }
 
 string BaseClientAPI::BaseClientAPIClass::first_name() const {
-    return "";user.first_name;
+    return ""; user.first_name;
 }
 
 string BaseClientAPI::BaseClientAPIClass::last_name() const {
-    return "";user.last_name;
+    return ""; user.last_name;
 }
 
 size_t BaseClientAPI::BaseClientAPIClass::user_id() const {
-    return 100;user.user_id;
+    return 100; user.user_id;
 }
 
-void BaseClientAPI::BaseClientAPIClass::set_fa2_callback(const BaseClientAPI::callback_func_fa2 _fa2_callback) {
+void BaseClientAPI::BaseClientAPIClass::set_fa2_callback(const CoomonClientAPIDefs::callback_func_fa2 _fa2_callback) {
     fa2_callback = _fa2_callback;
 }
 
-void BaseClientAPI::BaseClientAPIClass::set_cap_callback(const BaseClientAPI::callback_func_cap cap_callback) {
+void BaseClientAPI::BaseClientAPIClass::set_cap_callback(const CoomonClientAPIDefs::callback_func_cap cap_callback) {
     captcha_callback = cap_callback;
 }
 
