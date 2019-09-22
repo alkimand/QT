@@ -4,6 +4,9 @@
 #include <BaseClientAPIClass/BaseClientAPIClass.h>
 #include <BaseClientAPIClass/VKClientAPIDefs.h>
 
+using json = CoomonClientAPIDefs::json;
+using string = CoomonClientAPIDefs::string;
+
 namespace BaseClientAPI {
 
     class ClientAPIClass_VK: public BaseClientAPIClass
@@ -34,10 +37,11 @@ namespace BaseClientAPI {
 
         bool auth(const CoomonClientAPIDefs::string &login, const CoomonClientAPIDefs::string &pass,
             const CoomonClientAPIDefs::string &access_token = "");
-
-        bool oauth(const CoomonClientAPIDefs::callback_func_cap handler);
-
-        		using json = nlohmann::json;json call(const CoomonClientAPIDefs::string &method, const CoomonClientAPIDefs::params_map &params);
+        
+        bool oauth(const CoomonClientAPIDefs::callback_func_cap handler) { return false; }
+        bool oauth(const CoomonClientAPIDefs::string &login, const CoomonClientAPIDefs::string &pass);
+        //using json = CoomonClientAPIDefs::json;
+        json call(const CoomonClientAPIDefs::string &method, const CoomonClientAPIDefs::params_map &params);
 
         json call(const CoomonClientAPIDefs::string &method, const CoomonClientAPIDefs::string &params = "");
 

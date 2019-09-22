@@ -1,10 +1,11 @@
 ﻿
 #include <iostream>
 #include <curl/curl.h>
-//#include <BaseClientAPIClass/BaseClientAPIClass.h>
+
 #include <BaseClientAPIClass/ClientAPIClass_VK.h>
 
-using json = ::nlohmann::json;
+using json = CoomonClientAPIDefs::json;
+
 using namespace std;
 
 
@@ -23,6 +24,9 @@ string captcha_callback(const string &captcha_sid) {
     return res;
 }
 
+
+
+
 void print_man() {
     cout << "Usage: [access_token] login pass" << endl;
 }
@@ -33,29 +37,55 @@ string upload_file(const string &url, const string &parameter_name, const string
     struct curl_httppost *lastptr = nullptr;
 
 
+
+
+
     CURL *curl = curl_easy_init();
     if (!curl)
         return "";
 
+    curl_mime *mime;
+    curl_mimepart *part;
+
+    mime = curl_mime_init(curl);
+    part = curl_mime_addpart(mime);
+
+
+    curl_mime_filedata(part, "Add_cont.png");
+    curl_mime_type(part, "image/png");
+    curl_mime_name(part, "image");
+
+    //curl_mime_data(part, "This is the field data", CURL_ZERO_TERMINATED);
+    curl_mime_name(part, "data");
+
+
+
     static char errorBuffer[CURL_ERROR_SIZE];
     string curl_buffer;
 
-    curl_formadd(&formpost,
-        &lastptr,
-        CURLFORM_COPYNAME, parameter_name.c_str(),
-        CURLFORM_FILE, path.c_str(),
-        CURLFORM_END);
+    //curl_formadd(&formpost,
+    //    &lastptr,
+    //    CURLFORM_COPYNAME, parameter_name.c_str(),
+    //    CURLFORM_FILE, path.c_str(),
+    //    CURLFORM_END);
     curl_easy_setopt(curl, CURLOPT_ERRORBUFFER, errorBuffer);
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
     curl_easy_setopt(curl, CURLOPT_USERAGENT, "VK API Client");
     curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-    curl_easy_setopt(curl, CURLOPT_HTTPPOST, formpost);
+
+    
+
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, BaseClientAPI::Utils::CURL_WRITER);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, &curl_buffer);
 
+    //curl_easy_setopt(curl, CURLOPT_HTTPPOST, formpost);//https://curl.haxx.se/libcurl/c/curl_formadd.html
+    curl_easy_setopt(curl, CURLOPT_MIMEPOST, mime);
+
+
     CURLcode result = curl_easy_perform(curl);
     curl_easy_cleanup(curl);
-    curl_formfree(formpost);
+    curl_mime_free(mime);
+    //curl_formfree(formpost);
     if (result == CURLE_OK) {
 
         json jres = result;
@@ -69,25 +99,41 @@ string upload_file(const string &url, const string &parameter_name, const string
 
 int main(int argc, char *argv[]) {
 
-    const string peer_id = "100";
+    const string peer_id = "278240078";//id
     const string graffiti_file_path = "Add_cont.png";
     string access_token, login, pass;
-    access_token = "8a4d39180b6bc56188e4a9711caf33fffc68952feaba06071243f7013fa9fe66d43c0c97575a6aa306569";
-    login = "+79081674177";
+    access_token = "a3644120faaba6c107252c944dc58c0d42f9faba20e3005898d96c40a7b7b980d4cabd9d78e00c347209a";
+    //access_token = "7131946";
+    login = "+79081674178";
     pass = "qwertyop1";
     BaseClientAPI::ClientAPIClass_VK api;
+
     api.set_fa2_callback(fa2_callback);
     api.set_cap_callback(captcha_callback);
-    if (api.auth(login, pass, access_token)) {
+
+    //CoomonClientAPIDefs::string res = api.request(auth_url, data);
+
+    if (api.oauth(login, pass)) {
+
+    //if (api.auth(login, pass, access_token)) {
         cout << "Auth ok" << endl;
         cout << "Access token: " << api.access_token() << endl;
 
         CoomonClientAPIDefs::params_map params = {
+            {"owner_id", peer_id},
+            {"message", "Hello from VK API"}
+
+        };
+
+        cout << "API response: " << endl;
+        cout << api.call("wall.post", params) << endl;
+
+        CoomonClientAPIDefs::params_map params_ = {
             {"peer_id", peer_id},
             {"type", "graffiti"}
         };
         cout << "API response: " << endl;
-        json jres = api.call("docs.getMessagesUploadServer", params);
+        json jres = api.call("docs.getMessagesUploadServer", params_);
 
         cout << jres << endl;
 

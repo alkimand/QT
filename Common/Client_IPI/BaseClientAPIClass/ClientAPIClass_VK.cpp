@@ -1,32 +1,81 @@
 #include <BaseClientAPIClass/ClientAPIClass_VK.h>
+#include <BaseClientAPIClass/VKClientAPIDefs.h>
 
-#include <string>
-//using std::string;
+BaseClientAPI::ClientAPIClass_VK::ClientAPIClass_VK(const CoomonClientAPIDefs::string _version,
+    const CoomonClientAPIDefs::string _lang,
+    const CoomonClientAPIDefs::callback_func_cap cap_callback,
+    const CoomonClientAPIDefs::callback_func_fa2 _fa2_callback) 
+    :BaseClientAPIClass(_version, _lang, cap_callback, _fa2_callback) {
 
-//using ::std::string;
-//using json = ::nlohmann::json;
+    this->api_url = CoomonClientAPIDefs::string(VKMETHOD_URL);
+    this->app_id = "3140623";//"3140623";// android=2274003 //"7131946";
+    this->app_secret = "VeWdmVclDCtn6ihuP1nt";// android=hHbZxrka2uZ6jB1inYsH
+    this->scope = CoomonClientAPIDefs::string(VKGOUPSCOPE);//"offline,groups,messages,friends,audio,docs";
+    this->auth_url = CoomonClientAPIDefs::string(VKAUTHURL);//"https://oauth.vk.com/token?";
+}
 
 
+CoomonClientAPIDefs::string BaseClientAPI::ClientAPIClass_VK::access_token() const {
+    return a_t;
+}
 
-bool BaseClientAPI::ClientAPIClass_VK::oauth(const CoomonClientAPIDefs::callback_func_cap handler) {
-    if (handler == nullptr) {
+CoomonClientAPIDefs::string BaseClientAPI::ClientAPIClass_VK::last_error() const {
+    return l_error;
+}
+
+
+CoomonClientAPIDefs::string BaseClientAPI::ClientAPIClass_VK::get_captcha_key(const CoomonClientAPIDefs::string &captcha_sid) {
+    return (captcha_callback != nullptr) ? captcha_callback(captcha_sid) : "";
+}
+
+CoomonClientAPIDefs::string BaseClientAPI::ClientAPIClass_VK::get_fa2_code() {
+    return (fa2_callback != nullptr) ? fa2_callback() : "";
+}
+
+bool BaseClientAPI::ClientAPIClass_VK::check_access() {
+    CoomonClientAPIDefs::json jres = call(CoomonClientAPIDefs::string(VKMETHOD_USERSGET), "");
+    if (jres.find("error") != jres.end()) {
+        this->clear();
         return false;
     }
-    CoomonClientAPIDefs::string oauth_url = "https://oauth.vk.com/authorize?";
-    this->clear();
-    oauth_url = "https://oauth.vk.com/authorize?";
+    try {
+        CoomonClientAPIDefs::json info = jres.at("response").get<json>();
+        info = info.begin().value();
+         user.parse(info);
+    }
+    catch (...) {
+        this->clear();
+        return false;
+    }
 
+    return true;
+}
+
+//bool BaseClientAPI::ClientAPIClass_VK::oauth(const CoomonClientAPIDefs::callback_func_cap handler) {
+    bool BaseClientAPI::ClientAPIClass_VK::oauth(const CoomonClientAPIDefs::string &login, const CoomonClientAPIDefs::string &pass ) {
+    //if (handler == nullptr) {
+    //    return false;
+    //}
+
+    this->clear();
+
+    CoomonClientAPIDefs::string oauth_url = VKAUTHURL_2;
+   
     CoomonClientAPIDefs::params_map params = {
-        {"BaseClientAPIClass_id", app_id},
-        {"display", "page"},
-        {"redirect_uri", "https://oauth.vk.com/blank.html"},
-        {"scope", scope},
-        {"response_type", "token"},
-        {"v", version},
+        {"client_id", this->app_id},
+        {"display", "mobile"},//mobile page
+        {"redirect_uri", VKDEFAULTRDEDIRECTURL},
+        {"scope", this->scope},
+        {"response_type", "code"},//code//token
+        {"v", this->version},
+        {"state", "test"},
     };
 
-    oauth_url += Utils::data2str(params);
-    CoomonClientAPIDefs::string blank = handler(oauth_url);
+    //oauth_url += Utils::data2str(params);
+    CoomonClientAPIDefs::string data = BaseClientAPI::Utils::data2str(params);
+    CoomonClientAPIDefs::string blank = request(oauth_url, data);
+
+    //CoomonClientAPIDefs::string res = request(auth_url, data);
     if (blank.empty()) {
         return false;
     }
@@ -49,57 +98,6 @@ bool BaseClientAPI::ClientAPIClass_VK::oauth(const CoomonClientAPIDefs::callback
 
 }
 
-
-BaseClientAPI::ClientAPIClass_VK::ClientAPIClass_VK(const CoomonClientAPIDefs::string _version,
-    const CoomonClientAPIDefs::string _lang,
-    const CoomonClientAPIDefs::callback_func_cap cap_callback,
-    const CoomonClientAPIDefs::callback_func_fa2 _fa2_callback) 
-    :BaseClientAPIClass(_version, _lang, cap_callback, _fa2_callback) {
-
-    this->api_url = CoomonClientAPIDefs::string("https://api.vk.com/method/");
-    this->app_id = "7131946";//"3140623";// android=2274003
-    this->app_secret = "VeWdmVclDCtn6ihuP1nt";// android=hHbZxrka2uZ6jB1inYsH
-    this->scope = "offline,groups,messages,friends,audio";
-    this->auth_url = "https://oauth.vk.com/token?";
-}
-
-
-CoomonClientAPIDefs::string BaseClientAPI::ClientAPIClass_VK::access_token() const {
-    return a_t;
-}
-
-CoomonClientAPIDefs::string BaseClientAPI::ClientAPIClass_VK::last_error() const {
-    return l_error;
-}
-
-
-CoomonClientAPIDefs::string BaseClientAPI::ClientAPIClass_VK::get_captcha_key(const CoomonClientAPIDefs::string &captcha_sid) {
-    return (captcha_callback != nullptr) ? captcha_callback(captcha_sid) : "";
-}
-
-CoomonClientAPIDefs::string BaseClientAPI::ClientAPIClass_VK::get_fa2_code() {
-    return (fa2_callback != nullptr) ? fa2_callback() : "";
-}
-
-bool BaseClientAPI::ClientAPIClass_VK::check_access() {
-    CoomonClientAPIDefs::json jres = call("users.get", "");
-    if (jres.find("error") != jres.end()) {
-        this->clear();
-        return false;
-    }
-    try {
-        CoomonClientAPIDefs::json info = jres.at("response").get<json>();
-        info = info.begin().value();
-         user.parse(info);
-    }
-    catch (...) {
-        this->clear();
-        return false;
-    }
-
-    return true;
-}
-
 bool BaseClientAPI::ClientAPIClass_VK::auth(const CoomonClientAPIDefs::string &login, const CoomonClientAPIDefs::string &pass,
     const CoomonClientAPIDefs::string &access_token) {
     if (!access_token.empty()) {
@@ -115,9 +113,9 @@ bool BaseClientAPI::ClientAPIClass_VK::auth(const CoomonClientAPIDefs::string &l
     }
 
     CoomonClientAPIDefs::params_map params = {
-        {"BaseClientAPIClass_id", app_id},
+        {"client_id", app_id},
         {"grant_type", "password"},
-        {"BaseClientAPIClass_secret", app_secret},
+        {"client_secret", app_secret},
         {"scope", scope},
         {"username", login},
         {"password", pass},
@@ -244,7 +242,7 @@ CoomonClientAPIDefs::json BaseClientAPI::ClientAPIClass_VK::call(const CoomonCli
 
 void BaseClientAPI::ClientAPIClass_VK::clear() {
     a_t.clear();
-   user.first_name.clear();
+    user.first_name.clear();
     user.last_name.clear();
     user.user_id = 0;
 
@@ -286,9 +284,11 @@ CoomonClientAPIDefs::string BaseClientAPI::ClientAPIClass_VK::request(const Coom
     CURL *curl = curl_easy_init();
     if (curl) {
         curl_easy_setopt(curl, CURLOPT_ERRORBUFFER, errorBuffer);
+        //header('Content-Type: text/html; charset=utf-8');
         curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
         curl_easy_setopt(curl, CURLOPT_USERAGENT, "VK API BaseClientAPIClass");
         curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+        //curl_easy_setopt(curl, CURLOPT_RETURNTRANSFER, true);
         curl_easy_setopt(curl, CURLOPT_POSTFIELDS, data.c_str());
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, BaseClientAPI::Utils::CURL_WRITER);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &curl_buffer);
@@ -296,7 +296,7 @@ CoomonClientAPIDefs::string BaseClientAPI::ClientAPIClass_VK::request(const Coom
         CURLcode result = curl_easy_perform(curl);
         curl_easy_cleanup(curl);
         if (result == CURLE_OK) {
-            json test = result;
+            //json test = result;
             return curl_buffer;
 
         }
