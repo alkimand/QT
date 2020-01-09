@@ -44,7 +44,6 @@ private slots:
     void documentWasModified();
     void setProductType(const QString & );//ловить сигнал от FirstWidget и записывать в поле ProductType
     void test();
-    setasktemplate();
 
 private:
     bool okToContinue();

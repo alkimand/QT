@@ -3,34 +3,34 @@ MainFormWidth - 1687
 MainFormheight - 894
 
 //MainView 
-MainViewWidth - 1066
-MainViewColumn_1_Width - 107
-MainViewColumn_2_Width - 79
+MainViewWidth - 1072
+MainViewColumn_1_Width - 101
+MainViewColumn_2_Width - 71
 MainViewColumn_3_Width - 110
-MainViewColumn_4_Width - 80
-MainViewColumn_5_Width - 287
-MainViewColumn_6_Width - 123
+MainViewColumn_4_Width - 76
+MainViewColumn_5_Width - 318
+MainViewColumn_6_Width - 50
 
 //ContactsView 
-ContactsViewWidth - 540
-ContactsViewColumn_2_Width - 73
-ContactsViewColumn_3_Width - 36
+ContactsViewWidth - 552
+ContactsViewColumn_2_Width - 176
+ContactsViewColumn_3_Width - 35
 ContactsViewColumn_4_Width - 105
 ContactsViewColumn_5_Width - 42
-ContactsViewColumn_6_Width - 33
-ContactsViewColumn_7_Width - 100
-ContactsViewColumn_8_Width - 139
+ContactsViewColumn_6_Width - 32
+ContactsViewColumn_7_Width - 99
+ContactsViewColumn_8_Width - 61
 
 //VisitsView 
-VisitsViewWidth - 540
-VisitsViewColumn_2_Width - 130
+VisitsViewWidth - 552
+VisitsViewColumn_2_Width - 129
 VisitsViewColumn_3_Width - 199
-VisitsViewColumn_4_Width - 204
+VisitsViewColumn_4_Width - 203
 VisitsViewColumn_5_Width - 47
-VisitsViewColumn_6_Width - 294
+VisitsViewColumn_6_Width - 38
 
 //leftSplitter 
 leftSplitter_Width - 1090
 
 //rightSplitter 
-rightSplitter_Width - 564
+rightSplitter_Width - 570

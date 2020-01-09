@@ -108,7 +108,8 @@ Control_Widget::Control_Widget(QWidget *parent): GeneralToolWidget(parent)
 
 QString Control_Widget::getfilename()
 {
-
+QString temp;
+return temp;
 }
 
 

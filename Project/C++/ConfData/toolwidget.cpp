@@ -194,10 +194,7 @@ void ToolWidget::test()
     qDebug()<<" ToolWidget SLOT(test()";
 }
 
-ToolWidget::setasktemplate()
-{
 
-}
 
 bool ToolWidget::okToContinue()
 {
