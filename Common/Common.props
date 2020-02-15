@@ -12,6 +12,11 @@
     <ZlibPath>$(Base3rdPartyPath)zlib-1.2.8-vc14-x64\</ZlibPath>
     <CurlPath_x64>$(Base3rdpartyPath)libcurl-7.63.0-4-vc15-x64\</CurlPath_x64>
     <BaseClientAPIPath>$(BaseCommonFilesPath)Client_IPI\</BaseClientAPIPath>
+    <QTDIR>$(Base3rdpartyPath)qt_5_7_0_sse\</QTDIR>
+    <BuildPath>$(BaseRootPath)Project\Builds\$(SolutionName)\$(Configuration)\$(PlatformName)\</BuildPath>
+    <BaseCodePath>$(RemoteDebuggerWorkingDirectory)src\C++code\</BaseCodePath>
+    <HeadersPath>$(BaseCodePath)definitions</HeadersPath>
+    <DefinitionPath>$(BaseCodePath)headers</DefinitionPath>
   </PropertyGroup>
   <PropertyGroup />
   <ItemDefinitionGroup />
@@ -49,6 +54,21 @@
     </BuildMacro>
     <BuildMacro Include="BaseClientAPIPath">
       <Value>$(BaseClientAPIPath)</Value>
+    </BuildMacro>
+    <BuildMacro Include="QTDIR">
+      <Value>$(QTDIR)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BuildPath">
+      <Value>$(BuildPath)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BaseCodePath">
+      <Value>$(BaseCodePath)</Value>
+    </BuildMacro>
+    <BuildMacro Include="HeadersPath">
+      <Value>$(HeadersPath)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DefinitionPath">
+      <Value>$(DefinitionPath)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>
