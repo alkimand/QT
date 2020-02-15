@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <BaseRootPath>$(SolutionDir)..\..\</BaseRootPath>
+    <BaseCommonFilesPath>$(BaseRootPath)CommonFiles\</BaseCommonFilesPath>
+    <Base3rdpartyPath>$(BaseRootPath)3rdparty\</Base3rdpartyPath>
+    <CurlPath>$(Base3rdpartyPath)curl-7.51.0_ossl_1.0.1\</CurlPath>
+    <SSH2Path>$(Base3rdpartyPath)libssh2-1.8.0-vc14-x64\</SSH2Path>
+    <Nghttp2Path>$(Base3rdPartyPath)nghttp2-1.32.0-vc14-x64\</Nghttp2Path>
+    <OpenSSLPath>$(Base3rdPartyPath)openssl-1.0.2r-vc14-x64\</OpenSSLPath>
+    <ZlibPath>$(Base3rdPartyPath)zlib-1.2.8-vc14-x64\</ZlibPath>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemDefinitionGroup />
+  <ItemGroup>
+    <BuildMacro Include="BaseRootPath">
+      <Value>$(BaseRootPath)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BaseCommonFilesPath">
+      <Value>$(BaseCommonFilesPath)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="Base3rdpartyPath">
+      <Value>$(Base3rdpartyPath)</Value>
+    </BuildMacro>
+    <BuildMacro Include="CurlPath">
+      <Value>$(CurlPath)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="SSH2Path">
+      <Value>$(SSH2Path)</Value>
+    </BuildMacro>
+    <BuildMacro Include="Nghttp2Path">
+      <Value>$(Nghttp2Path)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="OpenSSLPath">
+      <Value>$(OpenSSLPath)</Value>
+    </BuildMacro>
+    <BuildMacro Include="ZlibPath">
+      <Value>$(ZlibPath)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+  </ItemGroup>
+</Project>
