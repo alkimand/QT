@@ -29,3 +29,5 @@ qrc_*.cpp
 *.stash
 *.exe
 \!moc!
+/Project/C++/Pr/*.user
+/Project/C++/Pr/debug
