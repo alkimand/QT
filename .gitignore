@@ -31,3 +31,6 @@ qrc_*.cpp
 \!moc!
 Makefile
 *Debug
+*%build%
+release
+Debug
