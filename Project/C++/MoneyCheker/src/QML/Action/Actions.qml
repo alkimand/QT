@@ -1,17 +1,19 @@
 import QtQuick 2.12
-import QtQuick.Controls 2.4
+import QtQuick.Controls 2.12
 import QtQml.Models 2.12
 //https://www.flaticon.com/search/5?word=search
 //https://findicons.com/search/paper-document/74
 //https://www.flaticon.com/most-downloaded
 Item
 {
-    //id: actionModel
+    property string toolBarIconPath: '../../images/ToolBarIcon/'
+    property string tableViewIconPath: '../../images/TableViewIcon/'
+
     property Action fileOpenAction :
         Action
     {
         id: fileOpenAction
-        icon.source: "../images/ToolBarIcon/fileopen.png"
+        icon.source: toolBarIconPath + 'fileopen.png'
         //shortcut : QKeySequence::Open)
         icon.name: "document-open"
         text: "Open"
@@ -28,7 +30,7 @@ Item
     //    property Action newAction:Action
     //    {
     //        id: newAction
-    //        icon.source: "../images/ToolBarIcon/filesave.png"
+    //        icon.source: "../../images/ToolBarIcon/filesave.png"
     //        //shortcut : QKeySequence::Open)
     //        icon.name: "document-new"
     //        text: "New"
@@ -42,7 +44,7 @@ Item
     property Action fileSaveAction:Action
     {
         id: fileSaveAction
-        icon.source: "../images/ToolBarIcon/filesave.png"
+        icon.source: toolBarIconPath + "filesave.png"
         //shortcut : QKeySequence::Open)
         icon.name: "document-save"
         text: "Save"
@@ -57,7 +59,7 @@ Item
     property Action fileSaveAsAction:Action
     {
         id: fileSaveAsAction
-        icon.source: "../images/ToolBarIcon/filesave.png"
+        icon.source: toolBarIconPath + "filesave.png"
         //shortcut : QKeySequence::Open)
         icon.name: "document-saveAs"
         text: "Save As..."
@@ -72,7 +74,7 @@ Item
     property Action downloadAction:Action
     {
         id: downloadSaveAction
-        icon.source: "../images/ToolBarIcon/download.png"
+        icon.source: toolBarIconPath + "download.png"
         //shortcut : QKeySequence::Open)
         icon.name: "document-download"
         text: "Download"
@@ -86,7 +88,7 @@ Item
     property Action addAction:Action
     {
         id: addAction
-        icon.source: "../images/ToolBarIcon/plus.png"
+        icon.source: toolBarIconPath + "plus.png"
         //shortcut : QKeySequence::Open)
         icon.name: "document-add"
         text: "Add"
@@ -101,7 +103,7 @@ Item
     property Action closeAction:Action
     {
         id: closeAction
-        icon.source: "../images/ToolBarIcon/close.png"
+        icon.source: toolBarIconPath + "close.png"
         //shortcut : QKeySequence::Open)
         icon.name: "document-close"
         text: "Close"
@@ -116,7 +118,7 @@ Item
     property Action closeAllButThisAction:Action
     {
         id: closeAllButThisAction
-        icon.source: "../images/ToolBarIcon/close.png"
+        icon.source: toolBarIconPath + "close.png"
         //shortcut : QKeySequence::Open)
         icon.name: "document-close All"
         text: "Close all but this"
@@ -129,7 +131,7 @@ Item
     property Action stopAction:Action
     {
         id: stopAction
-        icon.source: "../images/ToolBarIcon/stop.png"
+        icon.source: toolBarIconPath + "stop.png"
         //shortcut : QKeySequence::Open)
         icon.name: "document-Stop"
         text: "Stop"
@@ -144,7 +146,7 @@ Item
     property Action playAction:Action
     {
         id: playAction
-        icon.source: "../images/ToolBarIcon/play.png"
+        icon.source: toolBarIconPath + "play.png"
         //shortcut : QKeySequence::Open)
         icon.name: "document-start"
         text: "Start"
@@ -161,7 +163,7 @@ Item
     property Action pauseAction:Action
     {
         id: pauseAction
-        icon.source: "../images/ToolBarIcon/pause.png"
+        icon.source: toolBarIconPath + "pause.png"
         //shortcut : QKeySequence::Open)
         icon.name: "document-pause"
         text: "Pause"
@@ -177,7 +179,7 @@ Item
     property Action clearAction:Action
     {
         id: clearAction
-        icon.source: "../images/ToolBarIcon/erase.png"
+        icon.source: toolBarIconPath + "erase.png"
         //shortcut : QKeySequence::Open)
         icon.name: "document-clean"
         text: "Clean"
@@ -194,7 +196,7 @@ Item
     property Action searchAction:Action
     {
         id: searchAction
-        icon.source: "../images/ToolBarIcon/search.png"
+        icon.source: toolBarIconPath + "search.png"
         //shortcut : QKeySequence::Open)
         icon.name: "document-search"
         text: "Search"
@@ -209,7 +211,7 @@ Item
     property Action setupFilterAction:Action
     {
         id: setupFilterAction
-        icon.source: "../images/TableViewIcon/filterIcon.png"
+        icon.source: toolBarIconPath + "filterIcon.png"
         //shortcut : QKeySequence::Open)
         icon.name: "setup Filter"
         text: "Filters"
@@ -224,7 +226,7 @@ Item
     property Action markerAction:Action
     {
         id:  markerAction
-        icon.source: "../images/ToolBarIcon/marker.png"
+        icon.source: toolBarIconPath + "marker.png"
         //shortcut : QKeySequence::Open)
         icon.name: "document-search"
         text: "Marker"
@@ -239,7 +241,7 @@ Item
     property Action settingAction:Action
     {
         id: settingAction
-        icon.source: "../images/ToolBarIcon/setting.png"
+        icon.source: toolBarIconPath + "setting.png"
         //shortcut : QKeySequence::Open)
         icon.name: "setting"
         text: "Setting"
@@ -254,7 +256,7 @@ Item
     property Action renameTabAction:Action
     {
         id: renameTabAction
-        icon.source: "../images/ToolBarIcon/rename.png"
+        icon.source: toolBarIconPath + "rename.png"
         //icon.source: "../images/ToolBarIcon/rename.jpg"
         //shortcut : QKeySequence::Open)
         icon.name: "rename"
@@ -271,7 +273,7 @@ Item
     property Action openInExplorerAction:Action
     {
         id: openInExplorerAction
-        icon.source: "../images/ToolBarIcon/explorer.png"
+        icon.source: toolBarIconPath + "explorer.png"
         //shortcut : QKeySequence::Open)
         icon.name: "Open"
         text: "Open in Explorer"
@@ -287,7 +289,7 @@ Item
     property Action openDesktopServicesAction:Action
     {
         id: openDesktopServicesAction
-        icon.source: "../images/ToolBarIcon/explore.png"
+        icon.source: toolBarIconPath + "explore.png"
         //shortcut : QKeySequence::Open)
         icon.name: "Open"
         text: "Open in desktop services"
@@ -301,7 +303,7 @@ Item
     property Action removeColumnAction:Action
     {
         id: removeColumnAction
-        icon.source: "../images/ToolBarIcon/remove_column.png"
+        icon.source: toolBarIconPath + "remove_column.png"
         //shortcut : QKeySequence::Open)
         icon.name: "Open"
         text: "Remove column"
@@ -315,7 +317,7 @@ Item
     property Action restoreColumnAction:Action
     {
         id: restoreColumnAction
-        icon.source: "../images/ToolBarIcon/show_all_column.png"
+        icon.source: toolBarIconPath + "show_all_column.png"
         //shortcut : QKeySequence::Open)
         icon.name: "Open"
         text: "Show all columns"

@@ -13,10 +13,73 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+
+
+
+
+
 SOURCES += \
         main.cpp
 
-RESOURCES += qml.qrc
+RESOURCES += \
+    resources.qrc
+
+
+OTHER_FILES += \
+    main.qml \
+#Setting
+    src/QML/Setting/SettingData.qml \
+#Actions
+    src/QML/Action/Actions.qml \
+#ToolBar
+    src/QML/ToolBar/ToolBar.qml \
+    src/QML/ToolBar/CustomComboBox/CustomComboBox.qml \
+    src/QML/ToolBar/CustomToolButton/CustomToolButtonIconText.qml \
+    src/QML/ToolBar/CustomToolButton/CustomToolButtonIcon.qml \
+    src/QML/ToolBar/CustomToolButton/CustomToolButtonText.qml \
+    src/QML/ToolBar/CustomToolButton/ToolButtonLoader.qml \
+    src/QML/ToolBar/CustomToolButton/CustomToolButton.qml \
+#ColumnWidget
+    src/QML/ColumnWidget/ColumnWidget.qml \
+
+DISTFILES += \
+    src/images/ToolBarIcon/editcopy.png \
+    src/images/ToolBarIcon/editcopy.png \
+    src/images/ToolBarIcon/editcut.png \
+    src/images/ToolBarIcon/editpaste.png \
+    src/images/ToolBarIcon/editredo.png \
+    src/images/ToolBarIcon/editundo.png \
+    src/images/ToolBarIcon/exportpdf.png \
+    src/images/ToolBarIcon/filenew.png \
+    src/images/ToolBarIcon/fileopen.png \
+    src/images/ToolBarIcon/fileprint.png \
+    src/images/ToolBarIcon/filesave.png \
+    src/images/ToolBarIcon/qt-logo.png \
+    src/images/ToolBarIcon/textbold.png \
+    src/images/ToolBarIcon/textcenter.png \
+    src/images/ToolBarIcon/textitalic.png \
+    src/images/ToolBarIcon/textjustify.png \
+    src/images/ToolBarIcon/textleft.png \
+    src/images/ToolBarIcon/textright.png \
+    src/images/ToolBarIcon/textunder.png \
+    src/images/ToolBarIcon/zoomin.png \
+    src/images/ToolBarIcon/zoomout.png \
+    src/images/ToolBarIcon/setting.png \
+    src/images/ToolBarIcon/sony.png \
+    src/images/ToolBarIcon/marker.png \
+    src/images/ToolBarIcon/close.png \
+    src/images/TableViewIcon/filter.png \
+    src/images/TableViewIcon/filterAdd.png \
+    src/images/TableViewIcon/filterDelete.png \
+    src/images/TableViewIcon/search.png \
+    src/images/TableViewIcon/sort_ascending.png \
+    src/images/TableViewIcon/sort_descending.png \
+    src/images/ToolBarIcon/rename.jpg \
+    src/images/ToolBarIcon/explorer.png \
+
+
+
+
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
