@@ -41,6 +41,9 @@ OTHER_FILES += \
     src/QML/ToolBar/CustomToolButton/CustomToolButton.qml \
 #ColumnWidget
     src/QML/ColumnWidget/ColumnWidget.qml \
+#ButtonRow
+    src/QML/ColumnWidget/ItemLoader/ButtonRow/ButtonRow.qml\
+    src/QML/ColumnWidget/ItemLoader/ButtonRow/ButtonTemplate.qml\
 
 DISTFILES += \
     src/images/ToolBarIcon/editcopy.png \

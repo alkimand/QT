@@ -1,0 +1,42 @@
+import QtQuick 2.12
+import QtQuick.Controls 2.12
+//import "ButtonTemplate.qml"
+import "../../../Action"
+
+
+
+
+Item {
+    id:root
+    //Actions{id: actions} //toDo -> move as singleton
+    property Actions actions : parent.actions
+    //Actions{id: actions}
+
+    Column
+    {
+
+
+       spacing: settingData.columnSettings.spaceBetweenButton
+
+       ButtonTemplate { action: root.actions.fileOpenAction;}
+       ButtonTemplate { action: root.actions.downloadAction;}
+       ButtonTemplate { action: root.actions.downloadAction;}
+      // ButtonTemplate { actions: actions.buttonSettings;}
+
+
+      // ButtonTemplate { actions: actions.fileOpenAction}
+       //ButtonTemplate { actions: actions.downloadAction}
+       // ButtonTemplate{actions: root.actions}
+//        CustomToolButton{action: actions.downloadAction}
+
+    }
+
+   // Component.onCompleted: console.log(parent.test)
+    //Component.onCompleted: console.log("Button_1:" + root.actions.fileOpenAction.text)
+   // Component.onCompleted: console.log(actions.fileOpenAction.text)
+
+   // test
+}
+
+
+

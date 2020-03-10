@@ -154,7 +154,26 @@ Item {
         property string contextMenuBaseTextFontSetting: "Cambria Math"
         property int contextMenuBaseTextSizeSetting: 15
         property int contextMenuBaseIconSizeSetting: 25
-    }
+    } 
+	
+    property var buttonSettings: Item {
+		id:buttonSettings_
+        property color buttonIsNotSelectedColorSetting: "#009999"
+		property color buttonIsSelectedColorSetting: "#1D7373"
+        property int buttonHeight: 100
+		property int buttonWidth: 100
+	
+	}
+	
+	    property var columnSettings: Item {
+		id:columnSettings_
+        property color columnFreeSpaceColor: "#c4bebe"
+		//property color buttonIsSelectedColorSetting: "white"
+        property int titleBlockHeight: 100
+		property int spaceBetweenButton: 50
+	
+	}
+	
     enum ToolBarToolButtonState
     {
         TOOLBAR_TOOLBUTTON_ICON = 1,

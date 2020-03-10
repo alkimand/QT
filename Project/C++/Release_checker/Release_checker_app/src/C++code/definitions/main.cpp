@@ -3,6 +3,10 @@
 #include "fxtool.h"
 #include <QtWidgets/QApplication>
 #include <iostream>
+#include <QStringList>
+
+#include <QGuiApplication>
+#include <QQmlApplicationEngine>
 
 void printUsage() {
     std::cout << "Usage:\n\
@@ -16,13 +20,37 @@ int main(int argc, char *argv[]) {
             0;
     }
    // QCoreApplication::addLibraryPath("./");
-    QApplication a(argc, argv);
-    //a.addLibraryPath("./");
-    //QCoreApplication::addLibraryPath("./");
-    FXTool w;
-    w.show(); 
-    return a.exec();
+    //QApplication a(argc, argv);
+    ////a.addLibraryPath("./");
+    ////QCoreApplication::addLibraryPath("./");
+    //FXTool w;
+    //w.show(); 
+    //return a.exec();
     //std::cout << "Hello World!\n"; 
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+
+    QGuiApplication app(argc, argv);
+
+    QQmlApplicationEngine engine;
+    //const QUrl url(QStringLiteral("qrc:/main.qml"));
+    //QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
+    //    &app, [url](QObject *obj, const QUrl &objUrl) {
+    //    if (!obj && url == objUrl)
+    //        QCoreApplication::exit(-1);
+    //}, Qt::QueuedConnection);
+    //engine.load(url);
+
+    return app.exec();
+    //QQmlContext *ctxt = view.rootContext();
+    //ctxt->setContextProperty("myModel", QVariant::fromValue(dataList));
+    ////![0]
+
+    //view.setSource(QUrl("qrc:view.qml"));
+    //view.show();
+
+    return app.exec();
+
+
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"

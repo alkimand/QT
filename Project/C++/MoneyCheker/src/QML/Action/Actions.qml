@@ -9,6 +9,21 @@ Item
     property string toolBarIconPath: '../../images/ToolBarIcon/'
     property string tableViewIconPath: '../../images/TableViewIcon/'
 
+
+    property var buttonSettings: Item {
+        id: fileOpenAction_
+
+        //property var icon:""
+        //property string icon.source: toolBarIconPath + 'fileopen.png'
+        //shortcut : QKeySequence::Open)
+        property string source:  toolBarIconPath + 'fileopen.png'
+        //text: "Open"
+	
+	}
+
+
+
+
     property Action fileOpenAction :
         Action
     {
