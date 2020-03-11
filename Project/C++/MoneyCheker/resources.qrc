@@ -13,6 +13,7 @@
         <file>src/QML/ColumnWidget/ColumnWidget.qml</file>
 		<file>src/QML/ColumnWidget/ItemLoader/ButtonRow/ButtonRow.qml</file>
 		<file>src/QML/ColumnWidget/ItemLoader/ButtonRow/ButtonTemplate.qml</file>
+        <file>src/QML/StackView/StackView.qml</file>
         <file>src/images/ToolBarIcon/editcopy.png</file>
         <file>src/images/ToolBarIcon/editcut.png</file>
         <file>src/images/ToolBarIcon/editpaste.png</file>

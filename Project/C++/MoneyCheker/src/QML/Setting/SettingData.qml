@@ -171,7 +171,7 @@ Item {
 		//property color buttonIsSelectedColorSetting: "white"
         property int titleBlockHeight: 100
 		property int spaceBetweenButton: 50
-	
+
 	}
 	
     enum ToolBarToolButtonState
@@ -180,6 +180,15 @@ Item {
         TOOLBAR_TOOLBUTTON_TEXT = 2,
         TOOLBAR_TOOLBUTTON_ICON_TEXT = 3
     }
+
+    enum ColumnWidgetType {
+        EMPTY_SPACE = 1,
+        BUTTON_SPACE = 2,
+        CALCULATOR_SPACE = 3,
+        MORTAGE_SPACE = 4
+    }
+
+
 
     function getAppPropertyGlobal()
     {

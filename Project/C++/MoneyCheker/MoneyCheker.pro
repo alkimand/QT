@@ -44,6 +44,8 @@ OTHER_FILES += \
 #ButtonRow
     src/QML/ColumnWidget/ItemLoader/ButtonRow/ButtonRow.qml\
     src/QML/ColumnWidget/ItemLoader/ButtonRow/ButtonTemplate.qml\
+#StackView
+    src/QML/StackView/StackView.qml\
 
 DISTFILES += \
     src/images/ToolBarIcon/editcopy.png \
