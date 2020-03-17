@@ -46,7 +46,7 @@ Item {
             color:settingData.buttonSettings.buttonIsNotSelectedColorSetting
             anchors.fill:parent
             //border.width: 1
-            radius: 10
+            radius: settingData.buttonSettings.buttonRadius
             //anchors.margins: 1
 
             //property string sourceIconPath: parent.sourceIconPathLoader
@@ -58,7 +58,7 @@ Item {
                 // fillMode: Image.Stretch
                 anchors.top: parent.top
                 anchors.fill: parent
-                anchors.margins: 10 // Leaving space between image and borders (optional)
+                anchors.margins: settingData.buttonSettings.buttonMargin // Leaving space between image and borders (optional)
             }
         }
 
@@ -84,7 +84,8 @@ Item {
             {
                 //control.action.triggered()
                 buttonReact.color = settingData.buttonSettings.buttonIsSelectedColorSetting
-                console.log("Button cliked")
+                action.trigger()
+                //console.log("Button cliked")
             }
         }
 

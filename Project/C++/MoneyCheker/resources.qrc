@@ -13,7 +13,7 @@
         <file>src/QML/ColumnWidget/ColumnWidget.qml</file>
 		<file>src/QML/ColumnWidget/ItemLoader/ButtonRow/ButtonRow.qml</file>
 		<file>src/QML/ColumnWidget/ItemLoader/ButtonRow/ButtonTemplate.qml</file>
-        <file>src/QML/StackView/StackView.qml</file>
+        <file>src/QML/StackView/AppContentBox.qml</file>
         <file>src/images/ToolBarIcon/editcopy.png</file>
         <file>src/images/ToolBarIcon/editcut.png</file>
         <file>src/images/ToolBarIcon/editpaste.png</file>
@@ -60,5 +60,9 @@
         <file>src/images/ToolBarIcon/explore.png</file>
         <file>src/images/ToolBarIcon/remove_column.png</file>
         <file>src/images/ToolBarIcon/show_all_column.png</file>
+        <file>src/images/AppButton/calculator.png</file>
+        <file>src/images/AppButton/percent.png</file>
+        <file>src/images/AppButton/setting.png</file>
+        <file>src/images/AppButton/star_favorite.png</file>
     </qresource>
 </RCC>

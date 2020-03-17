@@ -158,19 +158,27 @@ Item {
 	
     property var buttonSettings: Item {
 		id:buttonSettings_
-        property color buttonIsNotSelectedColorSetting: "#009999"
-		property color buttonIsSelectedColorSetting: "#1D7373"
-        property int buttonHeight: 100
-		property int buttonWidth: 100
+        property color buttonIsNotSelectedColorSetting: "#f1f1f1"
+		property color buttonIsSelectedColorSetting: "#ffffff"
+        property int buttonHeight: 80
+		property int buttonWidth: 80 //not all place knows to take this value 
+        property int buttonRadius: 10
+        property int buttonMargin: 18 // Leaving space between image and borders (optional)
+	
+	}
+    
+        property var appContentWidgetSettings: Item {
+
+        property int contentCalculatorPageWidth: 70 // Leaving space between image and borders (optional)
 	
 	}
 	
 	    property var columnSettings: Item {
 		id:columnSettings_
-        property color columnFreeSpaceColor: "#c4bebe"
+        property color columnFreeSpaceColor: "#dfdfdf"
 		//property color buttonIsSelectedColorSetting: "white"
-        property int titleBlockHeight: 100
-		property int spaceBetweenButton: 50
+        property int titleBlockHeight: 70 //height of title text block like "calculator"
+		property int spaceBetweenButton: 20
 
 	}
 	

@@ -8,8 +8,7 @@ import "src/QML/Setting"
 import "./src/QML/Action"
 import "src/QML/ToolBar"
 import "src/QML/ColumnWidget"
-
-
+import "src/QML/StackView"
 
 ApplicationWindow {
     id:mainwindow
@@ -31,34 +30,18 @@ ApplicationWindow {
         title:""
         columnWidgetType: SettingData.ColumnWidgetType.EMPTY_SPACE
         //columnWidth:50
-        width: 25;
+        width: 20;
         actions: mainwindow.actions
     }
-
 
     ColumnWidget {
         id:column_2
         anchors.left: column_1.right
-        title:qsTr("")
+        title:""
         columnWidgetType: SettingData.ColumnWidgetType.BUTTON_SPACE
-        //columnWidth:100
-        width: 100;
+        width: settingData.buttonSettings.buttonWidth;
         actions: mainwindow.actions
     }
-
-
-//    Rectangle {
-//        id: rect1;
-//        color: "red"
-//        width: 200; height: 80
-//    }
-
-//    Rectangle {
-//        id: rect2;
-//        anchors.left: rect1.right; anchors.leftMargin: 5;
-//        color: "steelblue"
-//        y: 100; width: 80; height: 80
-//    }
 
     ColumnWidget {
         id:column_3
@@ -66,8 +49,14 @@ ApplicationWindow {
         title:""
         columnWidgetType: SettingData.ColumnWidgetType.EMPTY_SPACE
         //columnWidth:50
-        width: 50;
+        width: 40;
         actions: mainwindow.actions
+    }
+
+    AppContentBox {
+        id:appContentBox
+        anchors.left: column_3.right
+        //anchors.right: column_3.left
     }
 
 

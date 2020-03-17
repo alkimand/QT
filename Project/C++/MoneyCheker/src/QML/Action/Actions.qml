@@ -8,6 +8,7 @@ Item
 {
     property string toolBarIconPath: '../../images/ToolBarIcon/'
     property string tableViewIconPath: '../../images/TableViewIcon/'
+    property string appButtonIconPath: '../../images/AppButton/'
 
 
     property var buttonSettings: Item {
@@ -18,10 +19,88 @@ Item
         //shortcut : QKeySequence::Open)
         property string source:  toolBarIconPath + 'fileopen.png'
         //text: "Open"
-	
-	}
+
+    }
 
 
+    property Action mainButtonCalculate :
+        Action
+    {
+        //id: fileOpenAction
+        icon.source: appButtonIconPath + 'calculator.png'
+        //shortcut : QKeySequence::Open)
+        icon.name: "calculate"
+        text: "Calculate"
+
+        onTriggered:
+        {
+            //fileDialog.selectExisting = true
+            //fileDialog.open()
+            //tabView.addTextComponent()
+            console.log("mainButtonCalculate")
+
+        }
+    }
+
+
+    property Action mainButtonFavorite :
+        Action
+    {
+        //id: fileOpenAction
+        icon.source: appButtonIconPath + 'star_favorite.png'
+        //shortcut : QKeySequence::Open)
+        icon.name: "Favorite"
+        text: "Favorite"
+
+        onTriggered:
+        {
+            //fileDialog.selectExisting = true
+            //fileDialog.open()
+            //tabView.addTextComponent()
+            console.log("mainButtonFavorite")
+
+        }
+    }
+
+
+    property Action mainButtonPercent :
+        Action
+    {
+        //id: fileOpenAction
+        icon.source: appButtonIconPath + 'percent.png'
+        //shortcut : QKeySequence::Open)
+        icon.name: "percent"
+        text: "percent"
+
+        onTriggered:
+        {
+            //fileDialog.selectExisting = true
+            //fileDialog.open()
+            //tabView.addTextComponent()
+            console.log("mainButtonPercent")
+
+        }
+    }
+
+
+    property Action mainButtonSetting :
+        Action
+    {
+        //id: fileOpenAction
+        icon.source: appButtonIconPath + 'setting.png'
+        //shortcut : QKeySequence::Open)
+        icon.name: "Setting"
+        text: "Setting"
+
+        onTriggered:
+        {
+            //fileDialog.selectExisting = true
+            //fileDialog.open()
+            //tabView.addTextComponent()
+            console.log("mainButtonSetting")
+
+        }
+    }
 
 
     property Action fileOpenAction :
@@ -66,7 +145,7 @@ Item
 
         onTriggered:
         {
-           //console.log("fileSaveAction")
+            //console.log("fileSaveAction")
             tabView.save()
         }
     }
@@ -201,7 +280,7 @@ Item
 
         onTriggered:
         {
-           console.log("Action clearAction")
+            console.log("Action clearAction")
             tabView.clearDataPool()
             //tabView.setStatus(4)
             //fileDialog.open()

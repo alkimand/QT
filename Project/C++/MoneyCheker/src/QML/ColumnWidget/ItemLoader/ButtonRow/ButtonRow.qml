@@ -18,9 +18,10 @@ Item {
 
        spacing: settingData.columnSettings.spaceBetweenButton
 
-       ButtonTemplate { action: root.actions.fileOpenAction;}
-       ButtonTemplate { action: root.actions.downloadAction;}
-       ButtonTemplate { action: root.actions.downloadAction;}
+       ButtonTemplate { action: root.actions.mainButtonCalculate;}
+       ButtonTemplate { action: root.actions.mainButtonFavorite;}
+       ButtonTemplate { action: root.actions.mainButtonPercent;}
+       ButtonTemplate { action: root.actions.mainButtonSetting;}
       // ButtonTemplate { actions: actions.buttonSettings;}
 
 

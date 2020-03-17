@@ -21,74 +21,37 @@ Item {
     property string title//:text_.text
     //property int columnWidth//:text_.text
     //property int titleBlockHeight :200//:text_.text
+
     property Actions actions
     property int columnWidgetType
-
+    property color rootReactClr: rootReact.color
     anchors.top: parent.top
     anchors.bottom: parent.bottom
 
-    Rectangle{
+    Rectangle {
         id: rootReact
         color: settingData.columnSettings.columnFreeSpaceColor
-        anchors.top: parent.top
+        anchors.top: root.top
+        anchors.left: root.left
         anchors.bottom: parent.bottom
-
-        // anchors.bottom:parent.bottom
-        //width: childrenRect.width
-        //height: childrenRect.height
-
-
-        //width: columnWidth
         width: parent.width
-        //height: text_.height + loader_.height
-        //color: "red"
-        border.color: "black"
-        border.width: 2
+        border.color: "yellow"
+        border.width: 1
         //radius: 0
         //width: 240
 
         Text {
             id:text_
             anchors.top: rootReact.top
+            anchors.left: rootReact.left
             height: settingData.columnSettings.titleBlockHeight
             font.family: "Helvetica"
             font.pointSize: 20
             color: "black"
-            text:title
+            text: title
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignVCenter
         }
-
-
-        //        Item {
-        //            id:root_
-        //            //Actions{id: actions} //toDo -> move as singleton
-        //            property Actions actions
-        //            //Actions{id: actions}
-
-        //            Column
-        //            {
-
-
-        //               spacing: settingData.columnSettings.spaceBetweenButton
-
-        //               ButtonTemplate { action: root.actions.fileOpenAction;}
-        //              // ButtonTemplate { actions: actions.buttonSettings;}
-
-
-        //              // ButtonTemplate { actions: actions.fileOpenAction}
-        //               //ButtonTemplate { actions: actions.downloadAction}
-        //               // ButtonTemplate{actions: root.actions}
-        //        //        CustomToolButton{action: actions.downloadAction}
-
-        //            }
-        //        }
-
-
-
-
-
-
 
         Loader
         {
@@ -105,17 +68,6 @@ Item {
             //visible: false
 
             //Component.onCompleted: console.log("loader_:" + loader_.actions.fileOpenAction.text)
-
-
-
-
-
-
-
-
-
-
-
 
 
             //property string type: "NONE"
@@ -137,9 +89,17 @@ Item {
                     source= ""
                     break
                 case SettingData.ColumnWidgetType.BUTTON_SPACE :
-                    console.log("BUTTON_SPACE")
+                    console.log("BUTTON_SPACE");
+                    source= "../ColumnWidget/ItemLoader/ButtonRow/ButtonRow.qml";
+                    break;
+
+                case SettingData.ColumnWidgetType.CALCULATOR_SPACE :
+                    console.log("CALCULATOR_SPACE");
+                    root.width = settingData.appContentWidgetSettings.contentCalculatorPageWidth;
                     source= "../ColumnWidget/ItemLoader/ButtonRow/ButtonRow.qml"
-                    break
+                    break;
+
+
                 }
                 //  tabView.getTab(contexMenuIndex).title = tabView.getTab(contexMenuIndex).title + ".txt"
             }

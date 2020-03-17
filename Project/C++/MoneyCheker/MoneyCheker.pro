@@ -45,9 +45,11 @@ OTHER_FILES += \
     src/QML/ColumnWidget/ItemLoader/ButtonRow/ButtonRow.qml\
     src/QML/ColumnWidget/ItemLoader/ButtonRow/ButtonTemplate.qml\
 #StackView
-    src/QML/StackView/StackView.qml\
+    src/QML/StackView/AppContentBox.qml\
+
 
 DISTFILES += \
+    src/QML/StackView/AppContentBox.qml \
     src/images/ToolBarIcon/editcopy.png \
     src/images/ToolBarIcon/editcopy.png \
     src/images/ToolBarIcon/editcut.png \
@@ -81,7 +83,10 @@ DISTFILES += \
     src/images/TableViewIcon/sort_descending.png \
     src/images/ToolBarIcon/rename.jpg \
     src/images/ToolBarIcon/explorer.png \
-
+    src/images/AppButton/calculator.png \
+    src/images/AppButton/percent.png \
+    src/images/AppButton/setting.png \
+    src/images/AppButton/star_favorite.png \
 
 
 
