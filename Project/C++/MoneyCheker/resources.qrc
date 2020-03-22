@@ -9,11 +9,15 @@
         <file>src/QML/ToolBar/CustomToolButton/CustomToolButtonText.qml</file>
         <file>src/QML/ToolBar/CustomToolButton/ToolButtonLoader.qml</file>
         <file>src/QML/ToolBar/CustomComboBox/CustomComboBox.qml</file>
+		<file>src/QML/ColumnWidget/ItemLoader/CalculatorArea/CalculatorArea.qml</file>
         <file>src/QML/ToolBar/ToolBar.qml</file>
         <file>src/QML/ColumnWidget/ColumnWidget.qml</file>
 		<file>src/QML/ColumnWidget/ItemLoader/ButtonRow/ButtonRow.qml</file>
 		<file>src/QML/ColumnWidget/ItemLoader/ButtonRow/ButtonTemplate.qml</file>
         <file>src/QML/StackView/AppContentBox.qml</file>
+		<file>src/QML/StackView/Pages/CalkPage.qml</file>
+		<file>src/QML/CommonElements/TabButton/TabButton.qml</file>
+		<file>src/QML/CommonElements/TabButton/TabButtonTemplate.qml</file>
         <file>src/images/ToolBarIcon/editcopy.png</file>
         <file>src/images/ToolBarIcon/editcut.png</file>
         <file>src/images/ToolBarIcon/editpaste.png</file>

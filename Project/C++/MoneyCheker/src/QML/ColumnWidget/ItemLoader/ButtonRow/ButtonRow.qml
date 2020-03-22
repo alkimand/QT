@@ -22,14 +22,6 @@ Item {
        ButtonTemplate { action: root.actions.mainButtonFavorite;}
        ButtonTemplate { action: root.actions.mainButtonPercent;}
        ButtonTemplate { action: root.actions.mainButtonSetting;}
-      // ButtonTemplate { actions: actions.buttonSettings;}
-
-
-      // ButtonTemplate { actions: actions.fileOpenAction}
-       //ButtonTemplate { actions: actions.downloadAction}
-       // ButtonTemplate{actions: root.actions}
-//        CustomToolButton{action: actions.downloadAction}
-
     }
 
    // Component.onCompleted: console.log(parent.test)

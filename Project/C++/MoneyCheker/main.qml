@@ -2,7 +2,7 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
-
+import BorderRadiusWidget.qml 1.0
 //files
 import "src/QML/Setting"
 import "./src/QML/Action"
@@ -56,8 +56,27 @@ ApplicationWindow {
     AppContentBox {
         id:appContentBox
         anchors.left: column_3.right
+        anchors.right: parent.right
+       // anchors.right: mainwindow.right
+
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
         //anchors.right: column_3.left
     }
+
+//    Rectangle {
+//        id: rootReact
+//        color: "red"
+//       // anchors.top: mainwindow.top
+//        anchors.right: parent.right
+//        anchors.bottom: parent.bottom
+//        width: 25
+//       // anchors.top: mainViewItem.top
+//       // anchors.bottom: mainViewItem.bottom
+//        height:10
+//        border.color: "yellow"
+//        border.width: 1
+//    }
 
 
     //menuBar: MenuBar{id:mainMenuBar}

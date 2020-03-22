@@ -87,18 +87,28 @@ Item {
                 case SettingData.ColumnWidgetType.EMPTY_SPACE :
                     console.log("EMPTY_SPACE")
                     source= ""
+                    text_.text=""
                     break
+
                 case SettingData.ColumnWidgetType.BUTTON_SPACE :
                     console.log("BUTTON_SPACE");
                     source= "../ColumnWidget/ItemLoader/ButtonRow/ButtonRow.qml";
+                    text_.text=""
                     break;
 
                 case SettingData.ColumnWidgetType.CALCULATOR_SPACE :
                     console.log("CALCULATOR_SPACE");
                     root.width = settingData.appContentWidgetSettings.contentCalculatorPageWidth;
-                    source= "../ColumnWidget/ItemLoader/ButtonRow/ButtonRow.qml"
+                    source= "../ColumnWidget/ItemLoader/CalculatorArea/CalculatorArea.qml"
+                    text_.text=qsTr("Calculator")
                     break;
 
+                case SettingData.ColumnWidgetType.MORTAGE_SPACE :
+                    console.log("MORTAGE_SPACE");
+                    //root.width = settingData.appContentWidgetSettings.contentCalculatorPageWidth;
+                    source= "../ColumnWidget/ItemLoader/ButtonRow/ButtonRow.qml"
+                    text_.text=qsTr("Mortage")
+                    break;
 
                 }
                 //  tabView.getTab(contexMenuIndex).title = tabView.getTab(contexMenuIndex).title + ".txt"

@@ -14,12 +14,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 
-
+INCLUDEPATH += "src/C++code/QMLCustomClasses/BorderRadiusWidget/" \
 
 
 
 SOURCES += \
-        main.cpp
+        main.cpp \
+        src/C++code/QMLCustomClasses/BorderRadiusWidget/borderradiuswidget.cpp
 
 RESOURCES += \
     resources.qrc
@@ -41,12 +42,16 @@ OTHER_FILES += \
     src/QML/ToolBar/CustomToolButton/CustomToolButton.qml \
 #ColumnWidget
     src/QML/ColumnWidget/ColumnWidget.qml \
+    src/QML/ColumnWidget/ItemLoader/CalculatorArea/CalculatorArea.qml\
 #ButtonRow
     src/QML/ColumnWidget/ItemLoader/ButtonRow/ButtonRow.qml\
     src/QML/ColumnWidget/ItemLoader/ButtonRow/ButtonTemplate.qml\
 #StackView
     src/QML/StackView/AppContentBox.qml\
-
+    src/QML/StackView/Pages/CalkPage.qml\
+#CommonElements
+src/QML/CommonElements/TabButton/TabButton.qml\
+src/QML/CommonElements/TabButton/TabButtonTemplate.qml\
 
 DISTFILES += \
     src/QML/StackView/AppContentBox.qml \
@@ -101,3 +106,6 @@ QML_DESIGNER_IMPORT_PATH =
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+HEADERS += \
+    src/C++code/QMLCustomClasses/BorderRadiusWidget/borderradiuswidget.h

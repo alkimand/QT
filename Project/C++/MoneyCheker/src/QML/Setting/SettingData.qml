@@ -167,9 +167,14 @@ Item {
 	
 	}
     
-        property var appContentWidgetSettings: Item {
-
-        property int contentCalculatorPageWidth: 70 // Leaving space between image and borders (optional)
+    property var appContentWidgetSettings: Item {// Leaving space between image and borders (optional)
+		property int contentCalculatorPageWidth: 400 
+        property int contentCalculatoButtonWidth: 200 // one button width
+		property int borderRadius: 25
+        property color buttonBackgroundColor : "#ffffff"
+		property int buttonHeight: 100
+        //property int contentMoPageWidth: 70
+		
 	
 	}
 	

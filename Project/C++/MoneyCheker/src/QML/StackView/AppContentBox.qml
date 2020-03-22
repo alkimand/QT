@@ -18,69 +18,24 @@ import QtQuick.Controls 2.12
 import "../ColumnWidget"
 import "../Setting"
 import "../Action"
+import "../StackView/Pages"
 
 
 Item{
     id:root
 
-    anchors.top: parent.top
-    anchors.bottom: parent.bottom
-
     StackView {
         id: stack
         initialItem: mainView
+
         anchors.left: parent.left
-        anchors.top: root.top
-        anchors.bottom: root.bottom
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+       // Component.onCompleted: stack.push(mainView_)
 
     }
-
-    Component {
-        id: mainView
-
-        Item {
-            id:mainViewItem
-            anchors.fill: parent
-            //anchors.left: stack.left
-
-            ColumnWidget {
-
-                id:column_1
-                //anchors.left: mainViewItem.left
-                width:100
-                //anchors.left: column_1.right
-                title:qsTr("Calculator")
-                columnWidgetType: SettingData.ColumnWidgetType.BUTTON_SPACE
-                //columnWidth:100
-                //width: settingData.appContentWidgetSettings.contentCalculatorPageWidth;
-                // rootReactClr:"red"
-                actions: mainwindow.actions
-               // Component.onCompleted: console.log(column_1.rootReactClr)
-            }
-
-//            ColumnWidget {
-//                id: column_2
-//                anchors.left: column_1.left
-//                title:""
-//                columnWidgetType: SettingData.ColumnWidgetType.EMPTY_SPACE
-//                //columnWidth:50
-//                width: 10;
-//                rootReactClr:"red"
-//                actions: mainwindow.actions
-//            }
-
-            Rectangle {
-                id: rootReact
-                color: "red"
-               // anchors.top: mainViewItem.top
-                anchors.left: column_2.left
-                //anchors.bottom: mainViewItem.bottom
-                width: 25
-                height:10
-                border.color: "yellow"
-                border.width: 1
-            }
-        }
-    }
+    CalkPage{id:mainView }
+    //CalkPage{id:mainView_ }
 
 }
