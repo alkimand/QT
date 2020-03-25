@@ -4,32 +4,37 @@ import QtQuick.Controls 2.12
 //import "ButtonTemplate.qml"
 import "../../../Action"
 import "../../../CommonElements/TabButton"
+import "../../../Setting"
 
 
 
 Item {
     id:root
     property Actions actions : parent.actions
-   //
-   // anchors.fill:parent
-//    Column
-//    {
-//ButtonTemplate { action: root.actions.mainButtonCalculate;}
-//    Rectangle{
-//       // anchors.left:parent.left
-//        //anchors.right:parent.right
-//        //anchors.top: parent.top
-//        color:"red"
-//        height:40
-//        weight:10
 
-//    }
+    Connections {
+           target: button_1
+           onActivateButton: {
+               console.log("button_1 Connections+")
+               button_1.isActive=true;
+               button_2.isActive=false;
+               root.update();
+           }
+       }
 
-//    }
+    Connections {
+           target: button_2
+           onActivateButton: {
+               console.log("button_2 Connections+")
+               button_1.isActive=false;
+               button_2.isActive=true;
+               root.update();
+           }
+       }
 
-  //  Column
-   // {
-//
+
+
+
     TabButton{
         id:button_1
         anchors.left:parent.left
@@ -40,7 +45,8 @@ Item {
         activeColor: settingData.buttonSettings.buttonIsSelectedColorSetting
         disactiveColor: settingData.buttonSettings.buttonIsNotSelectedColorSetting
         backgroundColor:settingData.columnSettings.columnFreeSpaceColor
-        isActive:true
+        buttonTupe: SettingData.ButtonType.FIRST_BUTTON_TYPE
+       // isActive:true
     }
 
     TabButton{
@@ -53,7 +59,14 @@ Item {
         activeColor: settingData.buttonSettings.buttonIsSelectedColorSetting
         disactiveColor: settingData.buttonSettings.buttonIsNotSelectedColorSetting
         backgroundColor:settingData.columnSettings.columnFreeSpaceColor
-        isActive:false
+        buttonTupe: SettingData.ButtonType.LAST_BUTTON_TYPE
+
+        //isActive:false
+    }
+
+    function update(){
+        button_1.update();
+        button_2.update();
     }
 
 

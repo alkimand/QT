@@ -200,6 +200,12 @@ Item {
         CALCULATOR_SPACE = 3,
         MORTAGE_SPACE = 4
     }
+	
+	enum ButtonType {
+        FIRST_BUTTON_TYPE = 1,
+        MIDLE_BUTTON_TYPE = 2,
+        LAST_BUTTON_TYPE = 3
+    }
 
 
 

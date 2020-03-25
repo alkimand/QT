@@ -9,7 +9,7 @@
 class BorderRadiusWidget: public QQuickItem
 {
     Q_OBJECT
-    Q_PROPERTY(QColor activeButtonColor READ activeButtonColor WRITE setActiveButtonColor)// NOTIFY colorChanged)
+    Q_PROPERTY(QColor activeButtonColor READ activeButtonColor WRITE setActiveButtonColor NOTIFY ActiveButtonColorChanged)
     Q_PROPERTY(QColor disactiveButtonColor READ disactiveButtonColor WRITE setDisactiveButtonColor)// NOTIFY colorChanged)
     Q_PROPERTY(int radius READ radius WRITE setRadius)// NOTIFY colorChanged)
 public:
@@ -39,11 +39,11 @@ private:
     bool m_needUpdate;
 
  private:
-    QSGGeometryNode* m_borderActiveNode;
+    QSGGeometryNode* m_CircleNode = nullptr;
     void drawPartOfCircle(const int  &startAngle, const int &finishAngle, QSGGeometry &geometry);
 
 signals:
-    void colorChanged();
+    void ActiveButtonColorChanged();
 };
 
 #endif // BORDERRADIUSWIDGET_H

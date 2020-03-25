@@ -6,6 +6,7 @@
 
 //https://evileg.com/ru/post/197/
 //https://evileg.com/ru/post/296/
+//https://riptutorial.com/ru/qml/example/22330/%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B8%D1%85-%D1%8D%D0%BB%D0%B5%D0%BC%D0%B5%D0%BD%D1%82%D0%BE%D0%B2-%D0%B2-c-plusplus
 
 BorderRadiusWidget::BorderRadiusWidget(QQuickItem *parent) :
     QQuickItem(parent),
@@ -23,12 +24,12 @@ QSGNode *BorderRadiusWidget::updatePaintNode(QSGNode *oldNode, QQuickItem::Updat
     //QColor m_backgroundColor = Qt::red;
     //QColor m_backgroundColor = Qt::red;  // выбираем цвет фона, ...
     Q_UNUSED(updatePaintNodeData)
-    QSGGeometryNode *root = static_cast<QSGGeometryNode *>(oldNode);
+    m_CircleNode = static_cast<QSGGeometryNode *>(oldNode);
 
-    if(!root) {
+    if(!m_CircleNode) {
         int stargAngle = 180;
         int finishAngle = 270;
-        root = new QSGGeometryNode;
+        m_CircleNode = new QSGGeometryNode;
         QSGGeometry *geometry = new QSGGeometry(QSGGeometry::defaultAttributes_Point2D(), (finishAngle - stargAngle + 2));
         geometry->setDrawingMode(GL_POLYGON  );
         drawPartOfCircle(stargAngle, finishAngle, *geometry);
@@ -38,23 +39,31 @@ QSGNode *BorderRadiusWidget::updatePaintNode(QSGNode *oldNode, QQuickItem::Updat
         //geometry->vertexDataAsPoint2D()[2].set(0, height());
 
 
-        root->setFlag(QSGNode::OwnsGeometry);
-        root->setFlag(QSGNode::OwnsMaterial);
+        m_CircleNode->setFlag(QSGNode::OwnsGeometry);
+        m_CircleNode->setFlag(QSGNode::OwnsMaterial);
         QSGFlatColorMaterial* borderNonActiveMaterial = new QSGFlatColorMaterial();
         borderNonActiveMaterial->setColor(m_activeButtonColor);
-        root->setGeometry(geometry); // Установка геометрии
-        root->setMaterial(borderNonActiveMaterial);
+        m_CircleNode->setGeometry(geometry); // Установка геометрии
+        m_CircleNode->setMaterial(borderNonActiveMaterial);
         //root->setFlags(QSGNode::OwnsGeometry|QSGNode::OwnsMaterial);
     }
+//    else {
+//       // root->markDirty(QSGNode::DirtyGeometry);
+//        //m_borderActiveNode->markDirty(QSGNode::DirtyGeometry);
+//        m_CircleNode->markDirty(QSGNode::DirtyMaterial);
+//        m_CircleNode->markDirty(QSGNode::DirtyGeometry);
+//            qDebug() << "mousePressEvent";
+
+//    }
 
     if(m_needUpdate) {
-        //        QSGFlatColorMaterial *material = new QSGFlatColorMaterial;
-        //        material->setColor(m_color);
-        //        root->setMaterial(material);
-        //        m_needUpdate = false;
+              QSGFlatColorMaterial *material = new QSGFlatColorMaterial;
+              material->setColor(m_activeButtonColor);
+              m_CircleNode->setMaterial(material);
+              m_needUpdate = false;
     }
 
-    return root;
+    return m_CircleNode;
 }
 
 QColor BorderRadiusWidget::activeButtonColor() const
@@ -77,8 +86,8 @@ void BorderRadiusWidget::setActiveButtonColor(const QColor &color)
     if(m_activeButtonColor != color) {
         m_activeButtonColor = color;
         m_needUpdate = true;
-        // update();
-        //   colorChanged();
+        update();
+        ActiveButtonColorChanged();
     }
 }
 
@@ -87,8 +96,8 @@ void BorderRadiusWidget::setDisactiveButtonColor(const QColor &color)
     if(m_disactiveButtonColor != color) {
         m_disactiveButtonColor = color;
         m_needUpdate = true;
-        // update();
-        //   colorChanged();
+        update();
+        ActiveButtonColorChanged();
     }
 }
 
