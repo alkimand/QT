@@ -17,7 +17,7 @@
         <file>src/QML/StackView/AppContentBox.qml</file>
 		<file>src/QML/StackView/Pages/CalkPage.qml</file>
 		<file>src/QML/CommonElements/TabButton/TabButton.qml</file>
-		<file>src/QML/CommonElements/TabButton/TabButtonTemplate.qml</file>
+		<file>src/QML/CommonElements/TabButton/TabButtonLabel/TabButtonLabel.qml</file>
         <file>src/images/ToolBarIcon/editcopy.png</file>
         <file>src/images/ToolBarIcon/editcut.png</file>
         <file>src/images/ToolBarIcon/editpaste.png</file>
@@ -68,5 +68,6 @@
         <file>src/images/AppButton/percent.png</file>
         <file>src/images/AppButton/setting.png</file>
         <file>src/images/AppButton/star_favorite.png</file>
+		<file>src/images/AppButton/home_blue.png</file>
     </qresource>
 </RCC>

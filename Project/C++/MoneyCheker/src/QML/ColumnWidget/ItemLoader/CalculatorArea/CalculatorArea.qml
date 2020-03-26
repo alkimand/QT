@@ -33,32 +33,48 @@ Item {
     }
 
     TabButton{
-        id:button_1
-        anchors.left:parent.left
-        anchors.top: parent.top
+        id:button_1;
+        anchors.left: parent.left;
+        anchors.top: parent.top;
         width: settingData.appContentWidgetSettings.contentCalculatoButtonWidth;
-        height:settingData.appContentWidgetSettings.buttonHeight;
-        radius:settingData.appContentWidgetSettings.borderRadius
-        activeColor: settingData.buttonSettings.buttonIsSelectedColorSetting
-        disactiveColor: settingData.buttonSettings.buttonIsNotSelectedColorSetting
-        backgroundColor:settingData.columnSettings.columnFreeSpaceColor
-        buttonTupe: SettingData.ButtonType.FIRST_BUTTON_TYPE
+        height: settingData.appContentWidgetSettings.buttonHeight;
+        radius: settingData.appContentWidgetSettings.borderRadius;
+        activeAction: root.actions.tabButtonMortageActivate;
+        disactiveAction:root.actions.mainButtonFavorite;
+        activeColor: settingData.buttonSettings.buttonIsSelectedColorSetting;
+        disactiveColor: settingData.buttonSettings.buttonIsNotSelectedColorSetting;
+        activeFontColor: settingData.appContentWidgetSettings.activeFontColor;
+        disactiveFontColor:settingData.appContentWidgetSettings.disactiveFontColor;
+        tabIconTextMargin: settingData.appContentWidgetSettings.iconMarginTop;
+        iconTextMargin:settingData.appContentWidgetSettings.tabiconTextMargin;
+        fontSize:settingData.appContentWidgetSettings.fontSize;
+        iconSize:settingData.appContentWidgetSettings.iconSize;
+        fontFamily:settingData.appContentWidgetSettings.tabFontFamily;
+        backgroundColor:settingData.columnSettings.columnFreeSpaceColor;
+        buttonTupe: SettingData.ButtonType.FIRST_BUTTON_TYPE;
         // isActive:true
     }
 
     TabButton{
-        id:button_2
-        anchors.left:button_1.right
-        anchors.top: parent.top
+        id:button_2;
+        anchors.left:button_1.right;
+        anchors.top: parent.top;
         width: settingData.appContentWidgetSettings.contentCalculatoButtonWidth;
-        height:settingData.appContentWidgetSettings.buttonHeight;
-        radius:settingData.appContentWidgetSettings.borderRadius
-        activeColor: settingData.buttonSettings.buttonIsSelectedColorSetting
-        disactiveColor: settingData.buttonSettings.buttonIsNotSelectedColorSetting
-        backgroundColor:settingData.columnSettings.columnFreeSpaceColor
-        buttonTupe: SettingData.ButtonType.LAST_BUTTON_TYPE
-
-        //isActive:false
+        height: settingData.appContentWidgetSettings.buttonHeight;
+        radius: settingData.appContentWidgetSettings.borderRadius;
+        activeAction: root.actions.tabButtonMortageActivate;
+        disactiveAction:root.actions.mainButtonFavorite;
+        activeColor: settingData.buttonSettings.buttonIsSelectedColorSetting;
+        disactiveColor: settingData.buttonSettings.buttonIsNotSelectedColorSetting;
+        activeFontColor: settingData.appContentWidgetSettings.activeFontColor;
+        disactiveFontColor:settingData.appContentWidgetSettings.disactiveFontColor;
+        tabIconTextMargin: settingData.appContentWidgetSettings.iconMarginTop;
+        iconTextMargin:settingData.appContentWidgetSettings.tabiconTextMargin;
+        fontSize:settingData.appContentWidgetSettings.fontSize;
+        iconSize:settingData.appContentWidgetSettings.iconSize;
+        fontFamily:settingData.appContentWidgetSettings.tabFontFamily;
+        backgroundColor:settingData.columnSettings.columnFreeSpaceColor;
+        buttonTupe: SettingData.ButtonType.LAST_BUTTON_TYPE;
     }
 
     function update(){

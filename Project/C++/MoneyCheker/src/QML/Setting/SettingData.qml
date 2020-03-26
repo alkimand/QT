@@ -170,13 +170,23 @@ Item {
     property var appContentWidgetSettings: Item {// Leaving space between image and borders (optional)
 		property int contentCalculatorPageWidth: 400 
         property int contentCalculatoButtonWidth: 200 // one button width
-		property int borderRadius: 25
+		property int borderRadius: 10
         property color buttonBackgroundColor : "#ffffff"
-		property int buttonHeight: 100
-        //property int contentMoPageWidth: 70
+		property color activeFontColor : "#ff905f"
+		property color disactiveFontColor : "#d5d5d4"
+		property int iconMarginTop: 5
+		property int tabiconTextMargin: 3	
+		property int fontSize: 11
+		property int iconSize: 30		
+        property string tabFontFamily: "Arrial"
+		property int buttonHeight: 60
+		//property int tabButtonIconLabelHeight: 30
+		//property int tabButtonIconLabelWidth: 30
 		
-	
+        //property int contentMoPageWidth: 70
 	}
+	
+
 	
 	    property var columnSettings: Item {
 		id:columnSettings_

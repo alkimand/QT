@@ -51,7 +51,7 @@ OTHER_FILES += \
     src/QML/StackView/Pages/CalkPage.qml\
 #CommonElements
 src/QML/CommonElements/TabButton/TabButton.qml\
-src/QML/CommonElements/TabButton/TabButtonTemplate.qml\
+src/QML/CommonElements/TabButton/TabButtonLabel/TabButtonLabel.qml\
 
 DISTFILES += \
     src/QML/StackView/AppContentBox.qml \
@@ -92,6 +92,7 @@ DISTFILES += \
     src/images/AppButton/percent.png \
     src/images/AppButton/setting.png \
     src/images/AppButton/star_favorite.png \
+    src/images/AppButton/home_blue.png \
 
 
 
