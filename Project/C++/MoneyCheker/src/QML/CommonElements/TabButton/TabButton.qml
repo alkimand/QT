@@ -25,7 +25,10 @@ Item {
 
 
     signal activateButton()
+    signal disableButton()
 
+    signal activate()
+    signal disable()
 
     Rectangle {
         id:parentReact
@@ -157,10 +160,10 @@ Item {
                 initialState: disableFirstButton
                 SignalTransition {
                     targetState: disableFirstButton
-                    signal: root.activateButton
+                    signal: root.disable
                 }
                 onEntered: {
-                    console.log("activeFirstButton onEntered")
+                    //console.log("activeFirstButton onEntered")
                     leftRadius.activeButtonColor=root.activeColor;
                     leftRadiusReact.color=root.backgroundColor;
                     leftReact.color=root.activeColor;
@@ -182,12 +185,12 @@ Item {
                 initialState: activeFirstButton
                 SignalTransition {
                     targetState: activeFirstButton
-                    signal: root.activateButton
+                    signal: root.activate
 
                 }
 
                 onEntered: {
-                    console.log("disableFirstButton onEntered")
+                    //console.log("disableFirstButton onEntered")
                     leftRadius.activeButtonColor=root.disactiveColor;
                     leftRadiusReact.color=root.backgroundColor;
                     leftReact.color=root.disactiveColor;
@@ -199,7 +202,6 @@ Item {
                     rightReact.color=root.disactiveColor;
                     bottomRightRadius.activeButtonColor=root.disactiveColor;
                     bottomRightRadiusReact.color=root.activeColor;
-
                     isActive = false;
                 }
                 // onExited: console.log("disableFirstButton exited")
@@ -210,10 +212,10 @@ Item {
                 initialState: disableLastButton
                 SignalTransition {
                     targetState: disableLastButton
-                    signal: mouseArea.clicked //root.activateButton
+                    signal: root.disable
                 }
                 onEntered: {
-                    console.log("activeLastButton onEntered")
+                    //console.log("activeLastButton onEntered")
                     leftRadius.activeButtonColor=root.activeColor;
                     leftRadiusReact.color=root.disactiveColor;
                     leftReact.color=root.activeColor;
@@ -235,10 +237,10 @@ Item {
                 initialState: activeLastButton
                 SignalTransition {
                     targetState: activeLastButton
-                    signal: mouseArea.clicked //root.activateButton
+                    signal: root.activate//mouseArea.clicked //root.activateButton
                 }
                 onEntered: {
-                    console.log("disableLastButton onEntered")
+                    //console.log("disableLastButton onEntered")
                     leftRadius.activeButtonColor=root.disactiveColor;
                     leftRadiusReact.color=root.disactiveColor;
                     leftReact.color=root.disactiveColor;
@@ -254,28 +256,28 @@ Item {
                 }
             }
 
-            State {
-                id: disableMidleButton
-                initialState: activeLastButton//+-
-                SignalTransition {
-                    targetState: activeLastButton//+-
-                    signal: mouseArea.clicked
-                }
-                onEntered: {
-                    console.log("disableLastButton onEntered")
-                    leftRadius.activeButtonColor=root.disactiveColor;
-                    leftRadiusReact.color=root.backgroundColor;
-                    leftReact.color=root.disactiveColor;
-                    bottomLeftRadius.activeButtonColor=root.disactiveColor;
-                    bottomLeftRadiusReact.color=root.disactiveColor;
-                    centerReact.color=root.disactiveColor;
-                    rightRadius.activeButtonColor=root.disactiveColor;
-                    rightRadiusReact.color=root.disactiveColor;
-                    rightReact.color=root.disactiveColor;
-                    bottomRightRadius.activeButtonColor=root.disactiveColor;
-                    bottomRightRadiusReact.color=root.activeColor;
-                }
-            }
+//            State {
+//                id: disableMidleButton
+//                initialState: activeLastButton//+-
+//                SignalTransition {
+//                    targetState: activeLastButton//+-
+//                    signal: mouseArea.clicked
+//                }
+//                onEntered: {
+//                    console.log("disableLastButton onEntered")
+//                    leftRadius.activeButtonColor=root.disactiveColor;
+//                    leftRadiusReact.color=root.backgroundColor;
+//                    leftReact.color=root.disactiveColor;
+//                    bottomLeftRadius.activeButtonColor=root.disactiveColor;
+//                    bottomLeftRadiusReact.color=root.disactiveColor;
+//                    centerReact.color=root.disactiveColor;
+//                    rightRadius.activeButtonColor=root.disactiveColor;
+//                    rightRadiusReact.color=root.disactiveColor;
+//                    rightReact.color=root.disactiveColor;
+//                    bottomRightRadius.activeButtonColor=root.disactiveColor;
+//                    bottomRightRadiusReact.color=root.activeColor;
+//                }
+//            }
 
 
             Component.onCompleted: {
@@ -283,9 +285,9 @@ Item {
                 case SettingData.ButtonType.FIRST_BUTTON_TYPE:
                     stateMachine.initialState = activeFirstButton;
                     break;
-                case SettingData.ButtonType.MIDLE_BUTTON_TYPE:
-                    stateMachine.initialState = disableMidleButton;
-                    break;
+//                case SettingData.ButtonType.MIDLE_BUTTON_TYPE:
+//                    stateMachine.initialState = disableMidleButton;
+//                    break;
                 case SettingData.ButtonType.LAST_BUTTON_TYPE:
                     stateMachine.initialState = disableLastButton;
                     break;
@@ -298,40 +300,40 @@ Item {
         MouseArea{
             id:mouseArea
             anchors.fill:parent
-            //signal: test()
             onClicked: {
+               //console.log("isActive="+root.isActive);
                 if( !root.isActive) {
                     isActive = true;
-                    console.log("isActive");
+                    //console.log("root.activateButton()");
                     root.activateButton() ;
                 }
-                //root.isActive?root.isActive = false:root.isActive = true;
-                // console.log();
+               // else{}
+                  //console.log("MouseArea isActive already");
             }
         }
     }
 
      function update(){
+         //console.log("in update()"+ root.buttonTupe);
          switch  (root.buttonTupe){
          case SettingData.ButtonType.FIRST_BUTTON_TYPE:
              if(root.isActive){
-                stateMachine.initialState = disableFirstButton;//activeFirstButton
-                console.log("update activeFirstButton");
+             root.activate();
              }
              else{
-                 stateMachine.initialState = activeFirstButton;//disableFirstButton
-                 stateMachine.started()
                  console.log("update disableFirstButton");
+                 root.disable();
              }
              break;
          case SettingData.ButtonType.MIDLE_BUTTON_TYPE:
-             //stateMachine.initialState = disableMidleButton;
              break;
          case SettingData.ButtonType.LAST_BUTTON_TYPE:
-             if(root.isActive)
-                stateMachine.initialState = activeLastButton;
-             else
-                 stateMachine.initialState = disableLastButton;
+             if(root.isActive){
+                 root.activate();
+             }
+             else{
+                 root.disable();
+             }
              break;
 
          default:
