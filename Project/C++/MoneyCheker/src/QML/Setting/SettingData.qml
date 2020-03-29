@@ -179,22 +179,64 @@ Item {
 		property int fontSize: 11
 		property int iconSize: 30		
         property string tabFontFamily: "Arrial"
-		property int buttonHeight: 60
+		property int buttonHeight: 60 //60x60
 		//property int tabButtonIconLabelHeight: 30
 		//property int tabButtonIconLabelWidth: 30
 		
         //property int contentMoPageWidth: 70
+		
+		property int oneRowItemBorderHeigh: 3
 	}
 	
 
 	
-	    property var columnSettings: Item {
+	property var columnSettings: Item {
 		id:columnSettings_
         property color columnFreeSpaceColor: "#dfdfdf"
 		//property color buttonIsSelectedColorSetting: "white"
         property int titleBlockHeight: 70 //height of title text block like "calculator"
 		property int spaceBetweenButton: 20
+	}
+	
+    property var oneRowItemSettings: Item {
+        //common
+        property string commonFontFamily: "Arrial"
+        property color backgroundColor: "white"		
+        property int rowItemHeight: 50
+        property int rowMargin: 0
+		property int paddingLeft: 20
+		property int paddingRight: 20
 
+		
+		//textLine
+		property int textBlockWidth: 100
+		property int textRowSpacing: 00
+		//rowItemWidth:contentCalculatorPageWidth
+		property color textFirstLineFontColor: "black"		
+		property color textSecondLineFontColor: "white"		
+		property int textFirstLineTopMargin: 2
+		property int textFirstLineFontSize: 12
+		property int textSecondLineFontSize: 10
+		
+		//Label		
+        property color labelFontColor: "white"
+		property color labelРighlightingFontColor: "#4385ef"
+		property int labelFontSize: 17
+		property int labelBorderColorWidth: 2
+		property int labelLeftPadding: 5
+		property int labelMargins: 8
+				
+		//Button
+        property color activMainButtonColor: "white"
+        property color activBackgroundButtonColor: "white"
+        property color pressedMainButtonColor: "white"
+        property color pressedBackgroundButtonColor: "white"
+		property int buttonSize: 30		
+		property int crossSize: 30	
+		property int checkerSize: 30
+		property int checkerMargin: 30
+        property int buttonBorderWidth: 30
+        property int oneRowItemBorderHeigh: 2	
 	}
 	
     enum ToolBarToolButtonState
@@ -217,6 +259,18 @@ Item {
         LAST_BUTTON_TYPE = 3
     }
 
+	enum OneRowItemType {
+        ONE_TEXT_LEFT_TEXT_AND_ONE_BUTTON_RIGHT = 1,
+        TWO_TEXT_LEFT_TEXT_AND_ONE_BUTTON_RIGHT_LEFT_ALIGNEMENT = 2,
+        ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT = 3,
+        TWO_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT = 4,	
+        ONE_TEXT_LEFT_TEXT_AND_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT = 5,
+        ONE_TEXT_LEFT_TEXT_AND_COMBOBOX_ONLY_RIGHT_COMBOBOX_ALIGNEMENT = 6,
+        TWO_TEXT_LEFT_TEXT_AND_LABEL_ONLY = 7,		
+        ONE_TEXT_LEFT_TEXT_AND_LABEL_ONLY_LEFT_LABEL_ALIGNEMENT = 8,
+        ONE_TEXT_LEFT_TEXT_AND_LABEL_ONLY_RIGHT_LABEL_ALIGNEMENT = 9,		
+        TWO_TEXT_LEFT_TEXT_AND_TEXT_RIGHT_ONLY = 10
+    }
 
 
     function getAppPropertyGlobal()

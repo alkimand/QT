@@ -5,7 +5,7 @@ import QtQuick.Controls 2.12
 import "../../../Action"
 import "../../../CommonElements/TabButton"
 import "../../../Setting"
-
+import "../../../CommonElements/OneRowItem"
 
 
 Item {
@@ -18,7 +18,7 @@ Item {
             //console.log("button_1 Connections+")
             button_1.isActive=true;
             button_2.isActive=false;
-            root.update();
+            root.updateTabButton();
         }
     }
 
@@ -28,7 +28,7 @@ Item {
             //console.log("button_2 Connections+")
             button_1.isActive=false;
             button_2.isActive=true;
-            root.update();
+            root.updateTabButton();
         }
     }
 
@@ -39,8 +39,8 @@ Item {
         width: settingData.appContentWidgetSettings.contentCalculatoButtonWidth;
         height: settingData.appContentWidgetSettings.buttonHeight;
         radius: settingData.appContentWidgetSettings.borderRadius;
-        activeAction: root.actions.tabButtonMortageActivate;
-        disactiveAction:root.actions.mainButtonFavorite;
+        activeAction: parent.actions.tabButtonMortageActivate;
+        disactiveAction:parent.actions.mainButtonFavorite;
         activeColor: settingData.buttonSettings.buttonIsSelectedColorSetting;
         disactiveColor: settingData.buttonSettings.buttonIsNotSelectedColorSetting;
         activeFontColor: settingData.appContentWidgetSettings.activeFontColor;
@@ -62,8 +62,8 @@ Item {
         width: settingData.appContentWidgetSettings.contentCalculatoButtonWidth;
         height: settingData.appContentWidgetSettings.buttonHeight;
         radius: settingData.appContentWidgetSettings.borderRadius;
-        activeAction: root.actions.tabButtonMortageActivate;
-        disactiveAction:root.actions.mainButtonFavorite;
+        activeAction: parent.actions.tabButtonMortageActivate;
+        disactiveAction:parent.actions.mainButtonFavorite;
         activeColor: settingData.buttonSettings.buttonIsSelectedColorSetting;
         disactiveColor: settingData.buttonSettings.buttonIsNotSelectedColorSetting;
         activeFontColor: settingData.appContentWidgetSettings.activeFontColor;
@@ -77,7 +77,78 @@ Item {
         buttonTupe: SettingData.ButtonType.LAST_BUTTON_TYPE;
     }
 
-    function update(){
+
+
+    OneRowItem {
+        id:areaItem
+
+        //anchors
+        anchors.top:button_1.bottom
+        anchors.left:parent.left
+        //anchors.right:parent.right
+
+        //common
+        commonFontFamily: settingData.oneRowItemSettings.commonFontFamily;
+        backgroundColor: settingData.oneRowItemSettings.backgroundColor;
+        rowItemWidth: settingData.appContentWidgetSettings.contentCalculatorPageWidth;
+        rowItemHeight:settingData.oneRowItemSettings.rowItemHeight;
+        rowMargin:settingData.oneRowItemSettings.rowMargin;
+        paddingLeft:settingData.oneRowItemSettings.paddingLeft;
+        paddingRight:settingData.oneRowItemSettings.paddingRight;
+        type:SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT
+        textRowSpacing: settingData.oneRowItemSettings.textRowSpacing;
+
+        //textLine
+        textBlockWidth:settingData.oneRowItemSettings.textBlockWidth;
+        textFirstLineFontColor:settingData.oneRowItemSettings.textFirstLineFontColor;
+        textSecondLineFontColor: settingData.oneRowItemSettings.textSecondLineFontColor;
+        textFirstLineTopMargin: settingData.oneRowItemSettings.textFirstLineTopMargin;
+        textFirstLineFontSize:settingData.oneRowItemSettings.textFirstLineFontSize;
+        textSecondLineFontSize:settingData.oneRowItemSettings.textSecondLineFontSize;
+        textFirstLine:"Home prise"
+        textSecondLine:""
+
+        //Label
+
+        labelFontColor:settingData.oneRowItemSettings.labelFontColor;
+        labelРighlightingFontColor:settingData.oneRowItemSettings.labelРighlightingFontColor;
+        labelFontSize:settingData.oneRowItemSettings.labelFontSize;
+        labelBorderColorWidth:settingData.oneRowItemSettings.labelBorderColorWidth;
+        labelLeftPadding:settingData.oneRowItemSettings.labelLeftPadding;
+        labelMargins:settingData.oneRowItemSettings.labelMargins;
+
+
+        //Button
+        activMainButtonColor:settingData.oneRowItemSettings.activMainButtonColor;
+        activBackgroundButtonColor:settingData.oneRowItemSettings.activBackgroundButtonColor;
+        pressedMainButtonColor:settingData.oneRowItemSettings.pressedMainButtonColor;
+        pressedBackgroundButtonColor:settingData.oneRowItemSettings.pressedBackgroundButtonColor;
+        buttonSize:settingData.oneRowItemSettings.buttonSize;// = 2*radius
+        crossSize:settingData.oneRowItemSettings.crossSize;
+        checkerSize:settingData.oneRowItemSettings.checkerSize;
+        checkerMargin:settingData.oneRowItemSettings.checkerMargin;
+        buttonBorderWidth:settingData.oneRowItemSettings.buttonBorderWidth;
+    }
+
+    Rectangle{
+        id:border_1
+        width:settingData.appContentWidgetSettings.contentCalculatorPageWidth;
+        height:settingData.oneRowItemSettings.oneRowItemBorderHeigh;
+        color:settingData.columnSettings.columnFreeSpaceColor;
+        anchors.left:areaItem.left
+        anchors.top:areaItem.bottom
+    }
+
+
+
+
+
+
+
+
+
+    //UPDATE TabButton
+    function updateTabButton(){
         button_1.update();
         //console.log("button_1.update()");
         button_2.update();

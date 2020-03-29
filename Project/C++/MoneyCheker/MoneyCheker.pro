@@ -50,8 +50,9 @@ OTHER_FILES += \
     src/QML/StackView/AppContentBox.qml\
     src/QML/StackView/Pages/CalkPage.qml\
 #CommonElements
-src/QML/CommonElements/TabButton/TabButton.qml\
-src/QML/CommonElements/TabButton/TabButtonLabel/TabButtonLabel.qml\
+    src/QML/CommonElements/TabButton/TabButton.qml\
+    src/QML/CommonElements/TabButton/TabButtonLabel/TabButtonLabel.qml\
+    src/QML/CommonElements/OneRowItem/OneRowItem.qml\
 
 DISTFILES += \
     src/QML/StackView/AppContentBox.qml \

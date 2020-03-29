@@ -292,6 +292,7 @@ Item {
                     isActive = true;
                     //console.log("root.activateButton()");
                     root.activateButton() ;
+                    root.forceActiveFocus()
                 }
                 // else { isActive = false;
                 //console.log("MouseArea isActive already"); }
