@@ -221,21 +221,23 @@ Item {
 		//Label		
         property color labelFontColor: "white"
 		property color labelРighlightingFontColor: "#4385ef"
-		property int labelFontSize: 17
+		property int labelFontSize: 12
 		property int labelBorderColorWidth: 2
 		property int labelLeftPadding: 5
 		property int labelMargins: 8
 				
 		//Button
-        property color activMainButtonColor: "white"
+        property color activMainButtonColor: "#4385ef"
         property color activBackgroundButtonColor: "white"
         property color pressedMainButtonColor: "white"
-        property color pressedBackgroundButtonColor: "white"
-		property int buttonSize: 30		
-		property int crossSize: 30	
-		property int checkerSize: 30
-		property int checkerMargin: 30
-        property int buttonBorderWidth: 30
+        property color pressedBackgroundButtonColor: "#4385ef"
+		property color hoveredButtonColor: "#84b3ff"
+		property int buttonSize: 28		
+		property int crossSize: 14	
+		property int checkerSize: 10
+		property int checkerMargin: 0
+		property int checkerHeigh: 3
+        property int buttonBorderWidth: 2//border of circle
         property int oneRowItemBorderHeigh: 2	
 	}
 	
@@ -257,6 +259,13 @@ Item {
         FIRST_BUTTON_TYPE = 1,
         MIDLE_BUTTON_TYPE = 2,
         LAST_BUTTON_TYPE = 3
+    }
+	
+	enum BlueButtonType {
+        PLUS = 1,
+        MINUS = 2,
+        CHECK= 3,
+		STAR
     }
 
 	enum OneRowItemType {

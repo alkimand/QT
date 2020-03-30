@@ -2,10 +2,10 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 
 //import "ButtonTemplate.qml"
-import "../../../Action"
-import "../../../CommonElements/TabButton"
-import "../../../Setting"
-import "../../../CommonElements/OneRowItem"
+import "../../Action"
+import "../../CommonElements/TabButton"
+import "../../Setting"
+import "../../CommonElements/OneRowItem"
 
 
 Item {
@@ -128,10 +128,12 @@ Item {
         checkerSize:settingData.oneRowItemSettings.checkerSize;
         checkerMargin:settingData.oneRowItemSettings.checkerMargin;
         buttonBorderWidth:settingData.oneRowItemSettings.buttonBorderWidth;
+        oneRowItemBorderHeigh:settingData.oneRowItemSettings.oneRowItemBorderHeigh;
+        checkerHeigh:settingData.oneRowItemSettings.checkerHeigh;
     }
 
-    Rectangle{
-        id:border_1
+    Rectangle {
+        id: border_1
         width:settingData.appContentWidgetSettings.contentCalculatorPageWidth;
         height:settingData.oneRowItemSettings.oneRowItemBorderHeigh;
         color:settingData.columnSettings.columnFreeSpaceColor;

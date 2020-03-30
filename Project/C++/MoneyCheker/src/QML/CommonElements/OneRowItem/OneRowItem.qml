@@ -2,7 +2,8 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 import"../../Setting"
-
+//import"../../Setting"
+import "../SmallCrossChekerButton/MoneyCheker"
 
 
 
@@ -20,8 +21,6 @@ Item {
     property int paddingRight
     property int textRowSpacing
     property int type
-
-
 
     //textLine
     property int textBlockWidth
@@ -50,8 +49,10 @@ Item {
     property int buttonSize// = 2*radius
     property int crossSize
     property int checkerSize
+    property int checkerHeigh
     property int checkerMargin
     property int buttonBorderWidth
+    property int oneRowItemBorderHeigh
 
     width: rowItemWidth
     height:rowItemHeight
@@ -154,9 +155,11 @@ Item {
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             anchors.left:textReact.right
+            anchors.right:button_1.left
             anchors.topMargin:root.labelMargins
             anchors.bottomMargin:root.labelMargins
-            width: 150//root.textBlockWidth
+            anchors.rightMargin:root.paddingRight//+-
+            //width: 150//root.textBlockWidth
 
             TextArea {
                 id: textArea
@@ -197,6 +200,7 @@ Item {
 
                 onEditingFinished: {
                     //console.log("onEditingFinished")
+                    //console.log("textArea.text="+ textArea.text)
                     if (textArea.text!==""){
                         root.value = parseFloat(textArea.text.replace(/[^0-9\.]+/g, ''));
                     }
@@ -207,6 +211,7 @@ Item {
                     textArea.text=""
                     textArea.placeholderText= root.value.toString(10) + " рубл"
                     labelMouseArea.cursorShape=Qt.ArrowCursor
+                    //console.log("textArea.text="+ textArea.text)
                 }
 
                 Keys.onReturnPressed: { _onEnterPressed(event) }
@@ -221,11 +226,11 @@ Item {
                             root.value = parseFloat(textArea.text.replace(/[^0-9\.]+/g, ''));
                         }
                         else{
-                            root.value=0
+                            root.value=0;
                         }
-                        textArea.text = root.value //hack
-                        textArea.placeholderText= root.value.toString(10) + " рубл"
-                        textFirstLine_.forceActiveFocus()
+                        textArea.text = root.value.toString(10);//root.value //hack
+                        textArea.placeholderText= root.value.toString(10) + " рубл";
+                        textFirstLine_.forceActiveFocus();
                     }
                 }
 
@@ -235,17 +240,26 @@ Item {
                     cursorShape : Qt.ArrowCursor
                     //onPressed: {
                     onClicked:{
+                        //console.log("onClicked textArea.root.value="+root.value)
                         //console.log("onClicked")
                         if (textArea.activeFocus){
-                            //
-                            var position = textArea.positionAt(mouse.x, mouse.y);
-                            //textArea.moveCursorSelection(textArea.positionAt(mouse.x, mouse.y),TextEdit.SelectCharacters)
-                            textArea.select(position,position);
-                            textArea.deselect();
+                            //console.log("onClicked textArea.activeFocus + value=" + root.value)
+                            if (root.value!==parseFloat(textArea.text.replace(/[^0-9\.]+/g, ''))){
+                                textArea.text = root.value.toString(10);
+                                textArea.selectAll();
+                            }
+                            else{
+                                //textArea.text =root.value.toString(10);
+                                var position = textArea.positionAt(mouse.x, mouse.y);
+                                //textArea.moveCursorSelection(textArea.positionAt(mouse.x, mouse.y),TextEdit.SelectCharacters)
+                                textArea.select(position,position);
+                                textArea.deselect();
+                            }
                         }
                         else {
-                            //console.log("onClicked textArea.isActive===false")
+                            //console.log("onClicked not activeFocus textArea.isActive===false")
                             labelMouseArea.cursorShape=Qt.IBeamCursor;
+                            //console.log("onClicked textArea.root.value="+root.value)
                             if (root.value!==0){
                                 textArea.text =root.value.toString(10);
                             }
@@ -279,6 +293,31 @@ Item {
                 }
             }
         }
+
+
+        SmallCrossChekerButton_S {
+            id:button_1
+            anchors.topMargin: (root.height - root.buttonSize)/2
+            anchors.bottomMargin: (root.height - root.buttonSize)/2
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            anchors.right: button_2.left
+            anchors.rightMargin: root.paddingRight
+            type: SettingData.BlueButtonType.MINUS
+        }
+
+        SmallCrossChekerButton_S {
+            id:button_2
+            anchors.topMargin: (root.height - root.buttonSize)/2
+            anchors.bottomMargin: (root.height - root.buttonSize)/2
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            anchors.right: parent.right
+            anchors.rightMargin: root.paddingRight
+            type: SettingData.BlueButtonType.PLUS
+        }
+
+
     }
 
     function stopFocusTextArea (){

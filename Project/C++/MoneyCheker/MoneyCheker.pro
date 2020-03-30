@@ -42,7 +42,7 @@ OTHER_FILES += \
     src/QML/ToolBar/CustomToolButton/CustomToolButton.qml \
 #ColumnWidget
     src/QML/ColumnWidget/ColumnWidget.qml \
-    src/QML/ColumnWidget/ItemLoader/CalculatorArea/CalculatorArea.qml\
+    src/QML/ColumnWidget/CalculatorArea/CalculatorArea.qml\
 #ButtonRow
     src/QML/ColumnWidget/ItemLoader/ButtonRow/ButtonRow.qml\
     src/QML/ColumnWidget/ItemLoader/ButtonRow/ButtonTemplate.qml\
@@ -53,6 +53,8 @@ OTHER_FILES += \
     src/QML/CommonElements/TabButton/TabButton.qml\
     src/QML/CommonElements/TabButton/TabButtonLabel/TabButtonLabel.qml\
     src/QML/CommonElements/OneRowItem/OneRowItem.qml\
+    src/QML/CommonElements/SmallCrossChekerButton/SmallCrossChekerButton_O.qml\
+    src/QML/CommonElements/SmallCrossChekerButton/MoneyCheker/SmallCrossChekerButton_S.qml\
 
 DISTFILES += \
     src/QML/StackView/AppContentBox.qml \
