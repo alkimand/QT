@@ -145,7 +145,7 @@ Rectangle
         hoverEnabled: true
         pressAndHoldInterval:100
         onPressed: {
-            console.log("+onPressed");
+            //console.log("+onPressed");
             switch (root.type)   {
             case SettingData.BlueButtonType.PLUS :
             case SettingData.BlueButtonType.MINUS :
@@ -154,11 +154,11 @@ Rectangle
             case SettingData.BlueButtonType.CHECK :
                 root.state = 's_dashPressed'
             }
-            console.log("-onPressed");
+            //console.log("-onPressed");
             //
         }
         onReleased: {
-        console.log("+onReleased");
+        //console.log("+onReleased");
             root.state = 's_notActive'
             //send signal to finish
         }
@@ -169,7 +169,7 @@ Rectangle
             root.state = 's_hovered'
         }
         onPressAndHold:{
-             console.log("+onPressAndHold");
+             //console.log("+onPressAndHold");
             switch (root.type)   {
             case SettingData.BlueButtonType.PLUS :
             case SettingData.BlueButtonType.MINUS :
@@ -180,7 +180,7 @@ Rectangle
             }
         }
     }
-
+//121334settingData.oneRowItemSettings.oneRowItemBorderHeigh
 
 
     Component.onCompleted: {

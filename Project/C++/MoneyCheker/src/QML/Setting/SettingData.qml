@@ -220,7 +220,7 @@ Item {
 		
 		//Label		
         property color labelFontColor: "white"
-		property color labelРighlightingFontColor: "#4385ef"
+        property color labelРighlightingFontColor: "#4385ef"
 		property int labelFontSize: 12
 		property int labelBorderColorWidth: 2
 		property int labelLeftPadding: 5
@@ -264,9 +264,23 @@ Item {
 	enum BlueButtonType {
         PLUS = 1,
         MINUS = 2,
-        CHECK= 3,
-		STAR
+        CHECK= 3
     }
+	
+	enum DataType {
+        PERSENT_DATA_TYPE = 1,
+        CURRENCY_DATA_TYPE = 2,
+        DATE_DATA_TYPE = 3,
+        YERS_DATA_TYPE = 4,
+        STRING_DATA_TYPE = 5
+    }
+	
+	enum HasBorder {
+        UPPER_BORDER = 1,
+        BOTTOM_BORDER = 2,
+        UPPER_BOTTOM_BORDER = 3
+    }
+
 
 	enum OneRowItemType {
         ONE_TEXT_LEFT_TEXT_AND_ONE_BUTTON_RIGHT = 1,

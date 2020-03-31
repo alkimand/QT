@@ -21,6 +21,8 @@ Item {
     property int paddingRight
     property int textRowSpacing
     property int type
+    property int textType
+    property int textSecondLineType
 
     //textLine
     property int textBlockWidth
@@ -39,7 +41,7 @@ Item {
     property int labelBorderColorWidth
     property int labelLeftPadding
     property int labelMargins
-    property double value :125.05
+    property var value
 
     //Button
     property color activMainButtonColor
@@ -74,7 +76,6 @@ Item {
     Rectangle {
         id:parentReact
         anchors.fill: parent
-        //wid
         color:root.backgroundColor
 
         Rectangle {
@@ -84,10 +85,10 @@ Item {
             anchors.left:parent.left
             anchors.leftMargin: root.paddingLeft
             anchors.topMargin: 0
-            width: textBlockWidth
+            width: root.textBlockWidth
             color: "transparent"
             GridLayout {
-                //Column {
+
                 id:column
                 anchors.fill: parent
                 rows: 2
@@ -97,17 +98,14 @@ Item {
                 {
                     id: textFirstLine_
                     width: textReact.width
-                    //anchors.verticalCenter: parent.verticalCenter
                     Layout.alignment:Qt.AlignVCenter
                     horizontalAlignment : Text.AlignLeft
-                    //verticalAlignment :Text.AlignBottom
                     verticalAlignment :(textSecondLine_.visible)?Text.AlignBottom:Text.AlignVCenter
                     text: root.textFirstLine
                     font.family : root.commonFontFamily
                     font.pointSize:  root.textFirstLineFontSize
                     Layout.fillHeight: true
                     Layout.fillWidth: true
-                    //font.bold :true
                     elide : Text.ElideRight //wrapped text
                     color: root.textFirstLineFontColor
                     renderType: Text.NativeRendering // Rendering type (optional)
@@ -150,6 +148,7 @@ Item {
 
             }
         }
+
         Rectangle{
             id:textAreaRect
             anchors.top: parent.top
@@ -158,13 +157,15 @@ Item {
             anchors.right:button_1.left
             anchors.topMargin:root.labelMargins
             anchors.bottomMargin:root.labelMargins
-            anchors.rightMargin:root.paddingRight//+-
+            anchors.rightMargin:root.paddingRight
+
             //width: 150//root.textBlockWidth
 
             TextArea {
                 id: textArea
                 //horizontalAlignment : Text.AlignLeft //works
                 verticalAlignment :Text.AlignVCenter
+                property var value: root.value//+-
                 //property bool isActive : textArea.activeFocus
                 anchors.fill:parent
                 width: textAreaRect.width
@@ -178,7 +179,7 @@ Item {
                 anchors.horizontalCenter: parent.horizontalCenter
                 // anchors.verticalCenter: parent.verticalCenter
                 placeholderTextColor : root.labelРighlightingFontColor
-                placeholderText : "2900 010 руб"
+                placeholderText : ""//"2900 010 руб"
                 selectByMouse : true
                 //overwriteMode :true
                 selectByKeyboard :true
@@ -202,20 +203,47 @@ Item {
                     //console.log("onEditingFinished")
                     //console.log("textArea.text="+ textArea.text)
                     if (textArea.text!==""){
-                        root.value = parseFloat(textArea.text.replace(/[^0-9\.]+/g, ''));
+                        textArea.value = parseFloat(textArea.text.replace(/[^0-9\.]+/g, ''));
                     }
                     else{
                         //textArea.placeholderText="nan%"
-                        root.value=0
+                        textArea.value=0
                     }
-                    textArea.text=""
-                    textArea.placeholderText= root.value.toString(10) + " рубл"
+                    textArea.text= ""
+                    textArea.placeholderText = textArea.valueToUserText(textArea.value)
                     labelMouseArea.cursorShape=Qt.ArrowCursor
                     //console.log("textArea.text="+ textArea.text)
                 }
 
                 Keys.onReturnPressed: { _onEnterPressed(event) }
                 Keys.onEnterPressed: { _onEnterPressed(event) }
+                Component.onCompleted: {
+                    textArea.placeholderText = textArea.valueToUserText(textArea.value)
+                }
+
+                function valueToUserText(value){
+                    var userText = "";
+                    //console.log("valueToUserText=" + value)
+                    switch (root.textType)   {
+                    case SettingData.DataType.PERSENT_DATA_TYPE :
+                        //dash_horizontal.visible = true;
+                        //dash_vertical.visible = true;
+                        break
+
+                    case SettingData.DataType.CURRENCY_DATA_TYPE :
+                        userText = (value + " руб.").toString(10)
+                        //console.log("userText=" + userText)
+                        break;
+
+                    case SettingData.DataType.DATE_DATA_TYPE :
+                       // dash_cross_left.visible = true;
+                       // dash_cross_right.visible = true;
+                        break;
+
+                    }
+                    return userText
+
+                }
 
                 function _onEnterPressed(event)
                 {
@@ -223,13 +251,13 @@ Item {
                     {
                         //event.accepted = false;
                         if (textArea.text!==""){
-                            root.value = parseFloat(textArea.text.replace(/[^0-9\.]+/g, ''));
+                            textArea.value = parseFloat(textArea.text.replace(/[^0-9\.]+/g, ''));
                         }
                         else{
-                            root.value=0;
+                            textArea.value=0;
                         }
-                        textArea.text = root.value.toString(10);//root.value //hack
-                        textArea.placeholderText= root.value.toString(10) + " рубл";
+                        textArea.text = textArea.value.toString(10);//textArea.value //hack
+                        textArea.placeholderText= textArea.value.toString(10) + " рубл";
                         textFirstLine_.forceActiveFocus();
                     }
                 }
@@ -240,16 +268,16 @@ Item {
                     cursorShape : Qt.ArrowCursor
                     //onPressed: {
                     onClicked:{
-                        //console.log("onClicked textArea.root.value="+root.value)
+                        //console.log("onClicked textArea.textArea.value="+textArea.value)
                         //console.log("onClicked")
                         if (textArea.activeFocus){
-                            //console.log("onClicked textArea.activeFocus + value=" + root.value)
-                            if (root.value!==parseFloat(textArea.text.replace(/[^0-9\.]+/g, ''))){
-                                textArea.text = root.value.toString(10);
+                            //console.log("onClicked textArea.activeFocus + value=" + textArea.value)
+                            if (textArea.value!==parseFloat(textArea.text.replace(/[^0-9\.]+/g, ''))){
+                                textArea.text = textArea.value.toString(10);
                                 textArea.selectAll();
                             }
                             else{
-                                //textArea.text =root.value.toString(10);
+                                //textArea.text =textArea.value.toString(10);
                                 var position = textArea.positionAt(mouse.x, mouse.y);
                                 //textArea.moveCursorSelection(textArea.positionAt(mouse.x, mouse.y),TextEdit.SelectCharacters)
                                 textArea.select(position,position);
@@ -259,12 +287,12 @@ Item {
                         else {
                             //console.log("onClicked not activeFocus textArea.isActive===false")
                             labelMouseArea.cursorShape=Qt.IBeamCursor;
-                            //console.log("onClicked textArea.root.value="+root.value)
-                            if (root.value!==0){
-                                textArea.text =root.value.toString(10);
+                            //console.log("onClicked textArea.textArea.value="+textArea.value)
+                            if (textArea.value!==0){
+                                textArea.text =textArea.value.toString(10);
                             }
                             else {
-                                root.value=0;
+                                textArea.value=0;
                             }
                             textArea.selectAll();
                             //console.log(textArea.activeFocus );
@@ -279,11 +307,11 @@ Item {
                     onDoubleClicked: {
                         if (textArea.activeFocus){
                             labelMouseArea.cursorShape=Qt.IBeamCursor;
-                            if (root.value!==0){
-                                textArea.text =root.value.toString(10);
+                            if (textArea.value!==0){
+                                textArea.text =textArea.value.toString(10);
                             }
                             else{
-                                root.value = 0;
+                                textArea.value = 0;
                             }
                             textArea.selectAll();
                             console.log(textArea.activeFocu);
@@ -316,8 +344,6 @@ Item {
             anchors.rightMargin: root.paddingRight
             type: SettingData.BlueButtonType.PLUS
         }
-
-
     }
 
     function stopFocusTextArea (){

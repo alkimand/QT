@@ -52,7 +52,8 @@ OTHER_FILES += \
 #CommonElements
     src/QML/CommonElements/TabButton/TabButton.qml\
     src/QML/CommonElements/TabButton/TabButtonLabel/TabButtonLabel.qml\
-    src/QML/CommonElements/OneRowItem/OneRowItem.qml\
+    src/QML/CommonElements/OneRowItem/OneRowItem_O.qml\
+    src/QML/CommonElements/OneRowItem/MoneyCheker/OneRowItem_S.qml\
     src/QML/CommonElements/SmallCrossChekerButton/SmallCrossChekerButton_O.qml\
     src/QML/CommonElements/SmallCrossChekerButton/MoneyCheker/SmallCrossChekerButton_S.qml\
 

@@ -5,13 +5,13 @@ import QtQuick.Controls 2.12
 import "../../Action"
 import "../../CommonElements/TabButton"
 import "../../Setting"
-import "../../CommonElements/OneRowItem"
-
+import "../../CommonElements/OneRowItem/MoneyCheker"
+import BorderRadiusWidget.qml 1.0
 
 Item {
     id:root
     property Actions actions : parent.actions
-
+    //property int radius : parent.actions
     Connections {
         target: button_1
         onActivateButton: {
@@ -52,7 +52,6 @@ Item {
         fontFamily:settingData.appContentWidgetSettings.tabFontFamily;
         backgroundColor:settingData.columnSettings.columnFreeSpaceColor;
         buttonTupe: SettingData.ButtonType.FIRST_BUTTON_TYPE;
-        // isActive:true
     }
 
     TabButton{
@@ -77,69 +76,222 @@ Item {
         buttonTupe: SettingData.ButtonType.LAST_BUTTON_TYPE;
     }
 
-
-
-    OneRowItem {
-        id:areaItem
-
-        //anchors
+    OneRowItem_S {
+        id:area_1
         anchors.top:button_1.bottom
         anchors.left:parent.left
-        //anchors.right:parent.right
+        value: 130
 
-        //common
-        commonFontFamily: settingData.oneRowItemSettings.commonFontFamily;
-        backgroundColor: settingData.oneRowItemSettings.backgroundColor;
-        rowItemWidth: settingData.appContentWidgetSettings.contentCalculatorPageWidth;
-        rowItemHeight:settingData.oneRowItemSettings.rowItemHeight;
-        rowMargin:settingData.oneRowItemSettings.rowMargin;
-        paddingLeft:settingData.oneRowItemSettings.paddingLeft;
-        paddingRight:settingData.oneRowItemSettings.paddingRight;
-        type:SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT
-        textRowSpacing: settingData.oneRowItemSettings.textRowSpacing;
+        textType:SettingData.DataType.CURRENCY_DATA_TYPE;
+        type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
 
-        //textLine
-        textBlockWidth:settingData.oneRowItemSettings.textBlockWidth;
-        textFirstLineFontColor:settingData.oneRowItemSettings.textFirstLineFontColor;
-        textSecondLineFontColor: settingData.oneRowItemSettings.textSecondLineFontColor;
-        textFirstLineTopMargin: settingData.oneRowItemSettings.textFirstLineTopMargin;
-        textFirstLineFontSize:settingData.oneRowItemSettings.textFirstLineFontSize;
-        textSecondLineFontSize:settingData.oneRowItemSettings.textSecondLineFontSize;
-        textFirstLine:"Home prise"
-        textSecondLine:""
+        textFirstLine: "Home prise"
+        textSecondLine: ""
 
-        //Label
-
-        labelFontColor:settingData.oneRowItemSettings.labelFontColor;
-        labelРighlightingFontColor:settingData.oneRowItemSettings.labelРighlightingFontColor;
-        labelFontSize:settingData.oneRowItemSettings.labelFontSize;
-        labelBorderColorWidth:settingData.oneRowItemSettings.labelBorderColorWidth;
-        labelLeftPadding:settingData.oneRowItemSettings.labelLeftPadding;
-        labelMargins:settingData.oneRowItemSettings.labelMargins;
-
-
-        //Button
-        activMainButtonColor:settingData.oneRowItemSettings.activMainButtonColor;
-        activBackgroundButtonColor:settingData.oneRowItemSettings.activBackgroundButtonColor;
-        pressedMainButtonColor:settingData.oneRowItemSettings.pressedMainButtonColor;
-        pressedBackgroundButtonColor:settingData.oneRowItemSettings.pressedBackgroundButtonColor;
-        buttonSize:settingData.oneRowItemSettings.buttonSize;// = 2*radius
-        crossSize:settingData.oneRowItemSettings.crossSize;
-        checkerSize:settingData.oneRowItemSettings.checkerSize;
-        checkerMargin:settingData.oneRowItemSettings.checkerMargin;
-        buttonBorderWidth:settingData.oneRowItemSettings.buttonBorderWidth;
-        oneRowItemBorderHeigh:settingData.oneRowItemSettings.oneRowItemBorderHeigh;
-        checkerHeigh:settingData.oneRowItemSettings.checkerHeigh;
     }
+
+
+    Component {
+        id:itemBorder
+        Rectangle {
+
+            height:settingData.oneRowItemSettings.oneRowItemBorderHeigh;
+            color: settingData.columnSettings.columnFreeSpaceColor;
+        }
+    }
+
+    Loader {
+        id:border_1
+        sourceComponent: itemBorder
+        anchors.top:area_1.bottom
+        anchors.left:parent.left
+        anchors.right:parent.right
+    }
+
+    OneRowItem_S {
+        id:area_2
+        anchors.top:border_1.bottom
+        anchors.left:parent.left
+        value: 20
+        type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
+        textType:SettingData.DataType.PERSENT_DATA_TYPE
+        textFirstLine: "Downpayment"
+        textSecondLine: "2 297 22"
+    }
+
+    Loader {
+        id:border_2
+        sourceComponent: itemBorder
+        anchors.top:area_2.bottom
+        anchors.left:parent.left
+        anchors.right:parent.right
+    }
+
+    OneRowItem_S {
+        id:area_3
+        anchors.top:border_2.bottom
+        anchors.left:parent.left
+        value: 4.5
+        type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
+        textType:SettingData.DataType.PERSENT_DATA_TYPE
+        textFirstLine: "Rate"
+        textSecondLine: ""
+    }
+
+    Loader {
+        id:border_3
+        sourceComponent: itemBorder
+        anchors.top:area_3.bottom
+        anchors.left:parent.left
+        anchors.right:parent.right
+    }
+
+    OneRowItem_S {
+        id:area_4
+        anchors.top:border_3.bottom
+        anchors.left:parent.left
+        value: 100
+        type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
+        textType:SettingData.DataType.YERS_DATA_TYPE
+        textFirstLine: "Term"
+        textSecondLine: ""
+    }
+
+    Loader {
+        id:border_4
+        sourceComponent: itemBorder
+        anchors.top:area_4.bottom
+        anchors.left:parent.left
+        anchors.right:parent.right
+    }
+
+    OneRowItem_S {
+        id:area_5
+        anchors.top:border_4.bottom
+        anchors.left:parent.left
+        value: 6911
+        type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
+        textType:SettingData.DataType.CURRENCY_DATA_TYPE
+        textSecondLineType: SettingData.DataType.PERSENT_DATA_TYPE;
+        textFirstLine: "Taxes"
+        textSecondLine: "0.060"
+    }
+
+    Loader {
+        id:border_5
+        sourceComponent: itemBorder
+        anchors.top:area_5.bottom
+        anchors.left:parent.left
+        anchors.right:parent.right
+    }
+
+    OneRowItem_S {
+        id:area_6
+        anchors.top:border_5.bottom
+        anchors.left:parent.left
+        value: 126152
+        type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
+        textType:SettingData.DataType.CURRENCY_DATA_TYPE
+        textFirstLine: "Insurance"
+        textSecondLine: ""
+    }
+
+    Loader {
+        id:border_6
+        sourceComponent: itemBorder
+        anchors.top:area_6.bottom
+        anchors.left:parent.left
+        anchors.right:parent.right
+    }
+
+    OneRowItem_S {
+        id:area_7
+        anchors.top:border_6.bottom
+        anchors.left:parent.left
+        value: 0.1
+        type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
+        textType:SettingData.DataType.PERSENT_DATA_TYPE
+        textFirstLine: "PMI"
+        textSecondLine: ""
+    }
+
+    Loader {
+        id:border_7
+        sourceComponent: itemBorder
+        anchors.top:area_7.bottom
+        anchors.left:parent.left
+        anchors.right:parent.right
+    }
+
+    OneRowItem_S {
+        id:area_8
+        anchors.top:border_7.bottom
+        anchors.left:parent.left
+        value: 0.1
+        type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_LABEL_ONLY_LEFT_LABEL_ALIGNEMENT;
+        textType:SettingData.DataType.DATE_DATA_TYPE
+        textFirstLine: "Start date"
+        textSecondLine: ""
+    }
+
+    Loader {
+        id:border_8
+        sourceComponent: itemBorder
+        anchors.top:area_8.bottom
+        anchors.left:parent.left
+        anchors.right:parent.right
+    }
+
+    OneRowItem_S {
+        id:area_9
+        anchors.top:border_8.bottom
+        anchors.left:parent.left
+        value: 0.1
+        type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT;
+        textType:SettingData.DataType.YERS_DATA_TYPE
+        textFirstLine: "Amortization"
+        textSecondLine: ""
+    }
+
+
+
+
+
 
     Rectangle {
-        id: border_1
-        width:settingData.appContentWidgetSettings.contentCalculatorPageWidth;
-        height:settingData.oneRowItemSettings.oneRowItemBorderHeigh;
-        color:settingData.columnSettings.columnFreeSpaceColor;
-        anchors.left:areaItem.left
-        anchors.top:areaItem.bottom
+        id:parentReact
+        anchors.left:parent.left
+        anchors.top:area_9.bottom
+        anchors.right:area_9.right
+        height:button_1.radius
+
+        BorderRadiusWidget {
+            id:bottomRightRadius
+            anchors.right:parent.right
+            anchors.bottomMargin: button_1.radius
+            anchors.rightMargin: button_1.radius
+            anchors.bottom:parent.bottom
+            radius:button_1.radius
+            activeButtonColor:"red"//settingData.buttonSettings.buttonIsSelectedColorSetting;
+            transform: Rotation {
+                origin.x: parentReact.x;
+                origin.y: parentReact.y;
+                angle: 180
+            }
+            z:2
+        }
+
+        //    Rectangle{
+        //        id:bottomRightRadiusReact
+        //        width:button_1.radius
+        //        height:button_1.radius
+        //        anchors.right:area_9.right
+        //        anchors.bottom:area_9.bottom
+        //        z:1
+        //    }
     }
+
+
 
 
 
@@ -158,59 +310,6 @@ Item {
     }
 
 
-    //    TabButton{
-    //        anchors.left:button_1.right
-    //        anchors.top: parent.top
-    //       activeColor: "red"
-    //    }
-
-
-    //    Rectangle{
-    //        id:qw
-    //                anchors.left:button_1.right
-    //                //anchors.right:parent.right
-    //                anchors.top: parent.top
-    //                color:"red"
-    //                height:40
-
-    //                width:200
-
-    //            }
-
-    //    Rectangle{
-    //                anchors.left:qw.right
-    //                //anchors.right:parent.right
-    //                anchors.top: parent.top
-    //                color:"blue"
-    //                height:40
-
-    //                width:200
-
-    //            }
-
-
-    //       spacing: settingData.columnSettings.spaceBetweenButton
-
-    //       ButtonTemplate { action: root.actions.mainButtonCalculate;}
-    //       ButtonTemplate { action: root.actions.mainButtonFavorite;}
-    //       ButtonTemplate { action: root.actions.mainButtonPercent;}
-    //       ButtonTemplate { action: root.actions.mainButtonSetting;}
-    // ButtonTemplate { actions: actions.buttonSettings;}
-
-
-    // ButtonTemplate { actions: actions.fileOpenAction}
-    //ButtonTemplate { actions: actions.downloadAction}
-    // ButtonTemplate{actions: root.actions}
-    //        CustomToolButton{action: actions.downloadAction}
-
-    // }
-
-
-    // Component.onCompleted: console.log(parent.test)
-    //Component.onCompleted: console.log("Button_1:" + root.actions.fileOpenAction.text)
-    // Component.onCompleted: console.log(actions.fileOpenAction.text)
-
-    // test
 }
 
 

@@ -18,7 +18,8 @@
 		<file>src/QML/StackView/Pages/CalkPage.qml</file>
 		<file>src/QML/CommonElements/TabButton/TabButton.qml</file>
 		<file>src/QML/CommonElements/TabButton/TabButtonLabel/TabButtonLabel.qml</file>
-		<file>src/QML/CommonElements/OneRowItem/OneRowItem.qml</file>
+ 		<file>src/QML/CommonElements/OneRowItem/OneRowItem_O.qml</file>
+		<file>src/QML/CommonElements/OneRowItem/MoneyCheker/OneRowItem_S.qml</file>
 		<file>src/QML/CommonElements/SmallCrossChekerButton/SmallCrossChekerButton_O.qml</file>	
 		<file>src/QML/CommonElements/SmallCrossChekerButton/MoneyCheker/SmallCrossChekerButton_S.qml</file>	
         <file>src/images/ToolBarIcon/editcopy.png</file>
