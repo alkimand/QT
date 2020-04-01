@@ -1,12 +1,10 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 
-//import "ButtonTemplate.qml"
 import "../../Action"
-import "../../CommonElements/TabButton"
+import "../../CommonElements/TabButton/MoneyCheker"
 import "../../Setting"
 import "../../CommonElements/OneRowItem/MoneyCheker"
-import BorderRadiusWidget.qml 1.0
 
 Item {
     id:root
@@ -32,47 +30,22 @@ Item {
         }
     }
 
-    TabButton{
+    TabButton_S {
         id:button_1;
         anchors.left: parent.left;
         anchors.top: parent.top;
-        width: settingData.appContentWidgetSettings.contentCalculatoButtonWidth;
-        height: settingData.appContentWidgetSettings.buttonHeight;
-        radius: settingData.appContentWidgetSettings.borderRadius;
         activeAction: parent.actions.tabButtonMortageActivate;
         disactiveAction:parent.actions.mainButtonFavorite;
-        activeColor: settingData.buttonSettings.buttonIsSelectedColorSetting;
-        disactiveColor: settingData.buttonSettings.buttonIsNotSelectedColorSetting;
-        activeFontColor: settingData.appContentWidgetSettings.activeFontColor;
-        disactiveFontColor:settingData.appContentWidgetSettings.disactiveFontColor;
-        tabIconTextMargin: settingData.appContentWidgetSettings.iconMarginTop;
-        iconTextMargin:settingData.appContentWidgetSettings.tabiconTextMargin;
-        fontSize:settingData.appContentWidgetSettings.fontSize;
-        iconSize:settingData.appContentWidgetSettings.iconSize;
-        fontFamily:settingData.appContentWidgetSettings.tabFontFamily;
-        backgroundColor:settingData.columnSettings.columnFreeSpaceColor;
         buttonTupe: SettingData.ButtonType.FIRST_BUTTON_TYPE;
     }
 
-    TabButton{
+    //Rows
+    TabButton_S {
         id:button_2;
         anchors.left:button_1.right;
         anchors.top: parent.top;
-        width: settingData.appContentWidgetSettings.contentCalculatoButtonWidth;
-        height: settingData.appContentWidgetSettings.buttonHeight;
-        radius: settingData.appContentWidgetSettings.borderRadius;
         activeAction: parent.actions.tabButtonMortageActivate;
         disactiveAction:parent.actions.mainButtonFavorite;
-        activeColor: settingData.buttonSettings.buttonIsSelectedColorSetting;
-        disactiveColor: settingData.buttonSettings.buttonIsNotSelectedColorSetting;
-        activeFontColor: settingData.appContentWidgetSettings.activeFontColor;
-        disactiveFontColor:settingData.appContentWidgetSettings.disactiveFontColor;
-        tabIconTextMargin: settingData.appContentWidgetSettings.iconMarginTop;
-        iconTextMargin:settingData.appContentWidgetSettings.tabiconTextMargin;
-        fontSize:settingData.appContentWidgetSettings.fontSize;
-        iconSize:settingData.appContentWidgetSettings.iconSize;
-        fontFamily:settingData.appContentWidgetSettings.tabFontFamily;
-        backgroundColor:settingData.columnSettings.columnFreeSpaceColor;
         buttonTupe: SettingData.ButtonType.LAST_BUTTON_TYPE;
     }
 
@@ -81,12 +54,9 @@ Item {
         anchors.top:button_1.bottom
         anchors.left:parent.left
         value: 130
-
         textType:SettingData.DataType.CURRENCY_DATA_TYPE;
         type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
-
         textFirstLine: "Home prise"
-        textSecondLine: ""
 
     }
 
@@ -135,7 +105,6 @@ Item {
         type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
         textType:SettingData.DataType.PERSENT_DATA_TYPE
         textFirstLine: "Rate"
-        textSecondLine: ""
     }
 
     Loader {
@@ -154,7 +123,6 @@ Item {
         type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
         textType:SettingData.DataType.YERS_DATA_TYPE
         textFirstLine: "Term"
-        textSecondLine: ""
     }
 
     Loader {
@@ -193,7 +161,6 @@ Item {
         type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
         textType:SettingData.DataType.CURRENCY_DATA_TYPE
         textFirstLine: "Insurance"
-        textSecondLine: ""
     }
 
     Loader {
@@ -212,26 +179,24 @@ Item {
         type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
         textType:SettingData.DataType.PERSENT_DATA_TYPE
         textFirstLine: "PMI"
-        textSecondLine: ""
     }
-
+    //--border_1
     Loader {
         id:border_7
         sourceComponent: itemBorder
-        anchors.top:area_7.bottom
+        anchors.top:area_7.bottom//area_7
         anchors.left:parent.left
         anchors.right:parent.right
     }
 
     OneRowItem_S {
         id:area_8
-        anchors.top:border_7.bottom
+        anchors.top:border_7.bottom//border_7
         anchors.left:parent.left
-        value: 0.1
+        value: "07.2020"
         type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_LABEL_ONLY_LEFT_LABEL_ALIGNEMENT;
         textType:SettingData.DataType.DATE_DATA_TYPE
         textFirstLine: "Start date"
-        textSecondLine: ""
     }
 
     Loader {
@@ -244,61 +209,14 @@ Item {
 
     OneRowItem_S {
         id:area_9
-        anchors.top:border_8.bottom
+        anchors.top:border_8.bottom//border_8
         anchors.left:parent.left
-        value: 0.1
+        value: 1
         type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT;
         textType:SettingData.DataType.YERS_DATA_TYPE
         textFirstLine: "Amortization"
-        textSecondLine: ""
+        hasBorder:SettingData.HasBorder.BOTTOM_BORDER
     }
-
-
-
-
-
-
-    Rectangle {
-        id:parentReact
-        anchors.left:parent.left
-        anchors.top:area_9.bottom
-        anchors.right:area_9.right
-        height:button_1.radius
-
-        BorderRadiusWidget {
-            id:bottomRightRadius
-            anchors.right:parent.right
-            anchors.bottomMargin: button_1.radius
-            anchors.rightMargin: button_1.radius
-            anchors.bottom:parent.bottom
-            radius:button_1.radius
-            activeButtonColor:"red"//settingData.buttonSettings.buttonIsSelectedColorSetting;
-            transform: Rotation {
-                origin.x: parentReact.x;
-                origin.y: parentReact.y;
-                angle: 180
-            }
-            z:2
-        }
-
-        //    Rectangle{
-        //        id:bottomRightRadiusReact
-        //        width:button_1.radius
-        //        height:button_1.radius
-        //        anchors.right:area_9.right
-        //        anchors.bottom:area_9.bottom
-        //        z:1
-        //    }
-    }
-
-
-
-
-
-
-
-
-
 
 
     //UPDATE TabButton

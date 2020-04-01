@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 import"../../Setting"
-//import"../../Setting"
+import BorderRadiusWidget.qml 1.0
 import "../SmallCrossChekerButton/MoneyCheker"
 
 
@@ -14,6 +14,7 @@ Item {
     //common
     property string commonFontFamily
     property color backgroundColor
+    property color backgroundFontColor
     property int rowItemWidth //weight
     property int rowItemHeight
     property int rowMargin  //to up if will need
@@ -23,6 +24,9 @@ Item {
     property int type
     property int textType
     property int textSecondLineType
+    property int hasBorder
+    property int borderRadius
+
 
     //textLine
     property int textBlockWidth
@@ -113,8 +117,8 @@ Item {
                     Layout.rowSpan: 1
                     Layout.row: 1
                     Layout.column: 1
-
                 }
+
                 Text
                 {
                     id: textSecondLine_
@@ -124,32 +128,31 @@ Item {
                     Layout.alignment:Qt.AlignVCenter
                     horizontalAlignment : Text.AlignLeft
                     verticalAlignment :Text.AlignTop
-                    text: root.textSecondLine
+                    text: root.valueToUserText (root.textSecondLine,2)
                     font.family : root.commonFontFamily
                     font.pointSize:  root.textSecondLineFontSize
                     Layout.fillHeight: true
                     Layout.fillWidth: true
-                    font.bold :true
+                    //font.bold :true
                     elide : Text.ElideRight //wrapped text
-                    color: root.textFirstLineFontColor
+                    color: root.textSecondLineFontColor
                     renderType: Text.NativeRendering // Rendering type (optional)
                     Layout.columnSpan: 1
                     Layout.rowSpan: 1
                     Layout.row: 2
                     Layout.column: 1
                     Component.onCompleted: {
-                        if (textSecondLine_.text===""){
+                        if (root.textSecondLine===""){
                             textSecondLine_.visible = false;
                             textReact.anchors.topMargin = root.textFirstLineTopMargin;
                         }
                     }
-
                 }
-
             }
         }
 
-        Rectangle{
+        Rectangle {
+
             id:textAreaRect
             anchors.top: parent.top
             anchors.bottom: parent.bottom
@@ -196,7 +199,6 @@ Item {
                     implicitHeight: textAreaRect.height
                     border.color: (textArea.activeFocus)?root.labelРighlightingFontColor:"transparent"
                     border.width: root.labelBorderColorWidth
-
                 }
 
                 onEditingFinished: {
@@ -210,7 +212,7 @@ Item {
                         textArea.value=0
                     }
                     textArea.text= ""
-                    textArea.placeholderText = textArea.valueToUserText(textArea.value)
+                    textArea.placeholderText = root.valueToUserText(textArea.value)
                     labelMouseArea.cursorShape=Qt.ArrowCursor
                     //console.log("textArea.text="+ textArea.text)
                 }
@@ -218,32 +220,10 @@ Item {
                 Keys.onReturnPressed: { _onEnterPressed(event) }
                 Keys.onEnterPressed: { _onEnterPressed(event) }
                 Component.onCompleted: {
-                    textArea.placeholderText = textArea.valueToUserText(textArea.value)
+                    textArea.placeholderText = root.valueToUserText(textArea.value)
                 }
 
-                function valueToUserText(value){
-                    var userText = "";
-                    //console.log("valueToUserText=" + value)
-                    switch (root.textType)   {
-                    case SettingData.DataType.PERSENT_DATA_TYPE :
-                        //dash_horizontal.visible = true;
-                        //dash_vertical.visible = true;
-                        break
 
-                    case SettingData.DataType.CURRENCY_DATA_TYPE :
-                        userText = (value + " руб.").toString(10)
-                        //console.log("userText=" + userText)
-                        break;
-
-                    case SettingData.DataType.DATE_DATA_TYPE :
-                       // dash_cross_left.visible = true;
-                       // dash_cross_right.visible = true;
-                        break;
-
-                    }
-                    return userText
-
-                }
 
                 function _onEnterPressed(event)
                 {
@@ -344,12 +324,209 @@ Item {
             anchors.rightMargin: root.paddingRight
             type: SettingData.BlueButtonType.PLUS
         }
+
+
+        //Border Radius
+
+        BorderRadiusWidget {
+            id:bottomLeftRadius
+            visible:false
+            anchors.left:parentReact.left
+            anchors.bottomMargin:root.borderRadius
+            anchors.leftMargin: root.borderRadius
+            anchors.bottom: parentReact.bottom
+            radius: root.borderRadius
+            activeButtonColor:  root.backgroundColor
+            transform: Rotation {
+                origin.x: 0;
+                origin.y:0;
+                angle: 270
+            }
+            z:2
+        }
+
+        Rectangle{
+            id:bottomLeftRadiusReact
+            visible:false
+            width:root.borderRadius
+            height:root.borderRadius
+            anchors.left:parentReact.left
+            anchors.bottom:parentReact.bottom
+            z:1
+            color: root.backgroundFontColor
+        }
+
+        BorderRadiusWidget {
+            id:bottomRightRadius
+            visible:false
+            anchors.right:parentReact.right
+            anchors.bottomMargin:root.borderRadius
+            anchors.rightMargin: root.borderRadius
+            anchors.bottom: parentReact.bottom
+            radius: root.borderRadius
+            activeButtonColor: root.backgroundColor
+            transform: Rotation {
+                origin.x: parentReact.x;
+                origin.y:parentReact.y;
+                angle: 180
+            }
+            z:2
+        }
+
+
+        Rectangle{
+            id:bottomRightRadiusReact
+            visible:false
+            width:root.borderRadius
+            height:root.borderRadius
+            anchors.right:parentReact.right
+            anchors.bottom:parentReact.bottom
+            z:1
+            color: root.backgroundFontColor
+        }
     }
 
     function stopFocusTextArea (){
         //textArea.
         //textArea.deselect()
     }
+
+    Component.onCompleted:{
+        root.onCompletedChangeButtom();
+        root.onCompletedHasBorder();
+        //console.log("root.type="+root.type)
+
+    }
+
+    function onCompletedChangeButtom (){
+        switch (root.type)   {
+        case SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_ONE_BUTTON_RIGHT :
+            button_1.visible = false;
+            break;
+
+        case SettingData.OneRowItemType.TWO_TEXT_LEFT_TEXT_AND_ONE_BUTTON_RIGHT_LEFT_ALIGNEMENT :
+            button_1.visible = false;
+            //button_2.visible = true;
+            break;
+
+        case SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT :
+            //console.log("ONE_TEXT_LEFT_TEXT_AND_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT")
+            button_1.visible = false;
+            button_2.visible = false;
+            textAreaRect.anchors.right = parentReact.right
+            break;
+
+        case SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_COMBOBOX_ONLY_RIGHT_COMBOBOX_ALIGNEMENT :
+            button_1.visible = false;
+            button_2.visible = false;
+            textAreaRect.anchors.right = parentReact.right
+            break;
+
+        case SettingData.OneRowItemType.TWO_TEXT_LEFT_TEXT_AND_LABEL_ONLY :
+            button_1.visible = false;
+            button_2.visible = false;
+            textAreaRect.anchors.right = parentReact.right
+            break;
+
+        case SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_LABEL_ONLY_LEFT_LABEL_ALIGNEMENT :
+            button_1.visible = false;
+            button_2.visible = false;
+            textAreaRect.anchors.right = parentReact.right
+            break;
+
+        case SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_LABEL_ONLY_RIGHT_LABEL_ALIGNEMENT :
+            button_1.visible = false;
+            button_2.visible = false;
+            textAreaRect.anchors.right = parentReact.right
+            break;
+
+        case SettingData.OneRowItemType.TWO_TEXT_LEFT_TEXT_AND_TEXT_RIGHT_ONLY :
+            button_1.visible = false;
+            button_2.visible = false;
+            textAreaRect.anchors.right = parentReact.right;
+            break;
+        }
+    }
+
+
+
+    function onCompletedHasBorder (){
+        switch (root.hasBorder)   {
+        case SettingData.HasBorder.UPPER_BORDER :
+            //button_1.visible = false;
+            break;
+
+        case SettingData.HasBorder.BOTTOM_BORDER :
+            bottomLeftRadius.visible = true;
+            bottomLeftRadiusReact.visible = true;
+            bottomRightRadius.visible = true;
+            bottomRightRadiusReact.visible = true;
+            break;
+
+        case SettingData.HasBorder.UPPER_BOTTOM_BORDER :
+            //console.log("ONE_TEXT_LEFT_TEXT_AND_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT")
+            //   button_1.visible = false;
+            //  button_2.visible = false;
+            //textAreaRect.anchors.right = parentReact.right
+            break;
+        }
+    }
+
+    function valueToUserText(value, param = 1){
+        var userText = "";
+        //console.log("valueToUserText=" + value)
+        if (param === 1){
+            switch (root.textType)   {
+            case SettingData.DataType.PERSENT_DATA_TYPE :
+                userText = (value + "%").toString(10);
+                break
+
+            case SettingData.DataType.CURRENCY_DATA_TYPE :
+                userText = (value + " руб.").toString(10);
+                break;
+
+            case SettingData.DataType.DATE_DATA_TYPE :
+                userText = (value).toString(10);//convert
+                break;
+
+            case SettingData.DataType.YERS_DATA_TYPE :
+                userText = (value + " years").toString(10);
+                break;
+
+            case SettingData.DataType.STRING_DATA_TYPE :
+                userText = (value).toString(10);
+                break;
+            }
+        }
+        else {
+            switch (root.textSecondLineType)   {
+            case SettingData.DataType.PERSENT_DATA_TYPE :
+                userText = (value + "%").toString(10);
+                break
+
+            case SettingData.DataType.CURRENCY_DATA_TYPE :
+                userText = (value + " руб.").toString(10);
+                break;
+
+            case SettingData.DataType.DATE_DATA_TYPE :
+                userText = (value).toString(10);//convert
+                break;
+
+            case SettingData.DataType.YERS_DATA_TYPE :
+                userText = (value + " years").toString(10);
+                break;
+
+            case SettingData.DataType.STRING_DATA_TYPE :
+                userText = (value).toString(10);
+                break;
+
+            }
+        }
+        return userText
+
+    }
+
+
 }
 
 

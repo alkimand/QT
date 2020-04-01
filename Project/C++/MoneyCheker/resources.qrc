@@ -16,8 +16,9 @@
 		<file>src/QML/ColumnWidget/ItemLoader/ButtonRow/ButtonTemplate.qml</file>
         <file>src/QML/StackView/AppContentBox.qml</file>
 		<file>src/QML/StackView/Pages/CalkPage.qml</file>
-		<file>src/QML/CommonElements/TabButton/TabButton.qml</file>
-		<file>src/QML/CommonElements/TabButton/TabButtonLabel/TabButtonLabel.qml</file>
+		<file>src/QML/CommonElements/TabButton/TabButton_O.qml</file>
+		<file>src/QML/CommonElements/TabButton/MoneyCheker/TabButton_S.qml</file>
+		<file>src/QML/CommonElements/TabButton/TabButtonLabel/TabButtonLabel_O.qml</file>
  		<file>src/QML/CommonElements/OneRowItem/OneRowItem_O.qml</file>
 		<file>src/QML/CommonElements/OneRowItem/MoneyCheker/OneRowItem_S.qml</file>
 		<file>src/QML/CommonElements/SmallCrossChekerButton/SmallCrossChekerButton_O.qml</file>	

@@ -213,7 +213,7 @@ Item {
 		property int textRowSpacing: 00
 		//rowItemWidth:contentCalculatorPageWidth
 		property color textFirstLineFontColor: "black"		
-		property color textSecondLineFontColor: "white"		
+		property color textSecondLineFontColor: "#969393"	
 		property int textFirstLineTopMargin: 2
 		property int textFirstLineFontSize: 12
 		property int textSecondLineFontSize: 10
@@ -278,13 +278,14 @@ Item {
 	enum HasBorder {
         UPPER_BORDER = 1,
         BOTTOM_BORDER = 2,
-        UPPER_BOTTOM_BORDER = 3
+        UPPER_BOTTOM_BORDER = 3,
+		NO_BORDER = 4
     }
 
 
 	enum OneRowItemType {
-        ONE_TEXT_LEFT_TEXT_AND_ONE_BUTTON_RIGHT = 1,
-        TWO_TEXT_LEFT_TEXT_AND_ONE_BUTTON_RIGHT_LEFT_ALIGNEMENT = 2,
+        ONE_TEXT_LEFT_TEXT_AND_ONE_BUTTON_RIGHT = 1,//--
+        TWO_TEXT_LEFT_TEXT_AND_ONE_BUTTON_RIGHT_LEFT_ALIGNEMENT = 2,//--
         ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT = 3,
         TWO_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT = 4,	
         ONE_TEXT_LEFT_TEXT_AND_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT = 5,

@@ -11,14 +11,16 @@ OneRowItem_O {
     //COMMON
     commonFontFamily: settingData.oneRowItemSettings.commonFontFamily;
     backgroundColor: settingData.oneRowItemSettings.backgroundColor;
+    backgroundFontColor: settingData.appContentWidgetSettings.disactiveFontColor;
     rowItemWidth: settingData.appContentWidgetSettings.contentCalculatorPageWidth;
     rowItemHeight:settingData.oneRowItemSettings.rowItemHeight;
     rowMargin:settingData.oneRowItemSettings.rowMargin;
     paddingLeft:settingData.oneRowItemSettings.paddingLeft;
     paddingRight:settingData.oneRowItemSettings.paddingRight;
     textSecondLineType: SettingData.DataType.CURRENCY_DATA_TYPE;
-
     textRowSpacing: settingData.oneRowItemSettings.textRowSpacing;
+    hasBorder:SettingData.HasBorder.NO_BORDER
+    borderRadius: settingData.appContentWidgetSettings.borderRadius;
 
 
     //textLine
@@ -28,6 +30,7 @@ OneRowItem_O {
     textFirstLineTopMargin: settingData.oneRowItemSettings.textFirstLineTopMargin;
     textFirstLineFontSize:settingData.oneRowItemSettings.textFirstLineFontSize;
     textSecondLineFontSize:settingData.oneRowItemSettings.textSecondLineFontSize;
+    textSecondLine: ""
 
 
     //Label

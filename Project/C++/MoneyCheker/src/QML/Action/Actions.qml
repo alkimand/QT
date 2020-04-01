@@ -44,18 +44,12 @@ Item
     property Action tabButtonMortageActivate :
         Action
     {
-        //id: fileOpenAction
         icon.source: appButtonIconPath + 'home_blue.png'
-        //shortcut : QKeySequence::Open)
         icon.name: "calculate"
         text: "MORTAGE"
         onTriggered:
         {
-            //fileDialog.selectExisting = true
-            //fileDialog.open()
-            //tabView.addTextComponent()
             console.log("tabButtonMortageActivate")
-
         }
     }
 

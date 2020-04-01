@@ -50,8 +50,9 @@ OTHER_FILES += \
     src/QML/StackView/AppContentBox.qml\
     src/QML/StackView/Pages/CalkPage.qml\
 #CommonElements
-    src/QML/CommonElements/TabButton/TabButton.qml\
-    src/QML/CommonElements/TabButton/TabButtonLabel/TabButtonLabel.qml\
+    src/QML/CommonElements/TabButton/TabButton_O.qml\
+    src/QML/CommonElements/TabButton/MoneyCheker/TabButton_S.qml\
+    src/QML/CommonElements/TabButton/TabButtonLabel/TabButtonLabel_O.qml\
     src/QML/CommonElements/OneRowItem/OneRowItem_O.qml\
     src/QML/CommonElements/OneRowItem/MoneyCheker/OneRowItem_S.qml\
     src/QML/CommonElements/SmallCrossChekerButton/SmallCrossChekerButton_O.qml\

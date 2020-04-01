@@ -101,7 +101,7 @@ Item {
             anchors.left:leftRadius.left
             anchors.top: parent.top
             anchors.bottom: parent.bottom
-            TabButtonLabel {
+            TabButtonLabel_O {
                 activeAction:root.activeAction;
                 disactiveAction:root.disactiveAction;//root.actions.mainButtonFavorite;
                 activeColor: root.activeColor
