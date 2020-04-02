@@ -48,7 +48,7 @@ OTHER_FILES += \
     src/QML/ColumnWidget/ItemLoader/ButtonRow/ButtonTemplate.qml\
 #StackView
     src/QML/StackView/AppContentBox.qml\
-    src/QML/StackView/Pages/CalkPage.qml\
+    src/QML/StackView/Pages/First_App_Page.qml\
 #CommonElements
     src/QML/CommonElements/TabButton/TabButton_O.qml\
     src/QML/CommonElements/TabButton/MoneyCheker/TabButton_S.qml\

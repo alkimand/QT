@@ -21,7 +21,9 @@ ApplicationWindow {
 
 
     //singleton object for all app
-    SettingData{id: settingData}
+    SettingData{
+        id: settingData
+    }
     property Actions actions : Actions{}
 
     ColumnWidget {

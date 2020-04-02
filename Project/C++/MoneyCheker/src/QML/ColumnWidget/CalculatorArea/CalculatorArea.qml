@@ -52,7 +52,8 @@ Item {
     OneRowItem_S {
         id:area_1
         anchors.top:button_1.bottom
-        anchors.left:parent.left
+        anchors.left:button_1.left
+        anchors.right:button_2.right
         value: 130
         textType:SettingData.DataType.CURRENCY_DATA_TYPE;
         type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
@@ -82,6 +83,7 @@ Item {
         id:area_2
         anchors.top:border_1.bottom
         anchors.left:parent.left
+        //anchors.right:parent.right
         value: 20
         type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
         textType:SettingData.DataType.PERSENT_DATA_TYPE
@@ -219,7 +221,7 @@ Item {
     }
 
 
-    //UPDATE TabButton
+    //Update TabButton
     function updateTabButton(){
         button_1.update();
         //console.log("button_1.update()");

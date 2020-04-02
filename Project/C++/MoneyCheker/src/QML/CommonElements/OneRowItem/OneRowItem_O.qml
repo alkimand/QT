@@ -80,7 +80,10 @@ Item {
     Rectangle {
         id:parentReact
         anchors.fill: parent
-        color:root.backgroundColor
+        //anchors.left:parent.left
+        //anchors.top: parent.top
+        //anchors.bottom: parent.bottom
+        color: root.backgroundColor
 
         Rectangle {
             id: textReact

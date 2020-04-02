@@ -35,7 +35,10 @@ Item{
        // Component.onCompleted: stack.push(mainView_)
 
     }
-    CalkPage{id:mainView }
+    First_App_Page{
+        id:mainView
+        anchors.fill: parent
+    }
     //CalkPage{id:mainView_ }
 
 }

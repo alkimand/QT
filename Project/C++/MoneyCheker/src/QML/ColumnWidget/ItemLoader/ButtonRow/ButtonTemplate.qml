@@ -20,20 +20,20 @@ Item {
 
         id: control
         // Layout.columnSpan: 1
-         //Layout.rowSpan: 1
+        //Layout.rowSpan: 1
         //anchors.margins: 1
-       //  anchors.topMargin: 10
-//        text:""
+        //  anchors.topMargin: 10
+        //        text:""
         //property color buttonBackColor: settingData.buttonSettings.buttonIsNotSelectedColorSetting
         //implicitHeight: 100//settingData.buttonSettings.buttonHeight
         //implicitWidth: 100//settingData.buttonSettings.buttonWidth
         width: root.width
         height: root.height
         //color:settingData.buttonSettings.buttonIsNotSelectedColorSetting
-//        property int textHeight: mainToolBar.toolButtonTextHeight
-//        property string textFont: mainToolBar.toolButtonTextFont
-//        property string sourceIconPath: "qt-logo.png"
-//        property string  textFirstLine: "QT"
+        //        property int textHeight: mainToolBar.toolButtonTextHeight
+        //        property string textFont: mainToolBar.toolButtonTextFont
+        //        property string sourceIconPath: "qt-logo.png"
+        //        property string  textFirstLine: "QT"
         //settingData.children[3].toolBarButtonIsNotSelectedColorSetting
 
         palette {
@@ -72,7 +72,7 @@ Item {
 
             onEntered:
             {
-               buttonReact.color  = settingData.buttonSettings.buttonIsSelectedColorSetting
+                buttonReact.color  = settingData.buttonSettings.buttonIsSelectedColorSetting
             }
 
             onExited:
