@@ -4,14 +4,24 @@ import QtQuick.Layouts 1.12
 import"../../Setting"
 import BorderRadiusWidget.qml 1.0
 import "../SmallCrossChekerButton/MoneyCheker"
-
+import "RowLogic.js" as Logic
 
 
 
 Item {
     id:root
-
     //common
+    //    property Item centerCustomWidget : Item{
+    //        Rectangle{
+    //            //anchors.fill: parent
+    //            color:"red"
+    //            height:10
+    //            width:10
+    //        }
+    //    }
+
+
+    //common style
     property string commonFontFamily
     property color backgroundColor
     property color backgroundFontColor
@@ -131,7 +141,7 @@ Item {
                     Layout.alignment:Qt.AlignVCenter
                     horizontalAlignment : Text.AlignLeft
                     verticalAlignment :Text.AlignTop
-                    text: root.valueToUserText (root.textSecondLine,2)
+                    text: Logic.valueToUserText (root.textSecondLine, root.textSecondLineType)
                     font.family : root.commonFontFamily
                     font.pointSize:  root.textSecondLineFontSize
                     Layout.fillHeight: true
@@ -154,157 +164,48 @@ Item {
             }
         }
 
-        Rectangle {
 
-            id:textAreaRect
-            anchors.top: parent.top
-            anchors.bottom: parent.bottom
-            anchors.left:textReact.right
-            anchors.right:button_1.left
-            anchors.topMargin:root.labelMargins
-            anchors.bottomMargin:root.labelMargins
-            anchors.rightMargin:root.paddingRight
-
-            //width: 150//root.textBlockWidth
-
-            TextArea {
-                id: textArea
-                //horizontalAlignment : Text.AlignLeft //works
-                verticalAlignment :Text.AlignVCenter
-                property var value: root.value//+-
-                //property bool isActive : textArea.activeFocus
-                anchors.fill:parent
-                width: textAreaRect.width
-                //text: !(isActive)?"2900":""
-                font.family : root.commonFontFamily
-                font.pointSize : root.labelFontSize
-                color: root.labelРighlightingFontColor
-                selectedTextColor : root.labelFontColor
-                inputMethodHints: Qt.ImhDate//ImhNoPredictiveText
-                //inputMethodHints: Qt.ImhNoPredictiveText
-                anchors.horizontalCenter: parent.horizontalCenter
-                // anchors.verticalCenter: parent.verticalCenter
-                placeholderTextColor : root.labelРighlightingFontColor
-                placeholderText : ""//"2900 010 руб"
-                selectByMouse : true
-                //overwriteMode :true
-                selectByKeyboard :true
-                wrapMode : TextEdit.WordWrap
-                leftPadding:root.labelLeftPadding
-                textMargin:0
-
-                //                validator: RegExpValidator {
-                //                    regExp:  /^((?:[0-1]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\.){0,3}(?:[0-1]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])$/
-                //                }
-
-                background: Rectangle {
-                    implicitWidth:  root.textBlockWidth
-                    implicitHeight: textAreaRect.height
-                    border.color: (textArea.activeFocus)?root.labelРighlightingFontColor:"transparent"
-                    border.width: root.labelBorderColorWidth
-                }
-
-                onEditingFinished: {
-                    //console.log("onEditingFinished")
-                    //console.log("textArea.text="+ textArea.text)
-                    if (textArea.text!==""){
-                        textArea.value = parseFloat(textArea.text.replace(/[^0-9\.]+/g, ''));
-                    }
-                    else{
-                        //textArea.placeholderText="nan%"
-                        textArea.value=0
-                    }
-                    textArea.text= ""
-                    textArea.placeholderText = root.valueToUserText(textArea.value)
-                    labelMouseArea.cursorShape=Qt.ArrowCursor
-                    //console.log("textArea.text="+ textArea.text)
-                }
-
-                Keys.onReturnPressed: { _onEnterPressed(event) }
-                Keys.onEnterPressed: { _onEnterPressed(event) }
-                Component.onCompleted: {
-                    textArea.placeholderText = root.valueToUserText(textArea.value)
-                }
-
-
-
-                function _onEnterPressed(event)
-                {
-                    if (!(event.modifiers & Qt.ControlModifier))
-                    {
-                        //event.accepted = false;
-                        if (textArea.text!==""){
-                            textArea.value = parseFloat(textArea.text.replace(/[^0-9\.]+/g, ''));
-                        }
-                        else{
-                            textArea.value=0;
-                        }
-                        textArea.text = textArea.value.toString(10);//textArea.value //hack
-                        textArea.placeholderText= textArea.value.toString(10) + " рубл";
-                        textFirstLine_.forceActiveFocus();
-                    }
-                }
-
-                MouseArea {
-                    id:labelMouseArea
-                    anchors.fill: parent
-                    cursorShape : Qt.ArrowCursor
-                    //onPressed: {
-                    onClicked:{
-                        //console.log("onClicked textArea.textArea.value="+textArea.value)
-                        //console.log("onClicked")
-                        if (textArea.activeFocus){
-                            //console.log("onClicked textArea.activeFocus + value=" + textArea.value)
-                            if (textArea.value!==parseFloat(textArea.text.replace(/[^0-9\.]+/g, ''))){
-                                textArea.text = textArea.value.toString(10);
-                                textArea.selectAll();
-                            }
-                            else{
-                                //textArea.text =textArea.value.toString(10);
-                                var position = textArea.positionAt(mouse.x, mouse.y);
-                                //textArea.moveCursorSelection(textArea.positionAt(mouse.x, mouse.y),TextEdit.SelectCharacters)
-                                textArea.select(position,position);
-                                textArea.deselect();
-                            }
-                        }
-                        else {
-                            //console.log("onClicked not activeFocus textArea.isActive===false")
-                            labelMouseArea.cursorShape=Qt.IBeamCursor;
-                            //console.log("onClicked textArea.textArea.value="+textArea.value)
-                            if (textArea.value!==0){
-                                textArea.text =textArea.value.toString(10);
-                            }
-                            else {
-                                textArea.value=0;
-                            }
-                            textArea.selectAll();
-                            //console.log(textArea.activeFocus );
-                            textArea.forceActiveFocus();
-                        }
-                    }
-                    onReleased:{
-                        // console.log("onReleased")
-                        // root.stopFocusTextArea ()
-                    }
-
-                    onDoubleClicked: {
-                        if (textArea.activeFocus){
-                            labelMouseArea.cursorShape=Qt.IBeamCursor;
-                            if (textArea.value!==0){
-                                textArea.text =textArea.value.toString(10);
-                            }
-                            else{
-                                textArea.value = 0;
-                            }
-                            textArea.selectAll();
-                            console.log(textArea.activeFocu);
-                            textArea.forceActiveFocus();
-                        }
-                    }
-                }
-            }
+        CenterLabel_O{
+            id:centerLabel
         }
 
+        Loader{
+            id:centerLoader;
+            sourceComponent : centerLabel;
+            anchors.top: parent.top;
+            anchors.bottom: parent.bottom
+            anchors.left:textReact.right;
+            anchors.right:button_1.left;
+            anchors.topMargin:root.labelMargins;
+            anchors.bottomMargin:root.labelMargins;
+            anchors.rightMargin:root.paddingRight;
+
+            property color labelFontColor_L : root.labelFontColor;
+            property color labelРighlightingFontColor_L: root.labelРighlightingFontColor;
+            property int labelFontSize_L: root.labelFontSize;
+            property int labelBorderColorWidth_L: root.labelBorderColorWidth;
+            property int labelLeftPadding_L: root.labelLeftPadding;
+            property int labelMargins_L: root.labelMargins;
+            property var value_L: root.value;
+            property int textBlockWidth_L:root.textBlockWidth;
+            property int type_L: root.textType;
+            property string commonFontFamily_L: settingData.oneRowItemSettings.commonFontFamily;
+
+
+            Component.onCompleted: {
+                //console.log("type_L="+centerLoader.type_L)
+                //                centerLoader.item.labelFontColor=settingData.oneRowItemSettings.labelFontColor;
+                //                centerLoader.item.labelРighlightingFontColor=settingData.oneRowItemSettings.labelРighlightingFontColor;
+                //                centerLoader.item.labelFontSize=settingData.oneRowItemSettings.labelFontSize;
+                //                centerLoader.item.labelBorderColorWidth=settingData.oneRowItemSettings.labelBorderColorWidth;
+                //                centerLoader.item.labelLeftPadding=settingData.oneRowItemSettings.labelLeftPadding;
+                //                centerLoader.item.labelMargins=settingData.oneRowItemSettings.labelMargins;
+
+                //                centerLoader.item.textBlockWidth=root.textBlockWidth
+                //                centerLoader.item.commonFontFamily=settingData.oneRowItemSettings.commonFontFamily;
+                //                centerLoader.item.value=10//root.value;
+            }
+        }
 
         SmallCrossChekerButton_S {
             id:button_1
@@ -315,6 +216,7 @@ Item {
             anchors.right: button_2.left
             anchors.rightMargin: root.paddingRight
             type: SettingData.BlueButtonType.MINUS
+
         }
 
         SmallCrossChekerButton_S {
@@ -396,12 +298,13 @@ Item {
 
     Component.onCompleted:{
         root.onCompletedChangeButtom();
-        root.onCompletedHasBorder();
+        root.onCompletedHasBorderRadius();
         //console.log("root.type="+root.type)
 
     }
 
     function onCompletedChangeButtom (){
+        //console.log("on onCompletedChangeButtom")
         switch (root.type)   {
         case SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_ONE_BUTTON_RIGHT :
             button_1.visible = false;
@@ -416,44 +319,58 @@ Item {
             //console.log("ONE_TEXT_LEFT_TEXT_AND_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT")
             button_1.visible = false;
             button_2.visible = false;
-            textAreaRect.anchors.right = parentReact.right
+            centerLoader.anchors.right = parentReact.right
+
             break;
 
         case SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_COMBOBOX_ONLY_RIGHT_COMBOBOX_ALIGNEMENT :
             button_1.visible = false;
             button_2.visible = false;
-            textAreaRect.anchors.right = parentReact.right
+            centerLoader.anchors.right = parentReact.right
             break;
 
         case SettingData.OneRowItemType.TWO_TEXT_LEFT_TEXT_AND_LABEL_ONLY :
             button_1.visible = false;
             button_2.visible = false;
-            textAreaRect.anchors.right = parentReact.right
+            centerLoader.anchors.right = parentReact.right
             break;
 
         case SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_LABEL_ONLY_LEFT_LABEL_ALIGNEMENT :
             button_1.visible = false;
             button_2.visible = false;
-            textAreaRect.anchors.right = parentReact.right
+            //centerLoader.anchors.right = parentReact.right
             break;
 
-        case SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_LABEL_ONLY_RIGHT_LABEL_ALIGNEMENT :
+        case SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_LABEL_ONLY_RIGHT_LABEL_ALIGNEMimportENT :
             button_1.visible = false;
             button_2.visible = false;
-            textAreaRect.anchors.right = parentReact.right
+            centerLoader.anchors.right = parentReact.right
             break;
+
+        case SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_CUSTOM_WiDGET_LEFT_COMBOBOX_ALIGNEMENT :
+            console.log("on ONE_TEXT_LEFT_TEXT_AND_CUSTOM_WiDGET_LEFT_COMBOBOX_ALIGNEMENT")
+            button_1.visible = false;
+            button_2.visible = false;
+            centerLoader.visible = false;
+            //centerCustomWidget.parent = root;
+            //centerCustomWidget.anchors.left = textReact.right
+            // centerCustomWidget.anchors.top = parent.top
+
+            break;
+
 
         case SettingData.OneRowItemType.TWO_TEXT_LEFT_TEXT_AND_TEXT_RIGHT_ONLY :
             button_1.visible = false;
             button_2.visible = false;
-            textAreaRect.anchors.right = parentReact.right;
+
+            //textAreaRect.anchors.right = parentReact.right;
             break;
         }
     }
 
 
 
-    function onCompletedHasBorder (){
+    function onCompletedHasBorderRadius (){
         switch (root.hasBorder)   {
         case SettingData.HasBorder.UPPER_BORDER :
             //button_1.visible = false;
@@ -475,59 +392,59 @@ Item {
         }
     }
 
-    function valueToUserText(value, param = 1){
-        var userText = "";
-        //console.log("valueToUserText=" + value)
-        if (param === 1){
-            switch (root.textType)   {
-            case SettingData.DataType.PERSENT_DATA_TYPE :
-                userText = (value + "%").toString(10);
-                break
+    //    function valueToUserText(value, param = 1){
+    //        var userText = "";
+    //        //console.log("valueToUserText=" + value)
+    //        if (param === 1){
+    //            switch (root.textType)   {
+    //            case SettingData.DataType.PERSENT_DATA_TYPE :
+    //                userText = (value + "%").toString(10);
+    //                break
 
-            case SettingData.DataType.CURRENCY_DATA_TYPE :
-                userText = (value + " руб.").toString(10);
-                break;
+    //            case SettingData.DataType.CURRENCY_DATA_TYPE :
+    //                userText = (value + " руб.").toString(10);
+    //                break;
 
-            case SettingData.DataType.DATE_DATA_TYPE :
-                userText = (value).toString(10);//convert
-                break;
+    //            case SettingData.DataType.DATE_DATA_TYPE :
+    //                userText = (value).toString(10);//convert
+    //                break;
 
-            case SettingData.DataType.YERS_DATA_TYPE :
-                userText = (value + " years").toString(10);
-                break;
+    //            case SettingData.DataType.YERS_DATA_TYPE :
+    //                userText = (value + " years").toString(10);
+    //                break;
 
-            case SettingData.DataType.STRING_DATA_TYPE :
-                userText = (value).toString(10);
-                break;
-            }
-        }
-        else {
-            switch (root.textSecondLineType)   {
-            case SettingData.DataType.PERSENT_DATA_TYPE :
-                userText = (value + "%").toString(10);
-                break
+    //            case SettingData.DataType.STRING_DATA_TYPE :
+    //                userText = (value).toString(10);
+    //                break;
+    //            }
+    //        }
+    //        else {
+    //            switch (root.textSecondLineType)   {
+    //            case SettingData.DataType.PERSENT_DATA_TYPE :
+    //                userText = (value + "%").toString(10);
+    //                break
 
-            case SettingData.DataType.CURRENCY_DATA_TYPE :
-                userText = (value + " руб.").toString(10);
-                break;
+    //            case SettingData.DataType.CURRENCY_DATA_TYPE :
+    //                userText = (value + " руб.").toString(10);
+    //                break;
 
-            case SettingData.DataType.DATE_DATA_TYPE :
-                userText = (value).toString(10);//convert
-                break;
+    //            case SettingData.DataType.DATE_DATA_TYPE :
+    //                userText = (value).toString(10);//convert
+    //                break;
 
-            case SettingData.DataType.YERS_DATA_TYPE :
-                userText = (value + " years").toString(10);
-                break;
+    //            case SettingData.DataType.YERS_DATA_TYPE :
+    //                userText = (value + " years").toString(10);
+    //                break;
 
-            case SettingData.DataType.STRING_DATA_TYPE :
-                userText = (value).toString(10);
-                break;
+    //            case SettingData.DataType.STRING_DATA_TYPE :
+    //                userText = (value).toString(10);
+    //                break;
 
-            }
-        }
-        return userText
+    //            }
+    //        }
+    //        return userText
 
-    }
+    //    }
 
 
 }

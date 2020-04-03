@@ -1,7 +1,7 @@
 import "../../../Setting"
 import "../"
 import "../../SmallCrossChekerButton/MoneyCheker"
-
+import "../RowLogic.js" as Logic
 OneRowItem_O {
     id:root
 
@@ -14,7 +14,7 @@ OneRowItem_O {
     rowMargin:settingData.oneRowItemSettings.rowMargin;
     paddingLeft:settingData.oneRowItemSettings.paddingLeft;
     paddingRight:settingData.oneRowItemSettings.paddingRight;
-    textSecondLineType: SettingData.DataType.CURRENCY_DATA_TYPE;
+    textSecondLineType: Logic.DataType.CURRENCY_DATA_TYPE
     textRowSpacing: settingData.oneRowItemSettings.textRowSpacing;
     hasBorder:SettingData.HasBorder.NO_BORDER
     borderRadius: settingData.appContentWidgetSettings.borderRadius;
