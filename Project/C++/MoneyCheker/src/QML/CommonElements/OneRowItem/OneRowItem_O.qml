@@ -169,9 +169,13 @@ Item {
             id:centerLabel
         }
 
+        CenterComboBox_O{
+            id:centerComboBox
+        }
+
         Loader{
             id:centerLoader;
-            sourceComponent : centerLabel;
+
             anchors.top: parent.top;
             anchors.bottom: parent.bottom
             anchors.left:textReact.right;
@@ -191,19 +195,8 @@ Item {
             property int type_L: root.textType;
             property string commonFontFamily_L: settingData.oneRowItemSettings.commonFontFamily;
 
-
             Component.onCompleted: {
                 //console.log("type_L="+centerLoader.type_L)
-                //                centerLoader.item.labelFontColor=settingData.oneRowItemSettings.labelFontColor;
-                //                centerLoader.item.labelРighlightingFontColor=settingData.oneRowItemSettings.labelРighlightingFontColor;
-                //                centerLoader.item.labelFontSize=settingData.oneRowItemSettings.labelFontSize;
-                //                centerLoader.item.labelBorderColorWidth=settingData.oneRowItemSettings.labelBorderColorWidth;
-                //                centerLoader.item.labelLeftPadding=settingData.oneRowItemSettings.labelLeftPadding;
-                //                centerLoader.item.labelMargins=settingData.oneRowItemSettings.labelMargins;
-
-                //                centerLoader.item.textBlockWidth=root.textBlockWidth
-                //                centerLoader.item.commonFontFamily=settingData.oneRowItemSettings.commonFontFamily;
-                //                centerLoader.item.value=10//root.value;
             }
         }
 
@@ -231,8 +224,7 @@ Item {
         }
 
 
-        //Border Radius
-
+        //Bottom Border Radius
         BorderRadiusWidget {
             id:bottomLeftRadius
             visible:false
@@ -305,6 +297,8 @@ Item {
 
     function onCompletedChangeButtom (){
         //console.log("on onCompletedChangeButtom")
+        centerLoader.sourceComponent = centerLabel;
+
         switch (root.type)   {
         case SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_ONE_BUTTON_RIGHT :
             button_1.visible = false;
@@ -320,13 +314,14 @@ Item {
             button_1.visible = false;
             button_2.visible = false;
             centerLoader.anchors.right = parentReact.right
-
+            centerLoader.sourceComponent = centerComboBox;
             break;
 
         case SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_COMBOBOX_ONLY_RIGHT_COMBOBOX_ALIGNEMENT :
             button_1.visible = false;
             button_2.visible = false;
             centerLoader.anchors.right = parentReact.right
+            centerLoader.sourceComponent = centerComboBox;
             break;
 
         case SettingData.OneRowItemType.TWO_TEXT_LEFT_TEXT_AND_LABEL_ONLY :

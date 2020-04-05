@@ -21,6 +21,7 @@
 		<file>src/QML/CommonElements/TabButton/TabButtonLabel/TabButtonLabel_O.qml</file>
  		<file>src/QML/CommonElements/OneRowItem/OneRowItem_O.qml</file>
 		<file>src/QML/CommonElements/OneRowItem/CenterLabel_O.qml</file>
+		<file>src/QML/CommonElements/OneRowItem/CenterComboBox_O.qml</file>
 		<file>src/QML/CommonElements/OneRowItem/RowLogic.js</file>
 		<file>src/QML/CommonElements/OneRowItem/MoneyCheker/OneRowItem_S.qml</file>
 		<file>src/QML/CommonElements/SmallCrossChekerButton/SmallCrossChekerButton_O.qml</file>	

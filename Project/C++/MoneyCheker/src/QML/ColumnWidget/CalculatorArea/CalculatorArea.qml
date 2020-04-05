@@ -42,7 +42,7 @@ Item {
         buttonTupe: SettingData.ButtonType.FIRST_BUTTON_TYPE;
     }
 
-    //Rows
+
     TabButton_S {
         id:button_2;
         anchors.left:button_1.right;
@@ -52,12 +52,13 @@ Item {
         buttonTupe: SettingData.ButtonType.LAST_BUTTON_TYPE;
     }
 
+    //Rows
     OneRowItem_S {
         id:home_prise_row
         anchors.top:button_1.bottom
         anchors.left:button_1.left
         anchors.right:button_2.right
-        value: 130
+        value: 1210010
         textType: RowLogic.DataType.CURRENCY_DATA_TYPE//SettingData.DataType.CURRENCY_DATA_TYPE;
         textSecondLineType: RowLogic.DataType.PERSENT_DATA_TYPE;
         type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
@@ -199,9 +200,9 @@ Item {
         id:start_date_row
         anchors.top:border_7.bottom//border_7
         anchors.left:parent.left
-        value: "07.2020"
-        type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_LABEL_ONLY_LEFT_LABEL_ALIGNEMENT;
-        textType:RowLogic.DataType.CALENDAR_DATA_TYPE;
+        value:{ return new Date().toLocaleDateString(Qt.locale("de_DE"),"dd.MM.yyyy")}
+        type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT;
+        textType:RowLogic.DataType.DATE_DATA_TYPE;
         textFirstLine: "Start date"
     }
 
@@ -218,7 +219,7 @@ Item {
         anchors.top:border_8.bottom//border_8
         anchors.left:parent.left
         value: 1
-        type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_CUSTOM_WiDGET_LEFT_COMBOBOX_ALIGNEMENT;
+        type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT;
         textType: RowLogic.DataType.YERS_DATA_TYPE;
         textFirstLine: "Amortization"
         hasBorder: SettingData.HasBorder.BOTTOM_BORDER

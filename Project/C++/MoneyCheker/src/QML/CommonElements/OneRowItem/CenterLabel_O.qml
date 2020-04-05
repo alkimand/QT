@@ -87,18 +87,20 @@ Component{
                 Keys.onReturnPressed: { _onEnterPressed(event) }
                 Keys.onEnterPressed: { _onEnterPressed(event) }
                 Component.onCompleted: {
+                    var UserValue
                     //console.log("root.type" + root.value + " " + root.type)
-                    var UserValue = Logic.valueToUserText(textArea.value, root.type);
-                    console.log("UserValue=" + UserValue)
-                    switch (root.type)   {
-                    case Logic.DataType.DATE_DATA_TYPE:
+                    UserValue = Logic.valueToUserText(textArea.value, root.type);
+                    //console.log("UserValue=" + UserValue)
+//                    switch (root.type)   {
+//                    case Logic.DataType.DATE_DATA_TYPE:
 
-                        UserValue = Qt.formatDate(UserValue, "dd.MM.yyyy");
-console.log("UserValue+formatDate=" + UserValue)
-                           //     (value).toString(10);//convert
-                        //userText = Qt.formatDate(userText, "dd.MM.yyyy");
-                        break;
-                    }
+//                        //UserValue = Qt.formatDate(UserValue, "dd.MM.yyyy");
+//                        //console.log("UserValue+formatDate=" + UserValue);
+//                           //     (value).toString(10);//convert
+//                        //userText = Qt.formatDate(userText, "dd.MM.yyyy");
+//                        //UserValue = Logic.valueToUserText(textArea.value, root.type);
+//                        break;
+//                    }
 
                     textArea.placeholderText = UserValue;
 
@@ -112,12 +114,14 @@ console.log("UserValue+formatDate=" + UserValue)
                     if (!(event.modifiers & Qt.ControlModifier))
                     {
                         //event.accepted = false;
-                        if (textArea.text!==""){
+                        if (textArea.text!=="") {
                             textArea.value = parseFloat(textArea.text.replace(/[^0-9\.]+/g, ''));
                         }
                         else{
                             textArea.value=0;
                         }
+                        console.log("textArea.value+"+ textArea.value);
+
                         textArea.text = textArea.value.toString(10);//textArea.value //hack
                         textArea.placeholderText= textArea.value.toString(10) + " рубл";
                         textFirstLine_.forceActiveFocus();

@@ -7,7 +7,6 @@ import "../Setting"
 //:text_.text
 //property int columnWidth//:text_.text
 //property int titleBlockHeight :200//:text_.text
-
 Rectangle {
     id:root
     property string title
