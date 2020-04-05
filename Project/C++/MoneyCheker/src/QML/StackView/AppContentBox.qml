@@ -18,7 +18,10 @@ import QtQuick.Controls 2.12
 import "../ColumnWidget"
 import "../Setting"
 import "../Action"
-import "../StackView/Pages"
+
+//Pages
+import "../Pages/Page_1"
+
 
 
 Item{
@@ -28,17 +31,23 @@ Item{
         id: stack
         initialItem: mainView
 
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
+//        anchors.left: parent.left
+//        anchors.right: parent.right
+//        anchors.top: parent.top
+//        anchors.bottom: parent.bottom
+        anchors.fill: parent
        // Component.onCompleted: stack.push(mainView_)
 
+
+
+
     }
-    First_App_Page{
+
+    Page_1{
         id:mainView
         anchors.fill: parent
     }
+
     //CalkPage{id:mainView_ }
 
 }

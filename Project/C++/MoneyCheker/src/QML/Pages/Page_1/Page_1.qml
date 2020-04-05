@@ -8,9 +8,9 @@ import "../../Action"
 
 
 
-	Item {
+    Item {
         id:root
-		anchors.fill: parent
+//		anchors.fill: parent
 		//anchors.left: stack.left
 
 		ColumnWidget {

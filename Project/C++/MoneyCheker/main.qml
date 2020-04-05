@@ -55,6 +55,7 @@ ApplicationWindow {
         actions: mainwindow.actions
     }
 
+    //all pages
     AppContentBox {
         id:appContentBox
         anchors.left: column_3.right

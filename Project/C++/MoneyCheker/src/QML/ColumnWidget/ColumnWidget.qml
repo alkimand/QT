@@ -80,7 +80,8 @@ Rectangle {
             case SettingData.ColumnWidgetType.CALCULATOR_SPACE :
                 //console.log("CALCULATOR_SPACE");
                 root.width = settingData.appContentWidgetSettings.contentCalculatorPageWidth;
-                source= "../ColumnWidget/CalculatorArea/CalculatorArea.qml"
+                //source= "../ColumnWidget/CalculatorArea/CalculatorArea.qml"
+                source= "../Pages/Page_1/CalculatorArea/CalculatorArea.qml"
                 text_.text=qsTr("Calculator")
                 break;
 

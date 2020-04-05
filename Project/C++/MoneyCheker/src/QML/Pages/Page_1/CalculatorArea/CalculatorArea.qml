@@ -1,12 +1,11 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
-//import ""
 
-import "../../Action"
-import "../../CommonElements/TabButton/MoneyCheker"
-import "../../Setting"
-import "../../CommonElements/OneRowItem/MoneyCheker"
-import "../../CommonElements/OneRowItem/RowLogic.js" as RowLogic
+import "../../../Action"
+import "../../../CommonElements/TabButton/MoneyCheker"
+import "../../../Setting"
+import "../../../CommonElements/OneRowItem/MoneyCheker"
+import "../../../CommonElements/OneRowItem/RowLogic.js" as RowLogic
 
 
 Item {
