@@ -186,6 +186,32 @@ Item {
 
             property color labelFontColor_L : root.labelFontColor;
             property color labelРighlightingFontColor_L: root.labelРighlightingFontColor;
+
+
+            property color activMainButtonColor_L: root.activMainButtonColor;
+            property color activBackgroundButtonColor_L: root.activBackgroundButtonColor;
+
+            property color pressedMainButtonColor_L: root.pressedMainButtonColor;
+            property color pressedBackgroundButtonColor_L: root.pressedBackgroundButtonColor;
+
+            property color hoveredButtonColor_L: settingData.oneRowItemSettings.hoveredButtonColor
+
+
+
+//            buttonSize:settingData.oneRowItemSettings.buttonSize;// = 2*radius
+//            crossSize:settingData.oneRowItemSettings.crossSize;
+//            checkerSize:settingData.oneRowItemSettings.checkerSize;
+//            checkerHeigh:settingData.oneRowItemSettings.checkerHeigh;
+//            checkerMargin:settingData.oneRowItemSettings.checkerMargin;
+//            buttonBorderWidth:settingData.oneRowItemSettings.buttonBorderWidth;
+//            oneRowItemBorderHeigh:settingData.oneRowItemSettings.oneRowItemBorderHeigh;
+//            paddingRight:settingData.oneRowItemSettings.paddingRight;
+//            hoveredButtonColor:settingData.oneRowItemSettings.hoveredButtonColor;
+
+
+            property var valueArr_L : settingData.userTextModels.persentDownTextModel;
+
+            property string commonFontFamily_L: root.commonFontFamily;
             property int labelFontSize_L: root.labelFontSize;
             property int labelBorderColorWidth_L: root.labelBorderColorWidth;
             property int labelLeftPadding_L: root.labelLeftPadding;
@@ -193,7 +219,6 @@ Item {
             property var value_L: root.value;
             property int textBlockWidth_L:root.textBlockWidth;
             property int type_L: root.textType;
-            property string commonFontFamily_L: settingData.oneRowItemSettings.commonFontFamily;
 
             Component.onCompleted: {
                 //console.log("type_L="+centerLoader.type_L)
@@ -386,62 +411,6 @@ Item {
             break;
         }
     }
-
-    //    function valueToUserText(value, param = 1){
-    //        var userText = "";
-    //        //console.log("valueToUserText=" + value)
-    //        if (param === 1){
-    //            switch (root.textType)   {
-    //            case SettingData.DataType.PERSENT_DATA_TYPE :
-    //                userText = (value + "%").toString(10);
-    //                break
-
-    //            case SettingData.DataType.CURRENCY_DATA_TYPE :
-    //                userText = (value + " руб.").toString(10);
-    //                break;
-
-    //            case SettingData.DataType.DATE_DATA_TYPE :
-    //                userText = (value).toString(10);//convert
-    //                break;
-
-    //            case SettingData.DataType.YERS_DATA_TYPE :
-    //                userText = (value + " years").toString(10);
-    //                break;
-
-    //            case SettingData.DataType.STRING_DATA_TYPE :
-    //                userText = (value).toString(10);
-    //                break;
-    //            }
-    //        }
-    //        else {
-    //            switch (root.textSecondLineType)   {
-    //            case SettingData.DataType.PERSENT_DATA_TYPE :
-    //                userText = (value + "%").toString(10);
-    //                break
-
-    //            case SettingData.DataType.CURRENCY_DATA_TYPE :
-    //                userText = (value + " руб.").toString(10);
-    //                break;
-
-    //            case SettingData.DataType.DATE_DATA_TYPE :
-    //                userText = (value).toString(10);//convert
-    //                break;
-
-    //            case SettingData.DataType.YERS_DATA_TYPE :
-    //                userText = (value + " years").toString(10);
-    //                break;
-
-    //            case SettingData.DataType.STRING_DATA_TYPE :
-    //                userText = (value).toString(10);
-    //                break;
-
-    //            }
-    //        }
-    //        return userText
-
-    //    }
-
-
 }
 
 

@@ -241,6 +241,11 @@ Item {
         property int oneRowItemBorderHeigh: 2	
 	}
 	
+	property var userTextModels: Item {
+		 property var armortizationTextModel: ["Show by month","Show by year"]
+		 property var persentDownTextModel: ["5%","10%","15%","20%","25%","30%","35%","40%"]
+	}
+	
     enum ToolBarToolButtonState
     {
         TOOLBAR_TOOLBUTTON_ICON = 1,

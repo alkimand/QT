@@ -52,6 +52,15 @@ Item {
     }
 
     //Rows
+    Component {
+        id:itemBorder
+        Rectangle {
+
+            height:settingData.oneRowItemSettings.oneRowItemBorderHeigh;
+            color: settingData.columnSettings.columnFreeSpaceColor;
+        }
+    }
+
     OneRowItem_S {
         id:home_prise_row
         anchors.top:button_1.bottom
@@ -66,14 +75,7 @@ Item {
     }
 
 
-    Component {
-        id:itemBorder
-        Rectangle {
 
-            height:settingData.oneRowItemSettings.oneRowItemBorderHeigh;
-            color: settingData.columnSettings.columnFreeSpaceColor;
-        }
-    }
 
     Loader {
         id:border_1
@@ -195,27 +197,29 @@ Item {
         anchors.right:parent.right
     }
 
-    OneRowItem_S {
-        id:start_date_row
-        anchors.top:border_7.bottom//border_7
-        anchors.left:parent.left
-        value:{ return new Date().toLocaleDateString(Qt.locale("de_DE"),"dd.MM.yyyy")}
-        type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT;
-        textType:RowLogic.DataType.DATE_DATA_TYPE;
-        textFirstLine: "Start date"
-    }
+//    OneRowItem_S {
+//        id:start_date_row
+//       anchors.top:border_7.bottom//border_7
+//       // anchors.top:button_1.bottom
+//        anchors.left:parent.left
+//        value:1//{ return new Date().toLocaleDateString(Qt.locale("de_DE"),"dd.MM.yyyy")}
+//        type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT;
+//        textType:RowLogic.DataType.DATE_DATA_TYPE;
+//        textFirstLine: "Start date"
+//    }
 
-    Loader {
-        id:border_8
-        sourceComponent: itemBorder
-        anchors.top:start_date_row.bottom
-        anchors.left:parent.left
-        anchors.right:parent.right
-    }
+//    Loader {
+//        id:border_8
+//        sourceComponent: itemBorder
+//        anchors.top:start_date_row.bottom
+//        anchors.left:parent.left
+//        anchors.right:parent.right
+//    }
 
     OneRowItem_S {
         id:amortization_row
-        anchors.top:border_8.bottom//border_8
+        anchors.top:border_7.bottom//border_8
+       // anchors.top:button_1.bottom
         anchors.left:parent.left
         value: 1
         type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT;

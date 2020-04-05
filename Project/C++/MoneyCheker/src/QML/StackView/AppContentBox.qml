@@ -43,7 +43,8 @@ Item{
 
     }
 
-    Page_1{
+    //toDo -> to Component
+    Page_1 {
         id:mainView
         anchors.fill: parent
     }
