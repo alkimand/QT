@@ -120,7 +120,7 @@ Component{
                         else{
                             textArea.value=0;
                         }
-                        console.log("textArea.value+"+ textArea.value);
+                       // console.log("textArea.value+"+ textArea.value);
 
                         textArea.text = textArea.value.toString(10);//textArea.value //hack
                         textArea.placeholderText= textArea.value.toString(10) + " рубл";
@@ -163,8 +163,9 @@ Component{
                             }
                             textArea.selectAll();
                             //console.log(textArea.activeFocus );
-                            textArea.forceActiveFocus();
+
                         }
+                        textArea.forceActiveFocus();
                     }
                     onReleased:{
                         // console.log("onReleased")

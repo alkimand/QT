@@ -57,6 +57,9 @@ Item {
     property int labelMargins
     property var value
 
+    //CenterComboBox_O
+    property var valueArr
+
     //Button
     property color activMainButtonColor
     property color activBackgroundButtonColor
@@ -209,7 +212,7 @@ Item {
 //            hoveredButtonColor:settingData.oneRowItemSettings.hoveredButtonColor;
 
 
-            property var valueArr_L : settingData.userTextModels.persentDownTextModel;
+            property var valueArr_L : root.valueArr;
 
             property string commonFontFamily_L: root.commonFontFamily;
             property int labelFontSize_L: root.labelFontSize;
