@@ -73,6 +73,9 @@ Item {
     property int buttonBorderWidth
     property int oneRowItemBorderHeigh
 
+
+
+
     width: rowItemWidth
     height:rowItemHeight
 
