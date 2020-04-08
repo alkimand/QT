@@ -31,7 +31,7 @@ Component{
         property int labelLeftPadding:labelLeftPadding_L
         property int labelMargins :labelMargins_L
 
-        property var value :value_L
+        property var value :4//value_L
         property var modelTempValue : 0
         property int type : type_L
         property int textBlockWidth:textBlockWidth_L
@@ -60,12 +60,15 @@ Component{
 
 
         //animation
+        property bool isAnimationInProgressByTimer: false
+
         property int tottallAnimationTime : 400
         property int  upperAnimationTime
         property int  bottomAnimationTime
 
         property int  upperItemsCount: root.value
         property int  bottomItemsCount: root.valueArr.length - root.value - 1
+        property int  tempChousenValueInCombo
 
         //property bool isAnimationStart: animationStart.running
 
@@ -144,8 +147,13 @@ Component{
                 anchors.bottom: textAreaRect.bottom
                 anchors.right: textAreaRect.right
                 propagateComposedEvents:false
+                enabled: true
                 z:0
                 onClicked: {
+                   // console.log("labelMouseArea onClicked")
+
+
+
                     // console.log("viewReact viewReact="+viewReact.height)
                     //  console.log("view.height="+view.height)
                     //console.log("viewReact.visible="+viewReact.visible)
@@ -154,24 +162,25 @@ Component{
                         //console.log("labelMouseArea click")
                         //console.log("iewReact.isActive+"+viewReact.isActive)
                         root.state = 's_LabelClicked'
-
-                        view.forceActiveFocus();
-                        root.startAnimation()
-
-                        viewReact.visible = view.activeFocus
+                        root.startOpenAnimation();
                     }
                     else{
-                        console.log("labelMouseArea click else")
-                        view.focus = true
-                        viewReact.visible = view.activeFocus
+                        console.log("labelMouseArea click else") //to Do
+                        restartModel("labelMouseArea");
                     }
+
+                    view.visible = true;
+                    view.forceActiveFocus();
+                    viewReact.visible = view.focus;
+
+                   // root.getStatus("labelMouseArea");
                 }
 
                 onPressed: {
-
+                   // console.log("labelMouseArea onPressed")
                     // if(!viewReact.visible && view.isActive===false){
                     if(view.activeFocus===false){
-                       // console.log("labelMouseArea onPressed")
+                        // console.log("labelMouseArea onPressed")
                         root.state='s_LabelPressed'
                         //viewReact.isActive===true
                     }
@@ -191,7 +200,7 @@ Component{
             width: textAreaRect.width +root.checkerMargin + 5
             anchors.left:parent.left
             y: textLabel.y - viewReact.height + root.modelTempValue * textLabel.height+ textLabel.height    //model.count * textLabel.height
-            color: "red"//root.activBackgroundButtonColor
+            color: "red"//"transparent"//"red"//root.activBackgroundButtonColor
             //height: textLabel.height//textLabel.height * getArrValueCount()
             // height: textLabel.height * getArrValueCount()
             //  height: 5//textLabel.height*1
@@ -199,28 +208,38 @@ Component{
             //implicitHeight :0
             property int hoveredItem: -1
             property bool isActive: false
-            z:(view.activeFocus===1)?1:0
+            z:1//(view.activeFocus===1)?1:0
 
             ParallelAnimation {
-                id:upper_animation
+                id: upper_animation_start
                 running: false
-
                 NumberAnimation { target: animation_top_reactangle; property: "height"; from: 0; to: textLabel.height; duration: root.upperAnimationTime }
                 NumberAnimation { target: animation_right_top_border; property: "height"; from: 0; to: textLabel.height; duration: root.upperAnimationTime }
                 NumberAnimation { target: animation_left_top_border; property: "height"; from: 0; to: textLabel.height; duration: root.upperAnimationTime }
-
             }
 
-
             ParallelAnimation {
-                id:bottom_animation
+                id: bottom_animation_start
                 running: false
-
                 NumberAnimation { target: animation_bottom_reactangle; property: "height"; from: 0; to: textLabel.height; duration:root.bottomAnimationTime }
                 NumberAnimation { target: animation_left_bottom_border; property: "height"; from: 0; to: textLabel.height; duration:root.bottomAnimationTime }
-                NumberAnimation { target: animation_right_bottom_border; property: "height"; from: 0; to: textLabel.height*(1); duration:root.bottomAnimationTime }
+                NumberAnimation { target: animation_right_bottom_border; property: "height"; from: 0; to: textLabel.height; duration:root.bottomAnimationTime }
+            }
 
+            ParallelAnimation {
+                id: upper_animation_finish
+                running: false
+                NumberAnimation { target: animation_top_reactangle; property: "height"; from:  textLabel.height; to: 0; duration: root.upperAnimationTime }
+                NumberAnimation { target: animation_right_top_border; property: "height"; from:  textLabel.height; to: 0; duration: root.upperAnimationTime }
+                NumberAnimation { target: animation_left_top_border; property: "height"; from:  textLabel.height; to: 0; duration: root.upperAnimationTime }
+            }
 
+            ParallelAnimation {
+                id: bottom_animation_finish
+                running: false
+                NumberAnimation { target: animation_bottom_reactangle; property: "height"; from: textLabel.height; to: 0; duration:root.bottomAnimationTime }
+                NumberAnimation { target: animation_left_bottom_border; property: "height"; from: textLabel.height; to: 0; duration:root.bottomAnimationTime }
+                NumberAnimation { target: animation_right_bottom_border; property: "height"; from: textLabel.height; to: 0; duration:root.bottomAnimationTime }
             }
 
             Component.onCompleted: {
@@ -267,7 +286,7 @@ Component{
                 anchors.right:parent.right
                 height: 0
                 color: root.activBackgroundButtonColor
-                z:1
+                z:2
 
                 Rectangle{
                     id:animation_top_border
@@ -276,7 +295,7 @@ Component{
                     anchors.right:parent.right
                     height:root.labelBorderColorWidth
                     color:  root.activMainButtonColor
-                    z:1
+                    z:3
                 }
 
                 Rectangle {
@@ -287,7 +306,7 @@ Component{
                     width:root.labelBorderColorWidth
                     color:  root.activMainButtonColor
                     height:0
-                    z:1
+                    z:3
                 }
 
                 Rectangle {
@@ -297,7 +316,7 @@ Component{
                     width:root.labelBorderColorWidth
                     color:  root.activMainButtonColor
                     height:0
-                    z:1
+                    z:3
                 }
 
             }
@@ -378,6 +397,7 @@ Component{
                     MouseArea{
                         anchors.fill:parent
                         id:itemDelegateMouseArea
+                        enabled: !(root.isAnimationInProgressByTimer)
                         propagateComposedEvents:false
                         z:1
                         onCanceled: {
@@ -388,14 +408,21 @@ Component{
                         }
                         onClicked: {
                             viewReact.hoveredItem = -1;
-                            //console.log("itemDelegate onClicked")
+                           // console.log("itemDelegate onClicked")
+
                             //console.log("onClicked+"+index)
                             //console.log("onClicked+"+listViewtext.text)
                             if (view.currentIndex !== index){
-                                view.currentIndex = index
-                                root.value = view.currentIndex
+                                root.tempChousenValueInCombo = index;
+
+
+                                //view.currentIndex = index
+
+                                //                                root.value = root.tempChousenValueInCombo
+                                //                                textLabel.text = root.convertValueToUserText(root.value)
+
                                 //console.log("root.value=" + root.value)
-                                textLabel.text = root.convertValueToUserText(root.value)
+
                                 //console.log(" textLabel.tex=" +  textLabel.text)
 
 
@@ -404,7 +431,7 @@ Component{
                             }
                             else{
 
-
+                                root.tempChousenValueInCombo = root.value
 
 
                                 //viewReact.visible = false;
@@ -422,24 +449,25 @@ Component{
                                 //root.startAnimation()
                             }
 
-//                            root.upperItemsCount= root.value
-//                            root.bottomItemsCount= root.valueArr.length - root.value - 1
-//                            root.modelTempValue=0
-//                            viewModel.clear()
-//                            viewModel.insert(0, {"name": root.valueArr[root.value]});
+                            //                            root.upperItemsCount= root.value
+                            //                            root.bottomItemsCount= root.valueArr.length - root.value - 1
+                            //                            root.modelTempValue=0
+                            //                            viewModel.clear()
+                            //                            viewModel.insert(0, {"name": root.valueArr[root.value]});
 
 
 
                             // console.log("viewReact viewReact="+viewReact.height)
                             // console.log("view.height="+view.height)
                             //viewReact.visible = false;//++
+                            root.startFinishAnimation()
 
-                            labelMouseArea.enabled = true
-                            view.focus = false
+                            // labelMouseArea.enabled = true
+                            //view.focus = false
 
 
                             //viewReact.isActive=false
-
+                          //  root.getStatus("itemDelegate")
                         }
 
                         onPressed: {
@@ -481,8 +509,11 @@ Component{
 
 
                 Component.onCompleted: {
-                    if (root.value < root.getArrValueCount())
+                    if (root.value < root.getArrValueCount()){
                         view.currentIndex = 0//root.value;
+                        root.restartModel("view .onCompleted")
+                        console.log("view Component.onCompleted")
+                    }
                     else
                         view.currentIndex = 0;
                 }
@@ -490,31 +521,30 @@ Component{
                 Keys.onSpacePressed: viewModel.insert(0, { "name": "Item " + viewModel.count })
 
                 onFocusChanged: {
-                console.log("ListView onFocusChanged")
+                    //console.log("ListView onFocusChanged =" +view.focus)
+                    if (!view.focus && !isAnimationInProgressByTimer)
+                        root.startFinishAnimation()
+                    //console.log("startFinishAnimation onFocusChanged =")
                 }
-               onVisibleChanged: {
+                onVisibleChanged: {
+                    //console.log("ListView onVisibleChanged visible="+view.visible)
+                    //  console.log("ListView onVisibleChanged visible="+view.visible)
+                    //console.log("view.visible="+view.visible)
+                    // console.log("view.activeFocus="+view.activeFocus)
+                    // if (view.activeFocus===false){
+                    // viewReact.visible = view.activeFocus
+                    //                    root.upperItemsCount = root.value
+                    //                    root.bottomItemsCount = root.valueArr.length - root.value - 1
+                    //                    root.modelTempValue = 0
+                    //                    viewModel.clear()
+                    //                    viewModel.append ({"name": root.valueArr[root.value]});
+                    //                    view.currentIndex = 0
+                    // }
 
-
-                   //console.log("ListView onVisibleChanged")
-                  // if (view.activeFocus===false){
-                      // viewReact.visible = view.activeFocus
-                       root.upperItemsCount = root.value
-                       root.bottomItemsCount = root.valueArr.length - root.value - 1
-                       root.modelTempValue = 0
-                       viewModel.clear()
-                       viewModel.append ({"name": root.valueArr[root.value]});
-                       view.currentIndex = 0
-                  // }
-
-                   if (view.activeFocus===false){
-                       viewReact.visible = view.activeFocus
-                   }
-
-                   //console.log("viewReact.visible="+viewReact.visible)
-                   //console.log("view.activeFocus="+view.activeFocus)
-                   //console.log("view.visible="+view.visible)
-
-               }
+                    if ( view.activeFocus===false){
+                        //viewReact.visible = view.activeFocus//++
+                    }
+                }
             }
 
             ListModel {
@@ -523,11 +553,317 @@ Component{
                     //                        root.valueArr.forEach(function(item, i, arr) {
                     //                            append({"name": arr[i]});
                     //                        });
+                    //console.log("viewModel.onCompleted")
                     viewModel.append({"name":root.valueArr[root.value]})
                 }
             }
 
         }
+
+        function getModelCount(){
+            var nodelLenght = viewModel.count;
+            //console.log("model.length=" + nodelLenght)
+            return nodelLenght;
+        }
+
+
+        function convertValueToUserText(index){
+
+            return root.valueArr[index].toString(10);
+        }
+
+        function getArrValueCount(){
+            return root.valueArr.length;
+
+        }
+
+        Timer {
+            id:afterOpenAnimationRestoringTimer
+            interval: root.tottallAnimationTime; running: false; repeat: false
+            onTriggered: {
+                root.restartAfterOpenAnimation()
+                //upper_animation_start.start()
+            }
+        }
+
+        Timer {
+            id:afterFinshAnimationRestoringTimer
+            interval: root.tottallAnimationTime; running: false; repeat: false
+            onTriggered: {
+                root.restartAfterFinishAnimation()
+                //upper_animation_start.start()
+            }
+        }
+
+        Timer {
+            id:upperTimer
+            interval: root.upperAnimationTime; running: false; repeat: false
+            onTriggered: {
+                root.addUpperItems()
+                //upper_animation_start.start()
+            }
+        }
+
+        Timer {
+            id:upperRemoveTimer
+            interval: root.upperAnimationTime; running: false; repeat: false
+            onTriggered: {
+                root.removeUpperItems()
+                //upper_animation_start.start()
+            }
+        }
+
+        Timer {
+            id:bottomRemoveTimer
+            interval: root.bottomAnimationTime; running: false; repeat: false
+            onTriggered: {
+                root.removeBottomItems()
+            }
+        }
+
+        Timer {
+            id:bottomOpenTimer
+            interval: root.bottomAnimationTime; running: false; repeat: false
+            onTriggered: {
+                root.addBottomItems()
+                //upper_animation_start.start()
+            }
+
+        }
+
+
+        function addUpperItems(){
+            //console.log("addUpperItems root.upperItemsCount="+root.upperItemsCount)
+            //stop animation
+            topViewBorder.visible = true;
+            animation_top_reactangle.visible = false
+            root.upperItemsCount -= 1;
+            viewModel.insert(0, {"name": root.valueArr[root.upperItemsCount]});
+
+            if (root.upperItemsCount > 0){
+                //.log("root.upperAnimationTime="+root.upperAnimationTime)
+                // upper_animation_start.stop()
+                upper_animation_start.start()
+                topViewBorder.visible = false;
+                animation_top_reactangle.visible = true
+                upperTimer.start()
+
+                //console.log("Adding more root.upperItemsCount ="+root.upperItemsCount)
+
+            }
+            else {
+//                console.log("Stop Start animation from addUpperItems side")
+//                console.log("in addUpperItems upperItemsCount=" + root.upperItemsCount)
+//                console.log("in addUpperItems viewModel.count=" + viewModel.count)
+            }
+
+        }
+
+
+
+        function addBottomItems(){
+            //console.log("root.bottomItemsCount="+root.bottomItemsCount)
+            //stop animation
+            var error = true;
+            bottomViewBorder.visible = true;
+            animation_bottom_reactangle.visible = false
+            viewModel.append({"name": root.valueArr[root.valueArr.length - root.bottomItemsCount]});
+            root.bottomItemsCount -= 1;
+
+            root.modelTempValue+=1;
+
+            if (root.bottomItemsCount > 0){
+                bottom_animation_start.start()
+                bottomViewBorder.visible = false;
+                animation_bottom_reactangle.visible = true
+                bottomOpenTimer.start()
+                //console.log("Adding more root.bottomItemsCount ="+root.bottomItemsCount)
+            }
+            else {
+//                console.log("Stop Start animation from addBottomItems side");
+//                console.log("in addBottomItems bottomItemsCount=" + root.bottomItemsCount)
+//                console.log("in addBottomItems viewModel.count=" + viewModel.count)
+            }
+        }
+
+        function removeUpperItems(){
+            //console.log("in removeUpperItems")
+            //console.log("root.upperItemsCount="+root.upperItemsCount)
+            //console.log("viewModel.count="+viewModel.count)
+
+
+            root.upperItemsCount -= 1;
+            if (viewModel.count > 0){
+                viewModel.remove(0);
+                topViewBorder.visible = false;
+                animation_top_reactangle.visible = true;
+                upper_animation_finish.start();
+                topViewBorder.visible = false;
+            }
+            if (root.upperItemsCount > 0 && viewModel.count > 0){
+                topViewBorder.visible = false;
+                animation_top_reactangle.visible = true;
+                upperRemoveTimer.start()
+            }
+            else {
+//                console.log("Stop Finish animation from removeUpperItems side");
+//                console.log("in removeBottomItems upperItemsCount=" + root.upperItemsCount)
+//                console.log("in removeBottomItems viewModel.count=" + viewModel.count)
+            }
+        }
+
+
+        function removeBottomItems(){
+           // console.log("in removeBottomItems bottomItemsCount=" + root.bottomItemsCount)
+           // console.log("in removeBottomItems viewModel.count=" + viewModel.count)
+
+            if (viewModel.count >0) {
+                viewModel.remove(viewModel.count - 1);
+                root.modelTempValue-=1;
+                bottomViewBorder.visible = false;
+                animation_bottom_reactangle.visible = true;
+                bottom_animation_finish.start();
+                root.bottomItemsCount -= 1;
+            }
+            else {
+//                console.log("in removeBottomItems else viewModel.count=" + viewModel.count)
+//                console.log("in removeBottomItems bottomItemsCount=" + root.bottomItemsCount)
+            }
+            if (root.bottomItemsCount > 0 && viewModel.count > 0){
+                bottomRemoveTimer.start()
+            }
+            else {
+//                console.log("Stop Start animation from removeBottomItems side")
+//                console.log("in removeBottomItems bottomItemsCount=" + root.bottomItemsCount)
+//                console.log("in removeBottomItems viewModel.count=" + viewModel.count)
+            }
+        }
+
+        function startOpenAnimation(){
+            root.restartModel("startOpenAnimation");
+            root.isAnimationInProgressByTimer = true;
+            afterOpenAnimationRestoringTimer.start();
+            //console.log("startFinishAnimation root.value= "+ root.value +"=" + root.valueArr[root.value])
+            //console.log("in startOpenAnimation viewModel.count=" + viewModel.count +" =" + viewModel.get(0).name)
+            if (root.value!==0 && root.value!==(root.valueArr.length - 1))
+            {
+                root.upperAnimationTime = root.tottallAnimationTime / (root.value);
+                root.bottomAnimationTime = root.tottallAnimationTime/(root.valueArr.length - root.value - 1);
+                upper_animation_start.running = true;
+                bottom_animation_start.running = true;
+                topViewBorder.visible = false;
+                bottomViewBorder.visible = false;
+                animation_top_reactangle.visible = true;
+                animation_bottom_reactangle.visible = true;
+                bottomOpenTimer.start();
+                upperTimer.start();
+            }
+            else if (root.value === 0){
+                root.bottomAnimationTime = root.tottallAnimationTime/(root.valueArr.length - 1);
+                bottom_animation_start.running = true;
+                bottomViewBorder.visible = false;
+                animation_bottom_reactangle.visible = true
+                //getStatus("startOpenAnimation")
+                bottomOpenTimer.start()
+
+            }
+            else {
+                root.upperAnimationTime = root.tottallAnimationTime/(root.valueArr.length - 1)
+                upper_animation_start.running = true;
+                topViewBorder.visible = false;
+                animation_top_reactangle.visible = true;
+                upperTimer.start()
+            }
+        }
+
+        function startFinishAnimation(){
+            //itemDelegateMouseArea.enabled = false;
+            //animationTimer.start();
+            root.isAnimationInProgressByTimer = true;
+            afterFinshAnimationRestoringTimer.start();
+
+
+
+            if (root.value!==0 && root.value!==(root.valueArr.length - 1))
+            {
+                //console.log("finishAnimation root.value!==0 && root.value!==root.valueArr.length")
+                root.upperItemsCount = root.value;
+                root.bottomItemsCount = root.valueArr.length - root.value - 1;
+                root.removeUpperItems();
+                root.removeBottomItems();
+            }
+            else if (root.value===0){
+                root.bottomAnimationTime = root.tottallAnimationTime/(root.valueArr.length - 1);
+                root.bottomItemsCount = root.valueArr.length  - 1;
+                root.removeBottomItems();
+            }
+            else {
+                root.upperAnimationTime = root.tottallAnimationTime/(root.valueArr.length - 1);
+                root.upperItemsCount = root.valueArr.length  - 1;
+                root.removeUpperItems();
+            }
+        }
+
+
+        function restartModel(from){
+            //console.log("restartModel from " + from + " root.value= " + root.value)
+            root.upperItemsCount = root.value
+            root.bottomItemsCount = root.valueArr.length - root.value - 1
+            root.modelTempValue = 0
+            //console.log("restartModel root.value= "+ root.value +"=" + root.valueArr[root.value])
+            if (viewModel.count != 1){
+
+                viewModel.clear()
+                viewModel.append ({"name": root.valueArr[root.value]});
+                view.currentIndex = 0
+                //console.log("restartModel from " + from + " root.value= " + root.value)
+            }
+            else {
+                viewModel.set(0,{"name" : root.valueArr[root.value]})
+            }
+
+        }
+
+        function restartAfterOpenAnimation() {
+            viewReact.visible = true;
+            labelMouseArea.enabled = false;
+            view.visible = true;
+            view.focus = true;
+            root.restartUIAfterAnimation();
+            view.forceActiveFocus();
+            root.isAnimationInProgressByTimer = false;
+        }
+
+        function restartAfterFinishAnimation(){
+            viewReact.visible = false;
+            labelMouseArea.enabled = true;
+            view.visible = false;
+            view.focus = false;
+            root.restartUIAfterAnimation();
+            view.focus = false;
+            root.isAnimationInProgressByTimer = false;
+            root.value = root.tempChousenValueInCombo;
+        }
+
+
+        function restartUIAfterAnimation() {
+
+            topViewBorder.visible = true;
+            bottomViewBorder.visible = true;
+            animation_top_reactangle.visible = false;
+            animation_bottom_reactangle.visible = false;
+            //labelMouseArea.enabled = true;
+        }
+
+        function getStatus(from) {
+            console.log("  getStatus from " + from)
+            console.log("   view.visible="+view.visible)
+            console.log("   view.focus="+view.focus)
+            console.log("   view.textAreaRect.visible="+textAreaRect.visible)
+            //console.log("   view.textAreaRect.visible="+textAreaRect.visible)
+        }
+
+
 
         states: [
             State {
@@ -603,151 +939,6 @@ Component{
             }
         ]
 
-
-
-        function getModelCount(){
-            var nodelLenght = viewModel.count;
-            //console.log("model.length=" + nodelLenght)
-            return nodelLenght;
-        }
-
-
-        function convertValueToUserText(index){
-
-            return root.valueArr[index].toString(10);
-        }
-
-        function getArrValueCount(){
-            return root.valueArr.length;
-
-        }
-
-        Timer {
-            id:timer
-            interval: 500; running: false; repeat: false
-            onTriggered: {
-                root.startAdd()
-            }
-        }
-
-        Timer {
-            id:upperTimer
-            interval: root.upperAnimationTime; running: false; repeat: false
-            onTriggered: {
-                root.addUpperItems()
-                //upper_animation.start()
-            }
-        }
-
-        Timer {
-            id:bottomTimer
-            interval: root.bottomAnimationTime; running: false; repeat: false
-            onTriggered: {
-                root.addBottomItems()
-                //upper_animation.start()
-            }
-
-        }
-
-        function addUpperItems(){
-            //console.log("root.upperItemsCount="+root.upperItemsCount)
-            //stop animation
-            topViewBorder.visible = true;
-            animation_top_reactangle.visible = false
-            root.upperItemsCount -= 1;
-            viewModel.insert(0, {"name": root.valueArr[root.upperItemsCount]});
-
-            if (root.upperItemsCount > 0){
-                //.log("root.upperAnimationTime="+root.upperAnimationTime)
-                // upper_animation.stop()
-                upper_animation.start()
-                topViewBorder.visible = false;
-                animation_top_reactangle.visible = true
-                upperTimer.start()
-                //console.log("Adding more root.upperItemsCount ="+root.upperItemsCount)
-
-            }
-            else {
-                //console.log("Stop upper animation")
-
-            }
-
-        }
-
-        function addBottomItems(){
-            //console.log("root.bottomItemsCount="+root.bottomItemsCount)
-            //stop animation
-            bottomViewBorder.visible = true;
-            animation_bottom_reactangle.visible = false
-            viewModel.append({"name": root.valueArr[root.valueArr.length - root.bottomItemsCount]});
-            root.bottomItemsCount -= 1;
-
-            root.modelTempValue+=1;
-
-            if (root.bottomItemsCount > 0){
-                bottom_animation.start()
-                bottomViewBorder.visible = false;
-                animation_bottom_reactangle.visible = true
-                bottomTimer.start()
-                //console.log("Adding more root.bottomItemsCount ="+root.bottomItemsCount)
-            }
-            else {
-               // console.log("Stop bottom animation")
-            }
-
-        }
-
-
-        function startAnimation(){
-            if (root.value!==0 && root.value!==(root.valueArr.length-1))
-            {
-                //console.log("startAnimation root.value!==0 && root.value!==root.valueArr.length")
-                if (root.value!==0)
-                    root.upperAnimationTime = root.tottallAnimationTime / (root.value)
-                else
-                    root.upperAnimationTime =  0
-                root.bottomAnimationTime = root.tottallAnimationTime/(root.valueArr.length - root.value - 1)
-                //console.log("viewModel.count="+viewModel.count)
-                //console.log("root.value="+root.value)
-                //console.log("root.valueArr.length="+root.valueArr.length)
-                //console.log("root.upperAnimationTime="+root.upperAnimationTime)
-                //console.log("root.bottomAnimationTime="+root.bottomAnimationTime)
-
-                upper_animation.running = true;
-                bottom_animation.running = true;
-                //start animation
-                topViewBorder.visible = false;
-                bottomViewBorder.visible = false;
-                animation_top_reactangle.visible = true
-                animation_bottom_reactangle.visible = true
-
-                bottomTimer.start()
-                upperTimer.start()
-
-            }
-            else if (root.value===0){
-                //console.log("startAnimation else root.value===0")
-                root.bottomAnimationTime = root.tottallAnimationTime/(root.valueArr.length - 1)
-                bottom_animation.running = true;
-                bottomViewBorder.visible = false;
-                animation_bottom_reactangle.visible = true
-                bottomTimer.start()
-
-            }
-            else {
-                //console.log("startAnimation else")
-                root.upperAnimationTime = root.tottallAnimationTime/(root.valueArr.length - 1)
-                //console.log("root.upperAnimationTime="+root.upperAnimationTime)
-                upper_animation.running = true;
-
-                topViewBorder.visible = false;
-                animation_top_reactangle.visible = true
-                upperTimer.start()
-
-            }
-        }
-
     }
-
 
 }
