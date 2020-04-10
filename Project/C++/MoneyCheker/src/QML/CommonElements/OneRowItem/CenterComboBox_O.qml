@@ -193,7 +193,6 @@ Component{
 
         }
 
-
         Rectangle{
             id:viewReact
             visible: view.activeFocus//view.visible
@@ -201,11 +200,7 @@ Component{
             anchors.left:parent.left
             y: textLabel.y - viewReact.height + root.modelTempValue * textLabel.height+ textLabel.height    //model.count * textLabel.height
             color: "red"//"transparent"//"red"//root.activBackgroundButtonColor
-            //height: textLabel.height//textLabel.height * getArrValueCount()
-            // height: textLabel.height * getArrValueCount()
-            //  height: 5//textLabel.height*1
             height: textLabel.height * viewModel.count
-            //implicitHeight :0
             property int hoveredItem: -1
             property bool isActive: false
             z:1//(view.activeFocus===1)?1:0
@@ -408,76 +403,20 @@ Component{
                         }
                         onClicked: {
                             viewReact.hoveredItem = -1;
-                           // console.log("itemDelegate onClicked")
-
-                            //console.log("onClicked+"+index)
-                            //console.log("onClicked+"+listViewtext.text)
                             if (view.currentIndex !== index){
                                 root.tempChousenValueInCombo = index;
-
-
-                                //view.currentIndex = index
-
-                                //                                root.value = root.tempChousenValueInCombo
-                                //                                textLabel.text = root.convertValueToUserText(root.value)
-
-                                //console.log("root.value=" + root.value)
-
-                                //console.log(" textLabel.tex=" +  textLabel.text)
-
-
-
-
                             }
                             else{
-
                                 root.tempChousenValueInCombo = root.value
-
-
-                                //viewReact.visible = false;
-                                //model.append({"name":"Pizza"})
-                                // model.append({"name": "root.valueArr[root.value]"});
-                                // root.test_2();
-                                //    view.currentIndex = index
-                                //     root.value = view.currentIndex
-                                /// model.append({"name": root.valueArr[root.value]});
-                                //console.log("else view.currentIndex+"+view.currentIndex)
-                                //viewReact.height =viewReact.height+5;
-                                //view.contentHeight = view.contentHeight+5;
-                                //view.height = view.height+5;
-                                //root.test()
-                                //root.startAnimation()
                             }
-
-                            //                            root.upperItemsCount= root.value
-                            //                            root.bottomItemsCount= root.valueArr.length - root.value - 1
-                            //                            root.modelTempValue=0
-                            //                            viewModel.clear()
-                            //                            viewModel.insert(0, {"name": root.valueArr[root.value]});
-
-
-
-                            // console.log("viewReact viewReact="+viewReact.height)
-                            // console.log("view.height="+view.height)
-                            //viewReact.visible = false;//++
                             root.startFinishAnimation()
-
-                            // labelMouseArea.enabled = true
-                            //view.focus = false
-
-
-                            //viewReact.isActive=false
-                          //  root.getStatus("itemDelegate")
                         }
 
                         onPressed: {
-                            //root.state="s_viewPressed"
-                            //console.log("onPressed+"+index)
                             viewReact.hoveredItem = index;
 
                         }
                         onReleased: {
-                            //console.log("onReleased+")
                             if (viewReact.hoveredItem !== -1)
                                 viewReact.hoveredItem = -1;
                         }
@@ -487,26 +426,15 @@ Component{
 
             ListView {
                 id: view
-                // visible: false
                 anchors.fill: parent
-                // anchors.left: viewReact.left
-                //anchors.top: viewReact.top
-                //y:0//viewReact.y
-                //y: 0//viewReact.y //+ root.value * textLabel.height
-                //height: 0//textLabel.height// * getArrValueCount()
-                //implicitHeight :0
-                //contentHeight:0//textLabel.height
                 visible: view.activeFocus
                 model: viewModel
                 highlightRangeMode: ListView.ApplyRange
                 delegate: itemDelegate
                 focus: true
-                //highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
-
                 interactive: true
                 flickableDirection: Flickable.VerticalFlick
                 boundsBehavior: Flickable.StopAtBounds
-
 
                 Component.onCompleted: {
                     if (root.value < root.getArrValueCount()){
@@ -527,22 +455,7 @@ Component{
                     //console.log("startFinishAnimation onFocusChanged =")
                 }
                 onVisibleChanged: {
-                    //console.log("ListView onVisibleChanged visible="+view.visible)
-                    //  console.log("ListView onVisibleChanged visible="+view.visible)
-                    //console.log("view.visible="+view.visible)
-                    // console.log("view.activeFocus="+view.activeFocus)
-                    // if (view.activeFocus===false){
-                    // viewReact.visible = view.activeFocus
-                    //                    root.upperItemsCount = root.value
-                    //                    root.bottomItemsCount = root.valueArr.length - root.value - 1
-                    //                    root.modelTempValue = 0
-                    //                    viewModel.clear()
-                    //                    viewModel.append ({"name": root.valueArr[root.value]});
-                    //                    view.currentIndex = 0
-                    // }
-
                     if ( view.activeFocus===false){
-                        //viewReact.visible = view.activeFocus//++
                     }
                 }
             }
@@ -550,9 +463,6 @@ Component{
             ListModel {
                 id: viewModel
                 Component.onCompleted: {
-                    //                        root.valueArr.forEach(function(item, i, arr) {
-                    //                            append({"name": arr[i]});
-                    //                        });
                     //console.log("viewModel.onCompleted")
                     viewModel.append({"name":root.valueArr[root.value]})
                 }
@@ -565,7 +475,6 @@ Component{
             //console.log("model.length=" + nodelLenght)
             return nodelLenght;
         }
-
 
         function convertValueToUserText(index){
 
@@ -647,9 +556,7 @@ Component{
                 topViewBorder.visible = false;
                 animation_top_reactangle.visible = true
                 upperTimer.start()
-
                 //console.log("Adding more root.upperItemsCount ="+root.upperItemsCount)
-
             }
             else {
 //                console.log("Stop Start animation from addUpperItems side")
