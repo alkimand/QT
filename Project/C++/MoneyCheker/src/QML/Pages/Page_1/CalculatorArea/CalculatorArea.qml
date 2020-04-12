@@ -197,16 +197,18 @@ Item {
 //        anchors.right:parent.right
 //    }
 
-//    OneRowItem_S {
-//        id:start_date_row
-//       anchors.top:border_7.bottom//border_7
-//       // anchors.top:button_1.bottom
-//        anchors.left:parent.left
-//        value:1//{ return new Date().toLocaleDateString(Qt.locale("de_DE"),"dd.MM.yyyy")}
-//       // type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT;
-//       // textType:RowLogic.DataType.DATE_DATA_TYPE;
-//        textFirstLine: "Start date"
-//    }
+    OneRowItem_S {
+        id:start_date_row
+        anchors.top:button_1.bottom
+       //anchors.top:border_7.bottom//border_7
+       // anchors.top:button_1.bottom
+        anchors.left:parent.left
+        value : { return new Date().toLocaleDateString(Qt.locale("de_DE"),"dd.MM.yyyy")}
+        type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_DATE_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT;
+       // textType:RowLogic.DataType.DATE_DATA_TYPE;
+//        valueArr: settingData.userTextModels.persentDownTextModel;
+        textFirstLine: "Start date"
+    }
 
 //    Loader {
 //        id:border_8
@@ -216,20 +218,20 @@ Item {
 //        anchors.right:parent.right
 //    }
 
-    OneRowItem_S {
-        id:amortization_row
-        //anchors.top:border_7.bottom//border_7
-        anchors.top:button_1.bottom
-        anchors.left:parent.left
-        value: 4
-        type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT;
-        //textType: RowLogic.DataType.YERS_DATA_TYPE;
-        textFirstLine: "Amortization"
-        hasBorder: SettingData.HasBorder.BOTTOM_BORDER
-       // valueArr: settingData.userTextModels.armortizationTextModel;
-         valueArr: settingData.userTextModels.persentDownTextModel;
+//    OneRowItem_S {
+//        id:amortization_row
+//        //anchors.top:border_7.bottom//border_7
+//        anchors.top:button_1.bottom
+//        anchors.left:parent.left
+//        value: 4
+//        type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT;
+//        //textType: RowLogic.DataType.YERS_DATA_TYPE;
+//        textFirstLine: "Amortization"
+//        hasBorder: SettingData.HasBorder.BOTTOM_BORDER
+//       // valueArr: settingData.userTextModels.armortizationTextModel;
+//         valueArr: settingData.userTextModels.persentDownTextModel;
 
-    }
+//    }
 
 
     //Update TabButton

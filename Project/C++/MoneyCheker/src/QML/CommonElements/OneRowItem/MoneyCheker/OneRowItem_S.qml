@@ -32,7 +32,7 @@ OneRowItem_O {
 
     //Label
     labelFontColor:settingData.oneRowItemSettings.labelFontColor;
-    labelРighlightingFontColor:settingData.oneRowItemSettings.labelРighlightingFontColor;
+    labelРighlightingFontColor: settingData.oneRowItemSettings.labelРighlightingFontColor;
     labelFontSize:settingData.oneRowItemSettings.labelFontSize;
     labelBorderColorWidth:settingData.oneRowItemSettings.labelBorderColorWidth;
     labelLeftPadding:settingData.oneRowItemSettings.labelLeftPadding;
@@ -52,6 +52,8 @@ OneRowItem_O {
     oneRowItemBorderHeigh:settingData.oneRowItemSettings.oneRowItemBorderHeigh;
     checkerHeigh:settingData.oneRowItemSettings.checkerHeigh;
 
+    //CenterComboBox_O
+    tottallAnimationTime: settingData.oneRowItemSettings.tottallAnimationTime;
 }
 
 

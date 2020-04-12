@@ -56,8 +56,9 @@ OTHER_FILES += \
     src/QML/CommonElements/TabButton/TabButtonLabel/TabButtonLabel_O.qml\
     src/QML/CommonElements/OneRowItem/OneRowItem_O.qml\
     src/QML/CommonElements/OneRowItem/RowLogic.js\
-    src/QML/CommonElements/OneRowItem/CenterLabel_O.qml\
-    src/QML/CommonElements/OneRowItem/CenterComboBox_O.qml\
+    src/QML/CommonElements/OneRowItem/RowElements/CenterLabel_O.qml\
+    src/QML/CommonElements/OneRowItem/RowElements/CenterComboBox_O.qml\
+    src/QML/CommonElements/OneRowItem/RowElements/CenterDateCalendar_O.qml\
     src/QML/CommonElements/OneRowItem/MoneyCheker/OneRowItem_S.qml\
     src/QML/CommonElements/SmallCrossChekerButton/SmallCrossChekerButton_O.qml\
     src/QML/CommonElements/SmallCrossChekerButton/MoneyCheker/SmallCrossChekerButton_S.qml\

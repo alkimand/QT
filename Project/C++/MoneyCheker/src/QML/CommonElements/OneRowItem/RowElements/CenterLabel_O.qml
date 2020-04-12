@@ -1,16 +1,16 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
-//import"../../Setting"
-import "../SmallCrossChekerButton/MoneyCheker"
-import "RowLogic.js" as Logic
+
+import "../../SmallCrossChekerButton/MoneyCheker"
+import "../RowLogic.js" as Logic
 
 Component{
-  //  id:root
-       // property int labelMargins
+    //  id:root
+    // property int labelMargins
     Item{
         id:root
-//Component.onCompleted: {console.log("value="+value);}
+        //Component.onCompleted: {console.log("value="+value);}
 
         property color labelFontColor:labelFontColor_L
         property color labelРighlightingFontColor:labelРighlightingFontColor_L
@@ -29,7 +29,6 @@ Component{
         Rectangle {
             id:textAreaRect
             anchors.fill:parent
-            //width: 150//root.textBlockWidth
 
             TextArea {
                 id: textArea
@@ -91,16 +90,16 @@ Component{
                     //console.log("root.type" + root.value + " " + root.type)
                     UserValue = Logic.valueToUserText(textArea.value, root.type);
                     //console.log("UserValue=" + UserValue)
-//                    switch (root.type)   {
-//                    case Logic.DataType.DATE_DATA_TYPE:
+                    //                    switch (root.type)   {
+                    //                    case Logic.DataType.DATE_DATA_TYPE:
 
-//                        //UserValue = Qt.formatDate(UserValue, "dd.MM.yyyy");
-//                        //console.log("UserValue+formatDate=" + UserValue);
-//                           //     (value).toString(10);//convert
-//                        //userText = Qt.formatDate(userText, "dd.MM.yyyy");
-//                        //UserValue = Logic.valueToUserText(textArea.value, root.type);
-//                        break;
-//                    }
+                    //                        //UserValue = Qt.formatDate(UserValue, "dd.MM.yyyy");
+                    //                        //console.log("UserValue+formatDate=" + UserValue);
+                    //                           //     (value).toString(10);//convert
+                    //                        //userText = Qt.formatDate(userText, "dd.MM.yyyy");
+                    //                        //UserValue = Logic.valueToUserText(textArea.value, root.type);
+                    //                        break;
+                    //                    }
 
                     textArea.placeholderText = UserValue;
 
@@ -120,7 +119,7 @@ Component{
                         else{
                             textArea.value=0;
                         }
-                       // console.log("textArea.value+"+ textArea.value);
+                        // console.log("textArea.value+"+ textArea.value);
 
                         textArea.text = textArea.value.toString(10);//textArea.value //hack
                         textArea.placeholderText= textArea.value.toString(10) + " рубл";

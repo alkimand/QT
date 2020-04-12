@@ -1,11 +1,10 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
-//import"../../Setting"
 
-import "../SmallCrossChekerButton/MoneyCheker"
-import "RowLogic.js" as Logic
-import "../../Setting"
+import "../../SmallCrossChekerButton/MoneyCheker"
+import "../RowLogic.js" as Logic
+import "../../../Setting"
 
 Component{
     //  id:root
@@ -31,7 +30,7 @@ Component{
         property int labelLeftPadding:labelLeftPadding_L
         property int labelMargins :labelMargins_L
 
-        property var value :4//value_L
+        property var value : value_L
         property var modelTempValue : 0
         property int type : type_L
         property int textBlockWidth:textBlockWidth_L
@@ -41,6 +40,9 @@ Component{
         property int checkerHeigh:2
         property int checkerMargin:15
         property var valueArr : valueArr_L
+
+        //more arayes
+
 
         //alias
 
@@ -62,7 +64,7 @@ Component{
         //animation
         property bool isAnimationInProgressByTimer: false
 
-        property int tottallAnimationTime : 400
+        property int tottallAnimationTime : tottallAnimationTime_L
         property int  upperAnimationTime
         property int  bottomAnimationTime
 

@@ -4,6 +4,7 @@ import QtQuick.Layouts 1.12
 import"../../Setting"
 import BorderRadiusWidget.qml 1.0
 import "../SmallCrossChekerButton/MoneyCheker"
+import "../OneRowItem/RowElements"
 import "RowLogic.js" as Logic
 
 
@@ -73,6 +74,8 @@ Item {
     property int buttonBorderWidth
     property int oneRowItemBorderHeigh
 
+    //CenterComboBox_O
+    property int tottallAnimationTime
 
 
 
@@ -179,6 +182,11 @@ Item {
             id:centerComboBox
         }
 
+        CenterDateCalendar_O{
+            id:centerCalendar
+        }
+
+
         Loader{
             id:centerLoader;
 
@@ -192,31 +200,12 @@ Item {
 
             property color labelFontColor_L : root.labelFontColor;
             property color labelРighlightingFontColor_L: root.labelРighlightingFontColor;
-
-
             property color activMainButtonColor_L: root.activMainButtonColor;
             property color activBackgroundButtonColor_L: root.activBackgroundButtonColor;
-
             property color pressedMainButtonColor_L: root.pressedMainButtonColor;
             property color pressedBackgroundButtonColor_L: root.pressedBackgroundButtonColor;
-
             property color hoveredButtonColor_L: settingData.oneRowItemSettings.hoveredButtonColor
-
-
-
-//            buttonSize:settingData.oneRowItemSettings.buttonSize;// = 2*radius
-//            crossSize:settingData.oneRowItemSettings.crossSize;
-//            checkerSize:settingData.oneRowItemSettings.checkerSize;
-//            checkerHeigh:settingData.oneRowItemSettings.checkerHeigh;
-//            checkerMargin:settingData.oneRowItemSettings.checkerMargin;
-//            buttonBorderWidth:settingData.oneRowItemSettings.buttonBorderWidth;
-//            oneRowItemBorderHeigh:settingData.oneRowItemSettings.oneRowItemBorderHeigh;
-//            paddingRight:settingData.oneRowItemSettings.paddingRight;
-//            hoveredButtonColor:settingData.oneRowItemSettings.hoveredButtonColor;
-
-
             property var valueArr_L : root.valueArr;
-
             property string commonFontFamily_L: root.commonFontFamily;
             property int labelFontSize_L: root.labelFontSize;
             property int labelBorderColorWidth_L: root.labelBorderColorWidth;
@@ -225,6 +214,7 @@ Item {
             property var value_L: root.value;
             property int textBlockWidth_L:root.textBlockWidth;
             property int type_L: root.textType;
+            property int tottallAnimationTime_L: root.tottallAnimationTime;
 
             Component.onCompleted: {
                 //console.log("type_L="+centerLoader.type_L)
@@ -367,22 +357,23 @@ Item {
             //centerLoader.anchors.right = parentReact.right
             break;
 
-        case SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_LABEL_ONLY_RIGHT_LABEL_ALIGNEMimportENT :
+        case SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_DATE_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT :
             button_1.visible = false;
             button_2.visible = false;
             centerLoader.anchors.right = parentReact.right
+            centerLoader.sourceComponent = centerCalendar;
             break;
 
-        case SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_CUSTOM_WiDGET_LEFT_COMBOBOX_ALIGNEMENT :
-            console.log("on ONE_TEXT_LEFT_TEXT_AND_CUSTOM_WiDGET_LEFT_COMBOBOX_ALIGNEMENT")
-            button_1.visible = false;
-            button_2.visible = false;
-            centerLoader.visible = false;
-            //centerCustomWidget.parent = root;
-            //centerCustomWidget.anchors.left = textReact.right
-            // centerCustomWidget.anchors.top = parent.top
+//        case SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_CUSTOM_WiDGET_LEFT_COMBOBOX_ALIGNEMENT :
+//            console.log("on ONE_TEXT_LEFT_TEXT_AND_CUSTOM_WiDGET_LEFT_COMBOBOX_ALIGNEMENT")
+//            button_1.visible = false;
+//            button_2.visible = false;
+//            centerLoader.visible = false;
+//            //centerCustomWidget.parent = root;
+//            //centerCustomWidget.anchors.left = textReact.right
+//            // centerCustomWidget.anchors.top = parent.top
 
-            break;
+//            break;
 
 
         case SettingData.OneRowItemType.TWO_TEXT_LEFT_TEXT_AND_TEXT_RIGHT_ONLY :
