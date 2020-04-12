@@ -3,7 +3,7 @@
 const DataType = {"PERSENT_DATA_TYPE":1, "CURRENCY_DATA_TYPE":2, "DATE_DATA_TYPE":3, "YERS_DATA_TYPE":4,"CALENDAR_DATA_TYPE":5,"STRING_DATA_TYPE":6};
 Object.freeze(DataType);
 
-function valueToUserText(value, dataType){
+function valueToUserText(value, dataType, language="en_EN"){
     var userText = "";
     //console.log("valueToUserText=" + value)
     switch (dataType)   {
@@ -16,13 +16,9 @@ function valueToUserText(value, dataType){
         break;
 
     case DataType.DATE_DATA_TYPE:
-		//console.log("value+" + value);
-		var dateArr = value.split('.')
-		var JSdate = new Date(dateArr[2],dateArr[1],dateArr[0]);
-		userText = Qt.formatDate(JSdate, "MMMM, yyyy");
-        //console.log("JSdate+" + JSdate);
-        //console.log("userText+" + userText);
-
+		console.log("value+" + value);
+		userText = value.toLocaleString(Qt.locale(language), "MMM, yyyy")
+        console.log("userText+" + userText);
         break;
 
     case DataType.YERS_DATA_TYPE:

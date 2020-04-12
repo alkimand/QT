@@ -3,69 +3,8 @@ import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 
 ////import "../SmallCrossChekerButton/MoneyCheker"
-////import "RowLogic.js" as Logic
+import "../RowLogic.js" as Logic
 //import "../../Setting"
-
-//Component{
-//Rectangle {
-//    width: 64
-//    height: 64
-//    property alias value: list.currentIndex
-//    property alias label: caption.text
-
-//    Text {
-//        id: caption
-//        text: "Spinner"
-//        anchors.horizontalCenter: parent.horizontalCenter
-//    }
-
-//    Rectangle {
-//        anchors.top: caption.bottom
-//        anchors.topMargin: 4
-//        anchors.horizontalCenter: parent.horizontalCenter
-//        height: 48
-//        width: 32
-//        color: "black"
-//        ListView {
-//            id: list
-//            anchors.fill: parent
-//            highlightRangeMode: ListView.StrictlyEnforceRange
-//            preferredHighlightBegin: height/3
-//            preferredHighlightEnd: height/3
-//            clip: true
-//            model: 64
-//            delegate: Text {
-//                font.pixelSize: 18;
-//                color: "white";
-//                text: index;
-//                anchors.horizontalCenter: parent.horizontalCenter
-//            }
-//        }
-//        Rectangle {
-//            anchors.fill: parent
-//            gradient: Gradient {
-//                GradientStop { position: 0.0; color: "#FF000000" }
-//                GradientStop { position: 0.2; color: "#00000000" }
-//                GradientStop { position: 0.8; color: "#00000000" }
-//                GradientStop { position: 1.0; color: "#FF000000" }
-//            }
-//        }
-//    }
-//}
-
-//}
-
-
-
-
-
-
-
-
-
-
-
-
 
 Component{
 
@@ -90,7 +29,7 @@ Component{
         property int labelLeftPadding:labelLeftPadding_L
         property int labelMargins :labelMargins_L
 
-        property var value : 4 //value_L
+        property var value : { return new Date()} //"07.25.2011" //4 //value_L
         property var modelTempValue : 0
         property int type : type_L
         property int textBlockWidth:textBlockWidth_L
@@ -139,7 +78,7 @@ Component{
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
                 verticalAlignment :Text.AlignVCenter
-                text: root.value//root.convertValueToUserText(root.value)//root.value
+                text: Logic.valueToUserText(root.value, Logic.DataType.DATE_DATA_TYPE, "en_EN")//root.valueLogic.valueToUserText
                 font.family : root.commonFontFamily
                 font.pointSize:  root.labelFontSize
                 Layout.fillHeight: true
@@ -204,15 +143,15 @@ Component{
                 z:0
                 onClicked: {
                     console.log("labelMouseArea onClicked")
-                    // view.forceActiveFocus()
+                    // monthView.forceActiveFocus()
                     //viewReact.visible=true
 
 
                     // console.log("viewReact viewReact="+viewReact.height)
-                    //  console.log("view.height="+view.height)
+                    //  console.log("monthView.height="+monthView.height)
                     //console.log("viewReact.visible="+viewReact.visible)
                     //if(!viewReact.visible && viewReact.isActive===false){
-                    if(!view.activeFocus){
+                    if(!monthView.activeFocus){
                         //console.log("labelMouseArea click")
                         //console.log("iewReact.isActive+"+viewReact.isActive)
                         root.state = 's_LabelClicked'
@@ -222,19 +161,19 @@ Component{
                         console.log("labelMouseArea click else") //to Do
                         //restartModel("labelMouseArea");
                     }
-                    view.forceActiveFocus();
-                    view.visible = true;
+                    monthView.forceActiveFocus();
+                    monthView.visible = true;
                     labelMouseArea.enabled=false
 
-                    //viewReact.visible = view.focus;
+                    //viewReact.visible = monthView.focus;
 
                     // root.getStatus("labelMouseArea");
                 }
 
                 onPressed: {
                     // console.log("labelMouseArea onPressed")
-                    // if(!viewReact.visible && view.isActive===false){
-                    if(view.activeFocus===false){
+                    // if(!viewReact.visible && monthView.isActive===false){
+                    if(monthView.activeFocus===false){
                         // console.log("labelMouseArea onPressed")
                         root.state='s_LabelPressed'
                         //viewReact.isActive===true
@@ -250,17 +189,17 @@ Component{
 
         Rectangle{
             id:viewReact
-            visible: view.activeFocus//view.visible
+            visible: monthView.activeFocus//monthView.visible
             width: textAreaRect.width +root.checkerMargin + 5
             anchors.left:parent.left
-           // height: 48
+            // height: 48
             //width: 32
             y: -textLabel.height * 2// textLabel.y - viewReact.height + root.modelTempValue * textLabel.height+ textLabel.height    //model.count * textLabel.height
-            color: "red"//"transparent"//"red"//root.activBackgroundButtonColor
+            color: root.activBackgroundButtonColor //"red"//"transparent"//"red"//root.activBackgroundButtonColor
             height: textLabel.height * 5//viewModel.count
             property int hoveredItem: -1
             property bool isActive: false
-            z:1//(view.activeFocus===1)?1:0
+            // z:1//(monthView.activeFocus===1)?1:0
 
             //            ParallelAnimation {
             //                id: upper_animation_start
@@ -296,7 +235,18 @@ Component{
 
             Component.onCompleted: {
                 //  console.log("viewReact viewReact="+viewReact.height)
-                //  console.log("view.height="+view.height)
+                //  console.log("monthView.height="+monthView.height)
+            }
+
+            Rectangle{
+                id:centerCurentIndexReact
+                anchors.top:parent.top
+                anchors.left:parent.left
+                anchors.topMargin: textLabel.height * 2
+                width:parent.width
+                height: textLabel.height
+                color: root.activMainButtonColor
+                z:0
             }
 
             Rectangle{
@@ -425,11 +375,10 @@ Component{
             }
 
             Component {
-                id: itemDelegate
+                id: monthItemDelegate
                 Rectangle {
                     id:wrapper
-                    color: "blue"//root.activBackgroundButtonColor //ListView.isCurrentItem ? root.activMainButtonColor :
-                    // (viewReact.hoveredItem === index)? "grey" : root.activBackgroundButtonColor
+                    color: "transparent"
                     width: textAreaRect.width +root.checkerMargin + 5;
                     height: textLabel.height
                     Text {
@@ -438,121 +387,126 @@ Component{
                         verticalAlignment :Text.AlignVCenter
                         font.family : root.commonFontFamily
                         font.pointSize : root.labelFontSize
-                        color:"white" //wrapper.ListView.isCurrentItem ? root.activBackgroundButtonColor : "black"
+                        color: wrapper.ListView.isCurrentItem ? root.activBackgroundButtonColor : "black"
                         leftPadding:root.labelLeftPadding
                         anchors.horizontalCenter: parent.horizontalCenter
-                        text: index//name
-                        z:0
+                        text: {  new Date(2000, index, 1, 0, 0, 0, 0).toLocaleString(Qt.locale("en_EN"), "MMM")}
+
+                        MouseArea{
+                            anchors.fill:parent
+                            onClicked: {
+                                if (monthView.currentIndex!==index){
+                                    monthView.currentIndex = index
+                                    root.value.setMonth(index)
+
+                                }
+                                else{
+                                   // console.log("onClicked else")
+                                    viewReact.visible = false;
+                                    monthView.focus = false
+                                    labelMouseArea.enabled=true
+                                    textLabel.text = Logic.valueToUserText(root.value, Logic.DataType.DATE_DATA_TYPE, "en_EN")
+                                }
+
+                            }
+                        }
                     }
-                    z:0
-
-//                    MouseArea{
-//                        anchors.fill:parent
-//                        id:itemDelegateMouseArea
-//                        // enabled: !(root.isAnimationInProgressByTimer)
-//                        propagateComposedEvents:false
-//                        z:1
-//                        //                        onCanceled: {
-//                        //                            //  labelMouseArea.enabled = true
-//                        //                        }
-//                        //                        onActiveFocusChanged: {
-//                        //                            // labelMouseArea.enabled = true
-//                        //                        }
-//                        onClicked: {
-//                            console.log("onClicked")
-//                            console.log("ListView.isCurrentItem=?"+ ListView.isCurrentItem)
-//                            console.log("view.currentIndex=?"+view.currentIndex)
-//                            view
-
-//                            //                            viewReact.hoveredItem = -1;
-//                        }
-
-//                        //                            console.log("onClicked")
-//                        //                            if (view.currentIndex !== index){
-//                        //                                // root.tempChousenValueInCombo = index;
-//                        //                            }
-//                        //                            else{
-//                        //                                //  root.tempChousenValueInCombo = root.value
-//                        //                            }
-//                        //                            // root.startFinishAnimation()
-//                        //                        }
-
-//                        //                        onPressed: {
-//                        //                            //viewReact.hoveredItem = index;
-
-//                        //                        }
-//                        //                        onReleased: {
-//                        //                            if (viewReact.hoveredItem !== -1)
-//                        //                                //.hoveredItem = -1;
-//                        //                        }
-//                    }
                 }
             }
 
+            Component {
+                id: yearsItemDelegate
+                Rectangle {
+                    id:wrapper_2
+                    color: "transparent"
+                    width: textAreaRect.width +root.checkerMargin + 5;
+                    height: textLabel.height
+                    Text {
+                        id:listViewtext_2
+                        anchors.fill: parent
+                        verticalAlignment :Text.AlignVCenter
+                        font.family : root.commonFontFamily
+                        font.pointSize : root.labelFontSize
+                        color: wrapper_2.ListView.isCurrentItem ? root.activBackgroundButtonColor : "black"
+                        leftPadding:root.labelLeftPadding
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        text: {  new Date( 2000 + index , 0, 1, 0, 0, 0, 0).toLocaleString(Qt.locale("en_EN"), "yyyy")}
 
+                        MouseArea{
+                            anchors.fill:parent
+                            onClicked: {
+                                if (yearsView.currentIndex!==index){
+                                    yearsView.currentIndex = index
+                                    root.value.setYear(index + 2000)
+                                }
+                                else{
+                                   //console.log("onClicked else")
+                                    viewReact.visible = false;
+                                    monthView.focus = false
+                                    labelMouseArea.enabled=true
+                                    textLabel.text = Logic.valueToUserText(root.value, Logic.DataType.DATE_DATA_TYPE, "en_EN")
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+
+            //                                console.log("onClicked")
+            //                                console.log("ListView.isCurrentItem=?"+ ListView.isCurrentItem)
+            //                                console.log("monthView.currentIndex=?"+monthView.currentIndex)
 
             ListView {
-                id: view
-                anchors.fill: parent
+                id: monthView
+                visible: (monthView.focus)
+                // anchors.fill: parent
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                anchors.left: parent.left
+                width: textAreaRect.width/2
                 highlightRangeMode: ListView.StrictlyEnforceRange
-                preferredHighlightBegin: height/3
-                preferredHighlightEnd: height/3
+                preferredHighlightBegin: height *2/5
+                preferredHighlightEnd: height * 2/5
                 clip: true
-                model: 64
-                delegate: Text {
-                    font.pixelSize: 18;
-                    color: "white";
-                    text: index;
-                    anchors.horizontalCenter: parent.horizontalCenter
-                }
+                model: 12
+                delegate:monthItemDelegate
 
-
-
-
-
-              //  delegate: itemDelegate
-               //anchors.topMargin: 50
-               // focus: true
-               // interactive: true
-            //    flickableDirection: Flickable.VerticalFlick
-              //  boundsBehavior: Flickable.StopAtBounds
-
-//                Component.onCompleted: {
-//                    //                                        if (root.value < root.getArrValueCount()){
-//                    //                                            view.currentIndex = 0//root.value;
-//                    //                                            root.restartModel("view .onCompleted")
-//                    //                                            console.log("view Component.onCompleted")
-//                    //                                        }
-//                    //                                        else
-
-//                    //                                        view.currentIndex = 0;
-//                }
-
-//                // Keys.onSpacePressed: viewModel.insert(0, { "name": "Item " + //viewModel.count })
-
-//                onFocusChanged: {
-//                    //console.log("ListView onFocusChanged =" +view.focus)
-//                    //if (!view.focus && !isAnimationInProgressByTimer)
-//                    //root.startFinishAnimation()
-//                    //console.log("startFinishAnimation onFocusChanged =")
-//                }
-//                onVisibleChanged: {
-//                    // if ( view.activeFocus===false){
-//                    // }
-//                }
-            }
-
-            ListModel {
-                id: viewModel
                 Component.onCompleted: {
-                    //console.log("viewModel.onCompleted")
-                    //                                    viewModel.append({"name": root.value})
-                    //                                    viewModel.append({"name": root.value})
-                    //                                    viewModel.append({"name": root.value})
-                    //                                    viewModel.append({"name": root.value})
-
+                    // monthView.currentIndex = root.value
+                    // console.log("Component.onCompleted=" +root.value.getMonth())
+                    //console.log("Date=" + Date.fromLocaleDateString( Qt.locale(), new Date().toLocaleDateString(), )//"dd.MM.YYYY").getMonth())//root.value
+                    monthView.currentIndex = root.value.getMonth();
                 }
             }
+
+            ListView {
+                id: yearsView
+                visible: (monthView.focus || yearsView.focus)
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                anchors.right: parent.right
+                width: textAreaRect.width/2
+                highlightRangeMode: ListView.StrictlyEnforceRange
+                preferredHighlightBegin: height *2/5
+                preferredHighlightEnd: height * 2/5
+                clip: true
+                model: 60
+                delegate:yearsItemDelegate
+
+                Component.onCompleted: {
+                    // monthView.currentIndex = root.value
+                    console.log("Croot.value." +root.value.toLocaleDateString("dd.MM.YYYY"))
+                    console.log("Croot.value.getYear() - 1999" + root.value.getFullYear())
+                    console.log("Croot.value.getYear() + 1" + root.value.getFullYear()+ 1 )
+                    console.log("Croot.value.getYear() + 2" + root.value.getFullYear()+ 2 )
+                    //console.log("Date=" + Date.fromLocaleDateString( Qt.locale(), new Date().toLocaleDateString(), )//"dd.MM.YYYY").getMonth())//root.value
+                    monthView.currentIndex = root.value.getYear() - 1999;
+                }
+            }
+
+
+
 
         }
 
@@ -808,7 +762,7 @@ Component{
 
         //                viewModel.clear()
         //                viewModel.append ({"name": root.valueArr[root.value]});
-        //                view.currentIndex = 0
+        //                monthView.currentIndex = 0
         //                //console.log("restartModel from " + from + " root.value= " + root.value)
         //            }
         //            else {
@@ -820,20 +774,20 @@ Component{
         //        function restartAfterOpenAnimation() {
         //            viewReact.visible = true;
         //            labelMouseArea.enabled = false;
-        //            view.visible = true;
-        //            view.focus = true;
+        //            monthView.visible = true;
+        //            monthView.focus = true;
         //            root.restartUIAfterAnimation();
-        //            view.forceActiveFocus();
+        //            monthView.forceActiveFocus();
         //            root.isAnimationInProgressByTimer = false;
         //        }
 
         //        function restartAfterFinishAnimation(){
         //            viewReact.visible = false;
         //            labelMouseArea.enabled = true;
-        //            view.visible = false;
-        //            view.focus = false;
+        //            monthView.visible = false;
+        //            monthView.focus = false;
         //            root.restartUIAfterAnimation();
-        //            view.focus = false;
+        //            monthView.focus = false;
         //            root.isAnimationInProgressByTimer = false;
         //            root.value = root.tempChousenValueInCombo;
         //        }
@@ -850,10 +804,10 @@ Component{
 
         //        function getStatus(from) {
         //            console.log("  getStatus from " + from)
-        //            console.log("   view.visible="+view.visible)
-        //            console.log("   view.focus="+view.focus)
-        //            console.log("   view.textAreaRect.visible="+textAreaRect.visible)
-        //            //console.log("   view.textAreaRect.visible="+textAreaRect.visible)
+        //            console.log("   monthView.visible="+monthView.visible)
+        //            console.log("   monthView.focus="+monthView.focus)
+        //            console.log("   monthView.textAreaRect.visible="+textAreaRect.visible)
+        //            //console.log("   monthView.textAreaRect.visible="+textAreaRect.visible)
         //        }
 
 
