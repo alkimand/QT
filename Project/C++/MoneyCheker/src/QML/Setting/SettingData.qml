@@ -220,7 +220,7 @@ Item {
 		
 		//Label		
         property color labelFontColor: "white"
-        property color labelРighlightingFontColor: "#4385ef"
+        property color labelРighlightingFontColor: "#4385ef"//#4385ef
 		property int labelFontSize: 12
 		property int labelBorderColorWidth: 2
 		property int labelLeftPadding: 5

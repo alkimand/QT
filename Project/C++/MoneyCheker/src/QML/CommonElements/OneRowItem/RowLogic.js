@@ -16,9 +16,9 @@ function valueToUserText(value, dataType, language="en_EN"){
         break;
 
     case DataType.DATE_DATA_TYPE:
-		console.log("value+" + value);
+		//console.log("value+" + value);
 		userText = value.toLocaleString(Qt.locale(language), "MMM, yyyy")
-        console.log("userText+" + userText);
+        //console.log("userText+" + userText);
         break;
 
     case DataType.YERS_DATA_TYPE:
