@@ -29,7 +29,7 @@ Component{
         property int labelLeftPadding:labelLeftPadding_L
         property int labelMargins :labelMargins_L
 
-        property var value : { return new Date()} //"07.25.2011" //4 //value_L
+        property var value :  value_L //"07.25.2011" //4 //value_L{ return new Date()}
         property var modelTempValue : 0
         property int type : type_L
         property int textBlockWidth:textBlockWidth_L
@@ -436,7 +436,8 @@ Component{
             yearsView.preferredHighlightBegin = yearsView.height *2/5;
             yearsView.preferredHighlightEnd = yearsView.height *2/5;
 
-
+            monthView.currentIndex = root.value.getMonth();
+            yearsView.currentIndex = root.value.getUTCFullYear() - root.startYear
         }
 
         function restartAfterFinishAnimation(){

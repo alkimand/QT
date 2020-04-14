@@ -52,8 +52,9 @@ OneRowItem_O {
     oneRowItemBorderHeigh:settingData.oneRowItemSettings.oneRowItemBorderHeigh;
     checkerHeigh:settingData.oneRowItemSettings.checkerHeigh;
 
-    //CenterComboBox_O
+    //combobox and date combo animation
     tottallAnimationTime: settingData.oneRowItemSettings.tottallAnimationTime;
+
 }
 
 

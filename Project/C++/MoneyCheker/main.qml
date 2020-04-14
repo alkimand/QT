@@ -13,8 +13,8 @@ import "src/QML/StackView"
 ApplicationWindow {
     id:mainwindow
     visible: true
-    width: 640
-    height: 480
+    width: 800
+    height: 800
     title: qsTr("Working Money Cheker")
     //property var  actions: actions
 

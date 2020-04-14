@@ -55,6 +55,7 @@ Component{
                 wrapMode : TextEdit.WordWrap
                 leftPadding:root.labelLeftPadding
                 textMargin:0
+                activeFocusOnPress :false
 
                 //                validator: RegExpValidator {
                 //                    regExp:  /^((?:[0-1]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\.){0,3}(?:[0-1]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])$/
@@ -131,10 +132,11 @@ Component{
                     id:labelMouseArea
                     anchors.fill: parent
                     cursorShape : Qt.ArrowCursor
+                    acceptedButtons: Qt.LeftButton
                     //onPressed: {
                     onClicked:{
                         //console.log("onClicked textArea.textArea.value="+textArea.value)
-                        //console.log("onClicked")
+                        console.log("onClicked")
                         if (textArea.activeFocus){
                             //console.log("onClicked textArea.activeFocus + value=" + textArea.value)
                             if (textArea.value!==parseFloat(textArea.text.replace(/[^0-9\.]+/g, ''))){
