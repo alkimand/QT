@@ -79,8 +79,8 @@ Item {
 
 
 
-    width: rowItemWidth
-    height:rowItemHeight
+    width: root.rowItemWidth
+    height:root.rowItemHeight
 
     // property bool isActive: false
 
@@ -95,7 +95,7 @@ Item {
     //use in this  class
     //signal activate()
     //signal disable()
-
+    //z:-1
     Rectangle {
         id:parentReact
         anchors.fill: parent
@@ -174,7 +174,7 @@ Item {
         }
 
 
-        CenterLabel_O{
+        CenterLabel_O {
             id:centerLabel
         }
 
@@ -197,7 +197,7 @@ Item {
             anchors.topMargin:root.labelMargins;
             anchors.bottomMargin:root.labelMargins;
             anchors.rightMargin:root.paddingRight;
-
+            z:1
             property color labelFontColor_L : root.labelFontColor;
             property color labelРighlightingFontColor_L: root.labelРighlightingFontColor;
             property color activMainButtonColor_L: root.activMainButtonColor;
@@ -230,7 +230,7 @@ Item {
             anchors.right: button_2.left
             anchors.rightMargin: root.paddingRight
             type: SettingData.BlueButtonType.MINUS
-
+            z:0
         }
 
         SmallCrossChekerButton_S {
@@ -242,6 +242,7 @@ Item {
             anchors.right: parent.right
             anchors.rightMargin: root.paddingRight
             type: SettingData.BlueButtonType.PLUS
+            z:0
         }
 
 
@@ -364,16 +365,16 @@ Item {
             centerLoader.sourceComponent = centerCalendar;
             break;
 
-//        case SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_CUSTOM_WiDGET_LEFT_COMBOBOX_ALIGNEMENT :
-//            console.log("on ONE_TEXT_LEFT_TEXT_AND_CUSTOM_WiDGET_LEFT_COMBOBOX_ALIGNEMENT")
-//            button_1.visible = false;
-//            button_2.visible = false;
-//            centerLoader.visible = false;
-//            //centerCustomWidget.parent = root;
-//            //centerCustomWidget.anchors.left = textReact.right
-//            // centerCustomWidget.anchors.top = parent.top
+            //        case SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_CUSTOM_WiDGET_LEFT_COMBOBOX_ALIGNEMENT :
+            //            console.log("on ONE_TEXT_LEFT_TEXT_AND_CUSTOM_WiDGET_LEFT_COMBOBOX_ALIGNEMENT")
+            //            button_1.visible = false;
+            //            button_2.visible = false;
+            //            centerLoader.visible = false;
+            //            //centerCustomWidget.parent = root;
+            //            //centerCustomWidget.anchors.left = textReact.right
+            //            // centerCustomWidget.anchors.top = parent.top
 
-//            break;
+            //            break;
 
 
         case SettingData.OneRowItemType.TWO_TEXT_LEFT_TEXT_AND_TEXT_RIGHT_ONLY :
