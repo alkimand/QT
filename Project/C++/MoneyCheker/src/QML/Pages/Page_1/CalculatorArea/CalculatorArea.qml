@@ -12,13 +12,19 @@ Item {
     id:root
     property Actions actions : parent.actions
     //property int radius : parent.actions
+
     Connections {
         target: button_1
         onActivateButton: {
             //console.log("button_1 Connections+")
+            button_1.forceActiveFocus()
             button_1.isActive=true;
             button_2.isActive=false;
             root.updateTabButton();
+            stack.pop()
+            stack.completeTransition
+            stack.push(stackPage_1)
+            stack.completeTransition
         }
     }
 
@@ -28,7 +34,13 @@ Item {
             //console.log("button_2 Connections+")
             button_1.isActive=false;
             button_2.isActive=true;
+            button_2.forceActiveFocus()
             root.updateTabButton();
+                        stack.pop()
+                        stack.completeTransition
+                        stack.push(stackPage_2)
+                        stack.completeTransition
+
         }
     }
 
@@ -40,16 +52,16 @@ Item {
         disactiveAction:parent.actions.mainButtonFavorite;
         buttonTupe: SettingData.ButtonType.FIRST_BUTTON_TYPE;
 
-        MouseArea{
-        anchors.fill:parent
-        onClicked: {
-            console.log("button_1 onClicked")
-            console.log("stack dept = "+stack.depth)
-            //stack.pop()
-            stack.pop()
-            stack.push(stackPage_1)
-        }
-        }
+//        MouseArea{
+//        anchors.fill:parent
+//        onClicked: {
+//            console.log("button_1 onClicked")
+//            console.log("stack dept = "+stack.depth)
+//            //stack.pop()
+//            stack.pop()
+//            stack.push(stackPage_1)
+//        }
+//        }
     }
 
     TabButton_S {
@@ -60,16 +72,18 @@ Item {
         disactiveAction:parent.actions.mainButtonFavorite;
         buttonTupe: SettingData.ButtonType.LAST_BUTTON_TYPE;
 
-        MouseArea{
-        anchors.fill:parent
-        onClicked: {
-            console.log("button_2 onClicked")
-            console.log("stack dept = "+stack.depth)
-            stack.pop()
-            stack.push(stackPage_2)
-            //stack.index=1
-        }
-        }
+//        MouseArea{
+//        anchors.fill:parent
+//        onClicked: {
+//            console.log("button_2 onClicked")
+//            console.log("stack dept = "+stack.depth)
+//            stack.pop()
+//            stack.completeTransition
+//            stack.push(stackPage_2)
+//            stack.completeTransition
+//            //stack.index=1
+//        }
+//        }
     }
 
 
@@ -109,6 +123,7 @@ Item {
     Component {
         id:stackPage_1
         Item{
+            id:itemStackPage_1
             //anchors.fill: parent
             OneRowItem_S {
                 id:home_prise_row
@@ -255,6 +270,7 @@ Item {
                 // textType:RowLogic.DataType.DATE_DATA_TYPE;
                 //        valueArr: settingData.userTextModels.persentDownTextModel;
                 textFirstLine: "Start date"
+                z:0
             }
 
             Loader {
@@ -276,6 +292,30 @@ Item {
                 textFirstLine: "Amortization"
                 hasBorder: SettingData.HasBorder.BOTTOM_BORDER
                 valueArr: settingData.userTextModels.armortizationTextModel;
+                z:0
+            }
+
+            Connections {
+                target: start_date_row
+                onOpenRowView: {
+                   // console.log("start_date_row onOpenView")
+                    itemStackPage_1.moveAllActiveElementsToBack()
+                    start_date_row.z = 1;
+                }
+            }
+
+            Connections {
+                target: amortization_row
+                onOpenRowView: {
+                   // console.log("start_date_row onOpenView")
+                    itemStackPage_1.moveAllActiveElementsToBack()
+                    amortization_row.z = 1;
+                }
+            }
+
+            function moveAllActiveElementsToBack(){
+                start_date_row.z = 0;
+                amortization_row.z = 0;
             }
         }
     }
@@ -283,6 +323,7 @@ Item {
     Component{
         id:stackPage_2
         Item {
+            id:itemStackPage_2
             //anchors.fill: parent
             OneRowItem_S {
                 id:loan_row
@@ -305,7 +346,7 @@ Item {
             }
 
             OneRowItem_S {
-                id:rate_row_2
+                id:rate_loan_row
                 anchors.top:border_2_0.bottom
                 anchors.left:parent.left
                 value: 4.5
@@ -317,13 +358,13 @@ Item {
             Loader {
                 id:border_2_1
                 sourceComponent: itemBorder
-                anchors.top:rate_row_2.bottom
+                anchors.top:rate_loan_row.bottom
                 anchors.left:parent.left
                 anchors.right:parent.right
             }
 
             OneRowItem_S {
-                id:term_row_2
+                id:term_loan_row
                 anchors.top:border_2_1.bottom
                 anchors.left:parent.left
                 value: 23
@@ -335,13 +376,13 @@ Item {
             Loader {
                 id:border_2_2
                 sourceComponent: itemBorder
-                anchors.top:term_row_2.bottom
+                anchors.top:term_loan_row.bottom
                 anchors.left:parent.left
                 anchors.right:parent.right
             }
 
             OneRowItem_S {
-                id:start_date_row_2
+                id:start_date_loan_row
                 //anchors.top:button_1.bottom
                 anchors.top:border_2_2.bottom//border_7
                 // anchors.top:button_1.bottom
@@ -356,13 +397,13 @@ Item {
             Loader {
                 id:border_2_3
                 sourceComponent: itemBorder
-                anchors.top:start_date_row_2.bottom
+                anchors.top:start_date_loan_row.bottom
                 anchors.left:parent.left
                 anchors.right:parent.right
             }
 
             OneRowItem_S {
-                id:amortization_row
+                id:amortization_loan_row
                 anchors.top:border_2_3.bottom//border_7
                 // anchors.top:button_1.bottom
                 anchors.left:parent.left
@@ -372,6 +413,29 @@ Item {
                 textFirstLine: "Amortization"
                 hasBorder: SettingData.HasBorder.BOTTOM_BORDER
                 valueArr: settingData.userTextModels.armortizationTextModel;
+            }
+
+            Connections {
+                target: start_date_loan_row
+                onOpenRowView: {
+                   // console.log("start_date_row onOpenView")
+                    itemStackPage_2.moveAllActiveElementsToBack()
+                    start_date_loan_row.z = 1;
+                }
+            }
+
+            Connections {
+                target: amortization_loan_row
+                onOpenRowView: {
+                   // console.log("start_date_row onOpenView")
+                    itemStackPage_2.moveAllActiveElementsToBack()
+                    amortization_loan_row.z = 1;
+                }
+            }
+
+            function moveAllActiveElementsToBack(){
+                start_date_loan_row.z = 0;
+                amortization_loan_row.z = 0;
             }
 
 
@@ -403,6 +467,7 @@ Item {
         button_2.update();
         //console.log("button_2.update()");
     }
+
 
 
 }

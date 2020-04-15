@@ -22,6 +22,8 @@ Item {
     //    }
 
 
+    signal openRowView()
+
     //common style
     property string commonFontFamily
     property color backgroundColor
@@ -96,6 +98,31 @@ Item {
     //signal activate()
     //signal disable()
     //z:-1
+
+
+// signal openView()
+
+    signal openView()
+
+    Connections {
+        target: centerLoader.item
+        onOpenView: {
+            root.openRowView()
+           // console.log("onOpenView")
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
     Rectangle {
         id:parentReact
         anchors.fill: parent
@@ -197,14 +224,14 @@ Item {
             anchors.topMargin:root.labelMargins;
             anchors.bottomMargin:root.labelMargins;
             anchors.rightMargin:root.paddingRight;
-            z:1
+            //z:1
             property color labelFontColor_L : root.labelFontColor;
             property color labelРighlightingFontColor_L: root.labelРighlightingFontColor;
             property color activMainButtonColor_L: root.activMainButtonColor;
             property color activBackgroundButtonColor_L: root.activBackgroundButtonColor;
             property color pressedMainButtonColor_L: root.pressedMainButtonColor;
             property color pressedBackgroundButtonColor_L: root.pressedBackgroundButtonColor;
-            property color hoveredButtonColor_L: settingData.oneRowItemSettings.hoveredButtonColor
+            property color hoveredButtonColor_L: settingData.oneRowItemSettings.hoveredButtonColor;
             property var valueArr_L : root.valueArr;
             property string commonFontFamily_L: root.commonFontFamily;
             property int labelFontSize_L: root.labelFontSize;

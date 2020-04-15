@@ -7,7 +7,6 @@ import "../RowLogic.js" as Logic
 //import "../../Setting"
 
 Component{
-
     Item{
         id:root
         //Component.onCompleted: {console.log("value="+value);}
@@ -57,11 +56,14 @@ Component{
         //animation
         property bool isAnimationInProgressByTimer: false
 
-        property int tottallAnimationTime : 400//tottallAnimationTime_L
+        property int tottallAnimationTime : tottallAnimationTime_L
         property int  tempChousenValueInCombo
 
         //for this element only
         property int startYear: 2000
+
+        signal openView()
+
         anchors.fill:parent
         Rectangle {
             id:textAreaRect
@@ -70,6 +72,7 @@ Component{
             anchors.left: parent.left
             width: textLabel.contentWidth + dashChecker.width+0
             color: root.labelFontColor
+
             Text
             {
                 id: textLabel
@@ -83,6 +86,7 @@ Component{
                 color: root.labelРighlightingFontColor
                 renderType: Text.NativeRendering // Rendering type (optional)
                 leftPadding:root.labelLeftPadding
+                //height:35
             }
             Rectangle {
                 id:leftTextMargin
@@ -180,7 +184,31 @@ Component{
             height: textLabel.height * 5//viewModel.count
             property int hoveredItem: -1
             property bool isActive: false
-            // z:1//(monthView.activeFocus===1)?1:0
+           // z:4//(monthView.activeFocus===1)?1:0
+
+            onActiveFocusChanged: {
+                //console.log("onActiveFocusChanged " + viewReact.focus)
+                //console.log("activeFocus " + viewReact.activeFocus)
+                if (!viewReact.activeFocus && !isAnimationInProgressByTimer){
+                    root.value.setYear(yearsView.currentIndex + root.startYear)
+                    root.value.setMonth(monthView.currentIndex)
+                    textLabel.text = Logic.valueToUserText(root.value, Logic.DataType.DATE_DATA_TYPE, "en_EN")
+                    root.startFinishAnimation()
+                }
+            }
+            onFocusChanged: {
+
+//                    if (monthView.focus)
+//                       // console.log("monthView.focus=" + monthView.focus)
+//                    else{
+
+//                    }
+                //console.log("viewReact.focus=" + viewReact.focus)
+            }
+
+            Component.onCompleted: {
+               // console.log("viewReact.height=" + viewReact.height)
+            }
 
             ParallelAnimation {
                 id: animation_start
@@ -206,11 +234,6 @@ Component{
                 NumberAnimation { target: yearsView; property: "preferredHighlightEnd"; from:  yearsView.height * 2/5; to: 0; duration: root.tottallAnimationTime }
                 NumberAnimation { target: centerCurentIndexReact; property: "height"; from:  textLabel.height; to: 0; duration: root.tottallAnimationTime }
                 NumberAnimation { target: centerCurentIndexReact; property: "anchors.topMargin"; from:  textLabel.height * 2 ; to: -textLabel.height * 2; duration: root.tottallAnimationTime }
-            }
-
-            Component.onCompleted: {
-                //  console.log("viewReact viewReact="+viewReact.height)
-                //  console.log("monthView.height="+monthView.height)
             }
 
             Rectangle{
@@ -320,7 +343,7 @@ Component{
                         color: wrapper_2.ListView.isCurrentItem ? root.activBackgroundButtonColor : "black"
                         leftPadding:root.labelLeftPadding
                         anchors.horizontalCenter: parent.horizontalCenter
-                        text: {  new Date( root.startYear + index , 0, 1, 0, 0, 0, 0).toLocaleString(Qt.locale("en_EN"), "yyyy")}
+                        text: root.startYear + index //{  new Date( root.startYear + index , 0, 1, 0, 0, 0, 0).toLocaleString(Qt.locale("en_EN"), "yyyy")}
 
                         MouseArea {
                             anchors.fill:parent
@@ -352,8 +375,8 @@ Component{
                 anchors.left: parent.left
                 width: textAreaRect.width/2
                 highlightRangeMode: ListView.StrictlyEnforceRange
-                preferredHighlightBegin: height *2/5
-                preferredHighlightEnd: height * 2/5
+                preferredHighlightBegin: height * 0.4
+                preferredHighlightEnd: height * 0.4
                 clip: true
                 model: 12
                 delegate:monthItemDelegate
@@ -363,6 +386,15 @@ Component{
                     // console.log("Component.onCompleted=" +root.value.getMonth())
                     //console.log("Date=" + Date.fromLocaleDateString( Qt.locale(), new Date().toLocaleDateString(), )//"dd.MM.YYYY").getMonth())//root.value
                     monthView.currentIndex = root.value.getMonth();
+                    //console.log("monthView.height=" + monthView.height)
+                }
+                onFocusChanged: {
+//                    if (monthView.focus)
+//                       // console.log("monthView.focus=" + monthView.focus)
+//                    else{
+
+//                    }
+                    console.log("monthView.focus=" + monthView.focus)
                 }
             }
 
@@ -374,15 +406,31 @@ Component{
                 anchors.right: parent.right
                 width: textAreaRect.width/2
                 highlightRangeMode: ListView.StrictlyEnforceRange
-                preferredHighlightBegin: height *2/5
-                preferredHighlightEnd: height * 2/5
+                preferredHighlightBegin: height * 0.4
+                preferredHighlightEnd: height * 0.4
                 clip: true
                 model: 60
                 delegate:yearsItemDelegate
 
                 Component.onCompleted: {
                     yearsView.currentIndex = root.value.getUTCFullYear() - root.startYear //root.value
+                    // console.log("yearsView.height=" + yearsView.height)
                 }
+
+                    onActiveFocusChanged: {
+                         //console.log("onActiveFocusChanged=" + yearsView.focus)
+                    }
+                onFocusChanged: {
+//                    if (monthView.focus)
+//                       // console.log("monthView.focus=" + monthView.focus)
+//                    else{
+
+//                    }
+                    //console.log("yearsView.focus=" + yearsView.focus)
+                   // console.log("yearsView.activeFocus=" + yearsView.activeFocus)
+
+                }
+
             }
         }
 
@@ -409,6 +457,7 @@ Component{
             root.isAnimationInProgressByTimer = true;
             animation_start.start()
             openAnimationRestoringTimer.start();
+            root.openView()
         }
 
         function startFinishAnimation(){
@@ -421,37 +470,36 @@ Component{
 
         function restartAfterOpenAnimation() {
             // console.log(" yearsView.currentIndex"+ yearsView.currentIndex)
-            // monthView.currentIndex=10
             viewReact.visible = true;
             labelMouseArea.enabled = false;
-            // monthView.visible = true;
-            // yearsView.visible = true;
-            monthView.focus = true;
-            monthView.forceActiveFocus();
+            viewReact.focus = true;
+            viewReact.forceActiveFocus();
+
             root.isAnimationInProgressByTimer = false;
-            centerCurentIndexReact.visible = true;
+            monthView.preferredHighlightBegin =  textLabel.height *2;
+            monthView.preferredHighlightEnd = textLabel.height *2;
 
-            monthView.preferredHighlightBegin = yearsView.height *2/5;
-            monthView.preferredHighlightEnd = yearsView.height *2/5;
-            yearsView.preferredHighlightBegin = yearsView.height *2/5;
-            yearsView.preferredHighlightEnd = yearsView.height *2/5;
+            yearsView.preferredHighlightBegin = textLabel.height *2;
+            yearsView.preferredHighlightEnd = textLabel.height *2;
 
-            monthView.currentIndex = root.value.getMonth();
             yearsView.currentIndex = root.value.getUTCFullYear() - root.startYear
+            monthView.currentIndex = root.value.getMonth();
+
+            yearsView.positionViewAtIndex(yearsView.currentIndex - 2, ListView.Beginning)
+            viewReact.forceActiveFocus();
+            //root.z=3
         }
 
         function restartAfterFinishAnimation(){
             viewReact.visible = false;
             labelMouseArea.enabled = true;
-            //monthView.visible = false;
-            //yearsView.visible = false;
-            monthView.focus = false;
+            viewReact.focus = false;
             root.isAnimationInProgressByTimer = false;
-            centerCurentIndexReact.visible = false;
-            monthView.preferredHighlightBegin = yearsView.height *2/5;
-            monthView.preferredHighlightEnd = yearsView.height *2/5;
-            yearsView.preferredHighlightBegin = yearsView.height *2/5;
-            yearsView.preferredHighlightEnd = yearsView.height *2/5;
+            yearsView.preferredHighlightBegin = textLabel.height *2;
+            yearsView.preferredHighlightEnd = textLabel.height *2;
+
+            monthView.preferredHighlightBegin = textLabel.height *2;
+            monthView.preferredHighlightEnd = textLabel.height *2;
         }
 
         states: [

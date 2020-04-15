@@ -24,6 +24,8 @@ Component{
         property int textBlockWidth:textBlockWidth_L
         property string commonFontFamily:commonFontFamily_L
 
+        signal openView()
+
         anchors.fill:parent
 
         Rectangle {
@@ -136,7 +138,7 @@ Component{
                     //onPressed: {
                     onClicked:{
                         //console.log("onClicked textArea.textArea.value="+textArea.value)
-                        console.log("onClicked")
+                        //console.log("onClicked")
                         if (textArea.activeFocus){
                             //console.log("onClicked textArea.activeFocus + value=" + textArea.value)
                             if (textArea.value!==parseFloat(textArea.text.replace(/[^0-9\.]+/g, ''))){
@@ -167,6 +169,7 @@ Component{
 
                         }
                         textArea.forceActiveFocus();
+                        textArea.focus = true;
                     }
                     onReleased:{
                         // console.log("onReleased")

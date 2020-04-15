@@ -74,6 +74,8 @@ Component{
 
         //property bool isAnimationStart: animationStart.running
 
+        signal openView()
+
         anchors.fill:parent
         Rectangle {
             id:textAreaRect
@@ -152,10 +154,7 @@ Component{
                 enabled: true
                 z:0
                 onClicked: {
-                   // console.log("labelMouseArea onClicked")
-
-
-
+                    // console.log("labelMouseArea onClicked")
                     // console.log("viewReact viewReact="+viewReact.height)
                     //  console.log("view.height="+view.height)
                     //console.log("viewReact.visible="+viewReact.visible)
@@ -170,21 +169,14 @@ Component{
                         console.log("labelMouseArea click else") //to Do
                         restartModel("labelMouseArea");
                     }
-
                     view.visible = true;
                     view.forceActiveFocus();
-                    viewReact.visible = view.focus;
-
-                   // root.getStatus("labelMouseArea");
+                    root.startOpenAnimation()
                 }
 
                 onPressed: {
-                   // console.log("labelMouseArea onPressed")
-                    // if(!viewReact.visible && view.isActive===false){
                     if(view.activeFocus===false){
-                        // console.log("labelMouseArea onPressed")
                         root.state='s_LabelPressed'
-                        //viewReact.isActive===true
                     }
                 }
 
@@ -197,7 +189,7 @@ Component{
 
         Rectangle{
             id:viewReact
-            visible: view.activeFocus//view.visible
+            visible: false//view.activeFocus//view.visible
             width: textAreaRect.width +root.checkerMargin + 5
             anchors.left:parent.left
             y: textLabel.y - viewReact.height + root.modelTempValue * textLabel.height+ textLabel.height    //model.count * textLabel.height
@@ -206,6 +198,12 @@ Component{
             property int hoveredItem: -1
             property bool isActive: false
             z:1//(view.activeFocus===1)?1:0
+
+            onActiveFocusChanged: {
+                if (!viewReact.activeFocus && !isAnimationInProgressByTimer){
+                    root.startFinishAnimation()
+                }
+            }
 
             ParallelAnimation {
                 id: upper_animation_start
@@ -442,7 +440,7 @@ Component{
                     if (root.value < root.getArrValueCount()){
                         view.currentIndex = 0//root.value;
                         root.restartModel("view .onCompleted")
-                        console.log("view Component.onCompleted")
+                        //console.log("view Component.onCompleted")
                     }
                     else
                         view.currentIndex = 0;
@@ -452,8 +450,8 @@ Component{
 
                 onFocusChanged: {
                     //console.log("ListView onFocusChanged =" +view.focus)
-                    if (!view.focus && !isAnimationInProgressByTimer)
-                        root.startFinishAnimation()
+                    // if (!view.focus && !isAnimationInProgressByTimer)
+                    //    root.startFinishAnimation()
                     //console.log("startFinishAnimation onFocusChanged =")
                 }
                 onVisibleChanged: {
@@ -561,9 +559,9 @@ Component{
                 //console.log("Adding more root.upperItemsCount ="+root.upperItemsCount)
             }
             else {
-//                console.log("Stop Start animation from addUpperItems side")
-//                console.log("in addUpperItems upperItemsCount=" + root.upperItemsCount)
-//                console.log("in addUpperItems viewModel.count=" + viewModel.count)
+                //                console.log("Stop Start animation from addUpperItems side")
+                //                console.log("in addUpperItems upperItemsCount=" + root.upperItemsCount)
+                //                console.log("in addUpperItems viewModel.count=" + viewModel.count)
             }
 
         }
@@ -589,9 +587,9 @@ Component{
                 //console.log("Adding more root.bottomItemsCount ="+root.bottomItemsCount)
             }
             else {
-//                console.log("Stop Start animation from addBottomItems side");
-//                console.log("in addBottomItems bottomItemsCount=" + root.bottomItemsCount)
-//                console.log("in addBottomItems viewModel.count=" + viewModel.count)
+                //                console.log("Stop Start animation from addBottomItems side");
+                //                console.log("in addBottomItems bottomItemsCount=" + root.bottomItemsCount)
+                //                console.log("in addBottomItems viewModel.count=" + viewModel.count)
             }
         }
 
@@ -615,16 +613,16 @@ Component{
                 upperRemoveTimer.start()
             }
             else {
-//                console.log("Stop Finish animation from removeUpperItems side");
-//                console.log("in removeBottomItems upperItemsCount=" + root.upperItemsCount)
-//                console.log("in removeBottomItems viewModel.count=" + viewModel.count)
+                //                console.log("Stop Finish animation from removeUpperItems side");
+                //                console.log("in removeBottomItems upperItemsCount=" + root.upperItemsCount)
+                //                console.log("in removeBottomItems viewModel.count=" + viewModel.count)
             }
         }
 
 
         function removeBottomItems(){
-           // console.log("in removeBottomItems bottomItemsCount=" + root.bottomItemsCount)
-           // console.log("in removeBottomItems viewModel.count=" + viewModel.count)
+            // console.log("in removeBottomItems bottomItemsCount=" + root.bottomItemsCount)
+            // console.log("in removeBottomItems viewModel.count=" + viewModel.count)
 
             if (viewModel.count >0) {
                 viewModel.remove(viewModel.count - 1);
@@ -635,16 +633,16 @@ Component{
                 root.bottomItemsCount -= 1;
             }
             else {
-//                console.log("in removeBottomItems else viewModel.count=" + viewModel.count)
-//                console.log("in removeBottomItems bottomItemsCount=" + root.bottomItemsCount)
+                //                console.log("in removeBottomItems else viewModel.count=" + viewModel.count)
+                //                console.log("in removeBottomItems bottomItemsCount=" + root.bottomItemsCount)
             }
             if (root.bottomItemsCount > 0 && viewModel.count > 0){
                 bottomRemoveTimer.start()
             }
             else {
-//                console.log("Stop Start animation from removeBottomItems side")
-//                console.log("in removeBottomItems bottomItemsCount=" + root.bottomItemsCount)
-//                console.log("in removeBottomItems viewModel.count=" + viewModel.count)
+                //                console.log("Stop Start animation from removeBottomItems side")
+                //                console.log("in removeBottomItems bottomItemsCount=" + root.bottomItemsCount)
+                //                console.log("in removeBottomItems viewModel.count=" + viewModel.count)
             }
         }
 
@@ -652,6 +650,7 @@ Component{
             root.restartModel("startOpenAnimation");
             root.isAnimationInProgressByTimer = true;
             afterOpenAnimationRestoringTimer.start();
+
             //console.log("startFinishAnimation root.value= "+ root.value +"=" + root.valueArr[root.value])
             //console.log("in startOpenAnimation viewModel.count=" + viewModel.count +" =" + viewModel.get(0).name)
             if (root.value!==0 && root.value!==(root.valueArr.length - 1))
@@ -683,6 +682,7 @@ Component{
                 animation_top_reactangle.visible = true;
                 upperTimer.start()
             }
+            root.openView();
         }
 
         function startFinishAnimation(){
@@ -690,8 +690,6 @@ Component{
             //animationTimer.start();
             root.isAnimationInProgressByTimer = true;
             afterFinshAnimationRestoringTimer.start();
-
-
 
             if (root.value!==0 && root.value!==(root.valueArr.length - 1))
             {
@@ -735,23 +733,25 @@ Component{
 
         function restartAfterOpenAnimation() {
             viewReact.visible = true;
+            viewReact.focus = true;
+            viewReact.forceActiveFocus();
+
             labelMouseArea.enabled = false;
-            view.visible = true;
-            view.focus = true;
             root.restartUIAfterAnimation();
-            view.forceActiveFocus();
             root.isAnimationInProgressByTimer = false;
         }
 
         function restartAfterFinishAnimation(){
             viewReact.visible = false;
+            viewReact.focus = false;
             labelMouseArea.enabled = true;
-            view.visible = false;
-            view.focus = false;
+            //view.visible = false;
+            //view.focus = false;
             root.restartUIAfterAnimation();
-            view.focus = false;
+            //view.focus = false;
             root.isAnimationInProgressByTimer = false;
             root.value = root.tempChousenValueInCombo;
+
         }
 
 

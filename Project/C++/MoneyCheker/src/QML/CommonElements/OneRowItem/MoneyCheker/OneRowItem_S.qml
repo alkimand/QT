@@ -27,13 +27,12 @@ OneRowItem_O {
     textFirstLineTopMargin: settingData.oneRowItemSettings.textFirstLineTopMargin;
     textFirstLineFontSize:settingData.oneRowItemSettings.textFirstLineFontSize;
     textSecondLineFontSize:settingData.oneRowItemSettings.textSecondLineFontSize;
-    textSecondLine: ""
-
+    textSecondLine: "";
 
     //Label
-    labelFontColor:settingData.oneRowItemSettings.labelFontColor;
+    labelFontColor: settingData.oneRowItemSettings.labelFontColor;
     labelРighlightingFontColor: settingData.oneRowItemSettings.labelРighlightingFontColor;
-    labelFontSize:settingData.oneRowItemSettings.labelFontSize;
+    labelFontSize: settingData.oneRowItemSettings.labelFontSize;
     labelBorderColorWidth:settingData.oneRowItemSettings.labelBorderColorWidth;
     labelLeftPadding:settingData.oneRowItemSettings.labelLeftPadding;
     labelMargins:settingData.oneRowItemSettings.labelMargins;
