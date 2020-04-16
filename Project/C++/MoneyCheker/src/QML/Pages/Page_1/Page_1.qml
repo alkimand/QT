@@ -37,6 +37,19 @@ import "../../Action"
             anchors.right: space_right.left
             columnWidgetType: SettingData.ColumnWidgetType.MORTAGE_SPACE
             actions: mainwindow.actions
+
+//            Rectangle{
+//                id:rect
+//                anchors.top:space_mortage.top
+//                anchors.left:space_mortage.left
+//                anchors.right: space_mortage.right
+//                height:100
+//                //width:100
+//                color:"red"
+//               // weidth:100
+
+//            }
+
             //Component.onCompleted: {}
          }
 

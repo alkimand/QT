@@ -215,7 +215,7 @@ Item {
 		property color textFirstLineFontColor: "black"		
 		property color textSecondLineFontColor: "#969393"	
 		property int textFirstLineTopMargin: 2
-		property int textFirstLineFontSize: 12
+		property int textFirstLineFontSize: 10
 		property int textSecondLineFontSize: 10
 		
 		//Label		
@@ -243,6 +243,10 @@ Item {
 		//comboBoxBorderColor
 		property int tottallAnimationTime : 400
 		property color hoveredComboBoxBorderColor: "#84b3ff" //toDo
+	}
+	
+	property var elementsMortagePage: Item {
+		property int distanceBetweenRow: 10
 	}
 	
 	property var userTextModels: Item {
@@ -284,7 +288,7 @@ Item {
     }
 
 	enum OneRowItemType {
-        ONE_TEXT_LEFT_TEXT_AND_ONE_BUTTON_RIGHT = 1,//--
+        ONE_TEXT_LEFT_TEXT_AND_ONE_BUTTON_RIGHT_TEXT_RIGHT_ALIGNEMENT = 1,
         TWO_TEXT_LEFT_TEXT_AND_ONE_BUTTON_RIGHT_LEFT_ALIGNEMENT = 2,//--
         ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT = 3,
         TWO_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT = 4,	

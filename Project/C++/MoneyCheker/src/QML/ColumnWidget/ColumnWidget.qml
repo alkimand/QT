@@ -17,7 +17,8 @@ Rectangle {
     anchors.top: parent.top
     anchors.bottom: parent.bottom
     color: settingData.columnSettings.columnFreeSpaceColor
-    //anchors.left: root.left
+    //anchors.left: parent.left
+    //anchors.right: parent.right
     border.color: "yellow"
     border.width: 1
 
@@ -39,7 +40,8 @@ Rectangle {
         id: loader_
         //anchors.margins: 4
         //height: calc(parent.height - text_.height)
-        //anchors.left:
+        anchors.left:parent.left
+        anchors.right:parent.right
         anchors.top: text_.bottom
         anchors.bottom: root.bottom
         property Actions actions: root.actions
@@ -88,8 +90,9 @@ Rectangle {
             case SettingData.ColumnWidgetType.MORTAGE_SPACE :
                 //console.log("MORTAGE_SPACE");
                 //root.width = settingData.appContentWidgetSettings.contentCalculatorPageWidth;
-                source= "../ColumnWidget/ItemLoader/ButtonRow/ButtonRow.qml"
+                source= "../Pages/Page_1/MortageArea/MortageArea.qml"
                 text_.text=qsTr("Mortage")
+
                 break;
 
             }

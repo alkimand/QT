@@ -13,36 +13,36 @@ Item {
     property Actions actions : parent.actions
     //property int radius : parent.actions
 
-    Connections {
-        target: button_1
-        onActivateButton: {
-            //console.log("button_1 Connections+")
-            button_1.forceActiveFocus()
-            button_1.isActive=true;
-            button_2.isActive=false;
-            root.updateTabButton();
-            stack.pop()
-            stack.completeTransition
-            stack.push(stackPage_1)
-            stack.completeTransition
-        }
-    }
+//    Connections {
+//        target: button_1
+//        onActivateButton: {
+//            //console.log("button_1 Connections+")
+//            button_1.forceActiveFocus()
+//            button_1.isActive=true;
+//            button_2.isActive=false;
+//            root.updateTabButton();
+//            calculator_Stack.pop()
+//            calculator_Stack.completeTransition
+//            calculator_Stack.push(calculator_StackPage_1)
+//            calculator_Stack.completeTransition
+//        }
+//    }
 
-    Connections {
-        target: button_2
-        onActivateButton: {
-            //console.log("button_2 Connections+")
-            button_1.isActive=false;
-            button_2.isActive=true;
-            button_2.forceActiveFocus()
-            root.updateTabButton();
-                        stack.pop()
-                        stack.completeTransition
-                        stack.push(stackPage_2)
-                        stack.completeTransition
+//    Connections {
+//        target: button_2
+//        onActivateButton: {
+//            //console.log("button_2 Connections+")
+//            button_1.isActive=false;
+//            button_2.isActive=true;
+//            button_2.forceActiveFocus()
+//            root.updateTabButton();
+//                        calculator_Stack.pop()
+//                        calculator_Stack.completeTransition
+//                        calculator_Stack.push(calculator_StackPage_2)
+//                        calculator_Stack.completeTransition
 
-        }
-    }
+//        }
+//    }
 
     TabButton_S {
         id:button_1;
@@ -52,16 +52,20 @@ Item {
         disactiveAction:parent.actions.mainButtonFavorite;
         buttonTupe: SettingData.ButtonType.FIRST_BUTTON_TYPE;
 
-//        MouseArea{
-//        anchors.fill:parent
-//        onClicked: {
-//            console.log("button_1 onClicked")
-//            console.log("stack dept = "+stack.depth)
-//            //stack.pop()
-//            stack.pop()
-//            stack.push(stackPage_1)
-//        }
-//        }
+        MouseArea{
+        anchors.fill:parent
+        onClicked: {
+            console.log("button_1 onClicked")
+            button_1.forceActiveFocus()
+            button_1.isActive=true;
+            button_2.isActive=false;
+            root.updateTabButton();
+            calculator_Stack.pop()
+            calculator_Stack.completeTransition
+            calculator_Stack.push(calculator_StackPage_1)
+            calculator_Stack.completeTransition
+        }
+        }
     }
 
     TabButton_S {
@@ -72,18 +76,21 @@ Item {
         disactiveAction:parent.actions.mainButtonFavorite;
         buttonTupe: SettingData.ButtonType.LAST_BUTTON_TYPE;
 
-//        MouseArea{
-//        anchors.fill:parent
-//        onClicked: {
-//            console.log("button_2 onClicked")
-//            console.log("stack dept = "+stack.depth)
-//            stack.pop()
-//            stack.completeTransition
-//            stack.push(stackPage_2)
-//            stack.completeTransition
-//            //stack.index=1
-//        }
-//        }
+        MouseArea{
+        anchors.fill:parent
+        onClicked: {
+            console.log("button_2 onClicked")
+            button_1.isActive=false;
+            button_2.isActive=true;
+            button_2.forceActiveFocus()
+            root.updateTabButton();
+                        calculator_Stack.pop()
+                        calculator_Stack.completeTransition
+                        calculator_Stack.push(calculator_StackPage_2)
+                        calculator_Stack.completeTransition
+            //calculator_Stack.index=1
+        }
+        }
     }
 
 
@@ -98,8 +105,8 @@ Item {
 
 
     StackView {
-        id: stack
-        initialItem: stackPage_1
+        id: calculator_Stack
+        initialItem: calculator_StackPage_1
         anchors.top:button_1.bottom
 
       //  anchors.top:home_prise_row__.bottom
@@ -108,12 +115,40 @@ Item {
         anchors.right:button_2.right
         anchors.bottom:parent.bottom
         height: settingData.oneRowItemSettings.rowItemHeight*20;
-        Component.onCompleted: {
-            //  stack.pop(stackPage_2, StackView.Immediate)
+        //popEnter : Transition{}
+//        popExit : Transition{}
+       pushEnter : Transition{NumberAnimation { target: calculator_Stack; property: "opacity"; from: 0; to: 1; duration: 800 }}
+        popEnter: Transition {
+        NumberAnimation { target: calculator_Stack; property: "opacity"; from: 1; to: 0; duration: 600 }
+        }
 
-            //stack.push(stackPage_1)
-            //stack.push(stackPage_2)
-            //stack.pop(StackView.Immediate)
+       popExit: Transition {}
+//        NumberAnimation { target: calculator_Stack; property: "opacity"; from: 0; to: 1; duration: 400 }
+//        }
+
+//            XAnimator {
+//                from: 0
+//                to: (calculator_Stack.mirrored ? -1 : 1) * control.width
+//                duration: 1000
+//                easing.type: Easing.OutCubic
+//                // console.log("XAnimator")
+
+//            }
+////            onStart{
+////                console.log("XAnimator")
+////            }
+//        }
+
+        pushExit : Transition{}
+        replaceEnter : Transition{}
+        replaceExit : Transition{}
+
+        Component.onCompleted: {
+            //  calculator_Stack.pop(calculator_StackPage_2, calculator_StackView.Immediate)
+
+            //calculator_Stack.push(calculator_StackPage_1)
+            //calculator_Stack.push(calculator_StackPage_2)
+            //calculator_Stack.pop(calculator_StackView.Immediate)
         }
 
     }
@@ -121,9 +156,9 @@ Item {
     //Rows
 
     Component {
-        id:stackPage_1
+        id:calculator_StackPage_1
         Item{
-            id:itemStackPage_1
+            id:itemcalculator_StackPage_1
             //anchors.fill: parent
             OneRowItem_S {
                 id:home_prise_row
@@ -152,11 +187,11 @@ Item {
                 anchors.top:border_1.bottom
                 anchors.left:parent.left
                 //anchors.right:parent.right
-                value: 20
+                value: 25
                 type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
                 textType: RowLogic.DataType.PERSENT_DATA_TYPE;
                 textFirstLine: "Downpayment"
-                textSecondLine: "2 297 22"
+                textSecondLine: (RowLogic.valueToUserText (downpayment_row.value*home_prise_row.value/100, RowLogic.DataType.CURRENCY_DATA_TYPE))
             }
 
             Loader {
@@ -212,7 +247,7 @@ Item {
                 textType:RowLogic.DataType.CURRENCY_DATA_TYPE;
                 textSecondLineType: RowLogic.DataType.PERSENT_DATA_TYPE
                 textFirstLine: "Taxes"
-                textSecondLine: "0.060"
+                textSecondLine: (RowLogic.valueToUserText (taxes_row.value/home_prise_row.value, RowLogic.DataType.PERSENT_DATA_TYPE))
             }
 
             Loader {
@@ -299,7 +334,7 @@ Item {
                 target: start_date_row
                 onOpenRowView: {
                    // console.log("start_date_row onOpenView")
-                    itemStackPage_1.moveAllActiveElementsToBack()
+                    itemcalculator_StackPage_1.moveAllActiveElementsToBack()
                     start_date_row.z = 1;
                 }
             }
@@ -308,7 +343,7 @@ Item {
                 target: amortization_row
                 onOpenRowView: {
                    // console.log("start_date_row onOpenView")
-                    itemStackPage_1.moveAllActiveElementsToBack()
+                    itemcalculator_StackPage_1.moveAllActiveElementsToBack()
                     amortization_row.z = 1;
                 }
             }
@@ -321,9 +356,9 @@ Item {
     }
 
     Component{
-        id:stackPage_2
+        id:calculator_StackPage_2
         Item {
-            id:itemStackPage_2
+            id:itemcalculator_StackPage_2
             //anchors.fill: parent
             OneRowItem_S {
                 id:loan_row
@@ -419,7 +454,7 @@ Item {
                 target: start_date_loan_row
                 onOpenRowView: {
                    // console.log("start_date_row onOpenView")
-                    itemStackPage_2.moveAllActiveElementsToBack()
+                    itemcalculator_StackPage_2.moveAllActiveElementsToBack()
                     start_date_loan_row.z = 1;
                 }
             }
@@ -428,7 +463,7 @@ Item {
                 target: amortization_loan_row
                 onOpenRowView: {
                    // console.log("start_date_row onOpenView")
-                    itemStackPage_2.moveAllActiveElementsToBack()
+                    itemcalculator_StackPage_2.moveAllActiveElementsToBack()
                     amortization_loan_row.z = 1;
                 }
             }

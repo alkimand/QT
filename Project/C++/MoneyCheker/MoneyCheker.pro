@@ -45,6 +45,7 @@ OTHER_FILES += \
 #Page_1
     src/QML/Pages/Page_1/Page_1.qml\
     src/QML/Pages/Page_1/CalculatorArea/CalculatorArea.qml\
+    src/QML/Pages/Page_1/MortageArea/MortageArea.qml\
 #ButtonRow
     src/QML/ColumnWidget/ItemLoader/ButtonRow/ButtonRow.qml\
     src/QML/ColumnWidget/ItemLoader/ButtonRow/ButtonTemplate.qml\
@@ -61,6 +62,7 @@ OTHER_FILES += \
     src/QML/CommonElements/OneRowItem/RowElements/CenterDateCalendar_O.qml\
     src/QML/CommonElements/OneRowItem/MoneyCheker/OneRowItem_S.qml\
     src/QML/CommonElements/SmallCrossChekerButton/SmallCrossChekerButton_O.qml\
+    src/QML/CommonElements/SpecialRowWidget/SpecialRowWidget_O.qml\
     src/QML/CommonElements/SmallCrossChekerButton/MoneyCheker/SmallCrossChekerButton_S.qml\
 
 DISTFILES += \

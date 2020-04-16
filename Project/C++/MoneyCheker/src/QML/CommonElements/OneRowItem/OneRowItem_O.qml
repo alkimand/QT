@@ -48,8 +48,8 @@ Item {
     property int textFirstLineFontSize
     property int textSecondLineFontSize
     property int textFirstLineTopMargin
-    property string textFirstLine
-    property string textSecondLine
+    property alias textFirstLine: textFirstLine_.text
+    property alias textSecondLine : textSecondLine_.text
 
     //Label
     property color labelFontColor
@@ -111,18 +111,6 @@ Item {
            // console.log("onOpenView")
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
     Rectangle {
         id:parentReact
         anchors.fill: parent
@@ -177,7 +165,7 @@ Item {
                     Layout.alignment:Qt.AlignVCenter
                     horizontalAlignment : Text.AlignLeft
                     verticalAlignment :Text.AlignTop
-                    text: Logic.valueToUserText (root.textSecondLine, root.textSecondLineType)
+                    text: root.textSecondLine //Logic.valueToUserText (root.textSecondLine, root.textSecondLineType)
                     font.family : root.commonFontFamily
                     font.pointSize:  root.textSecondLineFontSize
                     Layout.fillHeight: true
@@ -240,8 +228,10 @@ Item {
             property int labelMargins_L: root.labelMargins;
             property var value_L: root.value;
             property int textBlockWidth_L:root.textBlockWidth;
-            property int type_L: root.textType;
+            property int textType_L: root.textType;
             property int tottallAnimationTime_L: root.tottallAnimationTime;
+
+            property int type_L: root.type;
 
             Component.onCompleted: {
                 //console.log("type_L="+centerLoader.type_L)
@@ -349,8 +339,13 @@ Item {
         centerLoader.sourceComponent = centerLabel;
 
         switch (root.type)   {
-        case SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_ONE_BUTTON_RIGHT :
+        case SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_ONE_BUTTON_RIGHT_TEXT_RIGHT_ALIGNEMENT :
             button_1.visible = false;
+            centerLoader.anchors.right = button_2.left;
+            button_2.type= SettingData.BlueButtonType.CHECK
+            //centerLoader
+
+
             break;
 
         case SettingData.OneRowItemType.TWO_TEXT_LEFT_TEXT_AND_ONE_BUTTON_RIGHT_LEFT_ALIGNEMENT :

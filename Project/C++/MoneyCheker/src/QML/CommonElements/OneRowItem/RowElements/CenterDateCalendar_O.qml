@@ -184,7 +184,7 @@ Component{
             height: textLabel.height * 5//viewModel.count
             property int hoveredItem: -1
             property bool isActive: false
-           // z:4//(monthView.activeFocus===1)?1:0
+            // z:4//(monthView.activeFocus===1)?1:0
 
             onActiveFocusChanged: {
                 //console.log("onActiveFocusChanged " + viewReact.focus)
@@ -198,16 +198,16 @@ Component{
             }
             onFocusChanged: {
 
-//                    if (monthView.focus)
-//                       // console.log("monthView.focus=" + monthView.focus)
-//                    else{
+                //                    if (monthView.focus)
+                //                       // console.log("monthView.focus=" + monthView.focus)
+                //                    else{
 
-//                    }
+                //                    }
                 //console.log("viewReact.focus=" + viewReact.focus)
             }
 
             Component.onCompleted: {
-               // console.log("viewReact.height=" + viewReact.height)
+                // console.log("viewReact.height=" + viewReact.height)
             }
 
             ParallelAnimation {
@@ -389,11 +389,11 @@ Component{
                     //console.log("monthView.height=" + monthView.height)
                 }
                 onFocusChanged: {
-//                    if (monthView.focus)
-//                       // console.log("monthView.focus=" + monthView.focus)
-//                    else{
+                    //                    if (monthView.focus)
+                    //                       // console.log("monthView.focus=" + monthView.focus)
+                    //                    else{
 
-//                    }
+                    //                    }
                     console.log("monthView.focus=" + monthView.focus)
                 }
             }
@@ -417,17 +417,17 @@ Component{
                     // console.log("yearsView.height=" + yearsView.height)
                 }
 
-                    onActiveFocusChanged: {
-                         //console.log("onActiveFocusChanged=" + yearsView.focus)
-                    }
+                onActiveFocusChanged: {
+                    //console.log("onActiveFocusChanged=" + yearsView.focus)
+                }
                 onFocusChanged: {
-//                    if (monthView.focus)
-//                       // console.log("monthView.focus=" + monthView.focus)
-//                    else{
+                    //                    if (monthView.focus)
+                    //                       // console.log("monthView.focus=" + monthView.focus)
+                    //                    else{
 
-//                    }
+                    //                    }
                     //console.log("yearsView.focus=" + yearsView.focus)
-                   // console.log("yearsView.activeFocus=" + yearsView.activeFocus)
+                    // console.log("yearsView.activeFocus=" + yearsView.activeFocus)
 
                 }
 

@@ -4,6 +4,7 @@ import QtQuick.Layouts 1.12
 
 import "../../SmallCrossChekerButton/MoneyCheker"
 import "../RowLogic.js" as Logic
+import "../../../Setting"
 
 Component{
     //  id:root
@@ -20,6 +21,7 @@ Component{
         property int labelMargins :labelMargins_L
 
         property var value : value_L
+        property int textType : textType_L
         property int type : type_L
         property int textBlockWidth:textBlockWidth_L
         property string commonFontFamily:commonFontFamily_L
@@ -81,7 +83,7 @@ Component{
                         textArea.value = 0;
                     }
                     textArea.text= "";
-                    textArea.placeholderText = Logic.valueToUserText(textArea.value, root.type);
+                    textArea.placeholderText = Logic.valueToUserText(textArea.value, root.textType);
                     labelMouseArea.cursorShape = Qt.ArrowCursor;
                     //console.log("textArea.text="+ textArea.text)
                 }
@@ -91,22 +93,14 @@ Component{
                 Component.onCompleted: {
                     var UserValue
                     //console.log("root.type" + root.value + " " + root.type)
-                    UserValue = Logic.valueToUserText(textArea.value, root.type);
-                    //console.log("UserValue=" + UserValue)
-                    //                    switch (root.type)   {
-                    //                    case Logic.DataType.DATE_DATA_TYPE:
-
-                    //                        //UserValue = Qt.formatDate(UserValue, "dd.MM.yyyy");
-                    //                        //console.log("UserValue+formatDate=" + UserValue);
-                    //                           //     (value).toString(10);//convert
-                    //                        //userText = Qt.formatDate(userText, "dd.MM.yyyy");
-                    //                        //UserValue = Logic.valueToUserText(textArea.value, root.type);
-                    //                        break;
-                    //                    }
-
+                    UserValue = Logic.valueToUserText(textArea.value, root.textType);
                     textArea.placeholderText = UserValue;
-
                     //console.log("placeholderText="+ textArea.placeholderText)
+
+                    switch (root.type)   {
+                    case SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_ONE_BUTTON_RIGHT_TEXT_RIGHT_ALIGNEMENT :
+                       textArea.horizontalAlignment =Text.AlignRight
+                    }
                 }
 
 
