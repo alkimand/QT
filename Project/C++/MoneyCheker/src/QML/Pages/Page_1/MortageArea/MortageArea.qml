@@ -13,10 +13,21 @@ Item {
     //property int radius : parent.actions
 
 
+   property int rowTextBlockWidth:settingData.elementsMortagePage.textBlockWidth;
+
+    Component {
+        id:rowBorder
+        Rectangle {
+            height:settingData.elementsMortagePage.distanceBetweenRow;
+           // color: settingData.columnSettings.columnFreeSpaceColor;
+            color:"red"
+        }
+    }
+
     Component {
         id:itemBorder
         Rectangle {
-            height:settingData.elementsMortagePage.distanceBetweenRow;
+            height:settingData.oneRowItemSettings.oneRowItemBorderHeigh;
             color: settingData.columnSettings.columnFreeSpaceColor;
         }
     }
@@ -25,8 +36,10 @@ Item {
         id:home_prise_row
         anchors.top:parent.top
         anchors.left:parent.left
-        //anchors.right: parent.right
-        width: root.width
+        anchors.right: parent.right
+
+        //height:10
+        //width: root.width
 //                //anchors.fill: parent
 //                value: 1210010
 //                textType: RowLogic.DataType.CURRENCY_DATA_TYPE//SettingData.DataType.CURRENCY_DATA_TYPE;
@@ -34,6 +47,33 @@ Item {
 //                type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
 //                textFirstLine: "Home prise"
     }
+
+    Loader {
+        id:border_1
+        sourceComponent: itemBorder
+        anchors.top:home_prise_row.bottom
+        anchors.left:parent.left
+        anchors.right:parent.right
+    }
+
+    OneRowItem_S {
+        id: peincipal_row
+        anchors.top:border_1.bottom
+        anchors.left:parent.left
+        anchors.right: parent.right
+        value: 8255578
+        textBlockWidth : root.rowTextBlockWidth
+        textType: RowLogic.DataType.CURRENCY_DATA_TYPE//SettingData.DataType.CURRENCY_DATA_TYPE;
+        type: SettingData.OneRowItemType.TWO_TEXT_LEFT_TEXT_AND_TEXT_RIGHT_ONLY;
+        textFirstLine: "Principal & interest"
+    }
+
+
+
+
+
+
+
 
 
     StackView {

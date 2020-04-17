@@ -11,11 +11,13 @@ import "../OneRowItem/RowLogic.js" as RowLogic
 
 Item {
     id:root
-    anchors.fill:parent
-    property int borderRadius : 15
-    property color backgroundColor:"blue"
+
+    property int borderRadius : settingData.appContentWidgetSettings.borderRadius;
+    property color topActiveColor:settingData.buttonSettings.buttonIsNotSelectedColorSetting;
+    property color backgroundColor:settingData.appContentWidgetSettings.disactiveFontColor;
     property color activeButtonColor:"red"
     property color backgroundFontColor:"yellow"
+    height: settingData.appContentWidgetSettings.buttonHeight
 
     //common
     //    property Item centerCustomWidget : Item{
@@ -27,8 +29,6 @@ Item {
     //        }
     //    }
 
-
-
     BorderRadiusWidget {
         id:topLeftRadius
         anchors.left:parent.left
@@ -36,7 +36,7 @@ Item {
         anchors.topMargin:root.borderRadius
         anchors.leftMargin: root.borderRadius
         radius: root.borderRadius
-        activeButtonColor:  root.backgroundColor
+        activeButtonColor:  root.topActiveColor
         transform: Rotation {
             origin.x: 0;
             origin.y:0;
@@ -52,21 +52,45 @@ Item {
         anchors.left:parent.left
         anchors.top:parent.top
         z:1
-        color: root.backgroundFontColor
+        color: root.backgroundColor
     }
 
 
-//    Rectangle{
-//        id:rect
-//        anchors.top:parent.top
-//        anchors.left:parent.left
-//        anchors.right: parent.right
-//        height:100
-//        //width:100
-//        color:"red"
-//       // weidth:100
+    Rectangle{
+        id:centerRect
+        anchors.top:parent.top
+        anchors.left:topLeftRadiusReact.right
+        anchors.right: topRightRadiusReact.left
+        height:root.borderRadius
+       color: root.topActiveColor
+    }
 
-//    }
+
+    BorderRadiusWidget {
+        id:topRightRadius
+        anchors.right:parent.right
+        anchors.top:parent.top
+        anchors.topMargin:root.borderRadius
+        anchors.rightMargin: root.borderRadius
+        radius: root.borderRadius
+        activeButtonColor:  root.topActiveColor
+        transform: Rotation {
+            origin.x: root.x;
+            origin.y: root.y;
+            angle: 90}
+
+        z:2
+    }
+
+    Rectangle{
+        id:topRightRadiusReact
+        width:root.borderRadius
+        height:root.borderRadius
+        anchors.right:parent.right
+        anchors.top:parent.top
+        z:1
+        color: root.backgroundColor
+    }
 
     OneRowItem_S {
         id:home_prise_row
@@ -74,6 +98,10 @@ Item {
         anchors.left:parent.left
         anchors.right: parent.right
         //anchors.fill: parent
+        rowItemHeight:settingData.appContentWidgetSettings.buttonHeight - settingData.appContentWidgetSettings.borderRadius;
+        backgroundColor: root.topActiveColor;
+       // paddingRight:settingData.elementsMortagePage.paddingRight;
+        labelРighlightingFontColor:"black";
         value: 1210010
         textType: RowLogic.DataType.CURRENCY_DATA_TYPE//SettingData.DataType.CURRENCY_DATA_TYPE;
         textSecondLineType: RowLogic.DataType.STRING_DATA_TYPE;
@@ -81,13 +109,6 @@ Item {
         textFirstLine: "Monthly payment"
         textSecondLine: (RowLogic.valueToUserText ("test", RowLogic.DataType.STRING_DATA_TYPE))
     }
-
-
-
-
-
-
-
 
 }
 

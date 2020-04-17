@@ -15,6 +15,7 @@ Component{
 
         property color labelFontColor:labelFontColor_L
         property color labelРighlightingFontColor:labelРighlightingFontColor_L
+        property color labelBackgroundRectangleColor:labelBackgroundRectangleColor_L
         property int labelFontSize:labelFontSize_L
         property int labelBorderColorWidth:labelBorderColorWidth_L
         property int labelLeftPadding:labelLeftPadding_L
@@ -69,6 +70,7 @@ Component{
                     implicitWidth:  root.textBlockWidth
                     implicitHeight: textAreaRect.height
                     border.color: (textArea.activeFocus)?root.labelРighlightingFontColor:"transparent"
+                    color: root.labelBackgroundRectangleColor
                     border.width: root.labelBorderColorWidth
                 }
 
@@ -99,8 +101,10 @@ Component{
 
                     switch (root.type)   {
                     case SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_ONE_BUTTON_RIGHT_TEXT_RIGHT_ALIGNEMENT :
+                   case SettingData.OneRowItemType.TWO_TEXT_LEFT_TEXT_AND_TEXT_RIGHT_ONLY :
                        textArea.horizontalAlignment =Text.AlignRight
                     }
+
                 }
 
 

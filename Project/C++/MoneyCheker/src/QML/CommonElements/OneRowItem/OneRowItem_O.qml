@@ -211,15 +211,18 @@ Item {
             anchors.right:button_1.left;
             anchors.topMargin:root.labelMargins;
             anchors.bottomMargin:root.labelMargins;
-            anchors.rightMargin:root.paddingRight;
+            anchors.rightMargin: root.paddingRight;
             //z:1
             property color labelFontColor_L : root.labelFontColor;
             property color labelРighlightingFontColor_L: root.labelРighlightingFontColor;
+            property color labelBackgroundRectangleColor_L:root.backgroundColor;
             property color activMainButtonColor_L: root.activMainButtonColor;
             property color activBackgroundButtonColor_L: root.activBackgroundButtonColor;
             property color pressedMainButtonColor_L: root.pressedMainButtonColor;
             property color pressedBackgroundButtonColor_L: root.pressedBackgroundButtonColor;
             property color hoveredButtonColor_L: settingData.oneRowItemSettings.hoveredButtonColor;
+
+
             property var valueArr_L : root.valueArr;
             property string commonFontFamily_L: root.commonFontFamily;
             property int labelFontSize_L: root.labelFontSize;
@@ -343,8 +346,7 @@ Item {
             button_1.visible = false;
             centerLoader.anchors.right = button_2.left;
             button_2.type= SettingData.BlueButtonType.CHECK
-            //centerLoader
-
+            centerLoader.anchors.rightMargin = root.paddingRight - 8
 
             break;
 
@@ -402,6 +404,8 @@ Item {
         case SettingData.OneRowItemType.TWO_TEXT_LEFT_TEXT_AND_TEXT_RIGHT_ONLY :
             button_1.visible = false;
             button_2.visible = false;
+            centerLoader.anchors.right = parentReact.right
+            centerLoader.anchors.rightMargin= root.paddingRight - 8
 
             //textAreaRect.anchors.right = parentReact.right;
             break;

@@ -247,6 +247,10 @@ Item {
 	
 	property var elementsMortagePage: Item {
 		property int distanceBetweenRow: 10
+		//property int rowItemHeight: 50
+		//property int borderRadius: 15
+		
+		property int textBlockWidth: 200
 	}
 	
 	property var userTextModels: Item {
@@ -300,7 +304,8 @@ Item {
         ONE_TEXT_LEFT_TEXT_AND_LABEL_ONLY_LEFT_LABEL_ALIGNEMENT = 10,
         ONE_TEXT_LEFT_TEXT_AND_LABEL_ONLY_RIGHT_LABEL_ALIGNEMENT = 11,
         ONE_TEXT_LEFT_TEXT_AND_CUSTOM_WiDGET_LEFT_COMBOBOX_ALIGNEMENT = 12,		
-        TWO_TEXT_LEFT_TEXT_AND_TEXT_RIGHT_ONLY = 13
+        TWO_TEXT_LEFT_TEXT_AND_TEXT_RIGHT_ONLY = 13,
+		ONE_TEXT_LEFT_TEXT_AND_TEXT_RIGHT_ONLY = 14
     }
 
 
