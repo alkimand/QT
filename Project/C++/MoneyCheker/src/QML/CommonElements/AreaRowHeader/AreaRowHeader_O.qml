@@ -21,13 +21,30 @@ Item {
     property int itemBorderHeight : Settings.oneRowItemSettings.oneRowItemBorderHeigh;
     property bool isOpen : true
     property bool isAnimationInProgress : false
+
     property alias  value: header_row.value
+
     property alias  textFirstLine: header_row.textFirstLine
+
     //property int upperAnimationMargin : Settings.oneRowItemSettings.oneRowItemBorderHeigh;
-    property int animationTime:400
+    property int animationTime : 400
     //height: root.hasbottomBorder * Settings.oneRowItemSettings.rowItemHeight + Settings.appContentWidgetSettings.buttonHeight + (root.hasbottomBorder)* Settings.oneRowItemSettings.oneRowItemBorderHeigh + root.borderRadius;
     height: Settings.appContentWidgetSettings.buttonHeight
+    //property ListModel userObjectModel
 
+    signal dataChaned_Area(int type_, variant value_)
+
+    Connections {
+        target: root
+        onDataChaned_Area: {
+            console.log("onDataChanged")
+                header_row.value = root.value;
+                header_row.textFirstLine=root.textFirstLine;
+                header_row.dataChaned_Row(type_, value_);
+            console.log("root.value="+root.value)
+            //}
+        }
+    }
 
     BorderRadiusWidget {
         id:topLeftRadius
@@ -103,11 +120,11 @@ Item {
         backgroundColor: root.topActiveColor;
         // paddingRight:Settings.elementsMortagePage.paddingRight;
         labelРighlightingFontColor:"black";
-        value: "not found"
+        //value: 99
         textType: RowLogic.DataType.CURRENCY_DATA_TYPE//Settings.DataType.CURRENCY_DATA_TYPE;
         textSecondLineType: RowLogic.DataType.STRING_DATA_TYPE;
         type: Settings.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_ONE_BUTTON_RIGHT_TEXT_RIGHT_ALIGNEMENT;
-        textFirstLine: "Monthly payment"
+        //textFirstLine: root.textFirstLine
         textSecondLine: (RowLogic.valueToUserText ("test", RowLogic.DataType.STRING_DATA_TYPE))
     }
 

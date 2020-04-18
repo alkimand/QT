@@ -46,6 +46,7 @@ OTHER_FILES += \
     src/QML/Pages/Page_1/Page_1.qml\
     src/QML/Pages/Page_1/CalculatorArea/CalculatorArea.qml\
     src/QML/Pages/Page_1/MortageArea/MortageArea.qml\
+    src/QML/Pages/Page_1/MortageArea/MortageListModel.qml\
 #ButtonRow
     src/QML/ColumnWidget/ItemLoader/ButtonRow/ButtonRow.qml\
     src/QML/ColumnWidget/ItemLoader/ButtonRow/ButtonTemplate.qml\

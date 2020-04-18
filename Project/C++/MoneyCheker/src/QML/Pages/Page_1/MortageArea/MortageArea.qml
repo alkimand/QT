@@ -13,6 +13,28 @@ Item {
     // property Actions actions : parent.actions
     //property int radius : parent.actions
 
+   // property int radius_
+   // signal onDataChanged:
+    property ListModel userObjectModel: MortageListModel {
+        userTextAreaModels: root.userTextAreaModels
+        Component.onCompleted: {
+         //  console.log("ListModel onCompleted");
+            header.value = root.userObjectModel.get(0).value_m
+
+           header.textFirstLine = "_test"//(root.userObjectModel.get(0).firstRowText_m)+"_test"
+           console.log("root.userObjectModel.get(0).value_m="+root.userObjectModel.get(0).value_m);
+            header.value = root.userObjectModel.get(0).value_m
+            header.textFirstLine = root.userObjectModel.get(0).firstRowText_m
+            header.dataChaned_Area(1, 12525)
+        }
+
+    }
+    Component.onCompleted: {
+        console.log("root onCompleted");
+        //header.value = root.userObjectModel.get(0).value_m
+
+    }
+
     property bool isOpen : true
     property bool isAnimationInProgress : false
     property int rowTextBlockWidth:Settings.elementsMortagePage.textBlockWidth;
@@ -25,60 +47,6 @@ Item {
     property var userTextAreaModels : Settings.userTextAreaModels.monthlyPayment;
     property var userValueModel : [ 1255555555, 12252 , 1252, 4542, 2525]
 
-    property ListModel userObjectmodel: ListModel{}
-    //    property var userObjectmodel:[
-
-
-
-    //    ]
-
-
-    Component.onCompleted: {
-
-
-        userObjectmodel.append({
-                                   "firstRowText_m":root.userTextAreaModels[0],
-                                   "value_m": 1255555555,
-                                   "type_m": Settings.OneRowItemType.TWO_TEXT_LEFT_TEXT_AND_TEXT_RIGHT_ONLY,
-                                   "textType_m": RowLogic.DataType.CURRENCY_DATA_TYPE,
-                                   "hasBorder_m": Settings.HasBorder.BOTTOM_BORDER,
-                               });
-
-        userObjectmodel.append({
-                                   "firstRowText_m":root.userTextAreaModels[1],
-                                   "value_m": 12252,
-                                   "type_m": Settings.OneRowItemType.TWO_TEXT_LEFT_TEXT_AND_TEXT_RIGHT_ONLY,
-                                   "textType_m": RowLogic.DataType.CURRENCY_DATA_TYPE,
-                                   "hasBorder_m": Settings.HasBorder.BOTTOM_BORDER,
-                               });
-
-        userObjectmodel.append({
-                                   "firstRowText_m":root.userTextAreaModels[2],
-                                   "value_m": 2525,
-                                   "type_m": Settings.OneRowItemType.TWO_TEXT_LEFT_TEXT_AND_TEXT_RIGHT_ONLY,
-                                   "textType_m": RowLogic.DataType.CURRENCY_DATA_TYPE,
-                                   "hasBorder_m": Settings.HasBorder.BOTTOM_BORDER,
-                               });
-
-        userObjectmodel.append({
-                                   "firstRowText_m":root.userTextAreaModels[3],
-                                   "value_m": 2525,
-                                   "type_m": Settings.OneRowItemType.TWO_TEXT_LEFT_TEXT_AND_TEXT_RIGHT_ONLY,
-                                   "textType_m": RowLogic.DataType.CURRENCY_DATA_TYPE,
-                                   "hasBorder_m": Settings.HasBorder.BOTTOM_BORDER,
-                               });
-
-//        userObjectmodel.append({
-//                                   "firstRowText_m":root.userTextAreaModels[4],
-//                                   "value_m": 2525,
-//                                   "type_m": Settings.OneRowItemType.TWO_TEXT_LEFT_TEXT_AND_TEXT_RIGHT_ONLY,
-//                                   "textType_m": RowLogic.DataType.CURRENCY_DATA_TYPE,
-//                                   "hasBorder_m": Settings.HasBorder.NO_BORDER,
-//                               });
-
-
-
-    }
 
 
 
@@ -113,10 +81,18 @@ Item {
         hasbottomBorder : true;
         animationTime: root.animationTime
         borderRadius: root.borderRadius
-        value: root.userValueModel[0]
-        textFirstLine : root.userTextAreaModels[0]
+//value:225
+        //userObjectModel:root.userObjectModel
+        //value: 0//{return root.userObjectModel.get(0).value_m }// root.userValueModel[0]
+       // textFirstLine : root.userTextAreaModels[0]
+
         rowTextBlockWidth:Settings.elementsMortagePage.textBlockWidth;
+        Component.onCompleted: {
+           console.log("AreaRowHeader_O onCompleted");
+        }
+
         z:1
+
     }
 
     Rectangle{
@@ -127,7 +103,7 @@ Item {
         anchors.right: parent.right
         color:"transparent"
 
-        height: (root.rowItemHeight + root.itemBorderHeight) * userObjectmodel.count // 500//Settings.oneRowItemSettings.rowItemHeight * view.count + root.itemBorderHeight *  view.count
+        height: (root.rowItemHeight + root.itemBorderHeight) * userObjectModel.count // 500//Settings.oneRowItemSettings.rowItemHeight * view.count + root.itemBorderHeight *  view.count
         z:0
 
         Component {
@@ -162,7 +138,7 @@ Item {
             id: view
             anchors.fill: parent
             visible: true//view.activeFocus
-            model: userObjectmodel
+            model: userObjectModel
             highlightRangeMode: ListView.ApplyRange
             delegate: itemDelegate
             focus: true
@@ -182,7 +158,7 @@ Item {
     RoundRowPillow_S {
         id: pillow
         //anchors.top:viewReact.bottom
-        y: (root.rowItemHeight + root.itemBorderHeight) * (userObjectmodel.count-1) + header.height
+        y: (root.rowItemHeight + root.itemBorderHeight) * (userObjectModel.count-1) + header.height
         //anchors.topMargin:-root.itemBorderHeight
         anchors.left:parent.left
         anchors.right: parent.right
@@ -222,7 +198,7 @@ Item {
                 open_animation_start.start()
                 //pillow.anchors.topMargin=-2
                 viewReact.visible = true
-               // viewReact.height=(root.rowItemHeight + root.itemBorderHeight) * userObjectmodel.count
+               // viewReact.height=(root.rowItemHeight + root.itemBorderHeight) * userObjectModel.count
 
             }
 
@@ -237,9 +213,9 @@ Item {
     ParallelAnimation {
         id: open_animation_start
         running: false
-        NumberAnimation { target: viewReact; property: "height"; from: root.rowItemHeight + root.itemBorderHeight; to:(root.rowItemHeight + root.itemBorderHeight) * userObjectmodel.count; duration: 200}//root.animationTime }
-        NumberAnimation { target: pillow; property: "y"; from:  header.height; to: (root.rowItemHeight + root.itemBorderHeight) * (userObjectmodel.count - 1) + header.height ; duration: 200/2}//root.animationTime  }
-      //  NumberAnimation { target: view; property: "height"; from: 0; to: (root.rowItemHeight + root.itemBorderHeight) * userObjectmodel.count; duration: 200}
+        NumberAnimation { target: viewReact; property: "height"; from: root.rowItemHeight + root.itemBorderHeight; to:(root.rowItemHeight + root.itemBorderHeight) * userObjectModel.count; duration: 200}//root.animationTime }
+        NumberAnimation { target: pillow; property: "y"; from:  header.height; to: (root.rowItemHeight + root.itemBorderHeight) * (userObjectModel.count - 1) + header.height ; duration: 200/2}//root.animationTime  }
+      //  NumberAnimation { target: view; property: "height"; from: 0; to: (root.rowItemHeight + root.itemBorderHeight) * userObjectModel.count; duration: 200}
         //root.animationTime }
     }
 
@@ -260,16 +236,16 @@ Item {
 
 
 
-    function restoreModel(){
-        userValueModel.forEach(function(item, i, arr) {
-            viewModel.append({})
-        });
+//    function restoreModel(){
+//        userValueModel.forEach(function(item, i, arr) {
+//            viewModel.append({})
+//        });
 
         //        for (let i = 0; i < userModel.length; i++) {
 
         //          viewModel.append()
         //        }
-    }
+
 }
 
 

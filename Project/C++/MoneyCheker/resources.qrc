@@ -17,6 +17,7 @@
 		<file>src/QML/Pages/Page_1/Page_1.qml</file>
 		<file>src/QML/Pages/Page_1/CalculatorArea/CalculatorArea.qml</file>
 		<file>src/QML/Pages/Page_1/MortageArea/MortageArea.qml</file>
+		<file>src/QML/Pages/Page_1/MortageArea/MortageListModel.qml</file>
 		<file>src/QML/CommonElements/TabButton/TabButton_O.qml</file>
 		<file>src/QML/CommonElements/TabButton/MoneyCheker/TabButton_S.qml</file>
 		<file>src/QML/CommonElements/TabButton/TabButtonLabel/TabButtonLabel_O.qml</file>

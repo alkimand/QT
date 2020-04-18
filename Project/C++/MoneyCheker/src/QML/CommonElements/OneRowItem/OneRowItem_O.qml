@@ -22,6 +22,10 @@ Item {
     //    }
 
 
+
+
+
+
     signal openRowView()
 
     //common style
@@ -85,6 +89,30 @@ Item {
     height:root.rowItemHeight
 
     // property bool isActive: false
+
+
+
+    signal dataChaned_Row(int type_, variant value_)
+    Connections {
+        target: root
+        onDataChaned_Row: {
+            console.log("Row onDataChanged")
+            if (header_row.value!== root.value)
+                header_row.value = root.value;
+
+
+            if (header_row.textFirstLine!== root.textFirstLine)
+             header_row.textFirstLine = root.textFirstLine;
+            console.log("value="+value_)
+            //}
+        }
+    }
+
+
+
+
+
+
 
 
     //to transfer up

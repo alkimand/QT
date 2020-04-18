@@ -321,6 +321,11 @@ Item {
         TWO_TEXT_LEFT_TEXT_AND_TEXT_RIGHT_ONLY = 13,
 		ONE_TEXT_LEFT_TEXT_AND_TEXT_RIGHT_ONLY = 14
     }
+	
+	enum ItemProperty {
+        VALUE = 1
+      
+    }
 
 
     function getAppPropertyGlobal()
