@@ -20,17 +20,17 @@ ToolBar
     width: parent.width
     height:50
     //anchors.fill: parent
-    property int toolButtonImplicitHeight: settingData.children[3].toolBarHeightToolButtonSetting
-    property int toolButtonImplicitWidth: settingData.children[3].toolBarWidthToolButtonSetting
-    property int toolButtonTextHeight: settingData.children[3].toolBarTextHeightToolButtonSetting
-    property string toolButtonTextFont: settingData.children[3].toolBarTextFontToolButtonSetting
-    property int comboBoxWidth: settingData.children[4].comboBoxWidthSetting
-    property int toolButtonIconHeight: settingData.children[3].toolBarIconHeightSetting
-    property int comboBoxHeight: settingData.children[4].comboBoxHeightSetting
-    property int comboBoxTextHeight: settingData.children[4].comboBoxTextHeightSetting
-    property string comboBoxStartTextFromSetting: settingData.children[1].fontfamilySetting
-    property string comboBoxTextColor: settingData.children[4].comboBoxTextColor
-    property string comboBoxBorderColor: settingData.children[4].comboBoxBorderColor
+    property int toolButtonImplicitHeight: Settings.children[3].toolBarHeightToolButtonSetting
+    property int toolButtonImplicitWidth: Settings.children[3].toolBarWidthToolButtonSetting
+    property int toolButtonTextHeight: Settings.children[3].toolBarTextHeightToolButtonSetting
+    property string toolButtonTextFont: Settings.children[3].toolBarTextFontToolButtonSetting
+    property int comboBoxWidth: Settings.children[4].comboBoxWidthSetting
+    property int toolButtonIconHeight: Settings.children[3].toolBarIconHeightSetting
+    property int comboBoxHeight: Settings.children[4].comboBoxHeightSetting
+    property int comboBoxTextHeight: Settings.children[4].comboBoxTextHeightSetting
+    property string comboBoxStartTextFromSetting: Settings.children[1].fontfamilySetting
+    property string comboBoxTextColor: Settings.children[4].comboBoxTextColor
+    property string comboBoxBorderColor: Settings.children[4].comboBoxBorderColor
     focusReason : Qt.MouseFocusReason
     // height: butt.implicitHeight*2.8
     //CustomToolButtonIconText{}

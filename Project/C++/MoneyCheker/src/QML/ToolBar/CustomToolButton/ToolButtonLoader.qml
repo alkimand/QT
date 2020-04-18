@@ -18,7 +18,7 @@ Loader
     //source: "./CustomToolButtonText.qml"//+-
 
     //toolBarStateToolButtonSetting
-    //    (settingData.children[3].toolBarStateToolButtonSetting===1) ?source: "./CustomToolButtonIconText.qml": source: "./CustomToolButtonIconText.qml"
+    //    (Settings.children[3].toolBarStateToolButtonSetting===1) ?source: "./CustomToolButtonIconText.qml": source: "./CustomToolButtonIconText.qml"
     //onStatusChanged: console.log("toolBarStateToolButton=")
 //    Connections
 //    {
@@ -34,7 +34,7 @@ Loader
 
     function setSourceLoader()
     {
-        var toolBarStateToolButton = settingData.children[3].toolBarStateToolButtonSetting
+        var toolBarStateToolButton = Settings.children[3].toolBarStateToolButtonSetting
         if (toolBarStateToolButton === 1)
             //parent.source = "./CustomToolButton/CustomToolButtonIcon.qml"
             return "./CustomToolButtonIcon.qml"

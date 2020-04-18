@@ -109,8 +109,8 @@ ComboBox {
     }
     onCurrentTextChanged:
     {
-        console.log("settingData.children[1].fontfamilySetting is = " + control.currentText)
-        settingData.children[1].fontfamilySetting = control.currentText
+        console.log("Settings.children[1].fontfamilySetting is = " + control.currentText)
+        Settings.children[1].fontfamilySetting = control.currentText
     }
 
 

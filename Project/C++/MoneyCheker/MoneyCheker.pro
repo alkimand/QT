@@ -29,7 +29,7 @@ RESOURCES += \
 OTHER_FILES += \
     main.qml \
 #Setting
-    src/QML/Setting/SettingData.qml \
+    src/QML/Setting/Settings.qml \
 #Actions
     src/QML/Action/Actions.qml \
 #ToolBar

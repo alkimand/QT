@@ -12,8 +12,13 @@ function valueToUserText(value, dataType, language="en_EN"){
         break
 		
     case DataType.CURRENCY_DATA_TYPE:
-        userText = (number_format(value, 0, '.', ' ') + " руб.").toString(10);
-        break;
+	if (language==="en_EN"){
+        userText = (number_format(value, 2, '.', ' ') + " руб.").toString(10);
+	}
+	else {
+		userText = (number_format(value, 2, ',', ' ') + " руб.").toString(10);
+	}
+     break;
 
     case DataType.DATE_DATA_TYPE:
 		//console.log("value+" + value);

@@ -4,7 +4,7 @@ import QtQuick.Layouts 1.12
 
 import "../../SmallCrossChekerButton/MoneyCheker"
 import "../RowLogic.js" as Logic
-import "../../../Setting"
+import Settings 1.0
 
 Component{
     //  id:root
@@ -100,8 +100,8 @@ Component{
                     //console.log("placeholderText="+ textArea.placeholderText)
 
                     switch (root.type)   {
-                    case SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_ONE_BUTTON_RIGHT_TEXT_RIGHT_ALIGNEMENT :
-                   case SettingData.OneRowItemType.TWO_TEXT_LEFT_TEXT_AND_TEXT_RIGHT_ONLY :
+                    case Settings.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_ONE_BUTTON_RIGHT_TEXT_RIGHT_ALIGNEMENT :
+                   case Settings.OneRowItemType.TWO_TEXT_LEFT_TEXT_AND_TEXT_RIGHT_ONLY :
                        textArea.horizontalAlignment =Text.AlignRight
                     }
 

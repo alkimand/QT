@@ -1,7 +1,7 @@
 import QtQuick 2.12
 import "ItemLoader/ButtonRow"
 import "../Action"
-import "../Setting"
+import Settings 1.0
 
 //Item {
 //:text_.text
@@ -16,7 +16,7 @@ Rectangle {
     property color rootClr: root.color
     anchors.top: parent.top
     anchors.bottom: parent.bottom
-    color: settingData.columnSettings.columnFreeSpaceColor
+    color: Settings.columnSettings.columnFreeSpaceColor
     //anchors.left: parent.left
     //anchors.right: parent.right
     border.color: "yellow"
@@ -26,7 +26,7 @@ Rectangle {
         id:text_
         anchors.top: root.top
         anchors.left: root.left
-        height: settingData.columnSettings.titleBlockHeight
+        height: Settings.columnSettings.titleBlockHeight
         font.family: "Helvetica"
         font.pointSize: 20
         color: "black"
@@ -67,29 +67,29 @@ Rectangle {
             //console.log("name:" + name)
             switch (name)
             {
-            case SettingData.ColumnWidgetType.EMPTY_SPACE :
+            case Settings.ColumnWidgetType.EMPTY_SPACE :
                 //console.log("EMPTY_SPACE")
                 source= ""
                 text_.text=""
                 break
 
-            case SettingData.ColumnWidgetType.BUTTON_SPACE :
+            case Settings.ColumnWidgetType.BUTTON_SPACE :
                 //console.log("BUTTON_SPACE");
                 source= "../ColumnWidget/ItemLoader/ButtonRow/ButtonRow.qml";
                 text_.text=""
                 break;
 
-            case SettingData.ColumnWidgetType.CALCULATOR_SPACE :
+            case Settings.ColumnWidgetType.CALCULATOR_SPACE :
                 //console.log("CALCULATOR_SPACE");
-                root.width = settingData.appContentWidgetSettings.contentCalculatorPageWidth;
+                root.width = Settings.appContentWidgetSettings.contentCalculatorPageWidth;
                 //source= "../ColumnWidget/CalculatorArea/CalculatorArea.qml"
                 source= "../Pages/Page_1/CalculatorArea/CalculatorArea.qml"
                 text_.text=qsTr("Calculator")
                 break;
 
-            case SettingData.ColumnWidgetType.MORTAGE_SPACE :
+            case Settings.ColumnWidgetType.MORTAGE_SPACE :
                 //console.log("MORTAGE_SPACE");
-                //root.width = settingData.appContentWidgetSettings.contentCalculatorPageWidth;
+                //root.width = Settings.appContentWidgetSettings.contentCalculatorPageWidth;
                 source= "../Pages/Page_1/MortageArea/MortageArea.qml"
                 text_.text=qsTr("Mortage")
 

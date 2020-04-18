@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>src/QML/Setting/SettingData.qml</file>
+        <file>src/QML/Setting/Settings.qml</file>
         <file>src/QML/Action/Actions.qml</file>
         <file>src/QML/ToolBar/CustomToolButton/CustomToolButton.qml</file>
         <file>src/QML/ToolBar/CustomToolButton/CustomToolButtonIconText.qml</file>

@@ -3,7 +3,7 @@ import QtQuick.Controls 2.12
 
 import "../../../Action"
 import "../../../CommonElements/TabButton/MoneyCheker"
-import "../../../Setting"
+import Settings 1.0
 import "../../../CommonElements/OneRowItem/MoneyCheker"
 import "../../../CommonElements/OneRowItem/RowLogic.js" as RowLogic
 
@@ -50,7 +50,7 @@ Item {
         anchors.top: parent.top;
         activeAction: parent.actions.tabButtonMortageActivate;
         disactiveAction:parent.actions.mainButtonFavorite;
-        buttonTupe: SettingData.ButtonType.FIRST_BUTTON_TYPE;
+        buttonTupe: Settings.ButtonType.FIRST_BUTTON_TYPE;
 
         MouseArea{
         anchors.fill:parent
@@ -74,7 +74,7 @@ Item {
         anchors.top: parent.top;
         activeAction: parent.actions.tabButtonMortageActivate;
         disactiveAction:parent.actions.mainButtonFavorite;
-        buttonTupe: SettingData.ButtonType.LAST_BUTTON_TYPE;
+        buttonTupe: Settings.ButtonType.LAST_BUTTON_TYPE;
 
         MouseArea{
         anchors.fill:parent
@@ -98,8 +98,8 @@ Item {
     Component {
         id:itemBorder
         Rectangle {
-            height:settingData.oneRowItemSettings.oneRowItemBorderHeigh;
-            color: settingData.columnSettings.columnFreeSpaceColor;
+            height:Settings.oneRowItemSettings.oneRowItemBorderHeigh;
+            color: Settings.columnSettings.columnFreeSpaceColor;
         }
     }
 
@@ -114,7 +114,7 @@ Item {
         anchors.left:button_1.left
         anchors.right:button_2.right
         anchors.bottom:parent.bottom
-        height: settingData.oneRowItemSettings.rowItemHeight*20;
+        height: Settings.oneRowItemSettings.rowItemHeight*20;
         //popEnter : Transition{}
 //        popExit : Transition{}
        pushEnter : Transition{NumberAnimation { target: calculator_Stack; property: "opacity"; from: 0; to: 1; duration: 800 }}
@@ -167,9 +167,9 @@ Item {
                 anchors.right: parent.right
                 //anchors.fill: parent
                 value: 1210010
-                textType: RowLogic.DataType.CURRENCY_DATA_TYPE//SettingData.DataType.CURRENCY_DATA_TYPE;
+                textType: RowLogic.DataType.CURRENCY_DATA_TYPE//Settings.DataType.CURRENCY_DATA_TYPE;
                 textSecondLineType: RowLogic.DataType.PERSENT_DATA_TYPE;
-                type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
+                type: Settings.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
                 textFirstLine: "Home prise"
             }
 
@@ -188,7 +188,7 @@ Item {
                 anchors.left:parent.left
                 //anchors.right:parent.right
                 value: 25
-                type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
+                type: Settings.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
                 textType: RowLogic.DataType.PERSENT_DATA_TYPE;
                 textFirstLine: "Downpayment"
                 textSecondLine: (RowLogic.valueToUserText (downpayment_row.value*home_prise_row.value/100, RowLogic.DataType.CURRENCY_DATA_TYPE))
@@ -207,7 +207,7 @@ Item {
                 anchors.top:border_2.bottom
                 anchors.left:parent.left
                 value: 4.5
-                type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
+                type: Settings.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
                 textType:RowLogic.DataType.PERSENT_DATA_TYPE;
                 textFirstLine: "Rate"
             }
@@ -225,7 +225,7 @@ Item {
                 anchors.top:border_3.bottom
                 anchors.left:parent.left
                 value: 100
-                type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
+                type: Settings.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
                 textType:RowLogic.DataType.YERS_DATA_TYPE;
                 textFirstLine: "Term"
             }
@@ -243,7 +243,7 @@ Item {
                 anchors.top:border_4.bottom
                 anchors.left:parent.left
                 value: 6911
-                type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
+                type: Settings.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
                 textType:RowLogic.DataType.CURRENCY_DATA_TYPE;
                 textSecondLineType: RowLogic.DataType.PERSENT_DATA_TYPE
                 textFirstLine: "Taxes"
@@ -263,7 +263,7 @@ Item {
                 anchors.top:border_5.bottom
                 anchors.left:parent.left
                 value: 126152
-                type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
+                type: Settings.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
                 textType:RowLogic.DataType.CURRENCY_DATA_TYPE;
                 textFirstLine: "Insurance"
             }
@@ -281,7 +281,7 @@ Item {
                 anchors.top:border_6.bottom
                 anchors.left:parent.left
                 value: 0.1
-                type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
+                type: Settings.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
                 textType:RowLogic.DataType.PERSENT_DATA_TYPE;
                 textFirstLine: "PMI"
             }
@@ -301,9 +301,9 @@ Item {
                 // anchors.top:button_1.bottom
                 anchors.left:parent.left
                 value : { return new Date()}
-                type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_DATE_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT;
+                type: Settings.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_DATE_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT;
                 // textType:RowLogic.DataType.DATE_DATA_TYPE;
-                //        valueArr: settingData.userTextModels.persentDownTextModel;
+                //        valueArr: Settings.userTextModels.persentDownTextModel;
                 textFirstLine: "Start date"
                 z:0
             }
@@ -322,11 +322,11 @@ Item {
                 // anchors.top:button_1.bottom
                 anchors.left:parent.left
                 value: 0
-                type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT;
+                type: Settings.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT;
                 //textType: RowLogic.DataType.YERS_DATA_TYPE;
                 textFirstLine: "Amortization"
-                hasBorder: SettingData.HasBorder.BOTTOM_BORDER
-                valueArr: settingData.userTextModels.armortizationTextModel;
+                hasBorder: Settings.HasBorder.BOTTOM_BORDER
+                valueArr: Settings.userTextModels.armortizationTextModel;
                 z:0
             }
 
@@ -366,8 +366,8 @@ Item {
                 anchors.left:parent.left
                 anchors.right: parent.right
                 value: 1210010
-                textType: RowLogic.DataType.CURRENCY_DATA_TYPE//SettingData.DataType.CURRENCY_DATA_TYPE;
-                type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
+                textType: RowLogic.DataType.CURRENCY_DATA_TYPE//Settings.DataType.CURRENCY_DATA_TYPE;
+                type: Settings.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
                 textFirstLine: "Loan"
             }
 
@@ -385,7 +385,7 @@ Item {
                 anchors.top:border_2_0.bottom
                 anchors.left:parent.left
                 value: 4.5
-                type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
+                type: Settings.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
                 textType:RowLogic.DataType.PERSENT_DATA_TYPE;
                 textFirstLine: "Rate"
             }
@@ -403,7 +403,7 @@ Item {
                 anchors.top:border_2_1.bottom
                 anchors.left:parent.left
                 value: 23
-                type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
+                type: Settings.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
                 textType:RowLogic.DataType.YERS_DATA_TYPE;
                 textFirstLine: "Term"
             }
@@ -423,9 +423,9 @@ Item {
                 // anchors.top:button_1.bottom
                 anchors.left:parent.left
                 value : { return new Date()}
-                type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_DATE_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT;
+                type: Settings.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_DATE_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT;
                 // textType:RowLogic.DataType.DATE_DATA_TYPE;
-                //        valueArr: settingData.userTextModels.persentDownTextModel;
+                //        valueArr: Settings.userTextModels.persentDownTextModel;
                 textFirstLine: "Start date"
             }
 
@@ -443,11 +443,11 @@ Item {
                 // anchors.top:button_1.bottom
                 anchors.left:parent.left
                 value: 0
-                type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT;
+                type: Settings.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT;
                 //textType: RowLogic.DataType.YERS_DATA_TYPE;
                 textFirstLine: "Amortization"
-                hasBorder: SettingData.HasBorder.BOTTOM_BORDER
-                valueArr: settingData.userTextModels.armortizationTextModel;
+                hasBorder: Settings.HasBorder.BOTTOM_BORDER
+                valueArr: Settings.userTextModels.armortizationTextModel;
             }
 
             Connections {

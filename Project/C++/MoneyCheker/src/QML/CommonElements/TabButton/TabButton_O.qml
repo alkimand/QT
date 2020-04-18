@@ -4,7 +4,7 @@ import BorderRadiusWidget.qml 1.0
 import QtQml.StateMachine 1.12
 
 import "../../Action"
-import"../../Setting"
+import Settings 1.0
 import "./TabButtonLabel"
 
 
@@ -28,7 +28,7 @@ Item {
     property int  type
     property int radius
     property bool isActive: false
-    property int buttonTupe: SettingData.ButtonType.FIRST_BUTTON_TYPE
+    property int buttonTupe: Settings.ButtonType.FIRST_BUTTON_TYPE
 
     //to transfer up
     signal activateButton()
@@ -268,12 +268,12 @@ Item {
 
             Component.onCompleted: {
                 switch  (root.buttonTupe){
-                case SettingData.ButtonType.FIRST_BUTTON_TYPE:
+                case Settings.ButtonType.FIRST_BUTTON_TYPE:
                     root.activateButton();
                     break;
-                    //                case SettingData.ButtonType.MIDLE_BUTTON_TYPE:
+                    //                case Settings.ButtonType.MIDLE_BUTTON_TYPE:
                     //                    break;
-                case SettingData.ButtonType.LAST_BUTTON_TYPE:
+                case Settings.ButtonType.LAST_BUTTON_TYPE:
                     stateMachine.initialState = disableLastButton;
                     //root.disable();
                     break;
@@ -303,7 +303,7 @@ Item {
     function update(){
         //console.log("in update()"+ root.buttonTupe);
         switch  (root.buttonTupe){
-        case SettingData.ButtonType.FIRST_BUTTON_TYPE:
+        case Settings.ButtonType.FIRST_BUTTON_TYPE:
             if(root.isActive){
                 root.activate();
             }
@@ -312,9 +312,9 @@ Item {
                 root.disable();
             }
             break;
-        case SettingData.ButtonType.MIDLE_BUTTON_TYPE:
+        case Settings.ButtonType.MIDLE_BUTTON_TYPE:
             break;
-        case SettingData.ButtonType.LAST_BUTTON_TYPE:
+        case Settings.ButtonType.LAST_BUTTON_TYPE:
             if(root.isActive){
                 root.activate();
             }

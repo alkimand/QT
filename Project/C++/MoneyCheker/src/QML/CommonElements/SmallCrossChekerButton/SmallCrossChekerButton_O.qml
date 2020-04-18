@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 
-import "../../Setting"
+import Settings 1.0
 
 Rectangle
 {
@@ -147,11 +147,11 @@ Rectangle
         onPressed: {
             //console.log("+onPressed");
             switch (root.type)   {
-            case SettingData.BlueButtonType.PLUS :
-            case SettingData.BlueButtonType.MINUS :
+            case Settings.BlueButtonType.PLUS :
+            case Settings.BlueButtonType.MINUS :
                 root.state = 's_pressed'
                 break;
-            case SettingData.BlueButtonType.CHECK :
+            case Settings.BlueButtonType.CHECK :
                 root.state = 's_dashPressed'
             }
             //console.log("-onPressed");
@@ -171,30 +171,30 @@ Rectangle
         onPressAndHold:{
              //console.log("+onPressAndHold");
             switch (root.type)   {
-            case SettingData.BlueButtonType.PLUS :
-            case SettingData.BlueButtonType.MINUS :
+            case Settings.BlueButtonType.PLUS :
+            case Settings.BlueButtonType.MINUS :
                 root.state = 's_pressed'
                 break;
-            case SettingData.BlueButtonType.CHECK :
+            case Settings.BlueButtonType.CHECK :
                 root.state = 's_dashPressed'
             }
         }
     }
-//121334settingData.oneRowItemSettings.oneRowItemBorderHeigh
+//121334Settings.oneRowItemSettings.oneRowItemBorderHeigh
 
 
     Component.onCompleted: {
         switch (root.type)   {
-        case SettingData.BlueButtonType.PLUS :
+        case Settings.BlueButtonType.PLUS :
             dash_horizontal.visible = true;
             dash_vertical.visible = true;
             break
 
-        case SettingData.BlueButtonType.MINUS :
+        case Settings.BlueButtonType.MINUS :
             dash_horizontal.visible = true;
             break;
 
-        case SettingData.BlueButtonType.CHECK :
+        case Settings.BlueButtonType.CHECK :
             dash_cross_left.visible = true;
             dash_cross_right.visible = true;
             break;

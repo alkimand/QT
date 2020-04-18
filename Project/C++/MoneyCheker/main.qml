@@ -4,11 +4,14 @@ import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 import BorderRadiusWidget.qml 1.0
 //files
-import "src/QML/Setting"
+//import "src/QML/Setting"
 import "./src/QML/Action"
 import "src/QML/ToolBar"
 import "src/QML/ColumnWidget"
 import "src/QML/StackView"
+
+import Settings 1.0
+
 
 ApplicationWindow {
     id:mainwindow
@@ -21,16 +24,17 @@ ApplicationWindow {
 
 
     //singleton object for all app
-    SettingData{
-        id: settingData
-    }
+//    SettingData{
+//        id: settingData
+//    }
+
     property Actions actions : Actions{}
 
     ColumnWidget {
         id: column_1
         anchors.left: mainwindow.left
         title:""
-        columnWidgetType: SettingData.ColumnWidgetType.EMPTY_SPACE
+        columnWidgetType: Settings.ColumnWidgetType.EMPTY_SPACE
         //columnWidth:50
         width: 20;
         actions: mainwindow.actions
@@ -40,8 +44,8 @@ ApplicationWindow {
         id:column_2
         anchors.left: column_1.right
         title:""
-        columnWidgetType: SettingData.ColumnWidgetType.BUTTON_SPACE
-        width: settingData.buttonSettings.buttonWidth;
+        columnWidgetType: Settings.ColumnWidgetType.BUTTON_SPACE
+        width: Settings.buttonSettings.buttonWidth;
         actions: mainwindow.actions
     }
 
@@ -49,8 +53,7 @@ ApplicationWindow {
         id:column_3
         anchors.left: column_2.right
         title:""
-        columnWidgetType: SettingData.ColumnWidgetType.EMPTY_SPACE
-        //columnWidth:50
+        columnWidgetType: Settings.ColumnWidgetType.EMPTY_SPACE
         width: 40;
         actions: mainwindow.actions
     }

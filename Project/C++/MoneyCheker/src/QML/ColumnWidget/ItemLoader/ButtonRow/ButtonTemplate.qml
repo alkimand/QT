@@ -4,14 +4,15 @@ import QtQuick.Layouts 1.12
 import QtQml 2.12
 
 import "../../../Action"
+import Settings 1.0
 
 Item {
 
     id:root
     property Action action
     //anchors.leftMargin: 5
-    width:settingData.buttonSettings.buttonWidth
-    height:settingData.buttonSettings.buttonHeight //border
+    width:Settings.buttonSettings.buttonWidth
+    height:Settings.buttonSettings.buttonHeight //border
     //Component.onCompleted: console.log("Button:" + root.action.text)
 
     Button
@@ -24,29 +25,29 @@ Item {
         //anchors.margins: 1
         //  anchors.topMargin: 10
         //        text:""
-        //property color buttonBackColor: settingData.buttonSettings.buttonIsNotSelectedColorSetting
-        //implicitHeight: 100//settingData.buttonSettings.buttonHeight
-        //implicitWidth: 100//settingData.buttonSettings.buttonWidth
+        //property color buttonBackColor: Settings.buttonSettings.buttonIsNotSelectedColorSetting
+        //implicitHeight: 100//Settings.buttonSettings.buttonHeight
+        //implicitWidth: 100//Settings.buttonSettings.buttonWidth
         width: root.width
         height: root.height
-        //color:settingData.buttonSettings.buttonIsNotSelectedColorSetting
+        //color:Settings.buttonSettings.buttonIsNotSelectedColorSetting
         //        property int textHeight: mainToolBar.toolButtonTextHeight
         //        property string textFont: mainToolBar.toolButtonTextFont
         //        property string sourceIconPath: "qt-logo.png"
         //        property string  textFirstLine: "QT"
-        //settingData.children[3].toolBarButtonIsNotSelectedColorSetting
+        //Settings.children[3].toolBarButtonIsNotSelectedColorSetting
 
         palette {
-            button: settingData.columnSettings.columnFreeSpaceColor
+            button: Settings.columnSettings.columnFreeSpaceColor
         }
 
         contentItem: Rectangle
         {
             id:buttonReact
-            color:settingData.buttonSettings.buttonIsNotSelectedColorSetting
+            color:Settings.buttonSettings.buttonIsNotSelectedColorSetting
             anchors.fill:parent
             //border.width: 1
-            radius: settingData.buttonSettings.buttonRadius
+            radius: Settings.buttonSettings.buttonRadius
             //anchors.margins: 1
 
             //property string sourceIconPath: parent.sourceIconPathLoader
@@ -58,7 +59,7 @@ Item {
                 // fillMode: Image.Stretch
                 anchors.top: parent.top
                 anchors.fill: parent
-                anchors.margins: settingData.buttonSettings.buttonMargin // Leaving space between image and borders (optional)
+                anchors.margins: Settings.buttonSettings.buttonMargin // Leaving space between image and borders (optional)
             }
         }
 
@@ -72,18 +73,18 @@ Item {
 
             onEntered:
             {
-                buttonReact.color  = settingData.buttonSettings.buttonIsSelectedColorSetting
+                buttonReact.color  = Settings.buttonSettings.buttonIsSelectedColorSetting
             }
 
             onExited:
             {
-                buttonReact.color = settingData.buttonSettings.buttonIsNotSelectedColorSetting
+                buttonReact.color = Settings.buttonSettings.buttonIsNotSelectedColorSetting
             }
 
             onClicked:
             {
                 //control.action.triggered()
-                buttonReact.color = settingData.buttonSettings.buttonIsSelectedColorSetting
+                buttonReact.color = Settings.buttonSettings.buttonIsSelectedColorSetting
                 action.trigger()
                 //console.log("Button cliked")
             }

@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 
 import "../../../Action"
-import "../../../Setting"
+import Settings 1.0
 import "../../../CommonElements/OneRowItem/MoneyCheker"
 import "../../../CommonElements/OneRowItem/RowLogic.js" as RowLogic
 import "../../../CommonElements/SpecialRowWidget"
@@ -13,67 +13,112 @@ Item {
     //property int radius : parent.actions
 
 
-   property int rowTextBlockWidth:settingData.elementsMortagePage.textBlockWidth;
+   property int rowTextBlockWidth:Settings.elementsMortagePage.textBlockWidth;
 
     Component {
         id:rowBorder
         Rectangle {
-            height:settingData.elementsMortagePage.distanceBetweenRow;
-           // color: settingData.columnSettings.columnFreeSpaceColor;
+            height:Settings.elementsMortagePage.distanceBetweenRow;
+           // color: Settings.columnSettings.columnFreeSpaceColor;
             color:"red"
         }
     }
 
-    Component {
-        id:itemBorder
-        Rectangle {
-            height:settingData.oneRowItemSettings.oneRowItemBorderHeigh;
-            color: settingData.columnSettings.columnFreeSpaceColor;
-        }
-    }
 
     SpecialRowWidget_O {
         id:home_prise_row
         anchors.top:parent.top
         anchors.left:parent.left
         anchors.right: parent.right
-
-        //height:10
-        //width: root.width
-//                //anchors.fill: parent
-//                value: 1210010
-//                textType: RowLogic.DataType.CURRENCY_DATA_TYPE//SettingData.DataType.CURRENCY_DATA_TYPE;
-//                textSecondLineType: RowLogic.DataType.PERSENT_DATA_TYPE;
-//                type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
-//                textFirstLine: "Home prise"
     }
 
-    Loader {
-        id:border_1
-        sourceComponent: itemBorder
-        anchors.top:home_prise_row.bottom
-        anchors.left:parent.left
-        anchors.right:parent.right
-    }
+//    Loader {
+//        id:border_1
+//        sourceComponent: itemBorder
+//        anchors.top:home_prise_row.bottom
+//        anchors.left:parent.left
+//        anchors.right:parent.right
+//    }
 
-    OneRowItem_S {
-        id: peincipal_row
-        anchors.top:border_1.bottom
-        anchors.left:parent.left
-        anchors.right: parent.right
-        value: 8255578
-        textBlockWidth : root.rowTextBlockWidth
-        textType: RowLogic.DataType.CURRENCY_DATA_TYPE//SettingData.DataType.CURRENCY_DATA_TYPE;
-        type: SettingData.OneRowItemType.TWO_TEXT_LEFT_TEXT_AND_TEXT_RIGHT_ONLY;
-        textFirstLine: "Principal & interest"
-    }
+//    OneRowItem_S {
+//        id: preincipal_row
+//        anchors.top:border_1.bottom
+//        anchors.left:parent.left
+//        anchors.right: parent.right
+//        value: 8255578
+//        textBlockWidth : root.rowTextBlockWidth
+//        textType: RowLogic.DataType.CURRENCY_DATA_TYPE//Settings.DataType.CURRENCY_DATA_TYPE;
+//        type: Settings.OneRowItemType.TWO_TEXT_LEFT_TEXT_AND_TEXT_RIGHT_ONLY;
+//        textFirstLine: "Principal & interest"
+//    }
 
+//    Loader {
+//        id:border_2
+//        sourceComponent: itemBorder
+//        anchors.top:preincipal_row.bottom
+//        anchors.left:parent.left
+//        anchors.right:parent.right
+//    }
 
+//    OneRowItem_S {
+//        id: tax_row
+//        anchors.top:border_2.bottom
+//        anchors.left:parent.left
+//        anchors.right: parent.right
+//        value: 58
+//        textBlockWidth : root.rowTextBlockWidth
+//        textType: RowLogic.DataType.CURRENCY_DATA_TYPE//Settings.DataType.CURRENCY_DATA_TYPE;
+//        type: Settings.OneRowItemType.TWO_TEXT_LEFT_TEXT_AND_TEXT_RIGHT_ONLY;
+//        textFirstLine: "Property tax"
+//    }
 
+//    Loader {
+//        id:border_3
+//        sourceComponent: itemBorder
+//        anchors.top:tax_row.bottom
+//        anchors.left:parent.left
+//        anchors.right:parent.right
+//    }
 
+//    OneRowItem_S {
+//        id: insurance_row
+//        anchors.top:border_3.bottom
+//        anchors.left:parent.left
+//        anchors.right: parent.right
+//        value: 10721
+//        textBlockWidth : root.rowTextBlockWidth
+//        textType: RowLogic.DataType.CURRENCY_DATA_TYPE//Settings.DataType.CURRENCY_DATA_TYPE;
+//        type: Settings.OneRowItemType.TWO_TEXT_LEFT_TEXT_AND_TEXT_RIGHT_ONLY;
+//        textFirstLine: "Property insuranse"
+//    }
 
+//    Loader {
+//        id:border_4
+//        sourceComponent: itemBorder
+//        anchors.top:insurance_row.bottom
+//        anchors.left:parent.left
+//        anchors.right:parent.right
+//    }
 
+//    OneRowItem_S {
+//        id: pmi_row
+//        anchors.top:border_4.bottom
+//        anchors.left:parent.left
+//        anchors.right: parent.right
+//        value: 5894
+//        textBlockWidth : root.rowTextBlockWidth
+//        textType: RowLogic.DataType.CURRENCY_DATA_TYPE//Settings.DataType.CURRENCY_DATA_TYPE;
+//        type: Settings.OneRowItemType.TWO_TEXT_LEFT_TEXT_AND_TEXT_RIGHT_ONLY;
+//        textFirstLine: "PMI"
+//    }
 
+//    Loader {
+//        id:border_5
+//        sourceComponent: itemBorder
+//        anchors.top:pmi_row.bottom
+//        anchors.left:parent.left
+//        anchors.right:parent.right
+//    }
 
 
     StackView {
@@ -86,7 +131,7 @@ Item {
         anchors.right:parent.right
         anchors.top:parent.top
         anchors.bottom:parent.bottom
-       // height: settingData.oneRowItemSettings.rowItemHeight*20;
+       // height: Settings.oneRowItemSettings.rowItemHeight*20;
         //popEnter : Transition{}
         //        popExit : Transition{}
         pushEnter : Transition{NumberAnimation { target: mortage_Stack; property: "opacity"; from: 0; to: 1; duration: 800 }}
@@ -139,9 +184,9 @@ Item {
                 anchors.right: parent.right
 //                //anchors.fill: parent
 //                value: 1210010
-//                textType: RowLogic.DataType.CURRENCY_DATA_TYPE//SettingData.DataType.CURRENCY_DATA_TYPE;
+//                textType: RowLogic.DataType.CURRENCY_DATA_TYPE//Settings.DataType.CURRENCY_DATA_TYPE;
 //                textSecondLineType: RowLogic.DataType.PERSENT_DATA_TYPE;
-//                type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
+//                type: Settings.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
 //                textFirstLine: "Home prise"
             }
 
@@ -191,8 +236,8 @@ Item {
     //                anchors.left:parent.left
     //                anchors.right: parent.right
     //                value: 1210010
-    //                textType: RowLogic.DataType.CURRENCY_DATA_TYPE//SettingData.DataType.CURRENCY_DATA_TYPE;
-    //                type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
+    //                textType: RowLogic.DataType.CURRENCY_DATA_TYPE//Settings.DataType.CURRENCY_DATA_TYPE;
+    //                type: Settings.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
     //                textFirstLine: "Loan"
     //            }
 
@@ -210,7 +255,7 @@ Item {
     //                anchors.top:border_2_0.bottom
     //                anchors.left:parent.left
     //                value: 4.5
-    //                type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
+    //                type: Settings.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
     //                textType:RowLogic.DataType.PERSENT_DATA_TYPE;
     //                textFirstLine: "Rate"
     //            }
@@ -228,7 +273,7 @@ Item {
     //                anchors.top:border_2_1.bottom
     //                anchors.left:parent.left
     //                value: 23
-    //                type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
+    //                type: Settings.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
     //                textType:RowLogic.DataType.YERS_DATA_TYPE;
     //                textFirstLine: "Term"
     //            }
@@ -248,9 +293,9 @@ Item {
     //                // anchors.top:button_1.bottom
     //                anchors.left:parent.left
     //                value : { return new Date()}
-    //                type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_DATE_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT;
+    //                type: Settings.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_DATE_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT;
     //                // textType:RowLogic.DataType.DATE_DATA_TYPE;
-    //                //        valueArr: settingData.userTextModels.persentDownTextModel;
+    //                //        valueArr: Settings.userTextModels.persentDownTextModel;
     //                textFirstLine: "Start date"
     //            }
 
@@ -268,11 +313,11 @@ Item {
     //                // anchors.top:button_1.bottom
     //                anchors.left:parent.left
     //                value: 0
-    //                type: SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT;
+    //                type: Settings.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT;
     //                //textType: RowLogic.DataType.YERS_DATA_TYPE;
     //                textFirstLine: "Amortization"
-    //                hasBorder: SettingData.HasBorder.BOTTOM_BORDER
-    //                valueArr: settingData.userTextModels.armortizationTextModel;
+    //                hasBorder: Settings.HasBorder.BOTTOM_BORDER
+    //                valueArr: Settings.userTextModels.armortizationTextModel;
     //            }
 
     //            Connections {

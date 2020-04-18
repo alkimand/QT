@@ -1,7 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
-import"../../Setting"
+import Settings 1.0
 import BorderRadiusWidget.qml 1.0
 import "../SmallCrossChekerButton/MoneyCheker"
 import "../OneRowItem/RowElements"
@@ -220,7 +220,7 @@ Item {
             property color activBackgroundButtonColor_L: root.activBackgroundButtonColor;
             property color pressedMainButtonColor_L: root.pressedMainButtonColor;
             property color pressedBackgroundButtonColor_L: root.pressedBackgroundButtonColor;
-            property color hoveredButtonColor_L: settingData.oneRowItemSettings.hoveredButtonColor;
+            property color hoveredButtonColor_L: Settings.oneRowItemSettings.hoveredButtonColor;
 
 
             property var valueArr_L : root.valueArr;
@@ -249,7 +249,7 @@ Item {
             anchors.bottom: parent.bottom
             anchors.right: button_2.left
             anchors.rightMargin: root.paddingRight
-            type: SettingData.BlueButtonType.MINUS
+            type: Settings.BlueButtonType.MINUS
             z:0
         }
 
@@ -261,7 +261,7 @@ Item {
             anchors.bottom: parent.bottom
             anchors.right: parent.right
             anchors.rightMargin: root.paddingRight
-            type: SettingData.BlueButtonType.PLUS
+            type: Settings.BlueButtonType.PLUS
             z:0
         }
 
@@ -342,20 +342,20 @@ Item {
         centerLoader.sourceComponent = centerLabel;
 
         switch (root.type)   {
-        case SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_ONE_BUTTON_RIGHT_TEXT_RIGHT_ALIGNEMENT :
+        case Settings.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_ONE_BUTTON_RIGHT_TEXT_RIGHT_ALIGNEMENT :
             button_1.visible = false;
             centerLoader.anchors.right = button_2.left;
-            button_2.type= SettingData.BlueButtonType.CHECK
+            button_2.type= Settings.BlueButtonType.CHECK
             centerLoader.anchors.rightMargin = root.paddingRight - 8
 
             break;
 
-        case SettingData.OneRowItemType.TWO_TEXT_LEFT_TEXT_AND_ONE_BUTTON_RIGHT_LEFT_ALIGNEMENT :
+        case Settings.OneRowItemType.TWO_TEXT_LEFT_TEXT_AND_ONE_BUTTON_RIGHT_LEFT_ALIGNEMENT :
             button_1.visible = false;
             //button_2.visible = true;
             break;
 
-        case SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT :
+        case Settings.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT :
             //console.log("ONE_TEXT_LEFT_TEXT_AND_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT")
             button_1.visible = false;
             button_2.visible = false;
@@ -363,33 +363,33 @@ Item {
             centerLoader.sourceComponent = centerComboBox;
             break;
 
-        case SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_COMBOBOX_ONLY_RIGHT_COMBOBOX_ALIGNEMENT :
+        case Settings.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_COMBOBOX_ONLY_RIGHT_COMBOBOX_ALIGNEMENT :
             button_1.visible = false;
             button_2.visible = false;
             centerLoader.anchors.right = parentReact.right
             centerLoader.sourceComponent = centerComboBox;
             break;
 
-        case SettingData.OneRowItemType.TWO_TEXT_LEFT_TEXT_AND_LABEL_ONLY :
+        case Settings.OneRowItemType.TWO_TEXT_LEFT_TEXT_AND_LABEL_ONLY :
             button_1.visible = false;
             button_2.visible = false;
             centerLoader.anchors.right = parentReact.right
             break;
 
-        case SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_LABEL_ONLY_LEFT_LABEL_ALIGNEMENT :
+        case Settings.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_LABEL_ONLY_LEFT_LABEL_ALIGNEMENT :
             button_1.visible = false;
             button_2.visible = false;
             //centerLoader.anchors.right = parentReact.right
             break;
 
-        case SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_DATE_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT :
+        case Settings.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_DATE_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT :
             button_1.visible = false;
             button_2.visible = false;
             centerLoader.anchors.right = parentReact.right
             centerLoader.sourceComponent = centerCalendar;
             break;
 
-            //        case SettingData.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_CUSTOM_WiDGET_LEFT_COMBOBOX_ALIGNEMENT :
+            //        case Settings.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_CUSTOM_WiDGET_LEFT_COMBOBOX_ALIGNEMENT :
             //            console.log("on ONE_TEXT_LEFT_TEXT_AND_CUSTOM_WiDGET_LEFT_COMBOBOX_ALIGNEMENT")
             //            button_1.visible = false;
             //            button_2.visible = false;
@@ -401,7 +401,7 @@ Item {
             //            break;
 
 
-        case SettingData.OneRowItemType.TWO_TEXT_LEFT_TEXT_AND_TEXT_RIGHT_ONLY :
+        case Settings.OneRowItemType.TWO_TEXT_LEFT_TEXT_AND_TEXT_RIGHT_ONLY :
             button_1.visible = false;
             button_2.visible = false;
             centerLoader.anchors.right = parentReact.right
@@ -416,18 +416,18 @@ Item {
 
     function onCompletedHasBorderRadius (){
         switch (root.hasBorder)   {
-        case SettingData.HasBorder.UPPER_BORDER :
+        case Settings.HasBorder.UPPER_BORDER :
             //button_1.visible = false;
             break;
 
-        case SettingData.HasBorder.BOTTOM_BORDER :
+        case Settings.HasBorder.BOTTOM_BORDER :
             bottomLeftRadius.visible = true;
             bottomLeftRadiusReact.visible = true;
             bottomRightRadius.visible = true;
             bottomRightRadiusReact.visible = true;
             break;
 
-        case SettingData.HasBorder.UPPER_BOTTOM_BORDER :
+        case Settings.HasBorder.UPPER_BOTTOM_BORDER :
             //console.log("ONE_TEXT_LEFT_TEXT_AND_COMBOBOX_ONLY_LEFT_COMBOBOX_ALIGNEMENT")
             //   button_1.visible = false;
             //  button_2.visible = false;

@@ -4,7 +4,7 @@ import QtQuick.Layouts 1.12
 
 import "../../SmallCrossChekerButton/MoneyCheker"
 import "../RowLogic.js" as Logic
-import "../../../Setting"
+import Settings 1.0
 
 Component{
     //  id:root

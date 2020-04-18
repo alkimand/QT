@@ -1,5 +1,5 @@
 import QtQuick 2.0
-
+pragma Singleton
 Item {
     //children[0]
     Item
@@ -61,7 +61,7 @@ Item {
         id:appPropertyToolBar
         //property bool toolBarIsIconSetting: true //-> to  get toolBarStateToolButtonSetting //toDo
         //property bool toolBarIstextSetting: true //-> to  get toolBarStateToolButtonSetting
-        property int toolBarStateToolButtonSetting: SettingData.ToolBarToolButtonState.TOOLBAR_TOOLBUTTON_ICON_TEXT //appPropertyToolBar.toolBarStateToolButtonSetting.
+        property int toolBarStateToolButtonSetting: Settings.ToolBarToolButtonState.TOOLBAR_TOOLBUTTON_ICON_TEXT //appPropertyToolBar.toolBarStateToolButtonSetting.
         property int toolBarHeightToolButtonSetting: 50
         property int toolBarWidthToolButtonSetting: 50
         property int toolBarTextHeightToolButtonSetting: 8

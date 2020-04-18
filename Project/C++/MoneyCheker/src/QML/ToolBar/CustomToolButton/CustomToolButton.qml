@@ -19,7 +19,7 @@ ToolButton
     property string textFont: mainToolBar.toolButtonTextFont
     property string sourceIconPath: "qt-logo.png"
     property string  textFirstLine: "QT"
-    property color buttonBackColor: settingData.children[3].toolBarButtonIsNotSelectedColorSetting
+    property color buttonBackColor: Settings.children[3].toolBarButtonIsNotSelectedColorSetting
     contentItem:ToolButtonLoader{}
 
     MouseArea
@@ -32,18 +32,18 @@ ToolButton
 
         onEntered:
         {
-            control.buttonBackColor = settingData.children[3].toolBarButtonIsSelectedColorSetting
+            control.buttonBackColor = Settings.children[3].toolBarButtonIsSelectedColorSetting
         }
 
         onExited:
         {
-            control.buttonBackColor = settingData.children[3].toolBarButtonIsNotSelectedColorSetting
+            control.buttonBackColor = Settings.children[3].toolBarButtonIsNotSelectedColorSetting
         }
 
         onClicked:
         {
             control.action.triggered()
-            //control.buttonBackColor = settingData.children[3].toolBarButtonIsNotSelectedColorSetting
+            //control.buttonBackColor = Settings.children[3].toolBarButtonIsNotSelectedColorSetting
         }
     }
 

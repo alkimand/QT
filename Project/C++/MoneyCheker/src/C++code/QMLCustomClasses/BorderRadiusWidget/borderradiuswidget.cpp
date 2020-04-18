@@ -111,6 +111,7 @@ void BorderRadiusWidget::setRadius(const int &radius)
 
 void BorderRadiusWidget::mousePressEvent(QMouseEvent *event)
 {
+    Q_UNUSED( event );
     qDebug() << "mousePressEvent";
 }
 

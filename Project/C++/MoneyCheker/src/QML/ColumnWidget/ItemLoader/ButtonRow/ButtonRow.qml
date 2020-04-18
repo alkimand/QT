@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 //import "ButtonTemplate.qml"
 import "../../../Action"
-
+import Settings 1.0
 
 
 
@@ -16,7 +16,7 @@ Item {
     {
 
 
-       spacing: settingData.columnSettings.spaceBetweenButton
+       spacing: Settings.columnSettings.spaceBetweenButton
 
        ButtonTemplate { action: root.actions.mainButtonCalculate;}
        ButtonTemplate { action: root.actions.mainButtonFavorite;}
