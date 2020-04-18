@@ -347,7 +347,7 @@ Item {
             centerLoader.anchors.right = button_2.left;
             button_2.type= Settings.BlueButtonType.CHECK
             centerLoader.anchors.rightMargin = root.paddingRight - 8
-
+            centerLoader.source=""
             break;
 
         case Settings.OneRowItemType.TWO_TEXT_LEFT_TEXT_AND_ONE_BUTTON_RIGHT_LEFT_ALIGNEMENT :
@@ -405,8 +405,8 @@ Item {
             button_1.visible = false;
             button_2.visible = false;
             centerLoader.anchors.right = parentReact.right
-            centerLoader.anchors.rightMargin= root.paddingRight - 8
-
+            centerLoader.anchors.rightMargin = root.paddingRight - 8
+            //centerLoader.source=""
             //textAreaRect.anchors.right = parentReact.right;
             break;
         }

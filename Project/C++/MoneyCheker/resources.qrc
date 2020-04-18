@@ -28,7 +28,9 @@
 		<file>src/QML/CommonElements/OneRowItem/MoneyCheker/OneRowItem_S.qml</file>
 		<file>src/QML/CommonElements/SmallCrossChekerButton/SmallCrossChekerButton_O.qml</file>	
 		<file>src/QML/CommonElements/SmallCrossChekerButton/MoneyCheker/SmallCrossChekerButton_S.qml</file>	
-		<file>src/QML/CommonElements/SpecialRowWidget/SpecialRowWidget_O.qml</file>	
+		<file>src/QML/CommonElements/AreaRowHeader/AreaRowHeader_O.qml</file>	
+		<file>src/QML/CommonElements/RoundRowPillow/RoundRowPillow_O.qml</file>	
+		<file>src/QML/CommonElements/RoundRowPillow/MoneyCheker/RoundRowPillow_S.qml</file>	
         <file>src/images/ToolBarIcon/editcopy.png</file>
         <file>src/images/ToolBarIcon/editcut.png</file>
         <file>src/images/ToolBarIcon/editpaste.png</file>

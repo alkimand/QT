@@ -62,7 +62,9 @@ OTHER_FILES += \
     src/QML/CommonElements/OneRowItem/RowElements/CenterDateCalendar_O.qml\
     src/QML/CommonElements/OneRowItem/MoneyCheker/OneRowItem_S.qml\
     src/QML/CommonElements/SmallCrossChekerButton/SmallCrossChekerButton_O.qml\
-    src/QML/CommonElements/SpecialRowWidget/SpecialRowWidget_O.qml\
+    src/QML/CommonElements/AreaRowHeader/AreaRowHeader_O.qml\
+    src/QML/CommonElements/RoundRowPillow/RoundRowPillow_O.qml\
+    src/QML/CommonElements/RoundRowPillow/MoneyCheker/RoundRowPillow_S.qml\
     src/QML/CommonElements/SmallCrossChekerButton/MoneyCheker/SmallCrossChekerButton_S.qml\
 
 DISTFILES += \

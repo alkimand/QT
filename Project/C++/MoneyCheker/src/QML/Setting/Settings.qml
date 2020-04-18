@@ -241,9 +241,16 @@ Item {
         property int oneRowItemBorderHeigh: 2	
 		
 		//comboBoxBorderColor
-		property int tottallAnimationTime : 400
+		//property int tottallAnimationTime : 400
 		property color hoveredComboBoxBorderColor: "#84b3ff" //toDo
 	}
+	
+	property var animation: Item {
+        property int comboboxAnimationTime : 400
+        property int areaAnimationTime : 400
+	
+	}
+	
 	
 	property var elementsMortagePage: Item {
 		property int distanceBetweenRow: 10
@@ -256,6 +263,13 @@ Item {
 	property var userTextModels: Item {
 		 property var armortizationTextModel: ["Show by month","Show by year"]
 		 property var persentDownTextModel: ["5%","10%","15%","20%","25%","30%","35%","40%"]
+		 
+	}
+	
+	//mortage area
+	property var userTextAreaModels: Item {
+		 property var monthlyPayment: ["Monthly payment","Principal & interest","Property tax", "Property insuranse" , "PMI"]
+		 
 	}
 	
     enum ToolBarToolButtonState

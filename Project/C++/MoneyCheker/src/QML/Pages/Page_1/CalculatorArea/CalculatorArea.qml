@@ -187,6 +187,7 @@ Item {
                 anchors.top:border_1.bottom
                 anchors.left:parent.left
                 //anchors.right:parent.right
+
                 value: 25
                 type: Settings.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
                 textType: RowLogic.DataType.PERSENT_DATA_TYPE;
@@ -206,6 +207,7 @@ Item {
                 id:rate_row
                 anchors.top:border_2.bottom
                 anchors.left:parent.left
+
                 value: 4.5
                 type: Settings.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_TWO_BUTTON_RIGHT;
                 textType:RowLogic.DataType.PERSENT_DATA_TYPE;

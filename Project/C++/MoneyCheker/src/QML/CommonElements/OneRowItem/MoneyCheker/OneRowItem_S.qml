@@ -52,7 +52,7 @@ OneRowItem_O {
     checkerHeigh:Settings.oneRowItemSettings.checkerHeigh;
 
     //combobox and date combo animation
-    tottallAnimationTime: Settings.oneRowItemSettings.tottallAnimationTime;
+    tottallAnimationTime: Settings.animation.comboboxAnimationTime;
 
 }
 

@@ -103,6 +103,10 @@ Component{
                     case Settings.OneRowItemType.ONE_TEXT_LEFT_TEXT_AND_ONE_BUTTON_RIGHT_TEXT_RIGHT_ALIGNEMENT :
                    case Settings.OneRowItemType.TWO_TEXT_LEFT_TEXT_AND_TEXT_RIGHT_ONLY :
                        textArea.horizontalAlignment =Text.AlignRight
+                       textArea.selectByMouse=false;
+                       textArea.selectByKeyboard=false;
+                       labelMouseArea.enabled = false;
+                       break;
                     }
 
                 }

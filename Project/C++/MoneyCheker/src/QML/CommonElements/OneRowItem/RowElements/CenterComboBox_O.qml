@@ -196,7 +196,6 @@ Component{
             color: "red"//"transparent"//"red"//root.activBackgroundButtonColor
             height: textLabel.height * viewModel.count
             property int hoveredItem: -1
-            property bool isActive: false
             z:1//(view.activeFocus===1)?1:0
 
             onActiveFocusChanged: {
