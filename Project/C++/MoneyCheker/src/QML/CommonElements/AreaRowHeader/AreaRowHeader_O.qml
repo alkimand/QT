@@ -37,11 +37,11 @@ Item {
     Connections {
         target: root
         onDataChaned_Area: {
-            console.log("onDataChanged")
+            //console.log("onDataChanged")
                 header_row.value = root.value;
                 header_row.textFirstLine=root.textFirstLine;
                 header_row.dataChaned_Row(type_, value_);
-            console.log("root.value="+root.value)
+           // console.log("root.value="+root.value)
             //}
         }
     }

@@ -6,7 +6,7 @@ import BorderRadiusWidget.qml 1.0
 import "../SmallCrossChekerButton/MoneyCheker"
 import "../OneRowItem/RowElements"
 import "RowLogic.js" as Logic
-
+//import ItemProperty 1.0
 
 
 Item {
@@ -43,7 +43,7 @@ Item {
     property int textSecondLineType
     property int hasBorder
     property int borderRadius
-
+    property int itemPropertyType //: ItemProperty.e_ItemProperty.STYLE_RADIAL
 
     //textLine
     property int textBlockWidth
@@ -96,14 +96,14 @@ Item {
     Connections {
         target: root
         onDataChaned_Row: {
-            console.log("Row onDataChanged")
+            //console.log("Row onDataChanged")
             if (header_row.value!== root.value)
                 header_row.value = root.value;
 
 
             if (header_row.textFirstLine!== root.textFirstLine)
              header_row.textFirstLine = root.textFirstLine;
-            console.log("value="+value_)
+         //   console.log("value="+value_)
             //}
         }
     }

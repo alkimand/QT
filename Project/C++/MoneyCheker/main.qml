@@ -10,6 +10,7 @@ import "src/QML/ToolBar"
 import "src/QML/ColumnWidget"
 import "src/QML/StackView"
 
+import info 1.0
 import Settings 1.0
 
 

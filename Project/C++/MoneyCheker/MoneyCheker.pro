@@ -14,18 +14,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 
-INCLUDEPATH += "src/C++code/QMLCustomClasses/BorderRadiusWidget/" \
-
-
-
+INCLUDEPATH += "src/C++code/QMLCustomClasses/BorderRadiusWidget/"\
+                "src/C++code/QMLCustomClasses/RowItem/"
+                 "src/C++code/Models/"
 SOURCES += \
-        main.cpp \
-        src/C++code/QMLCustomClasses/BorderRadiusWidget/borderradiuswidget.cpp
-
+        main.cpp\
+        src/C++code/Models/widgetmodelbaseclass.cpp \
+        src/C++code/QMLCustomClasses/BorderRadiusWidget/borderradiuswidget.cpp\
+        src/C++code/QMLCustomClasses/RowItem/RowItem.cpp
 RESOURCES += \
     resources.qrc
-
-
 OTHER_FILES += \
     main.qml \
 #Setting
@@ -124,4 +122,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    src/C++code/QMLCustomClasses/BorderRadiusWidget/borderradiuswidget.h
+    props.h \
+    src/C++code/Models/widgetmodelbaseclass.h \
+    src/C++code/QMLCustomClasses/BorderRadiusWidget/borderradiuswidget.h \
+    src/C++code/QMLCustomClasses/RowItem/RowItem.h

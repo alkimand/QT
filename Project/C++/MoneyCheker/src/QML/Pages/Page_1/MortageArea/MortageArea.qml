@@ -22,7 +22,7 @@ Item {
             header.value = root.userObjectModel.get(0).value_m
 
            header.textFirstLine = "_test"//(root.userObjectModel.get(0).firstRowText_m)+"_test"
-           console.log("root.userObjectModel.get(0).value_m="+root.userObjectModel.get(0).value_m);
+          // console.log("root.userObjectModel.get(0).value_m="+root.userObjectModel.get(0).value_m);
             header.value = root.userObjectModel.get(0).value_m
             header.textFirstLine = root.userObjectModel.get(0).firstRowText_m
             header.dataChaned_Area(1, 12525)
@@ -30,7 +30,7 @@ Item {
 
     }
     Component.onCompleted: {
-        console.log("root onCompleted");
+     //   console.log("root onCompleted");
         //header.value = root.userObjectModel.get(0).value_m
 
     }
@@ -88,7 +88,7 @@ Item {
 
         rowTextBlockWidth:Settings.elementsMortagePage.textBlockWidth;
         Component.onCompleted: {
-           console.log("AreaRowHeader_O onCompleted");
+        //   console.log("AreaRowHeader_O onCompleted");
         }
 
         z:1
@@ -186,7 +186,7 @@ Item {
         propagateComposedEvents : false
         z:2
         onClicked: {
-            console.log("onClicked")
+          //  console.log("onClicked")
             if (root.isOpen){
                 viewReact.height =(root.rowItemHeight + root.itemBorderHeight)
                 viewReact.visible = false
