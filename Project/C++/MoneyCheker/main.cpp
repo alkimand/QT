@@ -7,9 +7,9 @@
 #include <QQmlEngine>
 #include <QQuickWindow>
 
-//#include "widgetmodelbaseclass.h"
+#include "CalculatorArea_Model_1.h"
 
-#include "../../C++/MoneyCheker/src/C++code/Models/widgetmodelbaseclass.h"
+//#include "../../C++/MoneyCheker/src/C++code/Models/I_WidgetModelBase.h"
 //#include "ItemProperties.h"
 
 #include "props.h" // Подключить заголовочный файл класса Info
@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
 
 
 
-    qmlRegisterType<Props>("info", 1, 0, "Info");
+    qmlRegisterType<ItemEnums>("info", 1, 0, "Info");
 
     QQmlApplicationEngine engine;
 
@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
 //    );
 
 
-    WidgetModelBaseClass someModel;
+    CalculatorWidgetModel someModel(ItemEnums::e_ModelType::CALC_CENTER_WIDGET);
     engine.rootContext()->setContextProperty("someModel", &someModel);
 
 

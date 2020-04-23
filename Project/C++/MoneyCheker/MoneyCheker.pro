@@ -15,12 +15,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 INCLUDEPATH += "src/C++code/QMLCustomClasses/BorderRadiusWidget/"\
-                "src/C++code/QMLCustomClasses/RowItem/"
-                 "src/C++code/Models/"
+                "src/C++code/QMLCustomClasses/RowItem/"\
+                "src/C++code/Constant/" \
+                "src/C++code/Models/" \
+                "src/C++code/Models/CustomModel/"
 SOURCES += \
         main.cpp\
-        src/C++code/Models/widgetmodelbaseclass.cpp \
-        src/C++code/QMLCustomClasses/BorderRadiusWidget/borderradiuswidget.cpp\
+        src/C++code/Models/I_WidgetModelBase.cpp \
+        src/C++code/Models/CustomModel/CalculatorArea_Model_1.cpp \
+        src/C++code/QMLCustomClasses/BorderRadiusWidget/borderradiuswidget.cpp \
         src/C++code/QMLCustomClasses/RowItem/RowItem.cpp
 RESOURCES += \
     resources.qrc
@@ -123,6 +126,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     props.h \
-    src/C++code/Models/widgetmodelbaseclass.h \
+    src/C++code/Models/I_WidgetModelBase.h \
+    src/C++code/Models/CustomModel/CalculatorArea_Model_1.h \
     src/C++code/QMLCustomClasses/BorderRadiusWidget/borderradiuswidget.h \
-    src/C++code/QMLCustomClasses/RowItem/RowItem.h
+    src/C++code/QMLCustomClasses/RowItem/RowItem.h \
+    src/C++code/Constant/ItemConstant.h

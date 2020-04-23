@@ -2,22 +2,42 @@
 #include <QDebug>
 //RowItem::RowItem(QObject *parent): QObject(parent)
 
-RowItem::RowItem()//(QObject *parent): QObject(parent)
+AbstractItem::AbstractItem()//(QObject *parent): QObject(parent)
 {
-
+    itemData_.insert(int(ItemEnums::e_ItemProps::ITEM_TEXT_1_VALUE), "test");
+    itemData_.insert(int(ItemEnums::e_ItemProps::ITEM_TEXT_3_VALUE), 1000);
 }
 
-QString RowItem::textFirstRow() const
+void AbstractItem::setItemProperty(ItemEnums::e_ItemProps propertyType, QVariant toValue)
 {
-    return m_textFirstRow;
+    if (itemData_.contains((int)propertyType))
+        itemData_[(int)propertyType] = toValue;
+}
+
+void AbstractItem::changeItemProperty(ItemEnums::e_ItemProps propertyType, QVariant toValue)
+{
+    if (itemData_.contains((int)propertyType))
+        itemData_[(int)propertyType] = toValue;
 }
 
 
-void RowItem::SetTextFirstRow(QString text)
+QVariant AbstractItem::getItemProperty(ItemEnums::e_ItemProps propertyType)
 {
-    if (m_textFirstRow == text)
-        return;
-    m_textFirstRow = text;
-    emit TextFirstRowChanged(m_textFirstRow);
-    qDebug()<< "SetTextFirstRow="+text;
+    if (itemData_.contains((int)propertyType))
+        return itemData_[(int)propertyType];
 }
+
+//QString AbstractItem::textFirstRow() const
+//{
+//    return m_textFirstRow;
+//}
+
+
+//void AbstractItem::SetTextFirstRow(QString text)
+//{
+//    if (m_textFirstRow == text)
+//        return;
+//    m_textFirstRow = text;
+//    emit TextFirstRowChanged(m_textFirstRow);
+//    qDebug()<< "SetTextFirstRow="+text;
+//}

@@ -221,11 +221,11 @@ console.log("someModel.rowCount()+"+someModel.rowCount())
                     anchors.left:parent.left
                     anchors.right: parent.right
                     // height: Settings.oneRowItemSettings.rowItemHeight
-                    value: value_
+                    value: text_3_value
                     textBlockWidth : root.rowTextBlockWidth
                     textType: RowLogic.DataType.CURRENCY_DATA_TYPE
                     type: Settings.OneRowItemType.TWO_TEXT_LEFT_TEXT_AND_TEXT_RIGHT_ONLY
-                    textFirstLine: first_text_
+                    textFirstLine: text_1_value
                 }
 
 //                Loader {
