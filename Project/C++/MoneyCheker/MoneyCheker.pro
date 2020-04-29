@@ -18,13 +18,28 @@ INCLUDEPATH += "src/C++code/QMLCustomClasses/BorderRadiusWidget/"\
                 "src/C++code/QMLCustomClasses/RowItem/"\
                 "src/C++code/Constant/" \
                 "src/C++code/Models/" \
-                "src/C++code/Models/CustomModel/"
+                "src/C++code/Models/CustomModel/" \
+                "src/C++code/ModelController/" \
+                "src/C++code/ModelController/Custom" \
+                "src/C++code/Client/" \
+                "src/C++code/Client/Custom/" \
+                "src/C++code/Worker/" \
+                "src/C++code/Worker/Custom/" \
+                "src/C++code/ModelController/" \
+                "src/C++code/ModelController/Custom/"
 SOURCES += \
         main.cpp\
-        src/C++code/Models/I_WidgetModelBase.cpp \
+        src/C++code/Models/IWidgetModelBase.cpp \
         src/C++code/Models/CustomModel/CalculatorArea_Model_1.cpp \
         src/C++code/QMLCustomClasses/BorderRadiusWidget/borderradiuswidget.cpp \
-        src/C++code/QMLCustomClasses/RowItem/RowItem.cpp
+        src/C++code/QMLCustomClasses/RowItem/RowItem.cpp \
+        src/C++code/ModelController/iModelController.cpp \
+        src/C++code/Client/ClientBase.cpp \
+        src/C++code/Client/Custom/MortageLoanClient.cpp \
+        src/C++code/Worker/WorkerBaseClass.cpp \
+        src/C++code/Worker/Custom/MortageLoanWorker.cpp \
+        src/C++code/ModelController/iModelController.cpp \
+        src/C++code/ModelController/Custom/MortageModelController.cpp
 RESOURCES += \
     resources.qrc
 OTHER_FILES += \
@@ -126,8 +141,17 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     props.h \
-    src/C++code/Models/I_WidgetModelBase.h \
+    src/C++code/Models/IWidgetModelBase.h \
     src/C++code/Models/CustomModel/CalculatorArea_Model_1.h \
     src/C++code/QMLCustomClasses/BorderRadiusWidget/borderradiuswidget.h \
     src/C++code/QMLCustomClasses/RowItem/RowItem.h \
-    src/C++code/Constant/ItemConstant.h
+    src/C++code/Constant/ItemConstant.h \
+    src/C++code/ModelController/iModelController.h \
+    src/C++code/Client/ClientBase.h \
+    src/C++code/Client/ClientBaseInclude.h \
+    src/C++code/Client/Custom/MortageLoanClient.h \
+    src/C++code/Worker/WorkerBaseClass.h \
+    src/C++code/Worker/WorkerInclude.h \
+    src/C++code/Worker/Custom/MortageLoanWorker.h \
+    src/C++code/ModelController/iModelController.h \
+    src/C++code/ModelController/Custom/MortageModelController.h

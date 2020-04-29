@@ -4,27 +4,40 @@
 
 AbstractItem::AbstractItem()//(QObject *parent): QObject(parent)
 {
-    itemData_.insert(int(ItemEnums::e_ItemProps::ITEM_TEXT_1_VALUE), "test");
-    itemData_.insert(int(ItemEnums::e_ItemProps::ITEM_TEXT_3_VALUE), 1000);
+    // itemData_.insert(int(ItemEnums::EItemProps::kTextValue_1), "test");
+    // itemData_.insert(int(ItemEnums::EItemProps::kTextValue_3), 1000);
+
 }
 
-void AbstractItem::setItemProperty(ItemEnums::e_ItemProps propertyType, QVariant toValue)
+void AbstractItem::setItemProperty(ItemEnums::EItemProps property_type, QVariant value)
 {
-    if (itemData_.contains((int)propertyType))
-        itemData_[(int)propertyType] = toValue;
+    if (itemData_.contains((int)property_type))
+        itemData_[(int)property_type] = QVariant(value);
+    else
+        itemData_.insert(int(property_type), QVariant(value));
 }
 
-void AbstractItem::changeItemProperty(ItemEnums::e_ItemProps propertyType, QVariant toValue)
+void AbstractItem::setDefaultProperty(QHash<int, QVariant> default_property_map)
 {
-    if (itemData_.contains((int)propertyType))
-        itemData_[(int)propertyType] = toValue;
+    QHashIterator<int, QVariant> i(default_property_map);
+    while (i.hasNext()) {
+        i.next();
+        itemData_.insert(i.key(),i.value());
+    }
+}
+
+void AbstractItem::changeItemProperty(ItemEnums::EItemProps property_type, QVariant value)
+{
+    if (itemData_.contains((int)property_type))
+        itemData_[(int)property_type] = QVariant(value);
 }
 
 
-QVariant AbstractItem::getItemProperty(ItemEnums::e_ItemProps propertyType)
+QVariant AbstractItem::getItemProperty(ItemEnums::EItemProps property_type)
 {
-    if (itemData_.contains((int)propertyType))
-        return itemData_[(int)propertyType];
+    if (itemData_.contains((int)property_type))
+        return itemData_[(int)property_type];
+    return QVariant();
 }
 
 //QString AbstractItem::textFirstRow() const

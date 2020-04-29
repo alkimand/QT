@@ -19,13 +19,13 @@ Item {
         userTextAreaModels: root.userTextAreaModels
         Component.onCompleted: {
          //  console.log("ListModel onCompleted");
-            header.value = root.userObjectModel.get(0).value_m
+//            header.value = root.userObjectModel.get(0).value_m
 
-           header.textFirstLine = "_test"//(root.userObjectModel.get(0).firstRowText_m)+"_test"
-          // console.log("root.userObjectModel.get(0).value_m="+root.userObjectModel.get(0).value_m);
-            header.value = root.userObjectModel.get(0).value_m
-            header.textFirstLine = root.userObjectModel.get(0).firstRowText_m
-            header.dataChaned_Area(1, 12525)
+//           header.textFirstLine = "_test"//(root.userObjectModel.get(0).firstRowText_m)+"_test"
+//          // console.log("root.userObjectModel.get(0).value_m="+root.userObjectModel.get(0).value_m);
+//            header.value = root.userObjectModel.get(0).value_m
+//            header.textFirstLine = root.userObjectModel.get(0).firstRowText_m
+//            header.dataChaned_Area(1, 12525)
         }
 
     }

@@ -115,7 +115,7 @@ Item {
         anchors.left:parent.left
         anchors.right: parent.right
         //anchors.fill: parent
-        rowItemHeight:Settings.appContentWidgetSettings.buttonHeight - Settings.appContentWidgetSettings.borderRadius-root.itemBorderHeight;
+        rowItemHeight:Settings.appContentWidgetSettings.buttonHeight - Settings.appContentWidgetSettings.borderRadius - root.itemBorderHeight;
         textBlockWidth: root.rowTextBlockWidth
         backgroundColor: root.topActiveColor;
         // paddingRight:Settings.elementsMortagePage.paddingRight;

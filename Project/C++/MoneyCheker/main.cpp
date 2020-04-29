@@ -6,10 +6,10 @@
 #include <QQmlComponent>
 #include <QQmlEngine>
 #include <QQuickWindow>
-
+#include "MortageLoanClient.h"
 #include "CalculatorArea_Model_1.h"
 
-//#include "../../C++/MoneyCheker/src/C++code/Models/I_WidgetModelBase.h"
+//#include "../../C++/MoneyCheker/src/C++code/Models/IWidgetModelBase.h"
 //#include "ItemProperties.h"
 
 #include "props.h" // Подключить заголовочный файл класса Info
@@ -53,9 +53,11 @@ int main(int argc, char *argv[])
 //    );
 
 
-    CalculatorWidgetModel someModel(ItemEnums::e_ModelType::CALC_CENTER_WIDGET);
-    engine.rootContext()->setContextProperty("someModel", &someModel);
+//    CalculatorWidgetModel someModel(ItemEnums::EModelType::Calculator);
+//    engine.rootContext()->setContextProperty("someModel", &someModel);
 
+    MortageLoanClient client(ItemEnums::EClientType::kMortageLoanCalculator);
+    engine.rootContext()->setContextProperty("client", &client);
 
     //app.setWindowIcon(QIcon(":/src/images/AppImages/programmer.png"));
    // app.setApplicationName("UDP Loger Application");

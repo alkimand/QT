@@ -16,16 +16,14 @@ public:
     AbstractItem();
 //    QString SetTextFirstRow() const;
 //    QString textFirstRow() const;
-    void setItemProperty( ItemEnums::e_ItemProps propertyType, QVariant value);
-    void changeItemProperty(ItemEnums::e_ItemProps propertyType, QVariant value);
-    QVariant getItemProperty(ItemEnums::e_ItemProps propertyType);
+    void setItemProperty( ItemEnums::EItemProps propertyType, QVariant value);
+    void setDefaultProperty(QHash<int, QVariant> default_property_map);
+    void changeItemProperty(ItemEnums::EItemProps propertyType, QVariant value);
+    QVariant getItemProperty(ItemEnums::EItemProps propertyType);
 
-private: //ITEM PROPS
-    //QString m_textFirstRow= "test";
-    ;
-   // QList<QVariant> itemData_;
+private:
+
     QHash<int, QVariant> itemData_;
-   //  ItemEnums::e_ModelType type;
 
 public slots:
 
@@ -33,7 +31,7 @@ public slots:
 
    // void TextFirstRowChanged(QString text);
 
-  //  void dataChanged(QVariant value,ItemEnums::e_ItemProps propertyType);
+  //  void dataChanged(QVariant value,ItemEnums::EItemProps propertyType);
 };
 
 #endif // BORDERRADIUSWIDGET_H

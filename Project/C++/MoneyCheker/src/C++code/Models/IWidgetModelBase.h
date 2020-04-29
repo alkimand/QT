@@ -8,19 +8,20 @@
 #include <QSharedPointer>
 
 
-class I_WidgetModelBase : public QAbstractTableModel
+class IWidgetModelBase : public QAbstractTableModel
 {
 
     Q_OBJECT
 public:
     //explicit
-    explicit I_WidgetModelBase(ItemEnums::e_ModelType widgetType);
+    explicit IWidgetModelBase(ItemEnums::EModelType widgetType);
     void setupWidgetModel();
+    void virtual  setupDefaultPropertyMap();
 
 
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const {
-        Q_UNUSED(parent); return rows.size();
+        Q_UNUSED(parent); return rows_.size();
     }
 
     int columnCount(const QModelIndex &parent = QModelIndex()) const {
@@ -33,15 +34,15 @@ public:
 
 
 
-    QVector <QSharedPointer<AbstractItem>>  rows;
+    QVector <QSharedPointer<AbstractItem>>  rows_;
 
-    virtual ~I_WidgetModelBase();
+    virtual ~IWidgetModelBase();
 protected:
-    ItemEnums::e_ModelType widgetType_;
+    ItemEnums::EModelType widgetType_;
+    IWidgetModelBase *childModel_ = nullptr;
+    IWidgetModelBase *parentModel_ = nullptr;
 
-
-
-
+    QHash<int, QVariant> default_property_map_;
 
 };
 

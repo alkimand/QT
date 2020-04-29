@@ -263,6 +263,7 @@ Item {
             property int tottallAnimationTime_L: root.tottallAnimationTime;
 
             property int type_L: root.type;
+           //property int text_L: root.type;
 
             Component.onCompleted: {
                 //console.log("type_L="+centerLoader.type_L)

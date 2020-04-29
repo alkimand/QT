@@ -54,7 +54,7 @@ ListModel {
                     });
 
        //console.log(root.get(0).value_m);
-          console.log("ListModel onCompleted");
+          //console.log("ListModel onCompleted");
     }
 
 }

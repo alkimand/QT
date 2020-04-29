@@ -1,15 +1,17 @@
 #ifndef CALCULATOR_AREA_MODEL_1_H
 #define CALCULATOR_AREA_MODEL_1_H
-#include "I_WidgetModelBase.h"
+#include "IWidgetModelBase.h"
 #include <QObject>
 
-class CalculatorWidgetModel: public I_WidgetModelBase
+class CalculatorWidgetModel: public IWidgetModelBase
 {
     Q_OBJECT
 public:
-   explicit CalculatorWidgetModel(ItemEnums::e_ModelType widgetType);
+   explicit CalculatorWidgetModel(ItemEnums::EModelType widgetType);
 
     void setupWidgetModel();
+    void setupDefaultPropertyMap();
+   // void setupDefaultProperty();
 
    ~CalculatorWidgetModel();
 

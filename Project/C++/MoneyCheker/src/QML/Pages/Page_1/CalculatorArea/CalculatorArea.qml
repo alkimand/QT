@@ -19,7 +19,7 @@ Item {
     property int itemBorderHeight : Settings.oneRowItemSettings.oneRowItemBorderHeigh;
 Component.onCompleted: {
 
-console.log("someModel.rowCount()+"+someModel.rowCount())
+//console.log("someModel.rowCount()+"+client.calculator_model_.rowCount())
 
 }
     //property int radius : parent.actions
@@ -206,7 +206,7 @@ console.log("someModel.rowCount()+"+someModel.rowCount())
         anchors.right: parent.right
         color:"transparent"
 
-        height: (root.rowItemHeight + root.itemBorderHeight) * someModel.rowCount() // 500//Settings.oneRowItemSettings.rowItemHeight * view.count + root.itemBorderHeight *  view.count
+        height: (root.rowItemHeight + root.itemBorderHeight) * client.calculator_model_.rowCount() // 500//Settings.oneRowItemSettings.rowItemHeight * view.count + root.itemBorderHeight *  view.count
         z:0
 
         Component {
@@ -221,11 +221,16 @@ console.log("someModel.rowCount()+"+someModel.rowCount())
                     anchors.left:parent.left
                     anchors.right: parent.right
                     // height: Settings.oneRowItemSettings.rowItemHeight
-                    value: text_3_value
-                    textBlockWidth : root.rowTextBlockWidth
-                    textType: RowLogic.DataType.CURRENCY_DATA_TYPE
-                    type: Settings.OneRowItemType.TWO_TEXT_LEFT_TEXT_AND_TEXT_RIGHT_ONLY
+
                     textFirstLine: text_1_value
+                    textSecondLine: text_2_value
+                    value: text_3_value
+
+                    textType: text_3_type
+
+                   // textBlockWidth : root.rowTextBlockWidth
+                    type: 0//widget_text_alightment
+
                 }
 
 //                Loader {
@@ -241,7 +246,8 @@ console.log("someModel.rowCount()+"+someModel.rowCount())
             id: view
             anchors.fill: parent
             visible: true//view.activeFocus
-            model: someModel//userObjectModel
+           model: client.calculator_model_
+                //client.getCalculatorModel(0)//userObjectModel
             highlightRangeMode: ListView.ApplyRange
             delegate: itemDelegate
             focus: true
@@ -251,7 +257,9 @@ console.log("someModel.rowCount()+"+someModel.rowCount())
             cacheBuffer:10
 
             Component.onCompleted: {
-                //     console.log("root.userValueModel.count="+root.userValueModel.count)
+              //  model = client.getModel(0);
+               // model = client.getCalculatorModel();
+                //    console.log("client.getText="+client.getText())
                 //         console.log("root.userValueModel.length ="+root.userValueModel.length )
             }
         }
