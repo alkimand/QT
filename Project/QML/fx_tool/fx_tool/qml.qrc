@@ -20,6 +20,8 @@
 		<file>src/qml/TabView/Style/TabViewStyle.qml</file>
 		<file>src/qml/TabView/Style/OneTabBaseStyle.qml</file>
 		<file>src/qml/TabView/Tab/MouseEvent.qml</file>
+		<file>src/qml/TableView/BaseTableView.qml</file>
+		<file>src/qml/TableView/ItemDelegate/ItemDelegate/EditableLable.qml</file>
 		<file>src/images/ToolBarIcon/editcopy.png</file>
         <file>src/images/ToolBarIcon/editcut.png</file>
         <file>src/images/ToolBarIcon/editpaste.png</file>

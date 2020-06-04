@@ -24,42 +24,42 @@ C1.TabView {
     property int indexUnderMouse: -1
     signal renametab()
     style: TabViewStyle{}
-    Component
-    {
-        id:newTabComponent
-        //property string type: "NONE1"
-        Loader
-        {
-            id: loader
-            anchors.fill: parent
-            //source: "../ChoiceItem/ChoiceWindow.qml"
-            //source = "../TableView/TableView/TableUDP.qml"
+//    Component
+//    {
+//        id:newTabComponent
+//        //property string type: "NONE1"
+//        Loader
+//        {
+//            id: loader
+//            anchors.fill: parent
+//            //source: "../ChoiceItem/ChoiceWindow.qml"
+//            //source = "../TableView/TableView/TableUDP.qml"
 			
-            property string type: "NONE"
+//            property string type: "NONE"
 
-            function setTable(name)
-            {
+//            function setTable(name)
+//            {
 
-                loader.source = ""
-                //console.log("name:" + name)
-                switch (name)
-                {
-                case "UDP logger" :
-                    console.log("UDP logger")
-                    //source= "../TableView/TableView/TableUDP.qml"
+//                loader.source = ""
+//                //console.log("name:" + name)
+//                switch (name)
+//                {
+//                case "UDP logger" :
+//                    console.log("UDP logger")
+//                    //source= "../TableView/TableView/TableUDP.qml"
 
-                    break
-                case "Text logger" :
-                    console.log("Text logger")
-                    //source= "../TableView/TableView/TableText.qml"
+//                    break
+//                case "Text logger" :
+//                    console.log("Text logger")
+//                    //source= "../TableView/TableView/TableText.qml"
 
-                    break
-                }
-                //  root.getTab(contexMenuIndex).title = root.getTab(contexMenuIndex).title + ".txt"
-            }
-        }
+//                    break
+//                }
+//                //  root.getTab(contexMenuIndex).title = root.getTab(contexMenuIndex).title + ".txt"
+//            }
+//        }
 
-    }
+//    }
 
     Component
     {
@@ -68,7 +68,7 @@ C1.TabView {
         {
             id: loader
             anchors.fill: parent
-           // source: "../TableView/TableView/TableText.qml"
+            source: "../TableView/BaseTableView.qml"
         }
 
     }
@@ -120,7 +120,7 @@ C1.TabView {
 
     function addNewTab()
     {
-        root.addTab(newWindowTitle,newTabComponent)
+        root.addTab(newWindowTitle,newTextComponent)
         //root.addTab(newWindowTitle,newChoiceComponent)
         root.currentIndex = root.count - 1
         root.contexMenuIndex = root.currentIndex
@@ -169,7 +169,7 @@ C1.TabView {
 
         //    if (root.getTab(m_index).item.children[0].type !== "NONE")
 
-        if (root.getTab(m_index).item.children[0].type !== "NONE")
+        //if (root.getTab(m_index).item.children[0].type !== "NONE")
         {
             //console.log("BaseTableView:sendTittleName:" + tittle)
             //console.log("root.getTab(m_index).item.children[0].type:" + root.getTab(m_index).type)
@@ -178,7 +178,7 @@ C1.TabView {
 
             //console.log("1" + root.getTab(m_index).item.children[0].type)
             //console.log("root.getTab(m_index).item.children[0].type:" + root.getTab(m_index).type)
-            root.getTab(m_index).item.children[0].sendNameDocument(tittle)
+            //root.getTab(m_index).item.children[0].sendNameDocument(tittle)
             //sendTittleName(m_index, tittle)
         }
     }

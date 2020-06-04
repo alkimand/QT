@@ -43,6 +43,8 @@ ApplicationWindow {
         anchors.fill:parent
     }
 
+
+
    // property Actions actions : Actions{}
 
 //    FileDialog

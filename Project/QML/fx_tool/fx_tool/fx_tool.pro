@@ -55,6 +55,10 @@ OTHER_FILES += \
 #TabView_menu
     src/qml/TabView/Tab/MouseEvent.qml \
     src/qml/Menu/TabContextMenu/TabContextMenu.qml \
+#TableView
+    src/qml/TableView/BaseTableView.qml \
+#TableView Item Delegats
+    src/qml/TableView/ItemDelegate/ItemDelegate/EditableLable.qml \
 
 DISTFILES += \
     src/images/ToolBarIcon/editcopy.png \

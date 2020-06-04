@@ -1,14 +1,9 @@
 import QtQuick 2.12
-//import QtQuick.Window 2.11
-//import QtQuick.Controls 1.4 as C1
 import QtQuick.Controls 2.12
-//import QtQuick.Controls.Styles 1.4
-//import QtQuick.Layouts 1.3
 import QtQuick.Dialogs 1.2
-import Actions 1.0
 
+import Actions 1.0
 import "./CustomToolButton"
-//import "./CustomComboBox"
 
 ToolBar
 {
