@@ -9,6 +9,7 @@ ToolBar
 {
     id: control
     width: parent.width
+    implicitHeight: 55
     //height: 25
     focusReason : Qt.MouseFocusReason
     background: Rectangle  {
@@ -24,7 +25,21 @@ ToolBar
         CustomToolButton {action: Actions.fileSaveAction}
         CustomToolButton {action: Actions.fileSaveAsAction}
         CustomToolButton {action: Actions.closeAction}
+
+//        Rectangle {
+//            color: "#77a9ef"
+//            width: parent.width
+//            height: 1
+//            anchors.bottom: parent.bottom
+//        }
+
     }
+//    Rectangle {
+//        color: "#77a9ef"
+//        width: parent.width
+//        height: 1
+//        anchors.bottom: parent.bottom
+//    }
 
 }
 

@@ -10,7 +10,7 @@ MenuBar {
             text: menuBarItem.text
             font: menuBarItem.font
             opacity: enabled ? 1.0 : 0.3
-            color:  "black" //menuBarItem.highlighted ? "#ffffff" : "black"
+            //color:  "black" //menuBarItem.highlighted ? "#ffffff" : "black"
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignVCenter
             elide: Text.ElideRight
@@ -31,7 +31,7 @@ MenuBar {
         color: "#ffffff"
 
         Rectangle {
-            color: "#77a9ef" //"#21be2b"
+            color: "#77a9ef"
             width: parent.width
             height: 1
             anchors.bottom: parent.bottom

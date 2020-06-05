@@ -91,7 +91,7 @@ Component{
 
 
                 onEditingFinished: {
-                    console.log("onEditingFinished")
+                   // console.log("onEditingFinished")
                     //console.log("textArea.text="+ textArea.text)
                     labelMouseArea.cursorShape = Qt.ArrowCursor;
                     root.finishEdit()
@@ -135,7 +135,7 @@ Component{
 
 
                 function finishEditHandler(){
-                    console.log("finishEditHandler =" + model.type);
+                    //console.log("finishEditHandler =" + model.type);
                     model.type = textArea.text;
                     textArea.placeholderText = model.type;
                     textArea.text="";
@@ -157,7 +157,7 @@ Component{
                     cursorShape : Qt.ArrowCursor
                     acceptedButtons: Qt.LeftButton
                     onClicked: {
-                        console.log("onClicked model.type="+ model.type)
+                        //console.log("onClicked model.type="+ model.type)
                         root.startEdit()
                         if (textArea.text===model.type){
                             var position = textArea.positionAt(mouse.x, mouse.y);

@@ -14,7 +14,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        main.cpp
+        main.cpp \
+        src/C++/QMLCustomClasses/BorderRadiusWidget/borderradiuswidget.cpp
+HEADERS += \
+    src/C++/QMLCustomClasses/BorderRadiusWidget/borderradiuswidget.h
 
 RESOURCES += qml.qrc
 
@@ -26,7 +29,9 @@ TRANSLATIONS += \
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
 
-INCLUDEPATH +=$$PWD/src
+INCLUDEPATH +=$$PWD/src \
+               $$PWD/src/C++/QMLCustomClasses/BorderRadiusWidget
+
 # Additional import path used to resolve QML modules just for Qt Quick Designer
 
 OTHER_FILES += \

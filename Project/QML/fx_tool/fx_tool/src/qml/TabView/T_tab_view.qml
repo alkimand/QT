@@ -18,48 +18,67 @@ import "./Style"
 C1.TabView {
     id: root
     anchors.fill:parent
+    //anchors.leftMargin: 5
+    //anchors.leftMargin: 50
     //property int curIndex: 0
     property string newWindowTitle: "FreeYTVDownloader" //"new window " + root.count
     property int contexMenuIndex: -1
     property int indexUnderMouse: -1
     signal renametab()
     style: TabViewStyle{}
-//    Component
-//    {
-//        id:newTabComponent
-//        //property string type: "NONE1"
-//        Loader
-//        {
-//            id: loader
-//            anchors.fill: parent
-//            //source: "../ChoiceItem/ChoiceWindow.qml"
-//            //source = "../TableView/TableView/TableUDP.qml"
-			
-//            property string type: "NONE"
 
-//            function setTable(name)
-//            {
-
-//                loader.source = ""
-//                //console.log("name:" + name)
-//                switch (name)
-//                {
-//                case "UDP logger" :
-//                    console.log("UDP logger")
-//                    //source= "../TableView/TableView/TableUDP.qml"
-
-//                    break
-//                case "Text logger" :
-//                    console.log("Text logger")
-//                    //source= "../TableView/TableView/TableText.qml"
-
-//                    break
-//                }
-//                //  root.getTab(contexMenuIndex).title = root.getTab(contexMenuIndex).title + ".txt"
-//            }
-//        }
-
+//    Rectangle {
+//        color: "#77a9ef"
+//        width: parent.width
+//        height: 1
+//        anchors.bottom: parent.top
 //    }
+
+//    Rectangle {
+//        color: "#77a9ef"
+//        width: parent.width
+//        height: 5
+//        anchors.bottom: parent.bottom
+//    }
+
+
+
+    //    Component
+    //    {
+    //        id:newTabComponent
+    //        //property string type: "NONE1"
+    //        Loader
+    //        {
+    //            id: loader
+    //            anchors.fill: parent
+    //            //source: "../ChoiceItem/ChoiceWindow.qml"
+    //            //source = "../TableView/TableView/TableUDP.qml"
+
+    //            property string type: "NONE"
+
+    //            function setTable(name)
+    //            {
+
+    //                loader.source = ""
+    //                //console.log("name:" + name)
+    //                switch (name)
+    //                {
+    //                case "UDP logger" :
+    //                    console.log("UDP logger")
+    //                    //source= "../TableView/TableView/TableUDP.qml"
+
+    //                    break
+    //                case "Text logger" :
+    //                    console.log("Text logger")
+    //                    //source= "../TableView/TableView/TableText.qml"
+
+    //                    break
+    //                }
+    //                //  root.getTab(contexMenuIndex).title = root.getTab(contexMenuIndex).title + ".txt"
+    //            }
+    //        }
+
+    //    }
 
     Component
     {
@@ -80,42 +99,42 @@ C1.TabView {
     }
 
 
-//    function onCurIndChangeHeandler()
-//    {
-//        addNewTab()
-//    }
+    //    function onCurIndChangeHeandler()
+    //    {
+    //        addNewTab()
+    //    }
 
-//    function setStatus(status)
-//    {
-//        console.log("C1.root setStatus(status):" + status )
-//        if (root.getTab(root.currentIndex).item.children[0].type === "UDP_CLIENT_TYPE")
-//            root.getTab(root.currentIndex).item.children[0].setStatus(status)
-//    }
+    //    function setStatus(status)
+    //    {
+    //        console.log("C1.root setStatus(status):" + status )
+    //        if (root.getTab(root.currentIndex).item.children[0].type === "UDP_CLIENT_TYPE")
+    //            root.getTab(root.currentIndex).item.children[0].setStatus(status)
+    //    }
 
     //move to  main
-//    function saveAs()
-//    {
-//        //console.log("C1.root saveAs()")
-//        if (root.getTab(root.currentIndex).item.children[0].type !== "NONE")
-//            root.getTab(root.currentIndex).item.children[0].saveAs()
+    //    function saveAs()
+    //    {
+    //        //console.log("C1.root saveAs()")
+    //        if (root.getTab(root.currentIndex).item.children[0].type !== "NONE")
+    //            root.getTab(root.currentIndex).item.children[0].saveAs()
 
-//    }
+    //    }
 
-//    function save()
-//    {
-//        //console.log("C1.root save()")
-//        //console.log(root.getTab(root.currentIndex).item.children[0].type)
-//        if (root.getTab(root.currentIndex).item.children[0].type !== "NONE")
-//            root.getTab(root.currentIndex).item.children[0].save()
+    //    function save()
+    //    {
+    //        //console.log("C1.root save()")
+    //        //console.log(root.getTab(root.currentIndex).item.children[0].type)
+    //        if (root.getTab(root.currentIndex).item.children[0].type !== "NONE")
+    //            root.getTab(root.currentIndex).item.children[0].save()
 
-//    }
+    //    }
 
-//    function clearDataPool()
-//    {
-//        //console.log("clearDataPool")
-//        if (root.getTab(root.currentIndex).item.children[0].type === "UDP_CLIENT_TYPE" | root.getTab(root.currentIndex).item.children[0].type === "TXT_CLIENT_TYPE")
-//            root.getTab(root.currentIndex).item.children[0].clearDataPool()
-//    }
+    //    function clearDataPool()
+    //    {
+    //        //console.log("clearDataPool")
+    //        if (root.getTab(root.currentIndex).item.children[0].type === "UDP_CLIENT_TYPE" | root.getTab(root.currentIndex).item.children[0].type === "TXT_CLIENT_TYPE")
+    //            root.getTab(root.currentIndex).item.children[0].clearDataPool()
+    //    }
 
 
     function addNewTab()
