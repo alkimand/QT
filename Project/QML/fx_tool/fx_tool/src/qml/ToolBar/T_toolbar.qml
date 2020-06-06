@@ -9,37 +9,55 @@ ToolBar
 {
     id: control
     width: parent.width
-    implicitHeight: 55
-    //height: 25
+    //implicitHeight: grid_view_.height
+    //height: 400
     focusReason : Qt.MouseFocusReason
     background: Rectangle  {
         anchors.fill:parent
         color: "white"
     }
 
-    Row {
-        property int button_type : 1
-        spacing: 0
-        CustomToolButton {action: Actions.addAction}
-        CustomToolButton {action: Actions.fileOpenAction}
-        CustomToolButton {action: Actions.fileSaveAction}
-        CustomToolButton {action: Actions.fileSaveAsAction}
-        CustomToolButton {action: Actions.closeAllAction}
 
-//        Rectangle {
-//            color: "#77a9ef"
-//            width: parent.width
-//            height: 1
-//            anchors.bottom: parent.bottom
-//        }
+    Flow {
+        id:grid_view_
+        width: parent.width;
+        property int button_type : 1
+               CustomToolButton {action: Actions.addAction}
+                CustomToolButton {action: Actions.fileOpenAction}
+                CustomToolButton {action: Actions.fileSaveAction}
+                CustomToolButton {action: Actions.fileSaveAsAction}
+                CustomToolButton {action: Actions.closeAllAction}
+                CustomToolButton {action: Actions.addAction}
+                CustomToolButton {action: Actions.fileOpenAction}
+                CustomToolButton {action: Actions.fileSaveAction}
+                CustomToolButton {action: Actions.fileSaveAsAction}
+                CustomToolButton {action: Actions.closeAllAction}
+                CustomToolButton {action: Actions.addAction}
+                CustomToolButton {action: Actions.fileOpenAction}
+                CustomToolButton {action: Actions.fileSaveAction}
+                CustomToolButton {action: Actions.fileSaveAsAction}
+                CustomToolButton {action: Actions.closeAllAction}
+                CustomToolButton {action: Actions.addAction}
+                CustomToolButton {action: Actions.fileOpenAction}
+                CustomToolButton {action: Actions.fileSaveAction}
+                CustomToolButton {action: Actions.fileSaveAsAction}
+                CustomToolButton {action: Actions.closeAllAction}
+        //}
+        //        Rectangle {
+        //            color: "#77a9ef"
+        //            width: parent.width
+        //            height: 1
+        //            anchors.bottom: parent.bottom
+        //        }
+
 
     }
-//    Rectangle {
-//        color: "#77a9ef"
-//        width: parent.width
-//        height: 1
-//        anchors.bottom: parent.bottom
-//    }
+    //    Rectangle {
+    //        color: "#77a9ef"
+    //        width: parent.width
+    //        height: 1
+    //        anchors.bottom: parent.bottom
+    //    }
 
 }
 

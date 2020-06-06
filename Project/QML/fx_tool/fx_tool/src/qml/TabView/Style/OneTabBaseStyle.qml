@@ -595,7 +595,7 @@ Rectangle {
 
     Rectangle {
         id: bottomOutsideRightBorder
-        visible:  true
+        visible:  false
         anchors.bottom: parent.bottom
         anchors.left: topRightRadius.right
         anchors.leftMargin: root.radius
@@ -665,7 +665,9 @@ Rectangle {
                 color: (styleData.index === (tab_view.currentIndex + 1)
                         //|| (styleData.index === tab_view.currentIndex + 1))
                         )
-                       ? root.activeColor: root.disactiveColor;
+                       ?
+                root.activeColor: root.disactiveColor;
+                //"red":"blue"
                 //  color: root.disactiveColor;
             }
 
@@ -767,6 +769,10 @@ Rectangle {
                 target: bottomLeftRadius;
                 activeButtonColor: root.beforeSelectColor;
             }
+//            PropertyChanges {
+//                target: bottomLeftBorder;
+//                visible: false;
+//            }
 
             PropertyChanges {
                 target: bottomRightRadius;
@@ -786,32 +792,49 @@ Rectangle {
 
             PropertyChanges {
                 target: bottomLeftOutsideRadius;
-                visible: false
+                visible: true
                 // root.beforeSelectColor: root.disactiveColor;
             }
 
-//            PropertyChanges {
-//                target: bottomOutsideRightRadius;
-//                visible: true
-//                // root.beforeSelectColor: root.disactiveColor;
-//            }
-
-//            PropertyChanges {
-//              target: bottomOutsideRightRadius;
-//              activeButtonColor:
+            //TODO
+            PropertyChanges {
+              target: bottomLeftOutsideRadius;
+              activeButtonColor:"red"
 //                  ((tab_view.indexUnderMouse === (tab_view.currentIndex+1))
 //                   && styleData.index === (tab_view.currentIndex)
 //                   )
-//                  ? root.beforeSelectColor: root.disactiveColor;
-//          }
+//                ? root.beforeSelectColor: root.disactiveColor;
+              // ? root.activeColor : root.disactiveColor;
+              // ?"red":"blue"
+          }
 
+            PropertyChanges {
+                target: bottomOutsideRightBorder;
+                visible: (styleData.index === tab_view.indexUnderMouse) ?true:false
+            }
             PropertyChanges {
               target: bottomOutsideRightBorder;
               color:
                   ((tab_view.indexUnderMouse === (tab_view.currentIndex+1))
                    && styleData.index === (tab_view.currentIndex)
                    )
-                  ? root.beforeSelectColor: root.disactiveColor;
+                ? root.disactiveColor: root.beforeSelectColor;
+//               ? "yellow": "blue";
+          }
+
+            PropertyChanges {
+                target: bottomOutsideRightRadius;
+                visible: (styleData.index === tab_view.indexUnderMouse) ?true:false
+            }
+
+            PropertyChanges {
+              target: bottomOutsideRightRadius;
+              activeButtonColor:
+                  ((tab_view.indexUnderMouse === (tab_view.currentIndex+1))
+                   && styleData.index === (tab_view.currentIndex)
+                   )
+//                ? root.beforeSelectColor: root.disactiveColor;
+               ? root.activeColor : root.disactiveColor;
           }
 
 
@@ -877,36 +900,29 @@ Rectangle {
                     ? root.beforeSelectColor: root.disactiveColor;
             }
 
+
+            PropertyChanges {
+                target: bottomOutsideRightBorder;
+                visible: ((styleData.index === tab_view.indexUnderMouse
+                           && (styleData.index !== tab_view.currentIndex - 1))
+                          || styleData.index === tab_view.currentIndex
+                          ) ?true:false
+            }
+
             PropertyChanges {
                 target: bottomOutsideRightRadius;
                 activeButtonColor:
                     ((tab_view.indexUnderMouse === (tab_view.currentIndex+1))
                      && styleData.index === (tab_view.currentIndex)
                      )
+                 // ? "yellow": "blue";
                     ? root.beforeSelectColor: root.disactiveColor;
             }
-
-            //            PropertyChanges {
-            //                target: bottomOutsideLeftBorder;
-            //                visible:true;
-            //            }
-
-
-
-            //            PropertyChanges {
-            //                target: topLeftBorder;
-            //                color: root.beforeSelectColor;
-            //            }
 
             PropertyChanges {
                 target: bottomOutsideRightRadius;
                 visible: true
             }
-
-
-
-
-
 
         }
     ]

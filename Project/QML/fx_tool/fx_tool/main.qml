@@ -66,7 +66,7 @@ ApplicationWindow {
         }
     }
 
-    // menuBar: MenuBar{id:mainMenuBar}
+
     menuBar: T_menu_bar {}// {id:menu_bar_}
     header: T_toolbar {} //{id:tool_bar_}
     
