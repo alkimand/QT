@@ -21,25 +21,44 @@ C1.TabView {
     //anchors.leftMargin: 5
     //anchors.leftMargin: 50
     //property int curIndex: 0
-    property string newWindowTitle: "FreeYTVDownloader" //"new window " + root.count
+    property string newWindowTitle: "FreeYTVDownloader" + root.count
     property int contexMenuIndex: -1
     property int indexUnderMouse: -1
     signal renametab()
     style: TabViewStyle{}
+    signal refreshTab()
+    onCurrentIndexChanged: {
+        for (var i = 0  ;i < root.count;i++){
+//            if (i!==root.currentIndex) {
 
-//    Rectangle {
-//        color: "#77a9ef"
-//        width: parent.width
-//        height: 1
-//        anchors.bottom: parent.top
+//            }
+            refreshTab()
+        }
+
+            //root.removeTab(i)
+    }
+
+//    Connections {
+//        target: root_style
+//    onRefreshTab: {
+
 //    }
 
-//    Rectangle {
-//        color: "#77a9ef"
-//        width: parent.width
-//        height: 5
-//        anchors.bottom: parent.bottom
 //    }
+
+    //    Rectangle {
+    //        color: "#77a9ef"
+    //        width: parent.width
+    //        height: 1
+    //        anchors.bottom: parent.top
+    //    }
+
+    //    Rectangle {
+    //        color: "#77a9ef"
+    //        width: parent.width
+    //        height: 5
+    //        anchors.bottom: parent.bottom
+    //    }
 
 
 
@@ -80,11 +99,9 @@ C1.TabView {
 
     //    }
 
-    Component
-    {
+    Component {
         id:newTextComponent
-        Loader
-        {
+        Loader {
             id: loader
             anchors.fill: parent
             source: "../TableView/BaseTableView.qml"
@@ -92,11 +109,13 @@ C1.TabView {
 
     }
 
-    function addTextComponent()
-    {
-        root.addTab(newWindowTitle,newTextComponent)
-        root.currentIndex = root.count - 1
-    }
+    //    function addTextComponent()
+    //    {
+
+    //        root.addTab(newWindowTitle,newTextComponent)
+
+    //        root.currentIndex = root.count - 1
+    //    }
 
 
     //    function onCurIndChangeHeandler()
@@ -137,28 +156,24 @@ C1.TabView {
     //    }
 
 
-    function addNewTab()
-    {
+    function addNewTab()  {
+        //console.log("1_root.count="+ root.count)
         root.addTab(newWindowTitle,newTextComponent)
         //root.addTab(newWindowTitle,newChoiceComponent)
         root.currentIndex = root.count - 1
         root.contexMenuIndex = root.currentIndex
+        //console.log("2_root.count="+ root.count)
     }
 
-    function closeAllButThisTab(index)
-    {
-        if (index < root.count - 1)
-        {
+    function closeAllButThisTab(index) {
+        if (index < root.count - 1) {
             for (var i = root.count - 1 ;i > index;i--)
-            {
                 root.removeTab(i)
-            }
         }
         for (i = index - 1 ;i > -1;i--)
-        {
             root.removeTab(i)
-        }
     }
+
     function saveTab(index) //ToDo
     {
         //root.removeTab(index)
@@ -175,8 +190,7 @@ C1.TabView {
         // tableView.selection.select(row)
         //root.removeTab(index)
     }
-    function renameTab(index)
-    {
+    function renameTab(index) {
         console.log("root:renametab()")
         root.renametab()
     }

@@ -7,7 +7,7 @@ import QtQuick.Controls.Styles 1.4
 //import "../Style"
 
 TabViewStyle {
-    //id:tab_view_Style
+    id:tab_view_style_
     tabOverlap:0
     tabsMovable :true
 

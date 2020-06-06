@@ -24,7 +24,7 @@ ToolBar
         CustomToolButton {action: Actions.fileOpenAction}
         CustomToolButton {action: Actions.fileSaveAction}
         CustomToolButton {action: Actions.fileSaveAsAction}
-        CustomToolButton {action: Actions.closeAction}
+        CustomToolButton {action: Actions.closeAllAction}
 
 //        Rectangle {
 //            color: "#77a9ef"

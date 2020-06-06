@@ -30,11 +30,43 @@ ApplicationWindow {
         }
 
         onCloseTabAct : {
-            tab_view.removeTab(tab_view.currentIndex)
+            //console.log("1_onCloseTabAct=" + tab_view.count )
+            //console.log("1_tab_view.currentIndex=" + tab_view.currentIndex)
+
+            if (tab_view.indexUnderMouse > -1 && (tab_view.indexUnderMouse <  tab_view.count)){
+                //indexUnderMouse
+            }
+            else{
+                tab_view.indexUnderMouse-=1;
+                //console.log("Bug onCloseTabAct currentIndex=" + tab_view.currentIndex)
+                return;
+            }
+
+            var i = tab_view.indexUnderMouse;
+            var cur_index = tab_view.currentIndex;
+            tab_view.removeTab(tab_view.indexUnderMouse)
+            if (tab_view.count > 0){
+                tab_view.contexMenuIndex = -1
+                tab_view.indexUnderMouse = -1
+                //if (tab_view.count > 1)
+                    //tab_view.currentIndex = cur_index - 1
+                //else
+                    //tab_view.currentIndex =0;
+                tab_view.refreshTab()
+            }
+            // tab_view.currentIndex =
+            //console.log("2_onCloseTabAct="+tab_view.count )
+            //console.log("2_tab_view.currentIndex=" + tab_view.currentIndex)
+        }
+
+        onCloseAllTabAct:{
+            for (var i = tab_view.count ;i > 0;--i){
+                tab_view.removeTab(0)
+            }
         }
     }
 
-   // menuBar: MenuBar{id:mainMenuBar}
+    // menuBar: MenuBar{id:mainMenuBar}
     menuBar: T_menu_bar {}// {id:menu_bar_}
     header: T_toolbar {} //{id:tool_bar_}
     
@@ -45,19 +77,19 @@ ApplicationWindow {
 
 
 
-   // property Actions actions : Actions{}
+    // property Actions actions : Actions{}
 
-//    FileDialog
-//    {
-//        id: fileDialog
-//        nameFilters: ["Text files (*.txt)", "HTML files (*.html, *.htm)"]
-//        onAccepted: {
-//            if (fileDialog.selectExisting)
-//                document.fileUrl = fileUrl
-//            else
-//                document.saveAs(fileUrl, selectedNameFilter)
-//        }
-//    }
+    //    FileDialog
+    //    {
+    //        id: fileDialog
+    //        nameFilters: ["Text files (*.txt)", "HTML files (*.html, *.htm)"]
+    //        onAccepted: {
+    //            if (fileDialog.selectExisting)
+    //                document.fileUrl = fileUrl
+    //            else
+    //                document.saveAs(fileUrl, selectedNameFilter)
+    //        }
+    //    }
 
     function test (){
         console.log("main_root test()");

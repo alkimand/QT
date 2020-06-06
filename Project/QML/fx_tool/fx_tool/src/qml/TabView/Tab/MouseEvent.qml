@@ -9,7 +9,7 @@ MouseArea {
     propagateComposedEvents : true
     preventStealing: true
 
-    drag.target:oneTabView
+    drag.target: root
     drag.axis: Drag.XAxis
     drag.minimumX: getMinimumDrapWidth(index)
     drag.maximumX: getMaxDrapWidth(index)//oneTabView.width //- rect.width
@@ -24,10 +24,12 @@ MouseArea {
             tabContextMenu.popup()
             //console.log("oneTabView:mouse.button === Qt.RightButton" )
         }
-        else {
+        else if (mouse.button === Qt.LeftButton) {
             //console.log("mouse.button " + mouse.button)
             tab_view.contexMenuIndex = index
             tab_view.currentIndex = index
+            root.activateButton()
+
             //parent.parent.tabBarRectColor = settingData.children[2].tabRectangleColorIsSelictedSetting
         }
     }

@@ -10,10 +10,11 @@ Item
     //property string tableViewIconPath: '../../images/TableViewIcon/'
     //property string appButtonIconPath: '../../images/AppButton/'
 	
-	signal closeTabAct()	
-	signal fileOpen(var url)
-	signal openAction()
-    signal saveAction(var save_as)
+	signal closeTabAct();	
+	signal closeAllTabAct();
+	signal fileOpen(var url);
+	signal openAction();
+    signal saveAction(var save_as);
 
     
     property Action fileOpenAction : Action {
@@ -94,6 +95,21 @@ Item
         }
     }
 	
+	    property Action closeAllAction:Action {
+        icon.source: toolBarIconPath + 'close.png'
+        //shortcut : QKeySequence::Open)
+        icon.name: "document-close"
+        text: "CloseAll"
+
+        onTriggered:
+        {
+            console.log("Action:" + text);
+            root.closeAllTabAct();
+          //tab_view_.removeTab(tab_view_.contexMenuIndex)
+        }
+    }
+	
+	
 	property Action closeTabAction:Action
     {
         icon.source: toolBarIconPath + 'close.png'
@@ -101,8 +117,7 @@ Item
         icon.name: "document-close"
         text: "Close"
 
-        onTriggered:
-        {
+        onTriggered: {
             console.log("Action:" + text);
 			root.closeTabAct()
           //tab_view_.removeTab(tab_view_.contexMenuIndex)
