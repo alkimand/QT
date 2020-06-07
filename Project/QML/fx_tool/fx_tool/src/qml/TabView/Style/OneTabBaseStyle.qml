@@ -635,6 +635,15 @@ Rectangle {
     states: [
         State {
             name: "disabled"
+
+            PropertyChanges {
+                target: rightBorder;
+                visible: styleData.index !== (tab_view.currentIndex - 1)
+                        && (styleData.index !== tab_view.indexUnderMouse - 1)
+                        && (styleData.index !== tab_view.count - 1)
+                         ? true:false;
+            }
+
             PropertyChanges {
                 target: root;
                 color: root.disactiveColor;
@@ -799,7 +808,8 @@ Rectangle {
             //TODO
             PropertyChanges {
                 target: bottomLeftOutsideRadius;
-                activeButtonColor:"red"
+                activeButtonColor: root.beforeSelectColor
+                    //"red"
                 //                  ((tab_view.indexUnderMouse === (tab_view.currentIndex+1))
                 //                   && styleData.index === (tab_view.currentIndex)
                 //                   )
