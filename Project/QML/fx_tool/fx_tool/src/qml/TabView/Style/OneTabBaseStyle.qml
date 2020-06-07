@@ -666,7 +666,7 @@ Rectangle {
                         //|| (styleData.index === tab_view.currentIndex + 1))
                         )
                        ?
-                root.activeColor: root.disactiveColor;
+                           root.activeColor: root.disactiveColor;
                 //"red":"blue"
                 //  color: root.disactiveColor;
             }
@@ -708,10 +708,10 @@ Rectangle {
             }
 
 
-//            PropertyChanges {
-//                target: bottomLeftOutsideRadius;
-//                activeButtonColor:"blue"
-//            }
+            //            PropertyChanges {
+            //                target: bottomLeftOutsideRadius;
+            //                activeButtonColor:"blue"
+            //            }
 
             //            PropertyChanges {
             //                target: bottomLeftOutsideRadius;
@@ -769,10 +769,10 @@ Rectangle {
                 target: bottomLeftRadius;
                 activeButtonColor: root.beforeSelectColor;
             }
-//            PropertyChanges {
-//                target: bottomLeftBorder;
-//                visible: false;
-//            }
+            //            PropertyChanges {
+            //                target: bottomLeftBorder;
+            //                visible: false;
+            //            }
 
             PropertyChanges {
                 target: bottomRightRadius;
@@ -798,29 +798,29 @@ Rectangle {
 
             //TODO
             PropertyChanges {
-              target: bottomLeftOutsideRadius;
-              activeButtonColor:"red"
-//                  ((tab_view.indexUnderMouse === (tab_view.currentIndex+1))
-//                   && styleData.index === (tab_view.currentIndex)
-//                   )
-//                ? root.beforeSelectColor: root.disactiveColor;
-              // ? root.activeColor : root.disactiveColor;
-              // ?"red":"blue"
-          }
+                target: bottomLeftOutsideRadius;
+                activeButtonColor:"red"
+                //                  ((tab_view.indexUnderMouse === (tab_view.currentIndex+1))
+                //                   && styleData.index === (tab_view.currentIndex)
+                //                   )
+                //                ? root.beforeSelectColor: root.disactiveColor;
+                // ? root.activeColor : root.disactiveColor;
+                // ?"red":"blue"
+            }
 
             PropertyChanges {
                 target: bottomOutsideRightBorder;
                 visible: (styleData.index === tab_view.indexUnderMouse) ?true:false
             }
             PropertyChanges {
-              target: bottomOutsideRightBorder;
-              color:
-                  ((tab_view.indexUnderMouse === (tab_view.currentIndex+1))
-                   && styleData.index === (tab_view.currentIndex)
-                   )
-                ? root.disactiveColor: root.beforeSelectColor;
-//               ? "yellow": "blue";
-          }
+                target: bottomOutsideRightBorder;
+                color:
+                    ((tab_view.indexUnderMouse === (tab_view.currentIndex+1))
+                     && styleData.index === (tab_view.currentIndex)
+                     )
+                    ? root.disactiveColor: root.beforeSelectColor;
+                //               ? "yellow": "blue";
+            }
 
             PropertyChanges {
                 target: bottomOutsideRightRadius;
@@ -828,14 +828,14 @@ Rectangle {
             }
 
             PropertyChanges {
-              target: bottomOutsideRightRadius;
-              activeButtonColor:
-                  ((tab_view.indexUnderMouse === (tab_view.currentIndex+1))
-                   && styleData.index === (tab_view.currentIndex)
-                   )
-//                ? root.beforeSelectColor: root.disactiveColor;
-               ? root.activeColor : root.disactiveColor;
-          }
+                target: bottomOutsideRightRadius;
+                activeButtonColor:
+                    ((tab_view.indexUnderMouse === (tab_view.currentIndex+1))
+                     && styleData.index === (tab_view.currentIndex)
+                     )
+                //                ? root.beforeSelectColor: root.disactiveColor;
+                    ? root.activeColor : root.disactiveColor;
+            }
 
 
 
@@ -915,7 +915,7 @@ Rectangle {
                     ((tab_view.indexUnderMouse === (tab_view.currentIndex+1))
                      && styleData.index === (tab_view.currentIndex)
                      )
-                 // ? "yellow": "blue";
+                // ? "yellow": "blue";
                     ? root.beforeSelectColor: root.disactiveColor;
             }
 

@@ -22,26 +22,26 @@ ToolBar
         id:grid_view_
         width: parent.width;
         property int button_type : 1
-               CustomToolButton {action: Actions.addAction}
-                CustomToolButton {action: Actions.fileOpenAction}
-                CustomToolButton {action: Actions.fileSaveAction}
-                CustomToolButton {action: Actions.fileSaveAsAction}
-                CustomToolButton {action: Actions.closeAllAction}
-                CustomToolButton {action: Actions.addAction}
-                CustomToolButton {action: Actions.fileOpenAction}
-                CustomToolButton {action: Actions.fileSaveAction}
-                CustomToolButton {action: Actions.fileSaveAsAction}
-                CustomToolButton {action: Actions.closeAllAction}
-                CustomToolButton {action: Actions.addAction}
-                CustomToolButton {action: Actions.fileOpenAction}
-                CustomToolButton {action: Actions.fileSaveAction}
-                CustomToolButton {action: Actions.fileSaveAsAction}
-                CustomToolButton {action: Actions.closeAllAction}
-                CustomToolButton {action: Actions.addAction}
-                CustomToolButton {action: Actions.fileOpenAction}
-                CustomToolButton {action: Actions.fileSaveAction}
-                CustomToolButton {action: Actions.fileSaveAsAction}
-                CustomToolButton {action: Actions.closeAllAction}
+        CustomToolButton {action: Actions.addAction}
+        CustomToolButton {action: Actions.fileOpenAction}
+        CustomToolButton {action: Actions.fileSaveAction}
+        CustomToolButton {action: Actions.fileSaveAsAction}
+        CustomToolButton {action: Actions.closeAllAction}
+        CustomToolButton {action: Actions.addAction}
+        CustomToolButton {action: Actions.fileOpenAction}
+        CustomToolButton {action: Actions.fileSaveAction}
+        CustomToolButton {action: Actions.fileSaveAsAction}
+        CustomToolButton {action: Actions.closeAllAction}
+        CustomToolButton {action: Actions.addAction}
+        CustomToolButton {action: Actions.fileOpenAction}
+        CustomToolButton {action: Actions.fileSaveAction}
+        CustomToolButton {action: Actions.fileSaveAsAction}
+        CustomToolButton {action: Actions.closeAllAction}
+        CustomToolButton {action: Actions.addAction}
+        CustomToolButton {action: Actions.fileOpenAction}
+        CustomToolButton {action: Actions.fileSaveAction}
+        CustomToolButton {action: Actions.fileSaveAsAction}
+        CustomToolButton {action: Actions.closeAllAction}
         //}
         //        Rectangle {
         //            color: "#77a9ef"

@@ -22,52 +22,11 @@
 		<file>src/qml/TabView/Tab/MouseEvent.qml</file>
 		<file>src/qml/TableView/BaseTableView.qml</file>
 		<file>src/qml/TableView/ItemDelegate/ItemDelegate/EditableLable.qml</file>
-		<file>src/images/ToolBarIcon/editcopy.png</file>
-        <file>src/images/ToolBarIcon/editcut.png</file>
-        <file>src/images/ToolBarIcon/editpaste.png</file>
-        <file>src/images/ToolBarIcon/editredo.png</file>
-        <file>src/images/ToolBarIcon/editundo.png</file>
-        <file>src/images/ToolBarIcon/exportpdf.png</file>
         <file>src/images/ToolBarIcon/filenew.png</file>
         <file>src/images/ToolBarIcon/fileopen.png</file>
-        <file>src/images/ToolBarIcon/fileprint.png</file>
         <file>src/images/ToolBarIcon/filesave.png</file>
         <file>src/images/ToolBarIcon/qt-logo.png</file>
-        <file>src/images/ToolBarIcon/textbold.png</file>
-        <file>src/images/ToolBarIcon/textcenter.png</file>
-        <file>src/images/ToolBarIcon/textitalic.png</file>
-        <file>src/images/ToolBarIcon/textjustify.png</file>
-        <file>src/images/ToolBarIcon/textleft.png</file>
-        <file>src/images/ToolBarIcon/textright.png</file>
-        <file>src/images/ToolBarIcon/textunder.png</file>
-        <file>src/images/ToolBarIcon/zoomin.png</file>
-        <file>src/images/ToolBarIcon/zoomout.png</file>
-        <file>src/images/ToolBarIcon/setting.png</file>
-        <file>src/images/ToolBarIcon/clock.png</file>
-        <file>src/images/ToolBarIcon/download.png</file>
-        <file>src/images/ToolBarIcon/erase.png</file>
-        <file>src/images/ToolBarIcon/pause.png</file>
-        <file>src/images/ToolBarIcon/play.png</file>
-        <file>src/images/ToolBarIcon/stop.png</file>
-        <file>src/images/ToolBarIcon/plus.png</file>
-        <file>src/images/ToolBarIcon/sony.png</file>
-        <file>src/images/ToolBarIcon/marker.png</file>
         <file>src/images/ToolBarIcon/close.png</file>
-        <file>src/images/ToolBarIcon/search.png</file>
-        <file>src/images/TableViewIcon/filter.png</file>
-        <file>src/images/TableViewIcon/filterAdd.png</file>
-        <file>src/images/TableViewIcon/filterDelete.png</file>
-        <file>src/images/TableViewIcon/search.png</file>
-        <file>src/images/TableViewIcon/sort_ascending.png</file>
-        <file>src/images/TableViewIcon/sort_descending.png</file>
-        <file>src/images/TableViewIcon/filterIcon.png</file>
-        <file>src/images/ToolBarIcon/rename.jpg</file>
-        <file>src/images/ToolBarIcon/rename.png</file>
-        <file>src/images/ToolBarIcon/explorer.png</file>
-        <file>src/images/ToolBarIcon/explore.png</file>
-        <file>src/images/ToolBarIcon/remove_column.png</file>
-        <file>src/images/ToolBarIcon/show_all_column.png</file>
-		
-		
+		<file>src/images/ToolBarIcon/plus.png</file>
     </qresource>
 </RCC>

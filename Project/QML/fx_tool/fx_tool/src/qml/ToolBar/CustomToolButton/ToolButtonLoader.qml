@@ -4,9 +4,12 @@ Loader {
     id: loader
     property string sourceIconPathLoader : parent.action.icon.source
     property string textFirstLineLoader : parent.action.text
-    property int textHeightLoader : parent.textHeight
     property string textFontLoader:parent.textFont
+
+    property int textHeightLoader : parent.textHeight
+
     property color buttonBackColorLoader:parent.buttonBackColor
+
     anchors.fill: parent
     source: setSourceLoader()
 
