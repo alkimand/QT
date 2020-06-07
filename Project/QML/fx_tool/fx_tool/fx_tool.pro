@@ -4,7 +4,7 @@ PROJECT_ROOT_PATH = $${PWD}/
 win32: OS_SUFFIX = win32
 linux-g++: OS_SUFFIX = linux
 
-QT += qml quick core quickcontrols2
+QT += qml quick core quickcontrols2 widgets
 
 CONFIG += c++11
 
@@ -23,9 +23,8 @@ BIN_PATH = $${PROJECT_ROOT_PATH}/bin/$${BUILD_FLAG}/
 IMAGES_PATH = $${PROJECT_ROOT_PATH}/src/images/ToolBarIcon/
 
 BUILD_PATH = $${PROJECT_ROOT_PATH}/build/$${BUILD_FLAG}/$${TARGET}/
-RCC_DIR = $${BUILD_PATH}/rcc/
-
 #RCC_DIR = $${BUILD_PATH}/rcc/
+
 #UI_DIR = $${BUILD_PATH}/ui/
 #MOC_DIR = $${BUILD_PATH}/moc/
 #OBJECTS_DIR = $${BUILD_PATH}/obj/
@@ -47,26 +46,36 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 QML_CUSTOM_CLASSES = $${PROJECT_ROOT_PATH}/src/C++/QMLCustomClasses/
+C_SOURSE_MODEL_PATH = $${PROJECT_ROOT_PATH}/src/C++/Models/
 
 SOURCES += \
         main.cpp \
+        $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItem/AbstractItem.cpp \
+        $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractModel/IessenceModelBase.cpp \
         $${QML_CUSTOM_CLASSES}/BorderRadiusWidget/borderradiuswidget.cpp
 HEADERS += \
+        $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItem/AbstractItem.h \
+        $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItem/ItemPropery.h \
+        $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItem/ItemConstant.h \
+        $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractModel/IessenceModelBase.h \
         $${QML_CUSTOM_CLASSES}/BorderRadiusWidget/borderradiuswidget.h
 
 QRC_DIR_PATH = $${PROJECT_ROOT_PATH}/src/resources \
 
-RESOURCES += $${QRC_DIR_PATH}/qml.qrc
+RESOURCES += $${QRC_DIR_PATH}/qml.qrc \
+             $${QRC_DIR_PATH}/Icons.qrc
 
 TRANSLATIONS += \
-    fx_tool_ru_RU.ts
+             $${QRC_DIR_PATH}/translations/fx_tool_ru_RU.ts
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
 
 INCLUDEPATH += $${PROJECT_ROOT_PATH}/src \
                $${QML_CUSTOM_CLASSES}/BorderRadiusWidget/ \
-               $${IMPORT_PATH}/
+               $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItem/ \
+               $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractModel/ \
+               $${IMPORT_PATH}/ \
                $${INC_PATH}/
 
                # $${QML_CUSTOM_CLASSES}/BorderRadiusWidget
@@ -75,9 +84,9 @@ INCLUDEPATH += $${PROJECT_ROOT_PATH}/src \
 
 #defines other files
 QML_SOURSE_PATH = $${PROJECT_ROOT_PATH}/src/qml/
-    QML_SOURSE_TOOL_BAR_PATH =  $${QML_SOURSE_PATH}/ToolBar
-    QML_SOURSE_MENU_BAR_PATH =  $${QML_SOURSE_PATH}/Menu
-    QML_SOURSE_TAB_VIEW_PATH =  $${QML_SOURSE_PATH}/TabView
+    QML_SOURSE_TOOL_BAR_PATH =    $${QML_SOURSE_PATH}/ToolBar
+    QML_SOURSE_MENU_BAR_PATH =    $${QML_SOURSE_PATH}/Menu
+    QML_SOURSE_TAB_VIEW_PATH =    $${QML_SOURSE_PATH}/TabView
     QML_SOURSE_TABLE_VIEW_PATH =  $${QML_SOURSE_PATH}/TableView
 
 OTHER_FILES += \

@@ -22,11 +22,5 @@
         <file>../../src/qml/TabView/Tab/MouseEvent.qml</file>
         <file>../../src/qml/TableView/BaseTableView.qml</file>
         <file>../../src/qml/TableView/ItemDelegate/ItemDelegate/EditableLable.qml</file>
-        <file>../../src/images/ToolBarIcon/filenew.png</file>
-        <file>../../src/images/ToolBarIcon/fileopen.png</file>
-        <file>../../src/images/ToolBarIcon/filesave.png</file>
-        <file>../../src/images/ToolBarIcon/qt-logo.png</file>
-        <file>../../src/images/ToolBarIcon/close.png</file>
-        <file>../../src/images/ToolBarIcon/plus.png</file>
     </qresource>
 </RCC>
