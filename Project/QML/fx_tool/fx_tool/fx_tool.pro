@@ -24,6 +24,7 @@ IMAGES_PATH = $${PROJECT_ROOT_PATH}/src/images/ToolBarIcon/
 
 BUILD_PATH = $${PROJECT_ROOT_PATH}/build/$${BUILD_FLAG}/$${TARGET}/
 RCC_DIR = $${BUILD_PATH}/rcc/
+
 #RCC_DIR = $${BUILD_PATH}/rcc/
 #UI_DIR = $${BUILD_PATH}/ui/
 #MOC_DIR = $${BUILD_PATH}/moc/
@@ -53,7 +54,10 @@ SOURCES += \
 HEADERS += \
         $${QML_CUSTOM_CLASSES}/BorderRadiusWidget/borderradiuswidget.h
 
-RESOURCES += qml.qrc
+QRC_DIR_PATH = $${PROJECT_ROOT_PATH}/src/resources \
+
+RESOURCES += $${QRC_DIR_PATH}/qml.qrc
+
 TRANSLATIONS += \
     fx_tool_ru_RU.ts
 
