@@ -3,25 +3,25 @@
 #include <QObject>
 #include <QVector>
 #include <QAbstractTableModel>
-#include "RowItem.h"
-#include "props.h"
+#include "ItemPropery.h"
 #include <QSharedPointer>
 
+#define GET_ITEM_PROPERTY data_.at(index.row()).at(index.column())
 
-class IWidgetModelBase : public QAbstractTableModel
+class IEssenceModelBase : public QAbstractTableModel
 {
 
     Q_OBJECT
 public:
     //explicit
-    explicit IWidgetModelBase(ItemEnums::EModelType widgetType);
+    explicit IEssenceModelBase(ItemEnums::EModelType widgetType);
     void setupWidgetModel();
     void virtual  setupDefaultPropertyMap();
 
 
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const {
-        Q_UNUSED(parent); return rows_.size();
+        Q_UNUSED(parent); return data_.size();
     }
 
     int columnCount(const QModelIndex &parent = QModelIndex()) const {
@@ -34,13 +34,13 @@ public:
 
 
 
-    QVector <QSharedPointer<AbstractItem>>  rows_;
+    QVector <QVector<QString>>  data_;
 
-    virtual ~IWidgetModelBase();
+    virtual ~IEssenceModelBase();
 protected:
     ItemEnums::EModelType widgetType_;
-    IWidgetModelBase *childModel_ = nullptr;
-    IWidgetModelBase *parentModel_ = nullptr;
+    IEssenceModelBase *childModel_ = nullptr;
+    IEssenceModelBase *parentModel_ = nullptr;
 
     QHash<int, QVariant> default_property_map_;
 

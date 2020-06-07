@@ -51,13 +51,13 @@ C_SOURSE_MODEL_PATH = $${PROJECT_ROOT_PATH}/src/C++/Models/
 SOURCES += \
         main.cpp \
         $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItem/AbstractItem.cpp \
-        $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractModel/IessenceModelBase.cpp \
+        $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractModel/IEssenceModelBase.cpp \
         $${QML_CUSTOM_CLASSES}/BorderRadiusWidget/borderradiuswidget.cpp
 HEADERS += \
         $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItem/AbstractItem.h \
         $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItem/ItemPropery.h \
         $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItem/ItemConstant.h \
-        $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractModel/IessenceModelBase.h \
+        $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractModel/IEssenceModelBase.h \
         $${QML_CUSTOM_CLASSES}/BorderRadiusWidget/borderradiuswidget.h
 
 QRC_DIR_PATH = $${PROJECT_ROOT_PATH}/src/resources \
