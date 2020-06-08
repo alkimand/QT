@@ -6,9 +6,11 @@ import QtQuick.Layouts 1.12
 //import "../RowLogic.js" as Logic
 //import Settings 1.0
 
-Component{
+ItemDelegate {
     //  id:root
     // property int labelMargins
+    property alias placeholderText: textArea.placeholderText
+
     Item{
         id:root
         //Component.onCompleted: {console.log("value="+value);}
@@ -28,6 +30,9 @@ Component{
         property int textBlockHeight: 30
 
         property string commonFontFamily: "Arrial"
+
+        //property string value
+
 
         // signal openView()
 
@@ -70,7 +75,14 @@ Component{
                 anchors.horizontalCenter: parent.horizontalCenter
                 // anchors.verticalCenter: parent.verticalCenter
                 placeholderTextColor : root.labelРighlightingFontColor
-                placeholderText : model.type
+              //  placeholderText : display
+                    //name
+                //text:index
+                //type3
+                    //name.type2
+                    //model.name.type2
+                    //name.feature//index
+                   // name //model.type
                 selectByMouse : true
                 //overwriteMode :true
                 selectByKeyboard :true
@@ -124,9 +136,9 @@ Component{
                 {
                     if (!(event.modifiers & Qt.ControlModifier))
                     {
-                        console.log("_onEnterPressed=" + model.type)
-                        model.type = textArea.text;
-                        textArea.placeholderText = model.type;
+                        console.log("_onEnterPressed=" + display_)
+                        data = textArea.text;
+                        textArea.placeholderText = display_;
                         //textArea.text=""; //bug ?
                         textArea.focus = false;
                         //root.finishEdit()//bug ?
@@ -135,9 +147,12 @@ Component{
 
 
                 function finishEditHandler(){
-                    //console.log("finishEditHandler =" + model.type);
-                    model.type = textArea.text;
-                    textArea.placeholderText = model.type;
+                    console.log("finishEditHandler =" + display);
+                    //name = textArea.text;
+
+                    edite = textArea.text;
+                    //if (textArea.placeholderText)
+                        textArea.placeholderText = display_;
                     textArea.text="";
                     textArea.focus = false;
                 }
@@ -159,13 +174,13 @@ Component{
                     onClicked: {
                         //console.log("onClicked model.type="+ model.type)
                         root.startEdit()
-                        if (textArea.text===model.type){
+                        if (textArea.text=== display){
                             var position = textArea.positionAt(mouse.x, mouse.y);
                             textArea.select(position,position);
                             textArea.deselect();
                         }
                         else {
-                            textArea.text = model.type;
+                            textArea.text = display_;
                             textArea.selectAll();
                         }
                     }
@@ -177,7 +192,7 @@ Component{
                     onDoubleClicked: {
                         if (textArea.activeFocus){
                             labelMouseArea.cursorShape=Qt.IBeamCursor;
-                            textArea.text = model.type;
+                            textArea.text = display_;
                             textArea.selectAll();
                             //console.log(textArea.activeFocus);
                             textArea.forceActiveFocus();

@@ -2,6 +2,9 @@
 #include <QQmlApplicationEngine>
 
 #include "borderradiuswidget.h"
+#include "ItemModelBase.h"
+
+
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -12,7 +15,8 @@ int main(int argc, char *argv[])
 
     qmlRegisterSingletonType( QUrl("qrc:/src/qml/Action/Actions.qml"), "Actions", 1, 0, "Actions" );
     qmlRegisterType<BorderRadiusWidget>("BorderRadiusWidget.qml", 1, 0, "BorderRadiusWidget");
-
+    qmlRegisterType<ItemModelBase>("ItemModelBase", 1, 0, "ItemModelBase");
+   // qmlRegisterSingletonType("ItemModelBase", 1, 0,"ItemModelBase");
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {
