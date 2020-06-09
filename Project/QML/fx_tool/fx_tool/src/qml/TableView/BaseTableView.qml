@@ -71,10 +71,9 @@ TableView {
 
 
 
-    delegate: Row {
+    delegate: //Row {
         EditableLable{
-            leftPadding :20
-
+            //leftPadding :20
             placeholderText:  display_
              //  display//feature//modelData.feature
         }
@@ -88,7 +87,7 @@ TableView {
 //            text: is_active//modelData.feature
 //        }
 //        bottomPadding :20
-    }
+   // }
 
 
        // EditableLable { }

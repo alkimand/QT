@@ -67,10 +67,10 @@ ApplicationWindow {
     }
 
 
-    menuBar: T_menu_bar {}// {id:menu_bar_}
-    header: T_toolbar {} //{id:tool_bar_}
+    menuBar: MenuBarWidget {}// {id:menu_bar_}
+    header: ToolBarWidget {} //{id:tool_bar_}
     
-    T_tab_view {
+    TabViewWidget {
         id:tab_view
         anchors.fill:parent
     }

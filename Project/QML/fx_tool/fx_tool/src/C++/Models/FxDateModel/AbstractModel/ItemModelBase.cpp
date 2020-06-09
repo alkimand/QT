@@ -5,7 +5,7 @@
 #include <QFileDialog>
 #include <QTextStream>
 
-ItemModelBase::ItemModelBase() {
+ItemModelBase::ItemModelBase(QObject *parent){
     //parentModel_ = this;
     // modelType_ = modelType
     //setupWidgetModel();
@@ -17,6 +17,11 @@ ItemModelBase::ItemModelBase() {
 
 }
 
+
+//ItemModelBase::ItemModelBase(QObject *parent)
+//{
+
+//}
 
 void ItemModelBase::setPropertyMap() {
     /*
@@ -83,23 +88,24 @@ QVariant ItemModelBase::data(const QModelIndex &index, int role) const {
 
     QVariant result;
     switch (role) {
-    case (int(Qt::UserRole + DATA_ID::FEATURE)):
-    case (int(Qt::UserRole + DATA_ID::NAME)):
-    case (int(Qt::UserRole + DATA_ID::IS_ACTIVE)):
-        if (worksheet_data_.size() > index.row()
-                && worksheet_data_.at(index.row()).contains(DATA_ID(role - int(Qt::UserRole)))
-                && index.column() < 4) {
-            result = worksheet_data_.at(index.row()).value(DATA_ID(role - int(Qt::UserRole)));
-             //qDebug()<< "data" + result.toString();
-           // return worksheet_data_.at(index.row()).value(DATA_ID(role - int(Qt::UserRole)));
-        }
-        break;
+//    case (int(Qt::UserRole + DATA_ID::FEATURE)):
+//    case (int(Qt::UserRole + DATA_ID::NAME)):
+//    case (int(Qt::UserRole + DATA_ID::IS_ACTIVE)):
+//        if (worksheet_data_.size() > index.row()
+//                && worksheet_data_.at(index.row()).contains(DATA_ID(role - int(Qt::UserRole)))
+//                && index.column() < 4) {
+//            result = worksheet_data_.at(index.row()).value(DATA_ID(role - int(Qt::UserRole)));
+//             //qDebug()<< "data" + result.toString();
+//           // return worksheet_data_.at(index.row()).value(DATA_ID(role - int(Qt::UserRole)));
+//        }
+//        break;
 
     case (int(Qt::DisplayRole)):
        // result = worksheet_data_.at(index.row()).value(DATA_ID(index.column()));
        // result = worksheet_data_.at(index.row()).value(DATA_ID(index.column()));
         //return worksheet_data_.at(index.row()).value(DATA_ID(index.column()));
-        result =  QString("%1, %2").arg(index.column()).arg(index.row());
+        result =  worksheet_data_.at(index.row()).value(DATA_ID(index.column()));
+                //QString("%1, %2").arg(index.column()).arg(index.row());
         break;
 
      case (int(Qt::UserRole + DATA_ID::DISPLAY)):
@@ -107,13 +113,14 @@ QVariant ItemModelBase::data(const QModelIndex &index, int role) const {
       break;
 
     }
-    qDebug()<< "data" + result.toString();
+    QString temp =  QString::number(index.row())+" " +  QString::number(index.column());//index.row();
+    //qDebug()<< "data " + temp + " =" + result.toString();
     return result;
 }
 
 bool ItemModelBase::setData(const QModelIndex &index, const QVariant &value, int role) {
     bool result = false;
-    qDebug()<< "setData"+value.toString();
+   // qDebug()<< "setData"+value.toString();
     if (index.isValid() && role==Qt::EditRole) {
         switch (role){
         //case Qt::EditRole:
@@ -155,7 +162,7 @@ bool ItemModelBase::setData(const QModelIndex &index, const QVariant &value, int
                 worksheet_data_.insert(index.row(), temp);
             }
 
-            emit dataChanged(index, index);
+            //emit dataChanged(index, index);
             result = true;
             break;
 
@@ -177,7 +184,8 @@ bool ItemModelBase::setData(const QModelIndex &index, const QVariant &value, int
             //return value(DATA_ID(role - int(Qt::UserRole)));
             //}
         }
-
+ QString temp =  QString::number(index.row())+" " +  QString::number(index.column());
+  //qDebug()<< "setdata " + temp + " =" + value.toString();
     }
     return result;
 }

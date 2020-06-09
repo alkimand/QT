@@ -52,13 +52,14 @@ SOURCES += \
         main.cpp \
         $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItem/AbstractItem.cpp \
         $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractModel/ItemModelBase.cpp \
+        $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItemModel/AbstractItemModel.cpp \
         $${QML_CUSTOM_CLASSES}/BorderRadiusWidget/borderradiuswidget.cpp
 HEADERS += \
         $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItem/AbstractItem.h \
         $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItem/ItemPropery.h \
         $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItem/ItemConstant.h \
         $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractModel/ItemModelBase.h \
-#        $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractModel/test.h \
+        $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItemModel/AbstractItemModel.h \
         $${QML_CUSTOM_CLASSES}/BorderRadiusWidget/borderradiuswidget.h
 
 QRC_DIR_PATH = $${PROJECT_ROOT_PATH}/src/resources \
@@ -95,7 +96,7 @@ OTHER_FILES += \
 #Actions
     $${PROJECT_ROOT_PATH}/src/qml/Action/Actions.qml \
 #ToolBar
-    $${QML_SOURSE_TOOL_BAR_PATH}/T_toolbar.qml \
+    $${QML_SOURSE_TOOL_BAR_PATH}/ToolBarWidget.qml \
     $${QML_SOURSE_TOOL_BAR_PATH}/CustomComboBox/CustomComboBox.qml \
     $${QML_SOURSE_TOOL_BAR_PATH}/CustomToolButton/CustomToolButtonIconText.qml \
     $${QML_SOURSE_TOOL_BAR_PATH}/CustomToolButton/CustomToolButtonIcon.qml \
@@ -103,14 +104,14 @@ OTHER_FILES += \
     $${QML_SOURSE_TOOL_BAR_PATH}/CustomToolButton/ToolButtonLoader.qml \
     $${QML_SOURSE_TOOL_BAR_PATH}/CustomToolButton/CustomToolButton.qml \
 #MenuBar
-    $${QML_SOURSE_MENU_BAR_PATH}/HeaderMenuBar/T_menu_bar.qml \
+    $${QML_SOURSE_MENU_BAR_PATH}/HeaderMenuBar/MenuBarWidget.qml \
     $${QML_SOURSE_MENU_BAR_PATH}/HeaderMenuBar/MenuBarBasic.qml \
     $${QML_SOURSE_MENU_BAR_PATH}/ContextMenuBase.qml \
     $${QML_SOURSE_MENU_BAR_PATH}/ContextMenuSeparator.qml \
     $${QML_SOURSE_MENU_BAR_PATH}/CheckIndicator.qml \
     $${QML_SOURSE_MENU_BAR_PATH}/MenuBarContextMenu/FileContexMenu/FileContexMenu.qml \
 #TabView
-    $${QML_SOURSE_TAB_VIEW_PATH}/T_tab_view.qml \
+    $${QML_SOURSE_TAB_VIEW_PATH}/TabViewWidget.qml \
     $${QML_SOURSE_TAB_VIEW_PATH}/Style/TabViewStyle.qml \
     $${QML_SOURSE_TAB_VIEW_PATH}/Style/OneTabBaseStyle.qml \
 #TabView_menu

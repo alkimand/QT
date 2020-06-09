@@ -4,20 +4,26 @@
 #include <QObject>
 #include <QHash>
 
-class AbstractItem: public QObject
-{
+typedef QHash<ItemEnums::EItemProperty, QVariant> ItemPropertyMap;
+
+class AbstractItem: public QObject {
     Q_OBJECT
 
 public:
     AbstractItem(QObject *parent = nullptr);
-    void setItemProperty( ItemEnums::EItemProps propertyType, QVariant value);
-    void setDefaultProperty(QHash<int, QVariant> default_property_map);
-    void changeItemProperty(ItemEnums::EItemProps propertyType, QVariant value);
-    QVariant getItemProperty(ItemEnums::EItemProps propertyType);
+    void setItemProperty( ItemEnums::EItemProperty propertyType, QVariant value);
+    void setDefaultPropertyMap(ItemPropertyMap default_property_map);
+    void changeItemProperty(ItemEnums::EItemProperty propertyType, QVariant value);
+    QVariant getItemProperty(ItemEnums::EItemProperty propertyType);
+
+
+protected:
+
+        ItemPropertyMap item_data_;
 
 private:
 
-    QHash<int, QVariant> item_data_;
+
 
 public slots:
 

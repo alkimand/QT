@@ -31,9 +31,7 @@ public:
 
 //    Q_ENUM(ETableRoles)
 
-    enum EItemProps {
-
-
+    enum EItemProperty {
         kTextAlightment = 0,
         kButtonCount,
         kButtonType,
@@ -48,7 +46,7 @@ public:
 
     };
 
-    Q_ENUM(EItemProps)
+    Q_ENUM(EItemProperty)
 
     enum EModelType {
         Calculator = 0,

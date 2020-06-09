@@ -20,7 +20,7 @@ public:
     //explicit
     //Q_ENUM(DATA_ID)
 
-    ItemModelBase();
+    ItemModelBase(QObject *parent = nullptr);
 
     void virtual  setPropertyMap();
 
@@ -46,10 +46,11 @@ public:
 
 
 //private:
-    QVector <Date_Map> worksheet_data_;
+    
     virtual ~ItemModelBase();
 protected:
     ItemEnums::EModelType date_type_;
+    QVector <Date_Map> worksheet_data_;
     void SetupModel()
     ;    //ItemModelBase *childModel_ = nullptr;
     //ItemModelBase *parentModel_ = nullptr;
