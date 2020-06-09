@@ -1,10 +1,11 @@
 #include "AbstractItem.h"
 #include <QDebug>
 
-AbstractItem::AbstractItem(QObject *parent): QObject(parent) {
-    // itemData_.insert(int(ItemEnums::EItemProperty::kTextValue_1), "test");
-    // itemData_.insert(int(ItemEnums::EItemProperty::kTextValue_3), 1000);
-}
+//AbstractItem::AbstractItem(QObject *parent): QObject(parent) {
+//AbstractItem::AbstractItem() {
+//    // itemData_.insert(int(ItemEnums::EItemProperty::kTextValue_1), "test");
+//    // itemData_.insert(int(ItemEnums::EItemProperty::kTextValue_3), 1000);
+//}
 
 void AbstractItem::setItemProperty(ItemEnums::EItemProperty property_type, QVariant value) {
     if (item_data_.contains(property_type))

@@ -5,7 +5,9 @@
 #include <QFileDialog>
 #include <QTextStream>
 
-ItemModelBase::ItemModelBase(QObject *parent){
+//ItemModelBase::ItemModelBase(QObject *parent){
+ItemModelBase::ItemModelBase(){
+    //Q_UNUSED(parent);
     //parentModel_ = this;
     // modelType_ = modelType
     //setupWidgetModel();
@@ -199,6 +201,7 @@ void ItemModelBase::SetupModel() {
     int count = 0;
     int c[3] = {0, 1, 2};
     for (int &i : m){
+        Q_UNUSED(i);
         Date_Map temp;
         for (int &j : c) {
             temp[DATA_ID(j)]= QVariant(count++).toString();

@@ -47,19 +47,22 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 QML_CUSTOM_CLASSES = $${PROJECT_ROOT_PATH}/src/C++/QMLCustomClasses/
 C_SOURSE_MODEL_PATH = $${PROJECT_ROOT_PATH}/src/C++/Models/
+C_SOURSE_CONTROLLERS_PATH = $${PROJECT_ROOT_PATH}/src/C++/Controllers/
 
 SOURCES += \
         main.cpp \
+        $${C_SOURSE_CONTROLLERS_PATH}/AppDataProvider/AppDataProvider.cpp \
         $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItem/AbstractItem.cpp \
         $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractModel/ItemModelBase.cpp \
-        $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItemModel/AbstractItemModel.cpp \
+        $${C_SOURSE_MODEL_PATH}/FxDateModel/ItemModel/ItemModel.cpp \
         $${QML_CUSTOM_CLASSES}/BorderRadiusWidget/borderradiuswidget.cpp
 HEADERS += \
+        $${C_SOURSE_CONTROLLERS_PATH}/AppDataProvider/AppDataProvider.h \
         $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItem/AbstractItem.h \
         $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItem/ItemPropery.h \
         $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItem/ItemConstant.h \
         $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractModel/ItemModelBase.h \
-        $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItemModel/AbstractItemModel.h \
+        $${C_SOURSE_MODEL_PATH}/FxDateModel/ItemModel/ItemModel.h \
         $${QML_CUSTOM_CLASSES}/BorderRadiusWidget/borderradiuswidget.h
 
 QRC_DIR_PATH = $${PROJECT_ROOT_PATH}/src/resources \
@@ -74,9 +77,11 @@ TRANSLATIONS += \
 QML_IMPORT_PATH =
 
 INCLUDEPATH += $${PROJECT_ROOT_PATH}/src \
+               $${C_SOURSE_CONTROLLERS_PATH}/AppDataProvider/ \
                $${QML_CUSTOM_CLASSES}/BorderRadiusWidget/ \
                $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItem/ \
                $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractModel/ \
+               $${C_SOURSE_MODEL_PATH}/FxDateModel/ItemModel/ \
                $${IMPORT_PATH}/ \
                $${INC_PATH}/
 

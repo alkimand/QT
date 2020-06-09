@@ -5,6 +5,8 @@ import QtQuick.Controls.Styles 1.4
 import ItemModelBase 1.0
 import Qt.labs.qmlmodels 1.0
 
+import AppDataProvider 1.0
+
 //https://stackoverflow.com/questions/43423981/qt-quick-controls-2-and-tableview
 
 //https://github.com/qt/qtquickcontrols2/tree/dev/examples/quickcontrols2/contactlist
@@ -56,6 +58,7 @@ TableView {
     ItemModelBase {
         id:myModel
     }
+
     model:  myModel//model_test
    // delegate:EditableLable { }
 
@@ -69,7 +72,7 @@ TableView {
 //        }
 ////    }
 
-
+    //AppDataProvider{}
 
     delegate: //Row {
         EditableLable{
