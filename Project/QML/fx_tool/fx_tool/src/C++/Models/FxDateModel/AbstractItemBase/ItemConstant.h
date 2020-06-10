@@ -11,10 +11,12 @@ const int DATE_MAP_SIZE                        = 3;
 
 enum DATA_ID {
     FEATURE     = 0 ,
-    NAME        = 1,
-    IS_ACTIVE   = 2,
-    DISPLAY     = 3,
-    EDITE       = 4,
+    FEATURE_NAME,
+    NAME        ,
+    IS_ACTIVE   ,
+    DISPLAY     ,
+    EDITE       ,
+
     };
 
 

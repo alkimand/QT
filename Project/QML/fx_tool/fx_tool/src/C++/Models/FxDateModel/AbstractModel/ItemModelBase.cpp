@@ -1,12 +1,11 @@
 #include "ItemModelBase.h"
-#include "AbstractItem.h"
+#include "AbstractItemBase.h"
 #include <QDebug>
 #include <QVector>
 #include <QFileDialog>
 #include <QTextStream>
 
-//ItemModelBase::ItemModelBase(QObject *parent){
-ItemModelBase::ItemModelBase(){
+ItemModelBase::ItemModelBase(QObject *parent):QAbstractTableModel(parent){
     //Q_UNUSED(parent);
     //parentModel_ = this;
     // modelType_ = modelType
@@ -119,6 +118,23 @@ QVariant ItemModelBase::data(const QModelIndex &index, int role) const {
     //qDebug()<< "data " + temp + " =" + result.toString();
     return result;
 }
+
+void ItemModelBase::createModel(const FileData &map){
+    std::map<std::string, std::string>::const_iterator it;
+    it = map.begin();
+    map.begin();
+    while (it != map.end()){
+        QStringList text = QString::fromUtf8(it->first.c_str()).split(".");
+        Date_Map map;
+        map[DATA_ID::FEATURE] = QVariant(text.at(0));
+        map[DATA_ID::FEATURE_NAME] = QVariant(text.at(0));
+        map[DATA_ID::IS_ACTIVE] = QVariant(QString::fromUtf8(it->second.c_str()));
+        worksheet_data_.append(map);
+        //qDebug() << QString::fromUtf8(it->first.c_str())<< "=" <<QString::fromUtf8(it->second.c_str());
+        ++it;
+    }
+}
+
 
 bool ItemModelBase::setData(const QModelIndex &index, const QVariant &value, int role) {
     bool result = false;

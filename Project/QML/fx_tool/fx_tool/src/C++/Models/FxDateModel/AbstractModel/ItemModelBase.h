@@ -20,8 +20,8 @@ public:
     //explicit
     //Q_ENUM(DATA_ID)
 
-    //ItemModelBase(QObject *parent = nullptr);
-ItemModelBase();
+    ItemModelBase(QObject *parent = nullptr);
+//ItemModelBase();
     void virtual  setPropertyMap();
 
 
@@ -33,6 +33,7 @@ ItemModelBase();
     Qt::ItemFlags flags(const QModelIndex &index) const;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
+    void createModel(const FileData &map);
     bool setData(const QModelIndex &index, const QVariant &value, int role);
 
 //private:

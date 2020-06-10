@@ -5,7 +5,11 @@
 #include "ItemConstant.h"
 
 #include <QAbstractTableModel>
+
+#define  LOOGGER(text)                     qDebug()<< className + QString::fromUtf8(__func__) + "::-" + text;
+
 typedef QSharedPointer<QAbstractTableModel> p_model;
+typedef std::map<std::string, std::string>  FileData;
 
 class ItemEnums : public QObject
 {
@@ -32,19 +36,24 @@ public:
 //    Q_ENUM(ETableRoles)
 
     enum EItemProperty {
-        kTextAlightment = 0,
-        kButtonCount,
-        kButtonType,
-
-        kTextType_1,
-        kTextType_2,
-        kTextType_3,
-
-        kTextValue_1,
-        kTextValue_2,
-        kTextValue_3
-
+        kNone = -1,
+        kId = 0,
+        kStatus,
+        kFilePath,
+        kFileName,
+        kIcon,
+        kDateLastSaved,
+        kFormat,
     };
+
+  enum eItemStatus {
+       kInit = -1,
+       kDetected,
+       kParsing,
+       kParsed,
+       kRemoving,
+       kParseError
+        };
 
     Q_ENUM(EItemProperty)
 
@@ -55,7 +64,7 @@ public:
     Q_ENUM(EModelType)
 
     enum EClientType {
-        kNone = -1,
+        kNone_ = -1,
         kMortageLoanCalculator = 0
     };
     Q_ENUM(EClientType)

@@ -48,22 +48,29 @@ DEFINES += QT_DEPRECATED_WARNINGS
 QML_CUSTOM_CLASSES = $${PROJECT_ROOT_PATH}/src/C++/QMLCustomClasses/
 C_SOURSE_MODEL_PATH = $${PROJECT_ROOT_PATH}/src/C++/Models/
 C_SOURSE_CONTROLLERS_PATH = $${PROJECT_ROOT_PATH}/src/C++/Controllers/
-
+C_SOURSE_UTILS_PATH = $${PROJECT_ROOT_PATH}/src/C++/utilities/
 SOURCES += \
         main.cpp \
         $${C_SOURSE_CONTROLLERS_PATH}/AppDataProvider/AppDataProvider.cpp \
-        $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItem/AbstractItem.cpp \
+        $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItemBase/AbstractItemBase.cpp \
         $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractModel/ItemModelBase.cpp \
-        $${C_SOURSE_MODEL_PATH}/FxDateModel/ItemModel/ItemModel.cpp \
-        $${QML_CUSTOM_CLASSES}/BorderRadiusWidget/borderradiuswidget.cpp
+        $${C_SOURSE_MODEL_PATH}/FxDateModel/Item/Item.cpp \
+        $${QML_CUSTOM_CLASSES}/BorderRadiusWidget/borderradiuswidget.cpp \
+        $${C_SOURSE_UTILS_PATH}/DataBuff/databuf.cpp \
+        $${C_SOURSE_UTILS_PATH}/serialization.cpp
 HEADERS += \
         $${C_SOURSE_CONTROLLERS_PATH}/AppDataProvider/AppDataProvider.h \
-        $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItem/AbstractItem.h \
-        $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItem/ItemPropery.h \
-        $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItem/ItemConstant.h \
+        $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItemBase/AbstractItemBase.h \
+        $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItemBase/ItemPropery.h \
+        $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItemBase/ItemConstant.h \
         $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractModel/ItemModelBase.h \
-        $${C_SOURSE_MODEL_PATH}/FxDateModel/ItemModel/ItemModel.h \
-        $${QML_CUSTOM_CLASSES}/BorderRadiusWidget/borderradiuswidget.h
+        $${C_SOURSE_MODEL_PATH}/FxDateModel/Item/Item.h \
+        $${QML_CUSTOM_CLASSES}/BorderRadiusWidget/borderradiuswidget.h \
+        $${C_SOURSE_UTILS_PATH}/qs_utils.h \
+        $${C_SOURSE_UTILS_PATH}/serialization.h \
+        $${C_SOURSE_UTILS_PATH}/DataBuff/databuf.h \
+        $${C_SOURSE_UTILS_PATH}/DataBuff/idatabuf.h \
+        $${C_SOURSE_UTILS_PATH}/lite_gamma.h
 
 QRC_DIR_PATH = $${PROJECT_ROOT_PATH}/src/resources \
 
@@ -79,9 +86,11 @@ QML_IMPORT_PATH =
 INCLUDEPATH += $${PROJECT_ROOT_PATH}/src \
                $${C_SOURSE_CONTROLLERS_PATH}/AppDataProvider/ \
                $${QML_CUSTOM_CLASSES}/BorderRadiusWidget/ \
-               $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItem/ \
+               $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItemBase/ \
                $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractModel/ \
-               $${C_SOURSE_MODEL_PATH}/FxDateModel/ItemModel/ \
+               $${C_SOURSE_MODEL_PATH}/FxDateModel/Item/ \
+                $${C_SOURSE_UTILS_PATH}/DataBuff/ \
+               $${C_SOURSE_UTILS_PATH}/ \
                $${IMPORT_PATH}/ \
                $${INC_PATH}/
 
