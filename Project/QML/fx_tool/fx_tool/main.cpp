@@ -26,11 +26,15 @@ int main(int argc, char *argv[]) {
 
    qmlRegisterType<AppDataProvider>("AppDataProvider", 1, 0, "AppDataProvider");
 
+    //QQuickView view;
+    AppDataProvider app_data_;
+    //view.engine()->rootContext()->setContextProperty("app_data", &app_data_);
 //    QSharedPointer<AbstractItem> obj =
 //           QSharedPointer<AbstractItem>(new AbstractItem);
    // engine.rootContext()->setContextProperty("AppDataProvider", &app_data_provider_);
     //AppDataProvider temp();
    //AppDataProvider::registerSingleton_(&engine);
+    engine.rootContext()->setContextProperty("app_data", &app_data_);
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {

@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.12
 import QtQuick.Controls.Styles 1.4
-import ItemModelBase 1.0
+//import ItemModelBase 1.0
 import Qt.labs.qmlmodels 1.0
 
 import AppDataProvider 1.0
@@ -33,33 +33,11 @@ TableView {
     leftMargin:5
     rightMargin:5
     topMargin:5
-    property  int data_type_: 1
 
-    property ListModel model_test : ListModel {
-        id: model_
-        ListElement {
-            type1: "feature1"
-            type2: "feature3"
-            type3: "feature3"
-        }
-        ListElement {
-            type1: "feature1"
-            type2: "feature3"
-            type3: "feature3"
-        }
-        ListElement {
-            type1: "feature1"
-            type2: "feature3"
-            type3: "feature3"
-        }
+    property  int data_type_:  1
+    property  int current_id_: parent.current_id_
 
-    }
-
-    ItemModelBase {
-        id:myModel
-    }
-
-    model:  myModel//model_test
+    model:  app_data.model//model_test
    // delegate:EditableLable { }
 
 //    TableViewColumn {
@@ -75,30 +53,15 @@ TableView {
     //AppDataProvider{}
 
     delegate: //Row {
-        EditableLable{
+        EditableLable {
             //leftPadding :20
             placeholderText:  display_
              //  display//feature//modelData.feature
         }
-//        EditableLable{
-//            leftPadding :20
-//            placeholderText: display//name//modelData.feature
-//        }
-//        EditableLable{
-//            leftPadding :20
-//            placeholderText: display//is_active
-//            text: is_active//modelData.feature
-//        }
-//        bottomPadding :20
-   // }
+    Component.onCompleted: {
+        //        setColumnWidth(0,100);
+        //        setColumnWidth(1,150);
+        //        setColumnWidth(3,350);
+    }
 
-
-       // EditableLable { }
-//    delegate: ItemDelegate {
-//        text: index.row===0? feature : name
-//        width: parent.width
-//        onClicked: console.log("clicked:", modelData)
-//    }
-
-        //EditableLable { }
 }

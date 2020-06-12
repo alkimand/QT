@@ -15,7 +15,24 @@ Item
 	signal fileOpen(var url);
 	signal openAction();
     signal saveAction(var save_as);
+    
+    //signal pushTollBar(var item_id);
 
+
+    property Action pushTolBarButton : Action {
+        icon.source: toolBarIconPath + 'fileopen.png'
+        //shortcut : QKeySequence::Open
+        icon.name: "document-open"
+        property int item_id: -1
+        text: "createTable"
+
+        onTriggered: {
+            //fileDialog.selectExisting = true
+            //root.pushTollBar(item_id);
+            console.log("Action:" + text);
+
+        }
+    }
     
     property Action fileOpenAction : Action {
         icon.source: toolBarIconPath + 'fileopen.png'
@@ -39,8 +56,7 @@ Item
         icon.name: "document-add"
         text: "Add"
 
-        onTriggered:
-        {
+        onTriggered: {
             console.log("Action:" + text);
 			root.openAction();
             //main_root.test()
@@ -57,8 +73,7 @@ Item
         icon.name: "document-save"
         text: "Save"
 
-        onTriggered:
-        {
+        onTriggered: {
             console.log("Action:" + text);
 			root.openAction();
            // tab_view_.save()

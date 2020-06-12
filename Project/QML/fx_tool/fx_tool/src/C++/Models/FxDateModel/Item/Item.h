@@ -1,7 +1,7 @@
-#ifndef ABSTRACT_ITEM_MODEL_H
-#define ABSTRACT_ITEM_MODEL_H
+#ifndef ITEM_H
+#define ITEM_H
 
-#include "AbstractItemBase.h"
+#include "VariedItemBase.h"
 #include "ItemModelBase.h"
 
 #include <QObject>
@@ -30,11 +30,12 @@ public:
     void setFileName(const Props &path);
     void setupDefault(const ItemPropertyMap &default_map_);
     void parse();
+    ItemModelBase *getModel();
    // void createModel(FileData map);
     ~Item();
 private:
 
-    AbstractItemBase *property_;
+    VariedItem    *property_;
     ItemModelBase    *model_;
 
 
@@ -48,4 +49,4 @@ private:
     //QVector <Date_Map> worksheet_data_;
 };
 
-#endif // ABSTRACT_ITEM_MODEL_H
+#endif // ITEM_H

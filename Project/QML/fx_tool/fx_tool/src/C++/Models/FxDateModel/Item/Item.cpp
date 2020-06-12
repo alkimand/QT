@@ -1,8 +1,10 @@
 #include "Item.h"
 #include <QDebug>
 
+static const char className[] = "Item::";
+
 Item::Item(QObject *parent): QObject(parent) {
-    property_ = new AbstractItemBase(this);
+    property_ = new VariedItem(this);
     model_ = new ItemModelBase(this);
 }
 
@@ -47,6 +49,7 @@ void Item::setupDefault(const ItemPropertyMap &default_map){
 }
 
 void Item::parse() {
+    LOOGGER("+");
    // Props path = getProperty(ItemEnums::EItemProperty::kFilePath);
     property_->parse();
 
@@ -57,6 +60,10 @@ void Item::parse() {
 
     model_->createModel(file_data);
 
+}
+
+ItemModelBase *Item::getModel() {
+    return model_;
 }
 
 Item::~Item() {

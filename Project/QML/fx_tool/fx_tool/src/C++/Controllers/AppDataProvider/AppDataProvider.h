@@ -24,7 +24,10 @@ class QStringList;
 
 class AppDataProvider: public QObject {
     Q_OBJECT
-
+    Q_PROPERTY(ItemModelBase * model READ getModel  WRITE setModel NOTIFY modelChanged)
+    Q_PROPERTY(int current_model_id_ READ getModelId  WRITE setModelId NOTIFY IdChanged)
+    Q_PROPERTY(bool isModelPresent_ READ isModelPresent  WRITE setModelPresent NOTIFY ModelPresentChanged)
+    Q_PROPERTY(QString current_model_title READ getTitle WRITE setTitle NOTIFY titleChange)
 public:
     AppDataProvider();
     void Init();
@@ -41,25 +44,59 @@ public:
     void createItem(const QString &path = "");
     void openInExplorer();
 
+
 signals:
     void itemParsed(int id);
+    //QML
+public:
+    //get
+    int getModelId() const;
+    ItemModelBase *getModel() ;
+    bool isModelPresent() const;
+    QString getTitle();
+
+    //set
+    void setModel(ItemModelBase *){};
+    void setModelId(int id);
+    void setModelPresent(bool modelPresent);
+    void setTitle(QString new_tittle);
+
+
+    //qml
+signals:
+
+    void modelChanged();
+    void IdChanged();
+    void ModelPresentChanged();
+    void titleChange();
+
+
 
     // ~AppDataProvider();
 protected:
 
-    //        ItemPropertyMap item_data_;
+private:
+    pItem getItemByID(int id);
+
 
 private:
-    void PreapreItem(const QString path = "");
-private:
-    ItemPropertyMap default_property_map_;
+    //qml
+    ItemModelBase *model;
+    bool isModelPresent_ = false;
+    QString            current_model_title ="";
 
-    QVector<pItem>  app_data_;
+private:
+    int                   current_model_id_ = -1;
+    ItemPropertyMap        default_property_map_;
+
+    QVector<pItem>                     app_data_;
     //static AppDataProvider *s_instance_ ;
     //config_app_ config;
     //public slots:
 
 };
+
+
 
 
 

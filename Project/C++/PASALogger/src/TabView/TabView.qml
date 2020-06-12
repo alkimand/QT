@@ -191,8 +191,7 @@ C1.TabView
         // tableView.selection.select(row)
         //tabView.removeTab(index)
     }
-    function renameTab(index)
-    {
+    function renameTab(index) {
         console.log("TabView:renametab()")
         tabView.renametab()
     }

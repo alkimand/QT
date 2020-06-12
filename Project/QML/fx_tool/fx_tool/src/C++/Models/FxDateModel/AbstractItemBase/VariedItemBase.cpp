@@ -1,4 +1,4 @@
-#include "AbstractItemBase.h"
+#include "VariedItemBase.h"
 #include <QDebug>
 #include <QTextCodec>
 #include  <stdio.h>
@@ -6,46 +6,18 @@
 #include <lite_gamma.h>
 #include <databuf.h>
 #include <qs_utils.h>
+#include <QSharedPointer>
+#include "iAbstractItemBase.h"
 
-static const char className[] = "AbstractItemBase::";
+static const char className[] = "VariedItemBase::";
 
-AbstractItemBase::AbstractItemBase(QObject *parent): QObject(parent){
+VariedItem::VariedItem(QObject *parent): iAbstractItemBase(parent){
     //AbstractItem::AbstractItem() {
     // itemData_.insert(int(ItemEnums::EItemProperty::kTextValue_1), "test");
     // itemData_.insert(int(ItemEnums::EItemProperty::kTextValue_3), 1000);
 }
 
-void AbstractItemBase::setItemProperty(ItemEnums::EItemProperty property_type, Props value) {
-    if (item_data_.contains(property_type))
-        item_data_[property_type] = Props(value);
-    else
-        item_data_.insert(property_type, Props(value));
-}
-
-void AbstractItemBase::setDefaultPropertyMap(const ItemPropertyMap &default_map) {
-    if (default_map.size()==0)
-        return;
-    QHashIterator<ItemEnums::EItemProperty, Props> i(default_map);
-    while (i.hasNext()) {
-        i.next();
-        item_data_.insert(i.key(),i.value());
-    }
-    //qDebug()<< "AbstractItemBase::setDefaultPropertyMap - ";
-}
-
-void AbstractItemBase::changeItemProperty(ItemEnums::EItemProperty property_type, Props value) {
-    if (item_data_.contains(property_type))
-        item_data_[property_type] = Props(value);
-}
-
-
-const Props &AbstractItemBase::getItemProperty(const ItemEnums::EItemProperty &property_type) {
-    if (item_data_.contains(property_type))
-        return  (item_data_[property_type]);
-    return nullptr;
-}
-
-void AbstractItemBase::setFile(const Props &path){
+void VariedItem::setFile(const Props &path) {
     if (!QFile(path).exists())
         return;
     //qDebug()<< "AbstractItemBase::setFile - " + path;
@@ -63,7 +35,8 @@ void AbstractItemBase::setFile(const Props &path){
     //toDo icons
 }
 
-void AbstractItemBase::parse() {
+void VariedItem::parse() {
+    //LOOGGER("+");
     Props status = Props(ItemEnums::eItemStatus::kParseError);
     Props path = getItemProperty(ItemEnums::EItemProperty::kFilePath);
     if (file_.open(QFile::ReadWrite )) {
@@ -88,7 +61,8 @@ void AbstractItemBase::parse() {
     setItemProperty(ItemEnums::EItemProperty::kStatus, Props(status));
 }
 
-void AbstractItemBase::readFile(QString file_path, sys::IDataBuff &buff, int &error){
+void VariedItem::readFile(QString file_path, sys::IDataBuff &buff, int &error){
+     //LOOGGER("+");
     //errno_t err;
     QByteArray ba = file_path.toLocal8Bit();
     const char *fname = ba.data();
@@ -103,7 +77,7 @@ void AbstractItemBase::readFile(QString file_path, sys::IDataBuff &buff, int &er
     fclose(ptrFile);
 }
 
-const FileData &AbstractItemBase::getFileModel() {
+const FileData &VariedItem::getFileModel() {
     return value_map_;
 }
 

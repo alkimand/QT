@@ -1,9 +1,13 @@
 #include "ItemModelBase.h"
-#include "AbstractItemBase.h"
 #include <QDebug>
 #include <QVector>
 #include <QFileDialog>
 #include <QTextStream>
+
+
+
+static const char className[] = "ItemModelBase::";
+
 
 ItemModelBase::ItemModelBase(QObject *parent):QAbstractTableModel(parent){
     //Q_UNUSED(parent);
@@ -14,10 +18,9 @@ ItemModelBase::ItemModelBase(QObject *parent):QAbstractTableModel(parent){
     QString path = QDir::currentPath();
     QString fileName = "test.txt";
     QString fullFilePath = path  + "/" + fileName;
-    SetupModel();
+    //SetupModel();
 
 }
-
 
 //ItemModelBase::ItemModelBase(QObject *parent)
 //{
@@ -120,6 +123,7 @@ QVariant ItemModelBase::data(const QModelIndex &index, int role) const {
 }
 
 void ItemModelBase::createModel(const FileData &map){
+    //LOOGGER("+");
     std::map<std::string, std::string>::const_iterator it;
     it = map.begin();
     map.begin();
@@ -127,7 +131,7 @@ void ItemModelBase::createModel(const FileData &map){
         QStringList text = QString::fromUtf8(it->first.c_str()).split(".");
         Date_Map map;
         map[DATA_ID::FEATURE] = QVariant(text.at(0));
-        map[DATA_ID::FEATURE_NAME] = QVariant(text.at(0));
+        map[DATA_ID::FEATURE_NAME] = QVariant(text.at(1));
         map[DATA_ID::IS_ACTIVE] = QVariant(QString::fromUtf8(it->second.c_str()));
         worksheet_data_.append(map);
         //qDebug() << QString::fromUtf8(it->first.c_str())<< "=" <<QString::fromUtf8(it->second.c_str());
@@ -163,6 +167,7 @@ bool ItemModelBase::setData(const QModelIndex &index, const QVariant &value, int
 
         //        result = true;
         //        break;
+
         case (int(Qt::EditRole)):
             if (worksheet_data_.size() > index.row()) {
                 if(worksheet_data_.at(index.row()).contains(DATA_ID(index.column()))) {

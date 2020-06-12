@@ -21,30 +21,34 @@ C1.TabView {
     //anchors.leftMargin: 5
     //anchors.leftMargin: 50
     //property int curIndex: 0
-    property string newWindowTitle: "FreeYTVDownloader" + root.count
+    property string title:        "Default"
     property int contexMenuIndex: -1
     property int indexUnderMouse: -1
+    property int item_id:          -1
+
     signal renametab()
-    style: TabViewStyle{}
     signal refreshTab()
+
+    style: TabViewStyle{}
+
     onCurrentIndexChanged: {
         for (var i = 0  ;i < root.count;i++){
-//            if (i!==root.currentIndex) {
+            //            if (i!==root.currentIndex) {
 
-//            }
+            //            }
             refreshTab()
         }
 
-            //root.removeTab(i)
+        //root.removeTab(i)
     }
 
-//    Connections {
-//        target: root_style
-//    onRefreshTab: {
+    //    Connections {
+    //        target: root_style
+    //    onRefreshTab: {
 
-//    }
+    //    }
 
-//    }
+    //    }
 
     //    Rectangle {
     //        color: "#77a9ef"
@@ -100,13 +104,14 @@ C1.TabView {
     //    }
 
     Component {
-        id:newTextComponent
+        id: newTableView
         Loader {
             id: loader
             anchors.fill: parent
+            property  int current_id_: app_data.current_model_id_ + 1
             source: "../TableView/BaseTableView.qml"
-        }
 
+        }
     }
 
     //    function addTextComponent()
@@ -158,7 +163,8 @@ C1.TabView {
 
     function addNewTab()  {
         //console.log("1_root.count="+ root.count)
-        root.addTab(newWindowTitle,newTextComponent)
+        console.log("addNewTab+")
+        root.addTab(title,newTableView)
         //root.addTab(newWindowTitle,newChoiceComponent)
         root.currentIndex = root.count - 1
         root.contexMenuIndex = root.currentIndex

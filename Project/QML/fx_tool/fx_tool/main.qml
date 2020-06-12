@@ -5,7 +5,7 @@ import QtQuick.Controls 1.4 as C1
 import QtQuick.Dialogs 1.2
 import QtQuick.Controls.Styles 1.4
 
-import AppDataProvider 1.0
+//import AppDataProvider 1.0
 
 import Actions 1.0
 
@@ -20,13 +20,26 @@ ApplicationWindow {
     width: 640
     height: 480
     title: qsTr("QML Fx tool")
+    property int  table_futere_id_: 0
 
-    AppDataProvider {
-        id:data_provider_
-    }
+    //    AppDataProvider {
+    //        id:data_provider_
+    //    }
+
+//    Connections {
+//        target: tool_bar_
+//        onPushTollBar: {
+//            main_root.onTolBarButtonPush()
+//        }
+//    }
 
     Connections {
         target: Actions
+
+//        onPushTollBar: {
+//            tab_view.onTolBarButtonPush()
+//        }
+
         onOpenAction: {
             tab_view.addNewTab()
         }
@@ -75,7 +88,7 @@ ApplicationWindow {
 
 
     menuBar: MenuBarWidget {}// {id:menu_bar_}
-    header: ToolBarWidget {} //{id:tool_bar_}
+    header: ToolBarWidget { id:tool_bar_}
     
     TabViewWidget {
         id:tab_view
@@ -98,7 +111,24 @@ ApplicationWindow {
     //        }
     //    }
 
-    function test (){
-        console.log("main_root test()");
+    function test (i){
+        console.log("main_root test() ="+(i));
     }
+
+    function onTolBarButtonPush (id){
+
+        console.log("onTolBarButtonPush id= " + id);
+        for (var i = 0 ;i < tab_view.count;i++) {
+            console.log("getTab:"+ tab_view.getTab(i).item.children[0].id)
+        }
+    }
+
+
+    //    function onTolBarButtonPush (id){
+    //
+    //
+    //           // tab_view.getTab(i).item.children[0].id
+    //
+    //        }
+    //    }
 }

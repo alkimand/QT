@@ -14,7 +14,8 @@ ToolButton {
     property string sourceIconPath: "qt-logo.png"
     property string  textFirstLine: "QT"
     property color buttonBackColor:  "white"
-    property int button_type : parent.button_type
+    property int button_type :                  parent.button_type
+    property int table_id                       : -1
     contentItem: ToolButtonLoader{}
 
     MouseArea {
@@ -33,7 +34,8 @@ ToolButton {
         }
 
         onClicked: {
-            control.action.triggered()
+            tool_bar_.pushTollBar(control.table_id)
+            //control.action.triggered(control.table_id)
             //control.buttonBackColor = settingData.children[3].toolBarButtonIsNotSelectedColorSetting
         }
     }

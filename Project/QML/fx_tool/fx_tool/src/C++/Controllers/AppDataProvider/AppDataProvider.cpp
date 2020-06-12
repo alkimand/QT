@@ -7,7 +7,6 @@
 #include <QStringList>
 #include <QDir>
 
-#include "AbstractItemBase.h"
 #include "ItemModelBase.h"
 
 #include "ItemPropery.h"
@@ -41,19 +40,15 @@ AppDataProvider::AppDataProvider() {
 
 
 void AppDataProvider::createItem(const QString &file_path) {
-    static int  id_counter_ = 0;
+    //LOOGGER("+");
     pItem item = pItem(new Item, &QObject::deleteLater);
     item.get()->setupDefault(default_property_map_);
     item.get()->setFile(file_path);
     //item.get()->setProperty(ItemEnums::EItemProperty::kId, QString::number(id_counter_));
-    setItemProp_int(kId, id_counter_);
+    current_model_id_++;
+    setItemProp_int(kId, current_model_id_);
     parseItem(item);
-    id_counter_++;
     app_data_.push_back(item);
-}
-
-void AppDataProvider::PreapreItem(const QString path){
-
 }
 
 
@@ -79,10 +74,59 @@ void AppDataProvider::openInExplorer() {
     //        }
 }
 
+int AppDataProvider::getModelId() const{
+    return current_model_id_;
+}
+
+void AppDataProvider::setModelId(int id){
+    current_model_id_ = id;
+}
+
+void AppDataProvider::setModelPresent(bool modelPresent){
+    isModelPresent_ = modelPresent;
+}
+
+void AppDataProvider::setTitle(QString new_tittle){
+    pItem item = getItemByID(current_model_id_);
+    item->setProperty(ItemEnums::EItemProperty::kFileName, Props(new_tittle));
+}
+
+bool AppDataProvider::isModelPresent() const{
+    return isModelPresent_;
+}
+
+QString AppDataProvider::getTitle() {
+    pItem item = getItemByID(current_model_id_);
+    return item->getProperty(ItemEnums::EItemProperty::kFileName);
+}
+
+ItemModelBase *AppDataProvider::getModel()  {
+    pItem item = getItemByID(current_model_id_);
+    if (item!=nullptr){
+        return   item->getModel();
+    }
+    return nullptr;
+}
+
+pItem AppDataProvider::getItemByID(int id) {
+    Props loking_item_id = INT2QS(id);
+    pItem item = nullptr;
+    for (int i = 0; i < app_data_.size(); ++i) {
+        Props s_current_model_id = app_data_.at(i).get()->getProperty(ItemEnums::EItemProperty::kId);
+        if (loking_item_id == s_current_model_id)
+            item = app_data_.at(i);
+        break;
+    }
+    return item;
+}
+
+
+
 void AppDataProvider::Init(){
-    LOOGGER("");
-    default_property_map_.insert(ItemEnums::EItemProperty::kId,"0");
-    default_property_map_.insert(ItemEnums::EItemProperty::kStatus, Props(ItemEnums::eItemStatus::kInit));
+    QString status =INT2QS(int(ItemEnums::eItemStatus::kInit));
+    QString id =INT2QS(0);
+    default_property_map_.insert(ItemEnums::EItemProperty::kId, id );
+    default_property_map_.insert(ItemEnums::EItemProperty::kStatus, status);
     default_property_map_.insert(ItemEnums::EItemProperty::kFilePath,"");
     default_property_map_.insert(ItemEnums::EItemProperty::kFileName,"");
     default_property_map_.insert(ItemEnums::EItemProperty::kIcon,"");
@@ -91,11 +135,15 @@ void AppDataProvider::Init(){
 
     for (const QString &filePaths : FindFilies()) {
         createItem(QDir::toNativeSeparators(filePaths));
+        LOOGGER(filePaths);
+
+
     }
 
 }
 
 ItemEnums::eItemStatus AppDataProvider::parseItem(pItem item) {
+    //LOOGGER("+");
     ItemEnums::eItemStatus status = ItemEnums::eItemStatus::kInit;
     if (GetItemProp(kStatus) != Props(ItemEnums::eItemStatus::kInit)){
         //int id = item.get()->getProperty(ItemEnums::EItemProperty::kStatus).toInt();
@@ -116,7 +164,7 @@ QStringList AppDataProvider::FindFilies(const QString file_path) {
         path = QDir::currentPath();
     QStringList filters;
     filters << FX_EXTENSION;
-    QDirIterator it(path, filters, QDir::AllEntries | QDir::NoSymLinks | QDir::NoDotAndDotDot, QDirIterator::Subdirectories);
+    QDirIterator it(path, filters, QDir::Files | QDir::NoSymLinks | QDir::NoDotAndDotDot, QDirIterator::NoIteratorFlags);
     while (it.hasNext())
         files << it.next();
     files.sort();
@@ -151,7 +199,7 @@ void AppDataProvider::loadDirectory(const QString &directory){
 void AppDataProvider::openFile() {
     //std::wstring folder_path = digi::getAppSpecificFolder(fs::EAppSpecificFolder::eConfig);
     //QString path = QFileDialog::getOpenFileName(0, tr("Open File"), WS2Q(folder_path), tr("*.fx"));
-   // QString path = QFileDialog::getOpenFileName(0, tr("Open File"), fileName, tr("*.fx"));
+    // QString path = QFileDialog::getOpenFileName(0, tr("Open File"), fileName, tr("*.fx"));
     //QDesktopServices::openUrl(QUrl::fromLocalFile(fileName));
     //QString fileName = fileComboBox->currentText();
 }

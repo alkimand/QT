@@ -6,7 +6,9 @@
 
 #include <QAbstractTableModel>
 
-#define  LOOGGER(text)                     qDebug()<< className + QString::fromUtf8(__func__) + "::-" + text;
+#define  LOOGGER(text)                     qDebug()<< className + QString::fromUtf8(__func__) + ":: " + text;
+
+#define INT2QS(value)                      QString::number(value);
 
 typedef QSharedPointer<QAbstractTableModel> p_model;
 typedef std::map<std::string, std::string>  FileData;
@@ -46,6 +48,8 @@ public:
         kFormat,
     };
 
+    Q_ENUM(EItemProperty)
+
   enum eItemStatus {
        kInit = -1,
        kDetected,
@@ -55,7 +59,7 @@ public:
        kParseError
         };
 
-    Q_ENUM(EItemProperty)
+    Q_ENUM(eItemStatus)
 
     enum EModelType {
         Calculator = 0,

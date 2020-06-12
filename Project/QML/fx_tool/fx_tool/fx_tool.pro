@@ -52,7 +52,8 @@ C_SOURSE_UTILS_PATH = $${PROJECT_ROOT_PATH}/src/C++/utilities/
 SOURCES += \
         main.cpp \
         $${C_SOURSE_CONTROLLERS_PATH}/AppDataProvider/AppDataProvider.cpp \
-        $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItemBase/AbstractItemBase.cpp \
+        $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItemBase/VariedItemBase.cpp \
+        $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItemBase/iAbstractItemBase.cpp \
         $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractModel/ItemModelBase.cpp \
         $${C_SOURSE_MODEL_PATH}/FxDateModel/Item/Item.cpp \
         $${QML_CUSTOM_CLASSES}/BorderRadiusWidget/borderradiuswidget.cpp \
@@ -60,7 +61,8 @@ SOURCES += \
         $${C_SOURSE_UTILS_PATH}/serialization.cpp
 HEADERS += \
         $${C_SOURSE_CONTROLLERS_PATH}/AppDataProvider/AppDataProvider.h \
-        $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItemBase/AbstractItemBase.h \
+        $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItemBase/VariedItemBase.h \
+        $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItemBase/iAbstractItemBase.h \
         $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItemBase/ItemPropery.h \
         $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItemBase/ItemConstant.h \
         $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractModel/ItemModelBase.h \

@@ -86,14 +86,14 @@ ItemDelegate {
 
             }
             Keys.onPressed:  {
-                console.log("Keys.onPressed= "+textArea.text)
+                //console.log("Keys.onPressed= "+textArea.text)
                 //edite = textArea.text;
                 //textArea.text = display_
             }
 
             function _onEnterPressed(event) {
                 if (!(event.modifiers & Qt.ControlModifier)) {
-                    console.log("_onEnterPressed=" + display_)
+                    //console.log("_onEnterPressed=" + display_)
                     edite = textArea.text;
                     textArea.placeholderText = display_;
                     //textArea.text=""; //bug ?
@@ -103,7 +103,7 @@ ItemDelegate {
             }
 
             function finishEditHandler() {
-                console.log("finishEditHandler =" + display_);
+               // console.log("finishEditHandler =" + display_);
                 //name = textArea.text;
                 edite = textArea.text;
                 //if (textArea.placeholderText)
@@ -126,7 +126,7 @@ ItemDelegate {
                 cursorShape : Qt.ArrowCursor
                 acceptedButtons: Qt.LeftButton
                 onClicked: {
-                    console.log("onClicked "+ display_)
+                    //console.log("onClicked "+ display_)
                     root.startEdit()
                     if (textArea.text === display_){
                         textArea.text = display_;
@@ -156,7 +156,7 @@ ItemDelegate {
                     }
                 }
                 onFocusChanged: {
-                    console.log("onFocusChanged")
+                   // console.log("onFocusChanged")
                 }
                 onExited:{
                     //  background_.color ="white"
@@ -169,7 +169,7 @@ ItemDelegate {
                     // background_.color ="red"
                 }
                 onCanceled: {
-                    console.log("onCanceled")
+                   // console.log("onCanceled")
                 }
 
 
