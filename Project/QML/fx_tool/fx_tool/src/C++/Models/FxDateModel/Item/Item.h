@@ -19,18 +19,19 @@ public:
 //    AbstractItem(QObject *parent = nullptr);
  //   void setItemProperty( ItemEnums::EItemProperty propertyType, QVariant value);
  //   void setDefaultProperty(QHash<int, QVariant> default_property_map);
-//    void changeItemProperty(ItemEnums::EItemProperty propertyType, QVariant value);
 //    QVariant getItemProperty(ItemEnums::EItemProperty propertyType);
 
     void setFile(const QString &path);
-    void setProperty(const ItemEnums::EItemProperty property,const Props &value);
+    void setProperty(const ItemEnums::EItemProperty property,const Props value);
     const Props getProperty(const ItemEnums::EItemProperty property);
     //Props getProperty(const ItemEnums::EItemProperty property);
     void setPath(const Props &path);
     void setFileName(const Props &path);
     void setupDefault(const ItemPropertyMap &default_map_);
     void parse();
+    void cleanModel();
     ItemModelBase *getModel();
+    bool isPropertyExist(const ItemEnums::EItemProperty propertyType);
    // void createModel(FileData map);
     ~Item();
 private:

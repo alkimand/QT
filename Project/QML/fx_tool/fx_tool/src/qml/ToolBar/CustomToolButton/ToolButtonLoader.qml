@@ -2,7 +2,7 @@ import QtQuick 2.0
 
 Loader {
     id: loader
-    property string sourceIconPathLoader : parent.action.icon.source
+    property string sourceIconPathLoader : parent.sourceIconPath//parent.action.icon.source
     property string textFirstLineLoader : parent.action.text
     property string textFontLoader:parent.textFont
 

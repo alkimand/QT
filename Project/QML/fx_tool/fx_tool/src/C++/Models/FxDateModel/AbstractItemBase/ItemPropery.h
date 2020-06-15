@@ -39,7 +39,7 @@ public:
 
     enum EItemProperty {
         kNone = -1,
-        kId = 0,
+        kId ,
         kStatus,
         kFilePath,
         kFileName,

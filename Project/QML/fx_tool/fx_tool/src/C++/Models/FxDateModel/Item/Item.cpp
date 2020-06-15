@@ -12,9 +12,9 @@ void Item::setFile(const QString &path) {
     property_->setFile(Props(path));
 }
 
-void Item::setProperty(const ItemEnums::EItemProperty property,const Props &value) {
+void Item::setProperty(const ItemEnums::EItemProperty property,const Props value) {
         if (property!=ItemEnums::EItemProperty::kNone)
-            property_->setItemProperty(ItemEnums::EItemProperty::kFileName, Props(value));
+            property_->setItemProperty(property, Props(value));
 }
 
 const Props  Item::getProperty(const ItemEnums::EItemProperty property) {
@@ -42,42 +42,47 @@ void Item::setFileName(const Props &path) {
 }
 
 void Item::setupDefault(const ItemPropertyMap &default_map){
-    if (default_map.isEmpty())
+    if (default_map.isEmpty()){
+        LOOGGER("NO Default map");
         return;
+    }
         property_->setDefaultPropertyMap(default_map);
-        //qDebug()<< "setupDefault - ";
 }
 
 void Item::parse() {
     LOOGGER("+");
    // Props path = getProperty(ItemEnums::EItemProperty::kFilePath);
-    property_->parse();
 
+
+    property_->parse();
     FileData file_data;
     file_data = property_->getFileModel();
-    if (!file_data.size() > 0)
+    if (!file_data.size() > 0){
+        property_->setItemProperty(ItemEnums::EItemProperty::kStatus, Props(ItemEnums::eItemStatus::kParseError));
         return;
-
+    }
     model_->createModel(file_data);
+}
 
+void Item::cleanModel() {
+    model_->cleanModelData();
 }
 
 ItemModelBase *Item::getModel() {
     return model_;
 }
 
+bool Item::isPropertyExist(const ItemEnums::EItemProperty propertyType){
+    return property_->isPropertyExist(propertyType);
+}
+
 Item::~Item() {
-    qDebug()<<"~Item";
+    //qDebug()<<"~Item";
     delete property_;
     delete model_;
    // fs::FxConfig cfg_;
 }
 
-
-//void AbstractItem::changeItemProperty(ItemEnums::EItemProperty property_type, QVariant value) {
-//    if (item_data_.contains((int)property_type))
-//        item_data_[(int)property_type] = QVariant(value);
-//}
 
 
 //QVariant AbstractItem::getItemProperty(ItemEnums::EItemProperty property_type) {

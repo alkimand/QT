@@ -7,15 +7,16 @@ ToolButton {
 
     id: control
     text:""
-    implicitHeight: 25//mainToolBar.toolButtonImplicitHeight
-    implicitWidth: 25//mainToolBar.toolButtonImplicitWidth
+    implicitHeight: tool_bar_grid_.cellHeight//mainToolBar.toolButtonImplicitHeight
+    implicitWidth: tool_bar_grid_.cellWidth
+     //mainToolBar.toolButtonImplicitWidth
     property int textHeight: 10//mainToolBar.toolButtonTextHeight
     property string textFont: "Arial Narrow"
     property string sourceIconPath: "qt-logo.png"
     property string  textFirstLine: "QT"
-    property color buttonBackColor:  "white"
-    property int button_type :                  parent.button_type
-    property int table_id                       : -1
+    property color buttonBackColor: "white"
+    property int button_type :      1//parent.button_type
+    property int table_id    :      ID
     contentItem: ToolButtonLoader{}
 
     MouseArea {
@@ -38,5 +39,9 @@ ToolButton {
             //control.action.triggered(control.table_id)
             //control.buttonBackColor = settingData.children[3].toolBarButtonIsNotSelectedColorSetting
         }
+    }
+    Component.onCompleted: {
+        //console.log("ID=" + ID)
+       // console.log("sourceIconPath = " + sourceIconPath)
     }
 }

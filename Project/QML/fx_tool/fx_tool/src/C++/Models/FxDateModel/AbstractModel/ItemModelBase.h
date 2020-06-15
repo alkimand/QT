@@ -12,9 +12,7 @@
 
 typedef QHash<DATA_ID, QVariant> Date_Map;
 
-class ItemModelBase : public QAbstractTableModel
-{
-
+class ItemModelBase : public QAbstractTableModel {
     Q_OBJECT
 public:
     //explicit
@@ -39,10 +37,16 @@ public:
 //private:
     
     virtual ~ItemModelBase();
+
+ public:
+    void cleanModelData();
+
 protected:
-    ItemEnums::EModelType date_type_;
+   // ItemEnums::EModelType date_type_;
     QVector <Date_Map> worksheet_data_;
-    void SetupModel();
+
+    //void SetupModel();
+
 };
 
 #endif // I_WidgetModelBase_H

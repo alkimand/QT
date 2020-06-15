@@ -13,9 +13,9 @@ public:
     iAbstractItemBase(QObject *parent = nullptr);
     void setItemProperty( ItemEnums::EItemProperty propertyType, Props value);
     void setDefaultPropertyMap(const ItemPropertyMap &default_map);
-    void changeItemProperty(ItemEnums::EItemProperty propertyType, Props value);
     const Props &getItemProperty(const ItemEnums::EItemProperty &propertyType);
     const FileData &getFileModel();
+    bool isPropertyExist(const ItemEnums::EItemProperty propertyType);
 protected:
 
     ItemPropertyMap     item_data_;

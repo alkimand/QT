@@ -52,13 +52,15 @@ void VariedItem::parse() {
             str.simplified();
             original_values = str.toUtf8().constData();
             fs::deserialize(original_values, value_map_);
-            status = Props(ItemEnums::eItemStatus::kParsed);
+            status = Props(ItemEnums::eItemStatus::kParsing);
         }
         else {
             LOOGGER("file open Error");
         }
+        file_.close();
     }
     setItemProperty(ItemEnums::EItemProperty::kStatus, Props(status));
+    //LOOGGER("-");
 }
 
 void VariedItem::readFile(QString file_path, sys::IDataBuff &buff, int &error){

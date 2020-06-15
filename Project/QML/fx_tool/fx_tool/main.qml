@@ -20,25 +20,32 @@ ApplicationWindow {
     width: 640
     height: 480
     title: qsTr("QML Fx tool")
+
     property int  table_futere_id_: 0
 
-    //    AppDataProvider {
-    //        id:data_provider_
-    //    }
+    //        AppDataProvider {
+    //            id:data_provider_
 
-//    Connections {
-//        target: tool_bar_
-//        onPushTollBar: {
-//            main_root.onTolBarButtonPush()
-//        }
-//    }
+    //        }
 
+
+
+    //from AppDataProvider
+    Connections {
+        target: app_data
+        onItemParsed:{
+            console.log("onItemParsed")
+        }
+    }
+
+
+    //from Actions
     Connections {
         target: Actions
 
-//        onPushTollBar: {
-//            tab_view.onTolBarButtonPush()
-//        }
+        //        onPushTollBar: {
+        //            tab_view.onTolBarButtonPush()
+        //        }
 
         onOpenAction: {
             tab_view.addNewTab()
@@ -117,18 +124,14 @@ ApplicationWindow {
 
     function onTolBarButtonPush (id){
 
-        console.log("onTolBarButtonPush id= " + id);
+        //console.log("onTolBarButtonPush id= " + id);
         for (var i = 0 ;i < tab_view.count;i++) {
             console.log("getTab:"+ tab_view.getTab(i).item.children[0].id)
         }
+        app_data.toolBarButtonPush(id);
+
     }
-
-
-    //    function onTolBarButtonPush (id){
-    //
-    //
-    //           // tab_view.getTab(i).item.children[0].id
-    //
-    //        }
-    //    }
+    Component.onCompleted: {
+        //app_data.appStart()
+    }
 }

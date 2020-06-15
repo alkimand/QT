@@ -26,25 +26,40 @@ ToolBar
 //    }
 
     onPushTollBar: {
-        onTolBarButtonPush(item_id)
+        main_root.onTolBarButtonPush(item_id)
     }
 
-    Flow {
-        id:grid_view_
+    //ListView {
+    GridView {
+        id:tool_bar_grid_
         width: parent.width;
-        property int button_type : 1
-        CustomToolButton {
+        cellHeight : 25
+        cellWidth : 25
+        //parent.height;
+        //orientation : ListView.Horizontal
+        model: app_data.model//100
+        //snapMode:ListView.SnapOneItem
+        delegate  :  CustomToolButton {
+            property int button_type : 1
             action: Actions.pushTolBarButton
-            table_id : 0
+            table_id : ID
+            sourceIconPath : icon_
         }
-        CustomToolButton {
-            action: Actions.fileOpenAction
-            table_id:1
-        }
-       CustomToolButton {action: Actions.fileSaveAction}
+    }
+//    Flow {
+//        id:grid_view_
+//        width: parent.width;
+//
+       //model:2
+
+//        CustomToolButton {
+//            action: Actions.fileOpenAction
+//            table_id:1
+//        }
+      // CustomToolButton {action: Actions.fileSaveAction}
 //        CustomToolButton {action: Actions.fileSaveAsAction}
 //        CustomToolButton {action: Actions.closeAllAction}
-        CustomToolButton {action: Actions.addAction}
+       // CustomToolButton {action: Actions.addAction}
 //        CustomToolButton {action: Actions.fileOpenAction}
 //        CustomToolButton {action: Actions.fileSaveAction}
 //        CustomToolButton {action: Actions.fileSaveAsAction}
@@ -68,7 +83,7 @@ ToolBar
         //        }
 
 
-    }
+  //  }
     //    Rectangle {
     //        color: "#77a9ef"
     //        width: parent.width
@@ -76,5 +91,8 @@ ToolBar
     //        anchors.bottom: parent.bottom
     //    }
 
+    Component.onCompleted: {
+        //console.log("toolBar Completed count= " + app_data.model.rowCount())
+    }
 }
 

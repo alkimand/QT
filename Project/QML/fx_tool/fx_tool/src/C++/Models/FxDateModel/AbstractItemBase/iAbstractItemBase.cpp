@@ -29,14 +29,15 @@ void iAbstractItemBase::setDefaultPropertyMap(const ItemPropertyMap &default_map
     //qDebug()<< "iAbstractItemBase::setDefaultPropertyMap - ";
 }
 
-void iAbstractItemBase::changeItemProperty(ItemEnums::EItemProperty property_type, Props value) {
-    if (item_data_.contains(property_type))
-        item_data_[property_type] = Props(value);
-}
-
 
 const Props &iAbstractItemBase::getItemProperty(const ItemEnums::EItemProperty &property_type) {
-    if (item_data_.contains(property_type))
         return  (item_data_[property_type]);
-    return nullptr;
+}
+
+bool iAbstractItemBase::isPropertyExist(const ItemEnums::EItemProperty propertyType){
+    bool exist_property = false;
+    ItemPropertyMap::const_iterator finder = item_data_.find(propertyType);
+    if (finder != item_data_.end())
+        exist_property = true;
+    return exist_property;
 }

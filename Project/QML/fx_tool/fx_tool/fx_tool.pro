@@ -56,6 +56,7 @@ SOURCES += \
         $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItemBase/iAbstractItemBase.cpp \
         $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractModel/ItemModelBase.cpp \
         $${C_SOURSE_MODEL_PATH}/FxDateModel/Item/Item.cpp \
+        $${C_SOURSE_MODEL_PATH}/AppModel/AppModel.cpp \
         $${QML_CUSTOM_CLASSES}/BorderRadiusWidget/borderradiuswidget.cpp \
         $${C_SOURSE_UTILS_PATH}/DataBuff/databuf.cpp \
         $${C_SOURSE_UTILS_PATH}/serialization.cpp
@@ -67,6 +68,7 @@ HEADERS += \
         $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItemBase/ItemConstant.h \
         $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractModel/ItemModelBase.h \
         $${C_SOURSE_MODEL_PATH}/FxDateModel/Item/Item.h \
+        $${C_SOURSE_MODEL_PATH}/AppModel/AppModel.h \
         $${QML_CUSTOM_CLASSES}/BorderRadiusWidget/borderradiuswidget.h \
         $${C_SOURSE_UTILS_PATH}/qs_utils.h \
         $${C_SOURSE_UTILS_PATH}/serialization.h \
@@ -91,7 +93,8 @@ INCLUDEPATH += $${PROJECT_ROOT_PATH}/src \
                $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractItemBase/ \
                $${C_SOURSE_MODEL_PATH}/FxDateModel/AbstractModel/ \
                $${C_SOURSE_MODEL_PATH}/FxDateModel/Item/ \
-                $${C_SOURSE_UTILS_PATH}/DataBuff/ \
+               $${C_SOURSE_MODEL_PATH}/AppModel/ \
+               $${C_SOURSE_UTILS_PATH}/DataBuff/ \
                $${C_SOURSE_UTILS_PATH}/ \
                $${IMPORT_PATH}/ \
                $${INC_PATH}/
@@ -145,8 +148,12 @@ DISTFILES += \
     $${IMAGES_PATH}/filesave.png \
     $${IMAGES_PATH}/qt-logo.png \
     $${IMAGES_PATH}/close.png \
-    $${IMAGES_PATH}/plus.png
-
+    $${IMAGES_PATH}/plus.png \
+    $${IMAGES_PATH}/freevideodownloader.ico \
+    $${IMAGES_PATH}/freeyoutubetomp3converter.ico \
+    $${IMAGES_PATH}/freeinstagramdownload.ico \
+    $${IMAGES_PATH}/freetiktokdownloader.ico \
+    $${IMAGES_PATH}/vimeodownload.ico
 
 
 QML_DESIGNER_IMPORT_PATH =
