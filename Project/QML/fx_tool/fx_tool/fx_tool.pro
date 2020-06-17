@@ -109,7 +109,7 @@ QML_SOURSE_PATH = $${PROJECT_ROOT_PATH}/src/qml/
     QML_SOURSE_MENU_BAR_PATH =    $${QML_SOURSE_PATH}/Menu
     QML_SOURSE_TAB_VIEW_PATH =    $${QML_SOURSE_PATH}/TabView
     QML_SOURSE_TABLE_VIEW_PATH =  $${QML_SOURSE_PATH}/TableView
-
+    QML_SOURSE_FILE_DIALOG_PATH = $${QML_SOURSE_PATH}/FileDialog
 OTHER_FILES += \
     main.qml \
 #Actions
@@ -141,6 +141,8 @@ OTHER_FILES += \
 #
     #TableView Item Delegats
     $${QML_SOURSE_TABLE_VIEW_PATH}/ItemDelegate/ItemDelegate/EditableLable.qml \
+#FileDialog
+    $${QML_SOURSE_FILE_DIALOG_PATH}/FileDialogWidget.qml \
 
 DISTFILES += \
     $${IMAGES_PATH}/filenew.png \

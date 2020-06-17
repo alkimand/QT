@@ -7,7 +7,7 @@ import "../MenuBarContextMenu/FileContexMenu"
 
 MenuBarBasic {
     FileContexMenu {title: qsTr("File")}
-    FileContexMenu {title: qsTr("File")}
+  //  FileContexMenu {title: qsTr("File")}
     //ConnectContexMenu{title: qsTr("Connect")}
     //TableContexMenu{title: qsTr("Table")}
     //SettingContexMenu{title: qsTr("Seting")}

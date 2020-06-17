@@ -6,8 +6,10 @@
 #include <QDirIterator>
 #include <QStringList>
 #include <QDir>
-#include "ItemPropery.h"
+#include <QSysInfo>
+#include <QSettings>
 
+#include "ItemPropery.h"
 
 #include <QExplicitlySharedDataPointer>
 
@@ -16,19 +18,6 @@
 static const char className[] = "AppDataProvider::";
 
 AppDataProvider::AppDataProvider(QObject *parent):QObject(parent){
-    qDebug()<< "AppDataProvider";
-    // itemData_.insert(int(ItemEnums::EItemProperty::kTextValue_1), "test");
-    // itemData_.insert(int(ItemEnums::EItemProperty::kTextValue_3), 1000);
-
-    // instance();
-
-    // if (s_instance_) {
-    //   qDebug()<< "create s_instance_";
-    //s_instance_ = new AppDataProvider();
-    // }
-
-    // qDebug()<< "create AppDataProvider";
-    //FindFilies();
     Init();
 }
 
@@ -37,14 +26,29 @@ AppModel *AppDataProvider::getModel() {
     return model_;
 }
 
+QString AppDataProvider::getDefaultDir(){
+    //http://itnotesblog.ru/note.php?id=265
+    QString path;
+    QString OS_type = QSysInfo::kernelType();
+    QString product_version = QSysInfo::productVersion();
+    if (OS_type.contains("winnt") &&  product_version.toInt()>7){
+        QSettings ini(QSettings::IniFormat, QSettings::UserScope,"DVDVideoSoft","");
+        path += QFileInfo(ini.fileName()).absolutePath();
+        path +="/DVDVideoSoft";
+    }
+    //LOOGGER("= " + path);
+    return path;
+}
+
 
 void AppDataProvider::appStart(){
-    LOOGGER("+");
+    //LOOGGER("+");
     this->Init();
 }
 
+
 void AppDataProvider::toolBarButtonPush(QString id){
-    LOOGGER("+");
+    //LOOGGER("+");
     pItem  item = model_->getItemByID(id);
     if (item != nullptr) {
         model_->parseItem(item);
@@ -53,75 +57,70 @@ void AppDataProvider::toolBarButtonPush(QString id){
         }
     }
     else
-       LOOGGER("Error getItemByID id = " + id);
+        LOOGGER("Error getItemByID id = " + id);
 }
 
+
+void AppDataProvider::openFile(const QString file_path){
+    LOOGGER("+");
+    QString real_file_path = file_path.mid(8);
+    QFileInfo check_file(real_file_path);
+    if (check_file.exists() && check_file.isFile()){
+        int present_id = model_->haveSameModelByProperty(ItemEnums::EItemProperty::kFilePath, real_file_path);
+        if (present_id != -1) {
+            toolBarButtonPush(QString::number(present_id));
+        }
+        else {
+            model_->createItem(QDir::toNativeSeparators(real_file_path));
+            present_id = model_->getLastCreatedItemId();
+            toolBarButtonPush(QString::number(present_id));
+        }
+    }
+    else {
+        LOOGGER("wrong file name from qml" + file_path);
+    }
+}
+
+
+void AppDataProvider::saveFile(const QString file_path, const QString id){
+    //LOOGGER("+ id =" + id);
+    //LOOGGER("+ file_path=" + file_path);
+    if (id!="-1") {
+        QString real_file_path = file_path;
+        if (file_path.contains("file:///")){
+            QString real_file_path = file_path.mid(8);
+        }
+        model_->saveFile(real_file_path , id);
+    }
+}
+
+
+ItemModelBase *AppDataProvider::getModelByID(const QString id){
+    //LOOGGER("+");
+    return model_->getItemByID(id)->getModel();
+}
+
+
+QString AppDataProvider::getFileTitleByID(const QString id){
+    return model_->getItemByID(id)->getProperty(ItemEnums::EItemProperty::kFileName);
+}
+
+
+QString AppDataProvider::getFilePathByID(const QString id){
+    return model_->getItemByID(id)->getProperty(ItemEnums::EItemProperty::kFilePath);
+}
 
 
 void AppDataProvider::Init() {
     model_ = new AppModel(this);
-    model_->parseFolder(QDir::currentPath());
-    //    QString status =INT2QS(int(ItemEnums::eItemStatus::kInit));
-    //    QString id =INT2QS(0);
-    //    default_property_map_.insert(ItemEnums::EItemProperty::kId, id );
-    //    default_property_map_.insert(ItemEnums::EItemProperty::kStatus, status);
-    //    default_property_map_.insert(ItemEnums::EItemProperty::kFilePath,"");
-    //    default_property_map_.insert(ItemEnums::EItemProperty::kFileName,"");
-    //    default_property_map_.insert(ItemEnums::EItemProperty::kIcon,"");
-    //    default_property_map_.insert(ItemEnums::EItemProperty::kDateLastSaved,"");
-    //    default_property_map_.insert(ItemEnums::EItemProperty::kFormat,"fx");
-
-    //    for (const QString &filePaths : FindFilies()) {
-    //        createItem(QDir::toNativeSeparators(filePaths));
-    //        LOOGGER(filePaths);
-    //    }
-
+    QString default_dir = getDefaultDir();
+    if (default_dir.isEmpty())
+        default_dir = QDir::currentPath();
+    model_->parseFolder(default_dir);
 }
 
-//QStringList AppDataProvider::FindFilies(const QString file_path) {
-//    QStringList files;
-//    QString path = file_path;
-//    if (file_path.isEmpty())
-//        path = QDir::currentPath();
-//    QStringList filters;
-//    filters << FX_EXTENSION;
-//    QDirIterator it(path, filters, QDir::Files | QDir::NoSymLinks | QDir::NoDotAndDotDot, QDirIterator::NoIteratorFlags);
-//    while (it.hasNext())
-//        files << it.next();
-//    files.sort();
+AppDataProvider::~AppDataProvider() {
+    delete model_;
+}
 
-//    return files;
-
-
-//    // QString directory;
-
-//    //directory = QFileDialog::getExistingDirectory(0, tr("Find Files"), QDir::currentPath());
-//    //   QDir::toNativeSeparators(QFileDialog::getExistingDirectory(parent, tr("Find Files"), QDir::currentPath()));
-
-//    //    QString filters("Excel files (*.xlsx , *.xls);;Text files (*.txt);;All files (*.*)");
-//    //    //QString defaultFilter("Fx files (*.fx)");
-//    //    QString defaultFilter("All files (*.*)");
-//    //    QString defaultPath = path_;
-//    //    //QString fullFilePath = QFileDialog::getSaveFileName(0, "Save file", defaultPath, filters, &defaultFilter);
-//    //    //directory = QFileDialog::getExistingDirectory(0, tr("Find Files"), QDir::currentPath());
-//    //    if (directory.isEmpty())
-//    //        directory = QDir::currentPath();
-
-//    //    QStringList filter;
-//    //filter<<"*.fx";
-//    //QDirIterator it(directory, filter, QDir::AllEntries | QDir::NoSymLinks | QDir::NoDotAndDotDot, QDirIterator::Subdirectories);
-//    //QStringList files;
-//}
-
-//void AppDataProvider::loadDirectory(const QString &directory){
-//    Q_ASSERT(QDir(directory).exists());
-//}
-
-//void AppDataProvider::openFile() {
-//    //std::wstring folder_path = digi::getAppSpecificFolder(fs::EAppSpecificFolder::eConfig);
-//    //QString path = QFileDialog::getOpenFileName(0, tr("Open File"), WS2Q(folder_path), tr("*.fx"));
-//    // QString path = QFileDialog::getOpenFileName(0, tr("Open File"), fileName, tr("*.fx"));
-//    //QDesktopServices::openUrl(QUrl::fromLocalFile(fileName));
-//    //QString fileName = fileComboBox->currentText();
-//}
 

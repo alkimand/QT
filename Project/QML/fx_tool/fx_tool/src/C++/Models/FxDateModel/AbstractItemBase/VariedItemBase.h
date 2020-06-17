@@ -19,7 +19,11 @@ public:
     void setFile(const Props &path);
     void parse();
     void readFile(QString file_name, sys::IDataBuff& buff, int &error);
+    void writeFile(QString file_name, sys::IDataBuff& buff, int &error);
     const FileData &getFileModel();
+    void setCMap(FileData map);
+    void save(const QString file_name, const FileData values);
+  //  void setDataToStdMap();
 
 
 

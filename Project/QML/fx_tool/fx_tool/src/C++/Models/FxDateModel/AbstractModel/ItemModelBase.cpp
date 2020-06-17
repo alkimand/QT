@@ -27,21 +27,15 @@ ItemModelBase::ItemModelBase(QObject *parent):QAbstractTableModel(parent){
 
 //}
 
-void ItemModelBase::setPropertyMap() {
-    /*
-    if (childModel_)
-        childModel_->setupDefaultPropertyMap();*/
-}
 
 int ItemModelBase::rowCount(const QModelIndex &parent) const {
     Q_UNUSED(parent);
     return worksheet_data_.size();
-
 }
 
 int ItemModelBase::columnCount(const QModelIndex &parent) const {
     Q_UNUSED(parent);
-    return DATE_MAP_SIZE;//worksheet_data_.size(); //TODO
+    return column_count_;
 }
 
 QHash<int, QByteArray> ItemModelBase::roleNames() const {
@@ -74,9 +68,9 @@ QVariant ItemModelBase::headerData(int section, Qt::Orientation orientation, int
     case int(DATA_ID::NAME):
         return tr(FEATURE_NAME_S);
         break;
-    case int(DATA_ID::IS_ACTIVE):
-        return tr(IS_ACTIVE_S);
-        break;
+        //    case int(DATA_ID::IS_ACTIVE):
+        //        return tr(IS_ACTIVE_S);
+        //        break;
     }
     return QVariant();
 }
@@ -119,16 +113,24 @@ QVariant ItemModelBase::data(const QModelIndex &index, int role) const {
 }
 
 void ItemModelBase::createModel(const FileData &map){
-    LOOGGER("+");
+    //LOOGGER("+");
     std::map<std::string, std::string>::const_iterator it;
     it = map.begin();
     map.begin();
     while (it != map.end()){
         QStringList text = QString::fromUtf8(it->first.c_str()).split(".");
         Date_Map map;
-        map[DATA_ID::FEATURE] = QVariant(text.at(0));
-        map[DATA_ID::FEATURE_NAME] = QVariant(text.at(1));
-        map[DATA_ID::IS_ACTIVE] = QVariant(QString::fromUtf8(it->second.c_str()));
+        if (text.size() > 1){
+            map[DATA_ID::FEATURE] = QVariant(text.at(0));
+            map[DATA_ID::FEATURE_NAME] = QVariant(text.at(1));
+            map[DATA_ID::IS_ACTIVE] = QVariant(QString::fromUtf8(it->second.c_str()));
+        }
+        else {
+            map[DATA_ID::FEATURE] = QVariant(text.at(0));
+            map[DATA_ID::FEATURE_NAME] = QVariant(QString::fromUtf8(it->second.c_str()));
+            column_count_ = 2 ;
+            // map[DATA_ID::IS_ACTIVE] = QVariant(QString(""));
+        }
         worksheet_data_.append(map);
         //qDebug() << QString::fromUtf8(it->first.c_str())<< "=" <<QString::fromUtf8(it->second.c_str());
         ++it;
@@ -210,7 +212,7 @@ bool ItemModelBase::setData(const QModelIndex &index, const QVariant &value, int
 }
 
 ItemModelBase::~ItemModelBase() {
-  //  qDebug()<< "~ItemModelBase()";
+    //  qDebug()<< "~ItemModelBase()";
 }
 
 //void ItemModelBase::SetupModel() {
@@ -230,4 +232,8 @@ ItemModelBase::~ItemModelBase() {
 void ItemModelBase::cleanModelData(){
     //LOOGGER("+");
     worksheet_data_.clear();
+}
+
+QVector<Date_Map> *ItemModelBase::getData(){
+    return &worksheet_data_;
 }

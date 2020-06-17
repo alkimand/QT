@@ -5,17 +5,19 @@ pragma Singleton
 
 Item
 {
-	id: root
+    id: root
     property string toolBarIconPath: '../../images/ToolBarIcon/'
     //property string tableViewIconPath: '../../images/TableViewIcon/'
     //property string appButtonIconPath: '../../images/AppButton/'
-	
-	signal closeTabAct();	
-	signal closeAllTabAct();
-	signal fileOpen(var url);
-	signal openAction();
-    signal saveAction(var save_as);
-    
+
+    signal closeTabAct();
+    signal closeAllTabAct();
+    signal fileOpen(var url);
+    signal openAction();
+    signal saveAction();
+    signal saveAsAction();
+    signal closeAllButThis()
+
     //signal pushTollBar(var item_id);
 
 
@@ -41,14 +43,11 @@ Item
         text: "Open"
 
         onTriggered: {
-            //fileDialog.selectExisting = true
-            //fileDialog.open()
-            console.log("Action:" + text);
-
+            root.openAction();
         }
     }
-	
-	    property Action addAction:Action
+
+    property Action addAction:Action
     {
         id: addAction
         icon.source: toolBarIconPath + 'plus.png'
@@ -58,12 +57,12 @@ Item
 
         onTriggered: {
             console.log("Action:" + text);
-			root.openAction();
+            //root.openAction();
             //main_root.test()
-			
+
         }
     }
-	
+
     property Action fileSaveAction:Action
     {
         id: fileSaveAction
@@ -74,9 +73,8 @@ Item
         text: "Save"
 
         onTriggered: {
-            console.log("Action:" + text);
-			root.openAction();
-           // tab_view_.save()
+            //console.log("Action:" + text);
+            root.saveAction();
         }
     }
 
@@ -87,11 +85,9 @@ Item
         //shortcut : QKeySequence::Open)
         icon.name: "document-saveAs"
         text: "Save As..."
-
-        onTriggered:
-        {
-            //console.log("fileSaveAsAction");
-           console.log("Action:" + text);
+        onTriggered: {
+            root.saveAsAction();
+            // console.log("Action:" + text);
         }
     }
 
@@ -101,31 +97,13 @@ Item
         //shortcut : QKeySequence::Open)
         icon.name: "document-close"
         text: "Close"
-
-        onTriggered:
-        {
+        onTriggered: {
             console.log("Action:" + text);
             root.closeTabAct();
-          //tab_view_.removeTab(tab_view_.contexMenuIndex)
         }
     }
-	
-	    property Action closeAllAction:Action {
-        icon.source: toolBarIconPath + 'close.png'
-        //shortcut : QKeySequence::Open)
-        icon.name: "document-close"
-        text: "CloseAll"
 
-        onTriggered:
-        {
-            console.log("Action:" + text);
-            root.closeAllTabAct();
-          //tab_view_.removeTab(tab_view_.contexMenuIndex)
-        }
-    }
-	
-	
-	property Action closeTabAction:Action
+    property Action closeTabAction:Action
     {
         icon.source: toolBarIconPath + 'close.png'
         //shortcut : QKeySequence::Open)
@@ -133,13 +111,13 @@ Item
         text: "Close"
 
         onTriggered: {
-            console.log("Action:" + text);
-			root.closeTabAct()
-          //tab_view_.removeTab(tab_view_.contexMenuIndex)
+            //console.log("Action:" + text);
+            root.closeTabAct()
+            //tab_view_.removeTab(tab_view_.contexMenuIndex)
         }
     }
-	
-	
+
+
     property Action closeAllButThisAction:Action
     {
         id: closeAllButThisAction
@@ -148,13 +126,12 @@ Item
         icon.name: "document-close All"
         text: "Close all but this"
 
-        onTriggered:
-        {
-		console.log("Action:" + text);
-            //tab_view_.closeAllButThisTab(tab_view_.contexMenuIndex)
+        onTriggered:{
+            //console.log("Action:" + text);
+            root.closeAllButThis()
         }
     }
- 
+
     property Action renameTabAction:Action
     {
         id: renameTabAction
@@ -166,7 +143,7 @@ Item
         onTriggered:
         {
             //console.log("renameTabAction")
-			console.log("Action:" + text);
+            console.log("Action:" + text);
             //tab_view_.renameTab(tab_view_.contexMenuIndex)
             //tab_view_.removeTab(tab_view_.currentIndex)
         }
@@ -182,9 +159,9 @@ Item
 
         onTriggered:
         {
-		console.log("Action:" + text);
+            console.log("Action:" + text);
             //console.log("openInExplorerAction")
-           // tab_view_.openInExplorer()
+            // tab_view_.openInExplorer()
             //tab_view_.removeTab(tab_view_.currentIndex)
         }
     }
@@ -198,9 +175,9 @@ Item
         text: "Open in desktop services"
         onTriggered:
         {
-		console.log("Action:" + text);
-          //  console.log("openInDesktopServicesAction")
-           // tab_view_.openInDesktopServices()
+            console.log("Action:" + text);
+            //  console.log("openInDesktopServicesAction")
+            // tab_view_.openInDesktopServices()
         }
     }
 
@@ -213,7 +190,7 @@ Item
         text: "Remove column"
         onTriggered:
         {
-			console.log("Action:" + text);
+            console.log("Action:" + text);
             //console.log("removeColumnAction")
             //tab_view_.removeColumnTab()
         }

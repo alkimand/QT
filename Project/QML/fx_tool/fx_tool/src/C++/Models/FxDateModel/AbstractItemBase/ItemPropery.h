@@ -56,7 +56,8 @@ public:
        kParsing,
        kParsed,
        kRemoving,
-       kParseError
+       kParseError,
+       kSaveError
         };
 
     Q_ENUM(eItemStatus)

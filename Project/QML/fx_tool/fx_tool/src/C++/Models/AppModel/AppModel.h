@@ -32,7 +32,10 @@ public:
     void parseFolder(const QString file_path);
     void parseItem(pItem item);
     pItem  getItemByID(const QString id);
-
+    int haveSameModelByProperty(const ItemEnums::EItemProperty propertyType, const Props property);
+    void createItem(const QString &path = "");
+    int getLastCreatedItemId();
+    void saveFile(const QString file_path, const QString id);
 
     //private:
 
@@ -43,14 +46,13 @@ protected:
     // void SetupModel();
     ItemPropertyMap       default_property_map_;
     int                   model_counter_ = -1;
-    QString               directory_;
 
 private:
     void Init();
 
     QStringList FindFilies(const QString path = "");
 
-    void createItem(const QString &path = "");
+
      QString getPropperIcon(const QString file_name = "");
 
 signals:

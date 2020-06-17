@@ -9,7 +9,7 @@ ToolButton {
     text:""
     implicitHeight: tool_bar_grid_.cellHeight//mainToolBar.toolButtonImplicitHeight
     implicitWidth: tool_bar_grid_.cellWidth
-     //mainToolBar.toolButtonImplicitWidth
+    //mainToolBar.toolButtonImplicitWidth
     property int textHeight: 10//mainToolBar.toolButtonTextHeight
     property string textFont: "Arial Narrow"
     property string sourceIconPath: "qt-logo.png"
@@ -36,12 +36,6 @@ ToolButton {
 
         onClicked: {
             tool_bar_.pushTollBar(control.table_id)
-            //control.action.triggered(control.table_id)
-            //control.buttonBackColor = settingData.children[3].toolBarButtonIsNotSelectedColorSetting
         }
-    }
-    Component.onCompleted: {
-        //console.log("ID=" + ID)
-       // console.log("sourceIconPath = " + sourceIconPath)
     }
 }

@@ -10,7 +10,7 @@ ToolBar
     id: control
     width: parent.width
     //implicitHeight: grid_view_.height
-    //height: 400
+    height: 30
     focusReason : Qt.MouseFocusReason
     background: Rectangle  {
         anchors.fill:parent
@@ -33,9 +33,8 @@ ToolBar
     GridView {
         id:tool_bar_grid_
         width: parent.width;
-        cellHeight : 25
-        cellWidth : 25
-        //parent.height;
+        cellHeight : 30
+        cellWidth : 30
         //orientation : ListView.Horizontal
         model: app_data.model//100
         //snapMode:ListView.SnapOneItem

@@ -21,76 +21,36 @@ class AppDataProvider: public QObject {
     Q_OBJECT
     Q_PROPERTY(AppModel * model READ getModel  NOTIFY modelChanged)
 
-    //Q_PROPERTY(int current_model_id_ READ getModelId  WRITE setModelId NOTIFY IdChanged)
-   // Q_PROPERTY(bool isModelPresent_ READ isModelPresent  WRITE setModelPresent NOTIFY ModelPresentChanged)
-   // Q_PROPERTY(QString current_model_title READ getTitle WRITE setTitle NOTIFY titleChange)
 public:
     AppDataProvider(QObject *parent = nullptr);
     void Init();
-    //void loadDirectory(const QString &directory);
-   // static inline void openFile();
-  //  QStringList FindFilies(const QString path = "");
-   // void createItem(const QString &path = "");
-   // void openInExplorer();
+    ~AppDataProvider();
 
-//for be a model
-
-
-
-
-signals:
-   // void itemParsed(int id);
     //QML
 public:
-    //get
-    //int getModelId() const;
     AppModel *getModel() ;
-    //bool isModelPresent() const;
-    //QString getTitle();
-
-    //set
-    //void setModel(ItemModelBase *){};
-    //void setModelId(int id);
-   // void setModelPresent(bool modelPresent);
-    //void setTitle(QString new_tittle);
-
-
     //qml
 signals:
-    void itemParsed(QString id);
+    void itemParsed(QString item_id);
     void modelChanged();
-    //void IdChanged();
-    //void ModelPresentChanged();
-   // void titleChange();
-
-
-
-    // ~AppDataProvider();
-protected:
 
 private:
-    //pItem getTableModelByID(int id);
-
-
-private:
-    //qml
-    //ItemModelBase *model;
-
     AppModel            *model_;
 
 private:
 
+
 public slots:
     void appStart();
     void toolBarButtonPush(QString id);
-
-
-
+    void openFile(const QString file_path);
+    void saveFile(const QString file_path, const QString id);
+    ItemModelBase* getModelByID(const QString id);
+    QString getFileTitleByID(const QString id);
+    QString getFilePathByID(const QString id);
+    // QString getDefaultConfigFolder();
+    QString getDefaultDir();
 };
-
-
-
-
 
 #endif // APP_DATA_PROVIDER_H
 

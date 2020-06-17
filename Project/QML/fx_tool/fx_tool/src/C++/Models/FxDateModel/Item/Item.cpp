@@ -50,15 +50,13 @@ void Item::setupDefault(const ItemPropertyMap &default_map){
 }
 
 void Item::parse() {
-    LOOGGER("+");
-   // Props path = getProperty(ItemEnums::EItemProperty::kFilePath);
-
-
+    //LOOGGER("+");
     property_->parse();
     FileData file_data;
     file_data = property_->getFileModel();
-    if (!file_data.size() > 0){
+    if (file_data.empty()) {
         property_->setItemProperty(ItemEnums::EItemProperty::kStatus, Props(ItemEnums::eItemStatus::kParseError));
+        LOOGGER("::ParseError");
         return;
     }
     model_->createModel(file_data);
@@ -74,6 +72,33 @@ ItemModelBase *Item::getModel() {
 
 bool Item::isPropertyExist(const ItemEnums::EItemProperty propertyType){
     return property_->isPropertyExist(propertyType);
+}
+
+void Item::saveFile(const QString file_path){
+     FileData c_map;
+     QVector <Date_Map> * q_map = model_->getData();
+     property_->setItemProperty(ItemEnums::EItemProperty::kFilePath, file_path);
+
+     //Qstring file
+     QString line_1;
+     QString line_2;
+     for (auto iterator: *q_map ){
+         QHash<DATA_ID, QVariant> date_ = iterator;
+         if (iterator.size() > 2){
+              line_1 = (iterator.value(FEATURE)).toString();
+              line_1 += ".";
+              line_1 = line_1 + (iterator.value(FEATURE_NAME)).toString();
+              line_2 = (iterator.value(IS_ACTIVE)).toString();
+         }
+         else {
+               line_1 = (iterator.value(FEATURE)).toString();
+               line_2 = (iterator.value(FEATURE_NAME)).toString();
+         }
+       // std::string sline_1 = line_1.toStdString();
+        c_map.insert_or_assign(line_1.toStdString(),line_2.toStdString());
+       // c_map.insert(sline_1, sline_1);
+     }
+     property_->save(file_path, c_map);
 }
 
 Item::~Item() {

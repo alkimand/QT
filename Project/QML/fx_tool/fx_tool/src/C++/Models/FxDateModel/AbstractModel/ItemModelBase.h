@@ -19,11 +19,6 @@ public:
     //Q_ENUM(DATA_ID)
 
     ItemModelBase(QObject *parent = nullptr);
-//ItemModelBase();
-    void virtual  setPropertyMap();
-
-
-
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
 
@@ -40,10 +35,12 @@ public:
 
  public:
     void cleanModelData();
+    QVector<Date_Map> *getData();
 
 protected:
    // ItemEnums::EModelType date_type_;
     QVector <Date_Map> worksheet_data_;
+    int column_count_=               3;
 
     //void SetupModel();
 

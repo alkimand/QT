@@ -94,10 +94,10 @@ ComboBox {
             currentIndex: control.highlightedIndex
 
             //ScrollIndicator.vertical: ScrollIndicator {    }
-//            delegate:Text
-//            {
-//                text: control.displayText
-//            }
+            //            delegate:Text
+            //            {
+            //                text: control.displayText
+            //            }
             ScrollBar.vertical: ScrollBar { width: 20}
         }
 

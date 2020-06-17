@@ -22,5 +22,6 @@
         <file>../../src/qml/TabView/Tab/MouseEvent.qml</file>
         <file>../../src/qml/TableView/BaseTableView.qml</file>
         <file>../../src/qml/TableView/ItemDelegate/ItemDelegate/EditableLable.qml</file>
+        <file>../../src/qml/FileDialog/FileDialogWidget.qml</file>
     </qresource>
 </RCC>

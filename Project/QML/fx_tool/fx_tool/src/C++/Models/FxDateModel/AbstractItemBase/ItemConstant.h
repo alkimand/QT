@@ -15,6 +15,8 @@
 #define DEFAULT_ICON                          "qt-logo.png"
 #define FREEYTVDOWNLOADER                     "FreeYTVDownloader"
 #define FREEYTVDOWNLOADER_ICON                "freevideodownloader.ico"
+#define FREEYOUTUBETOMP3CONVERTER             "Freeyoutubetomp3converter" //toDo
+#define FREEYOUTUBETOMP3CONVERTER_ICON        "freeyoutubetomp3converter.ico"
 #define FREETIKTOKDOWNLOADER                  "FreeTikTokDownloader"
 #define FREETIKTOKDOWNLOADER_ICON             "freetiktokdownloader.ico"
 

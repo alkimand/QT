@@ -9,10 +9,6 @@ import QtQuick.Layouts 1.12
 import Actions 1.0
 import BorderRadiusWidget.qml 1.0
 
-//import "../../../ContextMenu"
-//import "../Tab"
-//import "../../../ContextMenu/TabContextMenu"
-
 import "../../Menu/TabContextMenu"
 import "../Tab"
 
@@ -341,7 +337,7 @@ Rectangle {
 
                     tab_view.contexMenuIndex = styleData.index
                     tab_view.indexUnderMouse = styleData.index
-
+                    //console.log("tab_view.indexUnderMouse =" + tab_view.indexUnderMouse )
 
                     Actions.fileSaveAction.triggered()
                 }
@@ -639,8 +635,8 @@ Rectangle {
             PropertyChanges {
                 target: rightBorder;
                 visible: styleData.index !== (tab_view.currentIndex - 1)
-                        && (styleData.index !== tab_view.indexUnderMouse - 1)
-                        && (styleData.index !== tab_view.count - 1)
+                         && (styleData.index !== tab_view.indexUnderMouse - 1)
+                         && (styleData.index !== tab_view.count - 1)
                          ? true:false;
             }
 
@@ -809,7 +805,7 @@ Rectangle {
             PropertyChanges {
                 target: bottomLeftOutsideRadius;
                 activeButtonColor: root.beforeSelectColor
-                    //"red"
+                //"red"
                 //                  ((tab_view.indexUnderMouse === (tab_view.currentIndex+1))
                 //                   && styleData.index === (tab_view.currentIndex)
                 //                   )

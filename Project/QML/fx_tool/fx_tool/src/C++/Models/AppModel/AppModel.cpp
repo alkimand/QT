@@ -51,9 +51,6 @@ void AppModel::parseItem(pItem item){
                 //emit itemParsed(id);
             }
         }
-
-
-
     }
 }
 
@@ -68,8 +65,20 @@ pItem AppModel::getItemByID(const QString id){
     return item_;
 }
 
+int AppModel::haveSameModelByProperty(const ItemEnums::EItemProperty property_type,const Props property) {
+    int id = -1;
+    for (auto item: app_data_){
+      Props item_property =  item.get()->getProperty(property_type);
+      if (item_property == property) {
+          id = (item.get()->getProperty(ItemEnums::EItemProperty::kId)).toInt();
+          break;
+      }
+    }
+    return id;
+}
+
 void AppModel::createItem(const QString &path){
-    LOOGGER("+");
+   // LOOGGER("+");
     model_counter_++;
     Item *item = new Item(this);
     pItem ptem = pItem(item, &QObject::deleteLater);
@@ -78,19 +87,31 @@ void AppModel::createItem(const QString &path){
     ptem.get()->setProperty(ItemEnums::EItemProperty::kId, QString::number(model_counter_));
     QString icon = getPropperIcon(path);
     ptem.get()->setProperty(ItemEnums::EItemProperty::kIcon, icon);
-    //parseItem(ptem);
+   // parseItem(ptem);//--
     int row = app_data_.size();
     beginInsertRows(QModelIndex(), row, row);
     app_data_.push_back(ptem);
     endInsertRows();
 }
 
-QString AppModel::getPropperIcon(const QString file_name){
+int AppModel::getLastCreatedItemId(){
+    return model_counter_;
+}
+
+void AppModel::saveFile(const QString file_path, const QString id) {
+    Props item_status;
+    pItem item = getItemByID(id);
+    item.get()->saveFile(file_path);
+}
+
+QString AppModel::getPropperIcon(const QString file_name) {
     QString icon = DEFAULT_ICON;
     if(file_name.contains(FREEYTVDOWNLOADER))
         icon = FREEYTVDOWNLOADER_ICON;
     else if(file_name.contains(FREETIKTOKDOWNLOADER))
         icon = FREETIKTOKDOWNLOADER_ICON;
+    else if(file_name.contains(FREEYOUTUBETOMP3CONVERTER))
+        icon = FREEYOUTUBETOMP3CONVERTER_ICON;
     return icon;
 }
 
@@ -155,16 +176,16 @@ QVariant AppModel::data(const QModelIndex &index, int role) const {
         //QString("%1, %2").arg(index.column()).arg(index.row());
         break;
     case (int(Qt::UserRole + MODEL_ROLES::TITLE)):
-        if (app_data_.at(index.row()).get()->isPropertyExist(ItemEnums::EItemProperty::kFileName));
-        result = app_data_.at(index.row()).get()->getProperty(ItemEnums::EItemProperty::kFileName);
+        if (app_data_.at(index.row()).get()->isPropertyExist(ItemEnums::EItemProperty::kFileName))
+            result = app_data_.at(index.row()).get()->getProperty(ItemEnums::EItemProperty::kFileName);
         break;
     case (int(Qt::UserRole + MODEL_ROLES::ID)):
-        if (app_data_.at(index.row()).get()->isPropertyExist(ItemEnums::EItemProperty::kId));
-        result = app_data_.at(index.row()).get()->getProperty(ItemEnums::EItemProperty::kId);
+        if (app_data_.at(index.row()).get()->isPropertyExist(ItemEnums::EItemProperty::kId))
+            result = app_data_.at(index.row()).get()->getProperty(ItemEnums::EItemProperty::kId);
         break;
     case (int(Qt::UserRole + MODEL_ROLES::ICON_PATH)):
-        if (app_data_.at(index.row()).get()->isPropertyExist(ItemEnums::EItemProperty::kIcon));
-        result = app_data_.at(index.row()).get()->getProperty(ItemEnums::EItemProperty::kIcon);
+        if (app_data_.at(index.row()).get()->isPropertyExist(ItemEnums::EItemProperty::kIcon))
+            result = app_data_.at(index.row()).get()->getProperty(ItemEnums::EItemProperty::kIcon);
         break;
     }
     QString temp =  QString::number(index.row())+" " +  QString::number(index.column());//index.row();
@@ -219,8 +240,8 @@ void AppModel::Init(){
 }
 
 void AppModel::parseFolder(const QString file_path){
-    for (const QString &filePath : FindFilies(directory_)) {
-        LOOGGER("parse one file - "+ filePath);
+    for (const QString &filePath : FindFilies(file_path)) {
+        //LOOGGER("parse one file - "+ filePath);
         this->createItem(QDir::toNativeSeparators(filePath));
     }
 }

@@ -2,10 +2,6 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 
-//import "../../SmallCrossChekerButton/MoneyCheker"
-//import "../RowLogic.js" as Logic
-//import Settings 1.0
-
 ItemDelegate {
     id:root
     property alias placeholderText: textArea.placeholderText
@@ -21,8 +17,6 @@ ItemDelegate {
     implicitWidth: 100
     implicitHeight:30
     property string commonFontFamily: "Arrial"
-    //property string value
-    // signal openView()
     signal startEdit()
     signal finishEdit()
 
@@ -103,7 +97,7 @@ ItemDelegate {
             }
 
             function finishEditHandler() {
-               // console.log("finishEditHandler =" + display_);
+                // console.log("finishEditHandler =" + display_);
                 //name = textArea.text;
                 edite = textArea.text;
                 //if (textArea.placeholderText)
@@ -130,8 +124,8 @@ ItemDelegate {
                     root.startEdit()
                     if (textArea.text === display_){
                         textArea.text = display_;
-                      //  edite =  textArea.text
-                       // textArea.text = display_
+                        //  edite =  textArea.text
+                        // textArea.text = display_
                         var position = textArea.positionAt(mouse.x, mouse.y);
                         textArea.select(position,position);
                         textArea.deselect();
@@ -156,12 +150,12 @@ ItemDelegate {
                     }
                 }
                 onFocusChanged: {
-                   // console.log("onFocusChanged")
+                    // console.log("onFocusChanged")
                 }
                 onExited:{
                     //  background_.color ="white"
                     //("onExited = ")
-                  //  console.log("onExited")
+                    //  console.log("onExited")
                 }
 
                 onEntered: {
@@ -169,12 +163,9 @@ ItemDelegate {
                     // background_.color ="red"
                 }
                 onCanceled: {
-                   // console.log("onCanceled")
+                    // console.log("onCanceled")
                 }
-
-
             }
         }
     }
 }
-//}
