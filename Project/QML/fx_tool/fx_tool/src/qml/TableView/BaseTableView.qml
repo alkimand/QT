@@ -37,6 +37,7 @@ TableView {
     rowHeightProvider :  function (row) { return 35}
     signal refreshModel()
     model: app_data.getModelByID(current_id_)
+
     reuseItems : true
     z:1
     onWidthChanged: {
@@ -44,7 +45,7 @@ TableView {
         table_view.x=0
     }
     delegate: ColumnProvider {
-        placeholderText_L:  display_
+        placeholderText_L:  { return typeof display_ !== "undefined" ? display_:""}
     }
         /* EditableLable {
         placeholderText:  display_
@@ -54,7 +55,7 @@ TableView {
         target: table_view
         onRefreshModel: {
             console.log("onRefreshModel");
-            table_view.test()
+            //table_view.test()
         }
     }
 
@@ -77,6 +78,21 @@ TableView {
     function modelReset() {
         //console.log("modelReset");
        table_view.model.modelReset();// = app_data.getModelByID(current_id_)
+    }
+
+    function removeRow(item_row) {
+        table_view.model.removeRow(item_row);
+        table_view.model.modelReset();
+    }
+
+    function addRow(item_row) {
+        table_view.model.addRow(item_row);
+        table_view.model.modelReset();
+    }
+
+    function copyRow(item_row) {
+        table_view.model.copyRow(item_row);
+        table_view.model.modelReset();
     }
 }
 

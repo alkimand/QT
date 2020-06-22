@@ -27,11 +27,17 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
     void createModel(const FileData &map);
+
     bool setData(const QModelIndex &index, const QVariant &value, int role);
 
 //private:
     
     virtual ~ItemModelBase();
+
+public slots:
+   void removeRow(const int row);
+   void addRow(const int row);
+   void copyRow(const int row);
 
  public:
     void cleanModelData();

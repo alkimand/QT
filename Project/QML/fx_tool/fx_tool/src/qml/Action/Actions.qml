@@ -18,7 +18,10 @@ Item
     signal saveAsAction();
     signal closeAllButThis()
     signal refresh();
-
+    signal removeRow();
+    signal addRow();
+    signal copyRow();
+    
     //signal pushTollBar(var item_id);
 
 
@@ -144,11 +147,6 @@ Item
         }
     }
 
-
-
-
-
-
     property Action renameTabAction:Action
     {
         id: renameTabAction
@@ -197,34 +195,35 @@ Item
         }
     }
 
-    property Action removeColumnAction:Action
-    {
-        id: removeColumnAction
-        icon.source: "../images/ToolBarIcon/remove_column.png"
-        //shortcut : QKeySequence::Open)
-        icon.name: "Open"
-        text: "Remove column"
-        onTriggered:
-        {
+    property Action removeRowAction:Action {
+        icon.source: toolBarIconPath + 'remove_row.png'
+        icon.name: "Remove row"
+        text: "Remove row"
+        onTriggered: {
             console.log("Action:" + text);
-            //console.log("removeColumnAction")
-            //tab_view_.removeColumnTab()
+            root.removeRow();
+        }
+    }
+    
+    property Action addRowAction:Action {
+        icon.source: toolBarIconPath + 'add_row.png'
+        icon.name: "Add row"
+        text: "Add row"
+        onTriggered: {
+            console.log("Action:" + text);
+            root.addRow();
+        }
+    }
+        property Action copyRowAction:Action {
+        icon.source: toolBarIconPath + 'copy_row.png'
+        icon.name: "Copy row"
+        text: "Copy row"
+        onTriggered: {
+            console.log("Action:" + text);
+            root.copyRow();
         }
     }
 
-    property Action restoreColumnAction:Action
-    {
-        id: restoreColumnAction
-        icon.source: "../images/ToolBarIcon/show_all_column.png"
-        //shortcut : QKeySequence::Open)
-        icon.name: "Open"
-        text: "Show all columns"
-        onTriggered:
-        {
-            console.log("restoreColumnAction")
-            tab_view_.restoreColumnTab()
-        }
-    }
 }
 
 

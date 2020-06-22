@@ -16,6 +16,7 @@
         <file>../../src/qml/Menu/CheckIndicator.qml</file>
         <file>../../src/qml/Menu/MenuBarContextMenu/FileContexMenu/FileContexMenu.qml</file>
         <file>../../src/qml/Menu/TabContextMenu/TabContextMenu.qml</file>
+        <file>../../src/qml/Menu/TableViewContexMenu/ItemContexMenu/ItemContexMenu.qml</file>
         <file>../../src/qml/TabView/TabViewWidget.qml</file>
         <file>../../src/qml/TabView/Style/TabViewStyle.qml</file>
         <file>../../src/qml/TabView/Style/OneTabBaseStyle.qml</file>

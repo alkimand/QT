@@ -14,6 +14,7 @@ import "src/qml/ToolBar"
 import "src/qml/Menu/HeaderMenuBar"
 import "src/qml/TabView"
 import "src/qml/FileDialog"
+import "src/qml/Menu/TableViewContexMenu/ItemContexMenu"
 
 ApplicationWindow {
     id: main_root
@@ -25,8 +26,11 @@ ApplicationWindow {
 
     signal openFile(string file_path)
     signal saveFile(string file_path)//, string item_id)
-
-    FileDialogWidget { id:file_dialog }
+    Loader {
+        id:open_file_dalog_
+        source: "./src/qml/FileDialog/FileDialogWidget.qml"
+    }
+   FileDialogWidget { id:file_dialog }
 
     //from AppDataProvider
     Connections {
@@ -123,11 +127,32 @@ ApplicationWindow {
         onRefresh: {
             app_data.parseItem(main_root.getTableId(), main_root.getCurentTableViewId())
         }
+
+        onRemoveRow:{
+            if (tab_view.item_context_menu_row!= -1) {
+                tab_view.getTab(tab_view.currentIndex).item.children[0].children[0].item.removeRow(tab_view.item_context_menu_row)
+            }
+        }
+
+        onAddRow:{
+            if (tab_view.item_context_menu_row!= -1) {
+                tab_view.getTab(tab_view.currentIndex).item.children[0].children[0].item.addRow(tab_view.item_context_menu_row)
+            }
+        }
+
+        onCopyRow:{
+            if (tab_view.item_context_menu_row!= -1) {
+                tab_view.getTab(tab_view.currentIndex).item.children[0].children[0].item.copyRow(tab_view.item_context_menu_row)
+            }
+        }
+
+
+
     }
 
     menuBar: MenuBarWidget {}// {id:menu_bar_}
     header: ToolBarWidget { id:tool_bar_}
-
+    ItemContexMenu {id: item_context_menu_}
 
     TabViewWidget {
         id:tab_view

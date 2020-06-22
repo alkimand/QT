@@ -38,3 +38,4 @@ qt_5_12_0_sse
 qt_5_7_0_sse
 *.am
 *.filters
+*%_CL_*%

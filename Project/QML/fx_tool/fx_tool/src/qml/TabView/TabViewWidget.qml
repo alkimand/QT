@@ -14,6 +14,7 @@ C1.TabView {
     property int indexUnderMouse:               -1
     property string current_temp_id:            "0"
     property int current_temp_view_id:           0
+    property int item_context_menu_row:          -1
 
     signal renametab()
     signal refreshTab()

@@ -137,35 +137,29 @@ void ItemModelBase::createModel(const FileData &map){
     }
 }
 
+void ItemModelBase::removeRow(const int row) {
+    worksheet_data_.remove(row);
+}
+
+void ItemModelBase::addRow(const int row){
+    Date_Map map;
+    map[DATA_ID::FEATURE] = QVariant("");
+    map[DATA_ID::FEATURE_NAME]= QVariant("");
+    map[DATA_ID::IS_ACTIVE] = "0";
+    worksheet_data_.insert(row + 1,map);
+}
+
+void ItemModelBase::copyRow(const int row){
+    Date_Map map = worksheet_data_.at(row);
+    worksheet_data_.insert(row + 1, map);
+}
+
 
 bool ItemModelBase::setData(const QModelIndex &index, const QVariant &value, int role) {
     bool result = false;
     // qDebug()<< "setData"+value.toString();
     if (index.isValid() && role==Qt::EditRole) {
         switch (role){
-        //case Qt::EditRole:
-        //    case (int(Qt::UserRole + DATA_ID::FEATURE)):
-        //    case (int(Qt::UserRole + DATA_ID::NAME)):
-        //    case (int(Qt::UserRole + DATA_ID::IS_ACTIVE)):
-        //        if (worksheet_data_.size() > index.row()) {
-        //            if(worksheet_data_.at(index.row()).contains(DATA_ID(role - int(Qt::UserRole)))) {
-        //                worksheet_data_[index.row()][DATA_ID(role - int(Qt::UserRole))] = value.toString();
-        //            }
-        //            else {
-        //                Date_Map temp (worksheet_data_.at(index.row()));
-        //                temp[DATA_ID(role - int(Qt::UserRole))] = value.toString();
-        //                worksheet_data_.replace(index.row(), temp);
-        //            }
-        //        }
-        //        else {
-        //            Date_Map temp;
-        //            temp[DATA_ID(role - int(Qt::UserRole))] = value.toString();
-        //            worksheet_data_.insert(index.row(), temp);
-        //        }
-
-        //        result = true;
-        //        break;
-
         case (int(Qt::EditRole)):
             if (worksheet_data_.size() > index.row()) {
                 if(worksheet_data_.at(index.row()).contains(DATA_ID(index.column()))) {
@@ -186,24 +180,6 @@ bool ItemModelBase::setData(const QModelIndex &index, const QVariant &value, int
             //emit dataChanged(index, index);
             result = true;
             break;
-
-
-            //default
-            //:return  QSqlTableModel::setData(index,value,Qt::EditRole);
-
-
-
-            // case (int(Qt::UserRole + DATA_ID::FEATURE)):
-            //                else {
-
-            //                }
-
-
-            // worksheet_data_.at(index.row())
-
-            // .insert("plenty", 2000);
-            //return value(DATA_ID(role - int(Qt::UserRole)));
-            //}
         }
         QString temp =  QString::number(index.row())+" " +  QString::number(index.column());
         //qDebug()<< "setdata " + temp + " =" + value.toString();

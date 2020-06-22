@@ -50,8 +50,7 @@ Rectangle
                     if (styleData.row > -1)tableView.selectRow = styleData.row;
                 }
             }
-            else
-            {
+            else   {
                 itemContexMenu.popup()
             }
         }

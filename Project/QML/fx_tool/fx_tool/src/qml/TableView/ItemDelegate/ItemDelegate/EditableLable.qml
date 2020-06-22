@@ -44,7 +44,7 @@ ItemDelegate {
             //inputMethodHints: Qt.ImhNoPredictiveText
             anchors.horizontalCenter: parent.horizontalCenter
             // anchors.verticalCenter: parent.verticalCenter
-            placeholderTextColor : "red"//root.labelРighlightingFontColor
+            placeholderTextColor : root.labelРighlightingFontColor
             placeholderText : root.placeholderText
             selectByMouse : true
             //overwriteMode :true
@@ -72,7 +72,7 @@ ItemDelegate {
             Keys.onReturnPressed: { _onEnterPressed(event) }
             Keys.onEnterPressed: { _onEnterPressed(event) }
             Component.onCompleted: {
-              //  root.placeholderText = placeholderText_L
+                //  root.placeholderText = placeholderText_L
             }
 
             Keys.onPressed:  {
@@ -115,24 +115,35 @@ ItemDelegate {
                 id:labelMouseArea
                 anchors.fill: parent
                 cursorShape : Qt.ArrowCursor
-                acceptedButtons: Qt.LeftButton
+                acceptedButtons: Qt.LeftButton | Qt.RightButton
                 onClicked: {
-                    //console.log("onClicked "+ display_)
-                    root.startEdit()
-                    if (textArea.text === display_){_
-                        var position = textArea.positionAt(mouse.x, mouse.y);
-                        textArea.select(position,position);
-                        textArea.deselect();
-                    }
-                    else if (textArea.text !== ""){
-                        edite = textArea.text;
-                        var position = textArea.positionAt(mouse.x, mouse.y);
-                        textArea.select(position,position);
-                        textArea.deselect();
+                    if (mouse.button == Qt.LeftButton) {
+                        //console.log("onClicked "+ display_)
+                        root.startEdit()
+
+                        if (textArea.text === display_){
+                            var position_1 = textArea.positionAt(mouse.x, mouse.y);
+                            textArea.select(position_1,position_1);
+                            textArea.deselect();
+                        }
+                        else if (textArea.text !== ""){
+                            edite = textArea.text;
+                            var position_2 = textArea.positionAt(mouse.x, mouse.y);
+                            textArea.select(position_2,position_2);
+                            textArea.deselect();
+                        }
+                        else {
+                            if (typeof textArea.text !== "undefined") {
+                                textArea.text = display_;
+                                textArea.selectAll();
+                            }
+                        }
                     }
                     else {
-                        textArea.text = display_;
-                        textArea.selectAll();
+                        textArea.focus = false;
+                        tab_view.item_context_menu_row = row
+                        //console.log(row)
+                        item_context_menu_.popup();
                     }
                 }
                 onReleased: {
@@ -141,13 +152,17 @@ ItemDelegate {
                 }
 
                 onDoubleClicked: {
-                    if (textArea.activeFocus){
-                        //console.log("display_"+ column);
-                        labelMouseArea.cursorShape=Qt.IBeamCursor;
-                        textArea.text = display_;
-                        textArea.selectAll();
+                    if (mouse.button == Qt.LeftButton){
+                        if (textArea.activeFocus){
+                            //console.log("display_"+ column);
+                            labelMouseArea.cursorShape=Qt.IBeamCursor;
+                            textArea.text = display_;
+                            textArea.selectAll();
 
-                        textArea.forceActiveFocus();
+                            textArea.forceActiveFocus();
+                        }
+                    }
+                    else{
                     }
                 }
                 onFocusChanged: {
@@ -167,7 +182,7 @@ ItemDelegate {
                     //
                 }
                 onPressed: {
-               // console.log("onPressed")
+                    // console.log("onPressed")
                 }
             }
         }

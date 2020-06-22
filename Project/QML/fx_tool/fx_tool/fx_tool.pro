@@ -145,6 +145,9 @@ OTHER_FILES += \
 #
     #TableView Loaders
     $${QML_SOURSE_MENU_BAR_PATH}/ItemDelegate/Loaders/ColumnProvider.qml \
+#
+    #TableView ContextMenu
+    $${QML_SOURSE_MENU_BAR_PATH}/TableViewContexMenu/ItemContexMenu/ItemContexMenu.qml \
 #FileDialog
     $${QML_SOURSE_FILE_DIALOG_PATH}/FileDialogWidget.qml \
 
@@ -156,12 +159,13 @@ DISTFILES += \
     $${IMAGES_PATH}/close.png \
     $${IMAGES_PATH}/plus.png \
     $${IMAGES_PATH}/refresh.png \
+    $${IMAGES_PATH}/remove_row.png \
+    $${IMAGES_PATH}/add_row.png \
     $${IMAGES_PATH}/freevideodownloader.ico \
     $${IMAGES_PATH}/freeyoutubetomp3converter.ico \
     $${IMAGES_PATH}/freeinstagramdownload.ico \
     $${IMAGES_PATH}/freetiktokdownloader.ico \
     $${IMAGES_PATH}/vimeodownload.ico
-
 
 QML_DESIGNER_IMPORT_PATH =
 

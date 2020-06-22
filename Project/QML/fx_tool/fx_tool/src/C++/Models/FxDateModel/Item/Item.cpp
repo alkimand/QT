@@ -13,14 +13,14 @@ void Item::setFile(const QString &path) {
 }
 
 void Item::setProperty(const ItemEnums::EItemProperty property,const Props value) {
-        if (property!=ItemEnums::EItemProperty::kNone)
-            property_->setItemProperty(property, Props(value));
+    if (property!=ItemEnums::EItemProperty::kNone)
+        property_->setItemProperty(property, Props(value));
 }
 
 const Props  Item::getProperty(const ItemEnums::EItemProperty property) {
-        if (property!=ItemEnums::EItemProperty::kNone)
-             return property_->getItemProperty(property);
-        return Props("");
+    if (property!=ItemEnums::EItemProperty::kNone)
+        return property_->getItemProperty(property);
+    return Props("");
 }
 
 //Props Item::getProperty(const ItemEnums::EItemProperty property){
@@ -46,7 +46,7 @@ void Item::setupDefault(const ItemPropertyMap &default_map){
         LOOGGER("NO Default map");
         return;
     }
-        property_->setDefaultPropertyMap(default_map);
+    property_->setDefaultPropertyMap(default_map);
 }
 
 void Item::parse() {
@@ -75,37 +75,42 @@ bool Item::isPropertyExist(const ItemEnums::EItemProperty propertyType){
 }
 
 void Item::saveFile(const QString file_path){
-     FileData c_map;
-     QVector <Date_Map> * q_map = model_->getData();
-     property_->setItemProperty(ItemEnums::EItemProperty::kFilePath, file_path);
+    FileData c_map;
+    QVector <Date_Map> * q_map = model_->getData();
+    property_->setItemProperty(ItemEnums::EItemProperty::kFilePath, file_path);
 
-     //Qstring file
-     QString line_1;
-     QString line_2;
-     for (auto iterator: *q_map ){
-         QHash<DATA_ID, QVariant> date_ = iterator;
-         if (iterator.size() > 2){
-              line_1 = (iterator.value(FEATURE)).toString();
-              line_1 += ".";
-              line_1 = line_1 + (iterator.value(FEATURE_NAME)).toString();
-              line_2 = (iterator.value(IS_ACTIVE)).toString();
-         }
-         else {
-               line_1 = (iterator.value(FEATURE)).toString();
-               line_2 = (iterator.value(FEATURE_NAME)).toString();
-         }
-       // std::string sline_1 = line_1.toStdString();
-        c_map.insert_or_assign(line_1.toStdString(),line_2.toStdString());
-       // c_map.insert(sline_1, sline_1);
-     }
-     property_->save(file_path, c_map);
+    //Qstring file
+    QString line_1;
+    QString line_2;
+    for (auto iterator: *q_map ){
+        QHash<DATA_ID, QVariant> date_ = iterator;
+        if (iterator.size() > 2){
+            line_1 = (iterator.value(FEATURE)).toString();
+            if (!line_1.isEmpty() && line_1 != ""){
+                line_1 += ".";
+                line_1 = line_1 + (iterator.value(FEATURE_NAME)).toString();
+                line_2 = (iterator.value(IS_ACTIVE)).toString();
+            }
+            else
+                line_2 = "";
+        }
+        else {
+            line_1 = (iterator.value(FEATURE)).toString();
+            line_2 = (iterator.value(FEATURE_NAME)).toString();
+        }
+        // std::string sline_1 = line_1.toStdString();
+        if (!line_1.isEmpty() && !line_2.isEmpty())
+            c_map.insert_or_assign(line_1.toStdString(),line_2.toStdString());
+        // c_map.insert(sline_1, sline_1);
+    }
+    property_->save(file_path, c_map);
 }
 
 Item::~Item() {
     //qDebug()<<"~Item";
     delete property_;
     delete model_;
-   // fs::FxConfig cfg_;
+    // fs::FxConfig cfg_;
 }
 
 
