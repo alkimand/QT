@@ -9,6 +9,6 @@ ContextMenuBase {
         control.insertAction(0, Actions.fileOpenAction)
         control.insertAction(1, Actions.fileSaveAction)
         control.insertAction(2, Actions.fileSaveAsAction)
-        control.insertAction(3, Actions.closeAction)
+        control.insertAction(3, Actions.closeAppAction)
     }
 }

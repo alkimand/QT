@@ -17,6 +17,7 @@ Item
     signal saveAction();
     signal saveAsAction();
     signal closeAllButThis()
+    signal refresh();
 
     //signal pushTollBar(var item_id);
 
@@ -91,7 +92,7 @@ Item
         }
     }
 
-    property Action closeAction:Action
+    property Action closeAppAction:Action
     {
         icon.source: toolBarIconPath + 'close.png'
         //shortcut : QKeySequence::Open)
@@ -132,6 +133,22 @@ Item
         }
     }
 
+    property Action refreshAction:Action {
+        icon.source: toolBarIconPath + 'refresh.png'
+        //shortcut : QKeySequence::Open)
+        icon.name: ""
+        text: "Refresh"
+        onTriggered:{
+            console.log("Action:" + text);
+            root.refresh()
+        }
+    }
+
+
+
+
+
+
     property Action renameTabAction:Action
     {
         id: renameTabAction
@@ -140,8 +157,7 @@ Item
         icon.name: "rename"
         text: "Rename Tab"
 
-        onTriggered:
-        {
+        onTriggered: {
             //console.log("renameTabAction")
             console.log("Action:" + text);
             //tab_view_.renameTab(tab_view_.contexMenuIndex)

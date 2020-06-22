@@ -4,7 +4,7 @@ PROJECT_ROOT_PATH = $${PWD}/
 win32: OS_SUFFIX = win32
 linux-g++: OS_SUFFIX = linux
 
-QT += qml quick core quickcontrols2 widgets
+QT += qml quick core quickcontrols2 widgets concurrent
 
 CONFIG += c++11
 
@@ -141,6 +141,10 @@ OTHER_FILES += \
 #
     #TableView Item Delegats
     $${QML_SOURSE_TABLE_VIEW_PATH}/ItemDelegate/ItemDelegate/EditableLable.qml \
+    $${QML_SOURSE_TABLE_VIEW_PATH}/ItemDelegate/ItemDelegate/CheckBox.qml \
+#
+    #TableView Loaders
+    $${QML_SOURSE_MENU_BAR_PATH}/ItemDelegate/Loaders/ColumnProvider.qml \
 #FileDialog
     $${QML_SOURSE_FILE_DIALOG_PATH}/FileDialogWidget.qml \
 
@@ -151,6 +155,7 @@ DISTFILES += \
     $${IMAGES_PATH}/qt-logo.png \
     $${IMAGES_PATH}/close.png \
     $${IMAGES_PATH}/plus.png \
+    $${IMAGES_PATH}/refresh.png \
     $${IMAGES_PATH}/freevideodownloader.ico \
     $${IMAGES_PATH}/freeyoutubetomp3converter.ico \
     $${IMAGES_PATH}/freeinstagramdownload.ico \

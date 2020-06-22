@@ -11,7 +11,12 @@
 #include <QDirIterator>
 #include <QRegExp>
 
+#include <QThread>
+
 #include <QSharedPointer>
+
+#include <QFuture>
+#include <QtConcurrent>
 
 static const char className[] = "AppModel::";
 
@@ -35,6 +40,7 @@ AppModel::AppModel(QObject *parent):QAbstractTableModel(parent){
 
 void AppModel::parseItem(pItem item){
     //LOOGGER("+");
+    //qDebug() << QThread::currentThreadId();
     Props item_status;
     if (item.get()->isPropertyExist(ItemEnums::EItemProperty::kStatus)){
         item_status = item.get()->getProperty(ItemEnums::EItemProperty::kStatus);
@@ -68,30 +74,32 @@ pItem AppModel::getItemByID(const QString id){
 int AppModel::haveSameModelByProperty(const ItemEnums::EItemProperty property_type,const Props property) {
     int id = -1;
     for (auto item: app_data_){
-      Props item_property =  item.get()->getProperty(property_type);
-      if (item_property == property) {
-          id = (item.get()->getProperty(ItemEnums::EItemProperty::kId)).toInt();
-          break;
-      }
+        Props item_property =  item.get()->getProperty(property_type);
+        if (item_property == property) {
+            id = (item.get()->getProperty(ItemEnums::EItemProperty::kId)).toInt();
+            break;
+        }
     }
     return id;
 }
 
 void AppModel::createItem(const QString &path){
-   // LOOGGER("+");
-    model_counter_++;
-    Item *item = new Item(this);
-    pItem ptem = pItem(item, &QObject::deleteLater);
-    ptem.get()->setupDefault(default_property_map_);
-    ptem.get()->setFile(path);
-    ptem.get()->setProperty(ItemEnums::EItemProperty::kId, QString::number(model_counter_));
-    QString icon = getPropperIcon(path);
-    ptem.get()->setProperty(ItemEnums::EItemProperty::kIcon, icon);
-   // parseItem(ptem);//--
-    int row = app_data_.size();
-    beginInsertRows(QModelIndex(), row, row);
-    app_data_.push_back(ptem);
-    endInsertRows();
+    // LOOGGER("+");
+   // auto future = QtConcurrent::run([=]() {
+        model_counter_++;
+        Item *item = new Item(this);
+        pItem ptem = pItem(item, &QObject::deleteLater);
+        ptem.get()->setupDefault(default_property_map_);
+        ptem.get()->setFile(path);
+        ptem.get()->setProperty(ItemEnums::EItemProperty::kId, QString::number(model_counter_));
+        QString icon = getPropperIcon(path);
+        ptem.get()->setProperty(ItemEnums::EItemProperty::kIcon, icon);
+        // parseItem(ptem);//--
+        int row = app_data_.size();
+        beginInsertRows(QModelIndex(), row, row);
+        app_data_.push_back(ptem);
+        endInsertRows();
+   // });
 }
 
 int AppModel::getLastCreatedItemId(){

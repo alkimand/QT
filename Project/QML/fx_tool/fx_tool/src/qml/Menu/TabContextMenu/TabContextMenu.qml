@@ -11,6 +11,7 @@ ContextMenuBase {
        control.insertAction(1, Actions.fileSaveAsAction)
        control.insertAction(2, Actions.closeTabAction)
        control.insertAction(3, Actions.closeAllButThisAction)
+       control.insertAction(4, Actions.refreshAction)
      //  control.insertAction(4, Actions.openInExplorerAction)
      //  control.insertAction(5, Actions.openDesktopServicesAction)
      //  control.insertAction(6, Actions.renameTabAction)

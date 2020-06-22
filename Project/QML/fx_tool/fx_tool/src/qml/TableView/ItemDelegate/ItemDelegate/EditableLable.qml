@@ -4,16 +4,14 @@ import QtQuick.Layouts 1.12
 
 ItemDelegate {
     id:root
-    property alias placeholderText: textArea.placeholderText
-    //Component.onCompleted: {console.log("value="+value);}
+    property string placeholderText: placeholderText_L
+    //property alias placeholderText
     property color labelFontColor: "white"
     property color labelРighlightingFontColor:  "#4385ef"
     property color labelBackgroundRectangleColor:"white"
     property int labelFontSize: 12
     property int labelBorderColorWidth:1
     property int labelLeftPadding: 5
-    //property int labelMargins :8
-    property var value : model.type
     implicitWidth: 100
     implicitHeight:30
     property string commonFontFamily: "Arrial"
@@ -35,10 +33,7 @@ ItemDelegate {
 
         TextArea {
             id: textArea
-            //horizontalAlignment : Text.AlignLeft //works
             verticalAlignment :Text.AlignVCenter
-            //property var value: model.type//+-
-            //property bool isActive : textArea.activeFocus
             anchors.fill:parent
             width: textAreaRect.width
             font.family : root.commonFontFamily
@@ -49,7 +44,8 @@ ItemDelegate {
             //inputMethodHints: Qt.ImhNoPredictiveText
             anchors.horizontalCenter: parent.horizontalCenter
             // anchors.verticalCenter: parent.verticalCenter
-            placeholderTextColor : root.labelРighlightingFontColor
+            placeholderTextColor : "red"//root.labelРighlightingFontColor
+            placeholderText : root.placeholderText
             selectByMouse : true
             //overwriteMode :true
             selectByKeyboard :true
@@ -62,7 +58,6 @@ ItemDelegate {
                 id:background_
                 implicitWidth:  root.implicitWidth
                 implicitHeight: textAreaRect.height
-                //border.color: (textArea.activeFocus)?root.labelРighlightingFontColor:"transparent"
                 border.color: root.labelРighlightingFontColor
                 color: root.labelBackgroundRectangleColor
                 border.width: root.labelBorderColorWidth
@@ -77,8 +72,9 @@ ItemDelegate {
             Keys.onReturnPressed: { _onEnterPressed(event) }
             Keys.onEnterPressed: { _onEnterPressed(event) }
             Component.onCompleted: {
-
+              //  root.placeholderText = placeholderText_L
             }
+
             Keys.onPressed:  {
                 //console.log("Keys.onPressed= "+textArea.text)
                 //edite = textArea.text;
@@ -115,6 +111,7 @@ ItemDelegate {
             }
 
             MouseArea {
+                //enabled :false
                 id:labelMouseArea
                 anchors.fill: parent
                 cursorShape : Qt.ArrowCursor
@@ -122,10 +119,13 @@ ItemDelegate {
                 onClicked: {
                     //console.log("onClicked "+ display_)
                     root.startEdit()
-                    if (textArea.text === display_){
-                        textArea.text = display_;
-                        //  edite =  textArea.text
-                        // textArea.text = display_
+                    if (textArea.text === display_){_
+                        var position = textArea.positionAt(mouse.x, mouse.y);
+                        textArea.select(position,position);
+                        textArea.deselect();
+                    }
+                    else if (textArea.text !== ""){
+                        edite = textArea.text;
                         var position = textArea.positionAt(mouse.x, mouse.y);
                         textArea.select(position,position);
                         textArea.deselect();
@@ -142,10 +142,11 @@ ItemDelegate {
 
                 onDoubleClicked: {
                     if (textArea.activeFocus){
+                        //console.log("display_"+ column);
                         labelMouseArea.cursorShape=Qt.IBeamCursor;
                         textArea.text = display_;
                         textArea.selectAll();
-                        //console.log(textArea.activeFocus);
+
                         textArea.forceActiveFocus();
                     }
                 }
@@ -163,7 +164,10 @@ ItemDelegate {
                     // background_.color ="red"
                 }
                 onCanceled: {
-                    // console.log("onCanceled")
+                    //
+                }
+                onPressed: {
+               // console.log("onPressed")
                 }
             }
         }

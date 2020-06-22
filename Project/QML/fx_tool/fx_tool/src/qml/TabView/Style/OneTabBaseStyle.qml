@@ -77,7 +77,8 @@ Rectangle {
         target: root
         onEnter: {
             tab_view.indexUnderMouse = styleData.index
-            //console.log("onEnter="+styleData.index)
+            tab_view.contexMenuIndex = styleData.index
+           // console.log("onEnter="+styleData.index)
             //console.log("tab_view.count="+tab_view.count)
 
             if (styleData.index === (tab_view.currentIndex)) {
@@ -146,7 +147,6 @@ Rectangle {
         z:1
         onEntered: {
             root.enter()
-
         }
         onExited: {
             root.exit()
@@ -155,9 +155,9 @@ Rectangle {
             root.x = 0
         }
 
-        onWheel: {
-            console.log("onWheel" )
-        }
+//        onWheel: {
+//            console.log("onWheel" )
+//        }
     }
 
 
@@ -349,9 +349,7 @@ Rectangle {
         id: textArea
         anchors.left: savebutton.right//Math.round(image.right+100)
         anchors.leftMargin: 0
-        //anchors.topMargin: 20
-        //anchors.horizontalCenter: parent.horizontalCenter
-        //anchors.verticalCenter: parent.verticalCenter
+        activeFocusOnPress :false
         anchors.top: parent.top
         anchors.topMargin: 8//implicitHeight/2
         text: styleData.title
@@ -371,20 +369,21 @@ Rectangle {
         //            //tab_view.getTab(tab_view.currentIndex).item.children[0].filterChangedSlot(tab_view.getTab(index).title)
 
         //        }
-        MouseArea{
-            propagateComposedEvents : true
-            anchors.fill:parent
-            onWheel: {
-                console.log("onWheel" )
-            }
-            onClicked:{
-                console.log("onClicked" )
-            }
-        }
-        onTextChanged:    {
-            //            tab_view.getTab(styleData.index).title = textArea.text
-            //            tab_view.sendTittleName(styleData.index, tab_view.getTab(styleData.index).title)
-        }
+//        MouseArea{
+//            propagateComposedEvents : true
+//            anchors.fill:parent
+//            onWheel: {
+//                console.log("onWheel" )
+//            }
+//            onClicked:{
+//                console.log("onClicked" )
+//            }
+//        }
+//        onTextChanged:    {
+//          //  console.log("onTextChanged" )
+//            //            tab_view.getTab(styleData.index).title = textArea.text
+//            //            tab_view.sendTittleName(styleData.index, tab_view.getTab(styleData.index).title)
+//        }
         //        Keys.onEnterPressed:
         //        {
         //            console.log("Keys.onEnterPressed")
@@ -492,9 +491,9 @@ Rectangle {
                         console.log("closeTab clicked index:" + styleData.index)
                 }
 
-                onWheel: {
-                    console.log("onWheel" )
-                }
+//                onWheel: {
+//                    console.log("onWheel" )
+//                }
             }
         }
     }

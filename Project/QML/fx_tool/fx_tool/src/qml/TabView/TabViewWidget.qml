@@ -13,6 +13,7 @@ C1.TabView {
     property int contexMenuIndex:               -1
     property int indexUnderMouse:               -1
     property string current_temp_id:            "0"
+    property int current_temp_view_id:           0
 
     signal renametab()
     signal refreshTab()
@@ -27,28 +28,50 @@ C1.TabView {
 
     Component {
         id: table_view_template
-        Rectangle{
+        Rectangle {
             anchors.fill: parent
             color: "white"
-            Loader {
-                id: table_view_loader
+            z:0
+            Rectangle {
                 anchors.fill: parent
-                property string current_id_: root.current_temp_id
-                source: "../TableView/BaseTableView.qml"
-                Component.onCompleted: {
-                    var temp = root.current_temp_id; //hack
-                    current_id_ = temp;
+                anchors.leftMargin:5
+                color: "white"
+                z:1
+
+                //                function test() {
+                //                    console.log("test Rectangle")
+                //                }
+
+                Loader {
+                    id: table_view_loader
+                    anchors.fill: parent
+                    anchors.rightMargin:0
+                    anchors.topMargin: 10
+                    anchors.bottomMargin: 5
+                    property string current_id_: root.current_temp_id
+                    property int view_id_: root.current_temp_view_id
+                    source: "../TableView/BaseTableView.qml"
+                    Component.onCompleted: {
+                        var temp = root.current_temp_id; //hack
+                        current_id_ = temp;
+                        temp = root.current_temp_view_id
+                        view_id_ = temp;
+                        // console.log("view_id_ =" + view_id_);
+                    }
+
+                    //                    function test() {
+                    //                        console.log("test Loader")
+                    //                    }
                 }
             }
         }
-
-
     }
 
-    function createTab(item_id)  {
+    function createTab(item_id) {
         //console.log("createTab+" + item_id);
-        var item_title = app_data. getFileTitleByID(item_id);
-        root.current_temp_id= item_id;
+        root.current_temp_view_id ++;
+        var item_title = app_data.getFileTitleByID(item_id);
+        root.current_temp_id = item_id;
         root.addTab(item_title,table_view_template);
         root.currentIndex = root.count - 1;
         root.contexMenuIndex = root.currentIndex;

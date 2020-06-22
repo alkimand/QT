@@ -8,6 +8,8 @@
 #include <QDir>
 #include <QSysInfo>
 #include <QSettings>
+#include <QFuture>
+#include <QtConcurrent>
 
 #include "ItemPropery.h"
 
@@ -47,14 +49,17 @@ void AppDataProvider::appStart(){
 }
 
 
-void AppDataProvider::toolBarButtonPush(QString id){
-    //LOOGGER("+");
+void AppDataProvider::parseItem(QString id, int view_id){
+    //LOOGGER("+ id= " + id + "+view_id= "+view_id);
     pItem  item = model_->getItemByID(id);
     if (item != nullptr) {
-        model_->parseItem(item);
-        if (item.get()->getProperty(ItemEnums::EItemProperty::kStatus) == Props(ItemEnums::eItemStatus::kParsed)) {
-            emit itemParsed(id);
-        }
+        //qDebug() << QThread::currentThreadId();
+        auto future = QtConcurrent::run([=]() {
+            model_->parseItem(item);
+            if (item.get()->getProperty(ItemEnums::EItemProperty::kStatus) == Props(ItemEnums::eItemStatus::kParsed)) {
+                emit itemParsed(id,view_id);
+            };
+        });
     }
     else
         LOOGGER("Error getItemByID id = " + id);
@@ -62,18 +67,18 @@ void AppDataProvider::toolBarButtonPush(QString id){
 
 
 void AppDataProvider::openFile(const QString file_path){
-    LOOGGER("+");
+    //LOOGGER("+");
     QString real_file_path = file_path.mid(8);
     QFileInfo check_file(real_file_path);
     if (check_file.exists() && check_file.isFile()){
         int present_id = model_->haveSameModelByProperty(ItemEnums::EItemProperty::kFilePath, real_file_path);
         if (present_id != -1) {
-            toolBarButtonPush(QString::number(present_id));
+            parseItem(QString::number(present_id));
         }
         else {
             model_->createItem(QDir::toNativeSeparators(real_file_path));
             present_id = model_->getLastCreatedItemId();
-            toolBarButtonPush(QString::number(present_id));
+            parseItem(QString::number(present_id));
         }
     }
     else {
@@ -83,9 +88,8 @@ void AppDataProvider::openFile(const QString file_path){
 
 
 void AppDataProvider::saveFile(const QString file_path, const QString id){
-    //LOOGGER("+ id =" + id);
     //LOOGGER("+ file_path=" + file_path);
-    if (id!="-1") {
+    if (id!="-1" && !id.isEmpty()) {
         QString real_file_path = file_path;
         if (file_path.contains("file:///")){
             QString real_file_path = file_path.mid(8);
@@ -107,7 +111,9 @@ QString AppDataProvider::getFileTitleByID(const QString id){
 
 
 QString AppDataProvider::getFilePathByID(const QString id){
-    return model_->getItemByID(id)->getProperty(ItemEnums::EItemProperty::kFilePath);
+    if (id!="-1" && !id.isEmpty())
+        return model_->getItemByID(id)->getProperty(ItemEnums::EItemProperty::kFilePath);
+    return QString();
 }
 
 
@@ -116,6 +122,7 @@ void AppDataProvider::Init() {
     QString default_dir = getDefaultDir();
     if (default_dir.isEmpty())
         default_dir = QDir::currentPath();
+    //auto future = QtConcurrent::run([=]() {
     model_->parseFolder(default_dir);
 }
 

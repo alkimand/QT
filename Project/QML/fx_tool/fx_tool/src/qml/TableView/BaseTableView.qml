@@ -7,7 +7,8 @@ import ItemModelBase 1.0
 import AppDataProvider 1.0
 
 
-//import "../ItemDelegat/ItemDelegate"
+import "./ItemDelegate/Loaders"
+
 //import "../ItemDelegat/HeaderDelegate"
 //import "../ItemDelegat/RowDelegat"
 //import "../../ContextMenu/TableViewContexMenu/HeaderContexMenu"
@@ -19,34 +20,63 @@ import "./ItemDelegate/ItemDelegate"
 
 TableView {
     id:table_view
+    property  string current_id_: parent.current_id_
+    property  int view_id_: parent.view_id_
     anchors.fill: parent
     columnSpacing: 0
     rowSpacing: 0
     clip: true
-    leftMargin:5
-    rightMargin:5
+    leftMargin:0
+    rightMargin:0
     topMargin:10
+    bottomMargin: 5
+    contentWidth : main_root.width
+    flickableDirection  :   Qt.Vertical
     property var columnWidths: [80, 300, 40]
     columnWidthProvider: function (column) { return getWith(column) }
-    property  string current_id_: parent.current_id_
+    rowHeightProvider :  function (row) { return 35}
+    signal refreshModel()
     model: app_data.getModelByID(current_id_)
     reuseItems : true
-
-    delegate: EditableLable {
-        placeholderText:  display_
+    z:1
+    onWidthChanged: {
+        table_view.forceLayout()
+        table_view.x=0
     }
+    delegate: ColumnProvider {
+        placeholderText_L:  display_
+    }
+        /* EditableLable {
+        placeholderText:  display_
+    }*/
 
-    Component.onCompleted: {
+    Connections {
+        target: table_view
+        onRefreshModel: {
+            console.log("onRefreshModel");
+            table_view.test()
+        }
     }
 
     function getWith(column) {
         var width
-        if (column ===1){
-            width = main_root.width - 130
+        var part
+        if (column === 0) {
+            part = 0.25
+            width = (main_root.width - 50)* part
         }
-        else width = table_view.columnWidths[column]
-        console.log("column = " + column +  " width =" + width)
+        else if (column === 1) {
+            part = 0.75
+            width = (main_root.width - 50)* part
+        }
+        else width = 40
+        //console.log("column = " + column +  " width =" + width)
         return width
+    }
+
+    function modelReset() {
+        //console.log("modelReset");
+       table_view.model.modelReset();// = app_data.getModelByID(current_id_)
     }
 }
 

@@ -17,13 +17,7 @@ ToolBar
         color: "white"
     }
 
-
     signal pushTollBar(real item_id)
-//    Connections {
-//        target: CustomToolButton
-//        onPush: {
-//           // tab_view.onTolBarButtonPush()
-//    }
 
     onPushTollBar: {
         main_root.onTolBarButtonPush(item_id)
@@ -45,50 +39,6 @@ ToolBar
             sourceIconPath : icon_
         }
     }
-//    Flow {
-//        id:grid_view_
-//        width: parent.width;
-//
-       //model:2
-
-//        CustomToolButton {
-//            action: Actions.fileOpenAction
-//            table_id:1
-//        }
-      // CustomToolButton {action: Actions.fileSaveAction}
-//        CustomToolButton {action: Actions.fileSaveAsAction}
-//        CustomToolButton {action: Actions.closeAllAction}
-       // CustomToolButton {action: Actions.addAction}
-//        CustomToolButton {action: Actions.fileOpenAction}
-//        CustomToolButton {action: Actions.fileSaveAction}
-//        CustomToolButton {action: Actions.fileSaveAsAction}
-//        CustomToolButton {action: Actions.closeAllAction}
-//        CustomToolButton {action: Actions.addAction}
-//        CustomToolButton {action: Actions.fileOpenAction}
-//        CustomToolButton {action: Actions.fileSaveAction}
-//        CustomToolButton {action: Actions.fileSaveAsAction}
-//        CustomToolButton {action: Actions.closeAllAction}
-//        CustomToolButton {action: Actions.addAction}
-//        CustomToolButton {action: Actions.fileOpenAction}
-//        CustomToolButton {action: Actions.fileSaveAction}
-//        CustomToolButton {action: Actions.fileSaveAsAction}
-//        CustomToolButton {action: Actions.closeAllAction}
-        //}
-        //        Rectangle {
-        //            color: "#77a9ef"
-        //            width: parent.width
-        //            height: 1
-        //            anchors.bottom: parent.bottom
-        //        }
-
-
-  //  }
-    //    Rectangle {
-    //        color: "#77a9ef"
-    //        width: parent.width
-    //        height: 1
-    //        anchors.bottom: parent.bottom
-    //    }
 
     Component.onCompleted: {
         //console.log("toolBar Completed count= " + app_data.model.rowCount())

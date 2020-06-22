@@ -7,10 +7,21 @@
 
 //https://doc.qt.io/qt-5/qqmlengine.html#qmlRegisterSingletonType
 int main(int argc, char *argv[]) {
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-    QCoreApplication::setAttribute(Qt::AA_UseSoftwareOpenGL);
-    QGuiApplication gui_app(argc, argv);
+//    Q_INIT_RESOURCE(qrc);
+//    QStringList paths = QCoreApplication::libraryPaths();
+//    paths.append(".");
+//    paths.append("imageformats");
+//    paths.append("platforms");
+//    paths.append("sqldrivers");
+//    QCoreApplication::setLibraryPaths(paths);
+//    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+//    QCoreApplication::setAttribute(Qt::AA_UseSoftwareOpenGL);
 
+    QGuiApplication gui_app(argc, argv);
+    //gui_app.setWindowIcon(QPixmap(":/filesave.png"));
+
+   // gui_app.setWindowIcon(QIcon("qrc:/src/images/ToolBarIcon/filesave.png"));
+    //gui_app.setWindowIcon(QIcon("freeinstagramdownload.ico"));
     QQmlApplicationEngine engine;
 
     qmlRegisterSingletonType( QUrl("qrc:/src/qml/Action/Actions.qml"), "Actions", 1, 0, "Actions" );

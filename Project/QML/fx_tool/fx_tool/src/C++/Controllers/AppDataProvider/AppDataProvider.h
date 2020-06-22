@@ -31,7 +31,7 @@ public:
     AppModel *getModel() ;
     //qml
 signals:
-    void itemParsed(QString item_id);
+    void itemParsed(QString item_id, int view_id = -1);
     void modelChanged();
 
 private:
@@ -42,7 +42,7 @@ private:
 
 public slots:
     void appStart();
-    void toolBarButtonPush(QString id);
+    void parseItem(QString id, int view_id = -1);
     void openFile(const QString file_path);
     void saveFile(const QString file_path, const QString id);
     ItemModelBase* getModelByID(const QString id);
