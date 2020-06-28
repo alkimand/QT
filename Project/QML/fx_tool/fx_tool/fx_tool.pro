@@ -4,7 +4,7 @@ PROJECT_ROOT_PATH = $${PWD}/
 win32: OS_SUFFIX = win32
 linux-g++: OS_SUFFIX = linux
 
-QT += qml quick core quickcontrols2 widgets concurrent
+QT += qml quick core quickcontrols2 widgets concurrent opengl
 CONFIG += c++11
 
 #CONFIG(debug, debug|release) {

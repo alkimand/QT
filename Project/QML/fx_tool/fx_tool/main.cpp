@@ -11,18 +11,18 @@ int main(int argc, char *argv[]) {
 
     Q_INIT_RESOURCE(Icons);
     Q_INIT_RESOURCE(qml);
+
     QStringList paths = QCoreApplication::libraryPaths();
     paths.append(".");
     paths.append("imageformats");
     paths.append("platforms");
-    // QCoreApplication::setLibraryPaths(paths);
-    //QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-    //  QCoreApplication::setAttribute(Qt::AA_UseSoftwareOpenGL);
 
     QGuiApplication gui_app(argc, argv);
 
-    //gui_app.setAttribute(Qt::AA_UseSoftwareOpenGL);
-    //gui_app.setAttribute(Qt::AA_EnableHighDpiScaling);
+    gui_app.setAttribute(Qt::AA_UseSoftwareOpenGL);
+    gui_app.setAttribute(Qt::AA_EnableHighDpiScaling);
+    gui_app.setAttribute(Qt::AA_UseDesktopOpenGL);
+
     QGuiApplication::setLibraryPaths(paths);
     QQmlApplicationEngine engine;
 

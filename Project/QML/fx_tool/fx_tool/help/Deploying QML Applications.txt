@@ -9,3 +9,6 @@ E:\QT_5_13_newWin\5.13.1\msvc2017\bin\qmake.exe
 
 
 %cqtdeployer% -bin F:\QT_2\Project\QML\fx_tool\fx_tool\release\fx_tool.exe -qmake E:\QT_5_13_newWin\5.13.1\msvc2017_64\bin\qmake.exe -qmlDir F:\QT_2\Project\QML\fx_tool\fx_tool\src\qml
+
+%cqtdeployer% -bin F:\QT_2\Project\QML\fx_tool\fx_tool\Release\release\fx_tool.exe -qmake E:\QT_5_13_newWin\5.13.1\msvc2017_64\bin\qmake.exe -qmlDir F:\QT_2\Project\QML\fx_tool\fx_tool\src\qml
+
