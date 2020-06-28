@@ -26,6 +26,7 @@ TableView {
     columnSpacing: 0
     rowSpacing: 0
     clip: true
+   // highlightRangeMode: ListView.StrictlyEnforceRange
     leftMargin:0
     rightMargin:0
     topMargin:10
@@ -36,6 +37,13 @@ TableView {
     columnWidthProvider: function (column) { return getWith(column) }
     rowHeightProvider :  function (row) { return 35}
     signal refreshModel()
+   // atYBeginning: false
+    //flickDeceleration :5
+    //contentY :100
+    //horizontalOvershoot :40
+    //boundsBehavior  : Flickable.OvershootBounds
+  //boundsMovement : Flickable.DragAndOvershootBounds
+    //verticalOvershoot :10
     model: app_data.getModelByID(current_id_)
 
     reuseItems : true

@@ -5,23 +5,25 @@
 #include "AppDataProvider.h"
 #include "ItemModelBase.h"
 
+
 //https://doc.qt.io/qt-5/qqmlengine.html#qmlRegisterSingletonType
 int main(int argc, char *argv[]) {
-//    Q_INIT_RESOURCE(qrc);
-//    QStringList paths = QCoreApplication::libraryPaths();
-//    paths.append(".");
-//    paths.append("imageformats");
-//    paths.append("platforms");
-//    paths.append("sqldrivers");
-//    QCoreApplication::setLibraryPaths(paths);
-//    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-//    QCoreApplication::setAttribute(Qt::AA_UseSoftwareOpenGL);
+
+    Q_INIT_RESOURCE(Icons);
+    Q_INIT_RESOURCE(qml);
+    QStringList paths = QCoreApplication::libraryPaths();
+    paths.append(".");
+    paths.append("imageformats");
+    paths.append("platforms");
+    // QCoreApplication::setLibraryPaths(paths);
+    //QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    //  QCoreApplication::setAttribute(Qt::AA_UseSoftwareOpenGL);
 
     QGuiApplication gui_app(argc, argv);
-    //gui_app.setWindowIcon(QPixmap(":/filesave.png"));
 
-   // gui_app.setWindowIcon(QIcon("qrc:/src/images/ToolBarIcon/filesave.png"));
-    //gui_app.setWindowIcon(QIcon("freeinstagramdownload.ico"));
+    //gui_app.setAttribute(Qt::AA_UseSoftwareOpenGL);
+    //gui_app.setAttribute(Qt::AA_EnableHighDpiScaling);
+    QGuiApplication::setLibraryPaths(paths);
     QQmlApplicationEngine engine;
 
     qmlRegisterSingletonType( QUrl("qrc:/src/qml/Action/Actions.qml"), "Actions", 1, 0, "Actions" );

@@ -19,7 +19,7 @@
 
 static const char className[] = "AppDataProvider::";
 
-AppDataProvider::AppDataProvider(QObject *parent):QObject(parent){
+AppDataProvider::AppDataProvider(QObject *parent):QObject(parent) {
     Init();
 }
 
@@ -66,7 +66,7 @@ void AppDataProvider::parseItem(QString id, int view_id){
 }
 
 
-void AppDataProvider::openFile(const QString file_path){
+void AppDataProvider::openFile(const QString file_path) {
     //LOOGGER("+");
     QString real_file_path = file_path.mid(8);
     QFileInfo check_file(real_file_path);
@@ -87,30 +87,30 @@ void AppDataProvider::openFile(const QString file_path){
 }
 
 
-void AppDataProvider::saveFile(const QString file_path, const QString id){
+void AppDataProvider::saveFile(const QString file_path, const QString id) {
     //LOOGGER("+ file_path=" + file_path);
     if (id!="-1" && !id.isEmpty()) {
         QString real_file_path = file_path;
         if (file_path.contains("file:///")){
-            QString real_file_path = file_path.mid(8);
+            real_file_path = file_path.mid(8);
         }
         model_->saveFile(real_file_path , id);
     }
 }
 
 
-ItemModelBase *AppDataProvider::getModelByID(const QString id){
-    //LOOGGER("+");
+ItemModelBase *AppDataProvider::getModelByID(const QString id) {
+   // LOOGGER("+");
     return model_->getItemByID(id)->getModel();
 }
 
 
-QString AppDataProvider::getFileTitleByID(const QString id){
+QString AppDataProvider::getFileTitleByID(const QString id) {
     return model_->getItemByID(id)->getProperty(ItemEnums::EItemProperty::kFileName);
 }
 
 
-QString AppDataProvider::getFilePathByID(const QString id){
+QString AppDataProvider::getFilePathByID(const QString id) {
     if (id!="-1" && !id.isEmpty())
         return model_->getItemByID(id)->getProperty(ItemEnums::EItemProperty::kFilePath);
     return QString();

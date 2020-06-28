@@ -5,10 +5,10 @@ win32: OS_SUFFIX = win32
 linux-g++: OS_SUFFIX = linux
 
 QT += qml quick core quickcontrols2 widgets concurrent
-
 CONFIG += c++11
 
-CONFIG(debug, debug|release) {
+#CONFIG(debug, debug|release) {
+CONFIG(debug) {
     BUILD_FLAG = debug
     LIB_SUFFIX = d
 } else {
@@ -150,6 +150,11 @@ OTHER_FILES += \
     $${QML_SOURSE_MENU_BAR_PATH}/TableViewContexMenu/ItemContexMenu/ItemContexMenu.qml \
 #FileDialog
     $${QML_SOURSE_FILE_DIALOG_PATH}/FileDialogWidget.qml \
+    $${QML_SOURSE_FILE_DIALOG_PATH}/OpenDialogWidget.qml \
+    $${QML_SOURSE_FILE_DIALOG_PATH}/SaveDialogWidget.qml \
+
+
+RC_FILE = $${PROJECT_ROOT_PATH}/src/images/AppIcon/AppIcon.rc
 
 DISTFILES += \
     $${IMAGES_PATH}/filenew.png \
@@ -161,6 +166,7 @@ DISTFILES += \
     $${IMAGES_PATH}/refresh.png \
     $${IMAGES_PATH}/remove_row.png \
     $${IMAGES_PATH}/add_row.png \
+    $${IMAGES_PATH}/dvdvideosoft_big.png \
     $${IMAGES_PATH}/freevideodownloader.ico \
     $${IMAGES_PATH}/freeyoutubetomp3converter.ico \
     $${IMAGES_PATH}/freeinstagramdownload.ico \

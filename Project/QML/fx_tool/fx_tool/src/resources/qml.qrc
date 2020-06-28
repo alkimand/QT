@@ -26,5 +26,7 @@
          <file>../../src/qml/TableView/ItemDelegate/ItemDelegate/CheckBox.qml</file>       
         <file>../../src/qml/TableView/ItemDelegate/Loaders/ColumnProvider.qml</file>
         <file>../../src/qml/FileDialog/FileDialogWidget.qml</file>
+        <file>../../src/qml/FileDialog/OpenDialogWidget.qml</file>
+        <file>../../src/qml/FileDialog/SaveDialogWidget.qml</file>       
     </qresource>
 </RCC>

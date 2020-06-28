@@ -26,13 +26,16 @@ ApplicationWindow {
 
     signal openFile(string file_path)
     signal saveFile(string file_path)//, string item_id)
+
+    signal dialogOpen()
+
     Loader {
         id:open_file_dalog_
-        source: "./src/qml/FileDialog/FileDialogWidget.qml"
+        asynchronous: true
+        property int dialog_type_L: 0
+        //source: "./src/qml/FileDialog/FileDialogWidget.qml"
     }
-   FileDialogWidget { id:file_dialog }
 
-    //from AppDataProvider
     Connections {
         target: app_data
         onItemParsed:{
@@ -67,9 +70,10 @@ ApplicationWindow {
     Connections {
         target: Actions
         onOpenAction: {
-            console.log("onOpenAction+")
-            file_dialog.setType(0);
-            file_dialog.open();
+            //console.log("onOpenAction+")
+            open_file_dalog_.dialog_type_L = 0;
+            open_file_dalog_.source = "";
+            open_file_dalog_.source = "./src/qml/FileDialog/OpenDialogWidget.qml";
         }
 
         onSaveAction : {
@@ -85,19 +89,15 @@ ApplicationWindow {
         onSaveAsAction : {
             console.log("onSaveFile")
             if (tab_view.count > 0) {
-                file_dialog.setType(1);
-                file_dialog.open();
+                open_file_dalog_.dialog_type_L = 1;
+                open_file_dalog_.source = "";
+                open_file_dalog_.source = "./src/qml/FileDialog/SaveDialogWidget.qml";
             }
         }
 
 
         onCloseTabAct : {
-//                        console.log("tab_view.indexUnderMouse=" + tab_view.indexUnderMouse)
-//                        console.log("tab_view.contexMenuIndex=" + tab_view.contexMenuIndex)
-//                       console.log("1_onCloseTabAct= " + tab_view.count )
-//                        console.log("1_tab_view.currentIndex=" + tab_view.currentIndex)
             var index_;
-
             if (tab_view.contexMenuIndex > -1 && (tab_view.contexMenuIndex <  tab_view.count)) {
                 index_ = tab_view.contexMenuIndex;
             }
@@ -134,20 +134,17 @@ ApplicationWindow {
             }
         }
 
-        onAddRow:{
+        onAddRow: {
             if (tab_view.item_context_menu_row!= -1) {
                 tab_view.getTab(tab_view.currentIndex).item.children[0].children[0].item.addRow(tab_view.item_context_menu_row)
             }
         }
 
-        onCopyRow:{
+        onCopyRow: {
             if (tab_view.item_context_menu_row!= -1) {
                 tab_view.getTab(tab_view.currentIndex).item.children[0].children[0].item.copyRow(tab_view.item_context_menu_row)
             }
         }
-
-
-
     }
 
     menuBar: MenuBarWidget {}// {id:menu_bar_}

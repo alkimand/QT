@@ -35,7 +35,7 @@ signals:
     void modelChanged();
 
 private:
-    AppModel            *model_;
+    AppModel  *model_;
 
 private:
 
@@ -53,6 +53,13 @@ public slots:
 };
 
 #endif // APP_DATA_PROVIDER_H
+
+
+//
+
+//Taskkill /IM fx_tool.exe /F
+//https://bulkin.me/notes/4342
+
 
 
 //ToDO

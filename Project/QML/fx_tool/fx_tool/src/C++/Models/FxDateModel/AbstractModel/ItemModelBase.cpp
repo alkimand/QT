@@ -114,6 +114,7 @@ QVariant ItemModelBase::data(const QModelIndex &index, int role) const {
 
 void ItemModelBase::createModel(const FileData &map){
     //LOOGGER("+");
+    int size=0;
     std::map<std::string, std::string>::const_iterator it;
     it = map.begin();
     map.begin();
@@ -121,11 +122,13 @@ void ItemModelBase::createModel(const FileData &map){
         QStringList text = QString::fromUtf8(it->first.c_str()).split(".");
         Date_Map map;
         if (text.size() > 1){
+            size = 3;
             map[DATA_ID::FEATURE] = QVariant(text.at(0));
             map[DATA_ID::FEATURE_NAME] = QVariant(text.at(1));
             map[DATA_ID::IS_ACTIVE] = QVariant(QString::fromUtf8(it->second.c_str()));
         }
         else {
+            size = 2;
             map[DATA_ID::FEATURE] = QVariant(text.at(0));
             map[DATA_ID::FEATURE_NAME] = QVariant(QString::fromUtf8(it->second.c_str()));
             column_count_ = 2 ;
@@ -135,6 +138,14 @@ void ItemModelBase::createModel(const FileData &map){
         //qDebug() << QString::fromUtf8(it->first.c_str())<< "=" <<QString::fromUtf8(it->second.c_str());
         ++it;
     }
+//    if (!worksheet_data_.isEmpty() && size ==3){
+
+//        std::sort(worksheet_data_.begin(), worksheet_data_.end(), [] (Date_Map lh, Date_Map rh)
+//         {return lh[DATA_ID::FEATURE_NAME] < 2;});
+
+//       // qSort(worksheet_data_->begin(), sworksheet_data_end(), prefLessThan);
+
+//    }
 }
 
 void ItemModelBase::removeRow(const int row) {

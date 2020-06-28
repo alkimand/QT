@@ -120,6 +120,8 @@ QString AppModel::getPropperIcon(const QString file_name) {
         icon = FREETIKTOKDOWNLOADER_ICON;
     else if(file_name.contains(FREEYOUTUBETOMP3CONVERTER))
         icon = FREEYOUTUBETOMP3CONVERTER_ICON;
+    else if(file_name.contains(SPECIAL))
+        icon = SPECIAL_ICON;
     return icon;
 }
 
