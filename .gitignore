@@ -39,3 +39,4 @@ qt_5_7_0_sse
 *.am
 *.filters
 *%_CL_*%
+/Project/C++/Pr/*.user
