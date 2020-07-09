@@ -5,10 +5,17 @@ https://evileg.com/ru/post/488/
 
 
 E:\QT_5_13_newWin\5.13.1\msvc2017\bin\qmake.exe
-
+F:\QT_5_13\5.13.0\msvc2017\bin\qmake.exe
 
 
 %cqtdeployer% -bin F:\QT_2\Project\QML\fx_tool\fx_tool\release\fx_tool.exe -qmake E:\QT_5_13_newWin\5.13.1\msvc2017_64\bin\qmake.exe -qmlDir F:\QT_2\Project\QML\fx_tool\fx_tool\src\qml
 
-%cqtdeployer% -bin F:\QT_2\Project\QML\fx_tool\fx_tool\Release\release\fx_tool.exe -qmake E:\QT_5_13_newWin\5.13.1\msvc2017_64\bin\qmake.exe -qmlDir F:\QT_2\Project\QML\fx_tool\fx_tool\src\qml
 
+
+%cqtdeployer% -bin F:\LocalQTRepository\Project\QML\fx_tool\fx_tool\release -qmake  F:\QT_5_13\5.13.0\msvc2017\bin\qmake.exe -qmlDir F:\LocalQTRepository\Project\QML\fx_tool\fx_tool\src\qml
+
+Variant 2
+Becouse I had a the problems with open GL ant first method did't hel, use another way 
+https://evileg.com/ru/post/163/
+windeployqt --qmldir F:\LocalQTRepository\Project\QML\fx_tool\fx_tool\src\qml F:\LocalQTRepository\Project\QML\fx_tool\fx_tool\Release\release\fx_tool.exe
+where windeployqtwindeployqt present in compiler folder
