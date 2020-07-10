@@ -17,13 +17,11 @@ int main(int argc, char *argv[]) {
     paths.append("imageformats");
     paths.append("platforms");
 
-    QGuiApplication gui_app(argc, argv);
-
-    gui_app.setAttribute(Qt::AA_UseSoftwareOpenGL);
-    gui_app.setAttribute(Qt::AA_EnableHighDpiScaling);
-    gui_app.setAttribute(Qt::AA_UseDesktopOpenGL);
-
+    QGuiApplication::setAttribute(Qt::AA_UseSoftwareOpenGL);
+    QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication::setLibraryPaths(paths);
+
+    QGuiApplication::setAttribute(Qt::AA_UseDesktopOpenGL);  QGuiApplication gui_app(argc, argv);
     QQmlApplicationEngine engine;
 
     qmlRegisterSingletonType( QUrl("qrc:/src/qml/Action/Actions.qml"), "Actions", 1, 0, "Actions" );
