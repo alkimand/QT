@@ -106,10 +106,16 @@ void Item::saveFile(const QString file_path){
     property_->save(file_path, c_map);
 }
 
+void Item::deleteFile(){
+    property_->deleteFile();
+}
+
 Item::~Item() {
     //qDebug()<<"~Item";
-    delete property_;
-    delete model_;
+    if (property_)
+        delete property_;
+    if (model_)
+        delete model_;
     // fs::FxConfig cfg_;
 }
 

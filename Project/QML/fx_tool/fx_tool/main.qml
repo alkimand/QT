@@ -15,6 +15,7 @@ import "src/qml/Menu/HeaderMenuBar"
 import "src/qml/TabView"
 import "src/qml/FileDialog"
 import "src/qml/Menu/TableViewContexMenu/ItemContexMenu"
+import "src/qml/Menu/ToolBarContextMenu"
 
 ApplicationWindow {
     id: main_root
@@ -110,7 +111,7 @@ ApplicationWindow {
                 console.log("Bug onCloseTabAct currentIndex=" + tab_view.currentIndex)
                 return;
             }
-         //console.log("2_tab_view.index_=" + index_)
+            //console.log("2_tab_view.index_=" + index_)
             tab_view.removeTab(index_)
             if (tab_view.count > 0){
                 tab_view.contexMenuIndex = -1
@@ -145,16 +146,33 @@ ApplicationWindow {
                 tab_view.getTab(tab_view.currentIndex).item.children[0].children[0].item.copyRow(tab_view.item_context_menu_row)
             }
         }
+
+        onDeleteFile: {
+            //console.log("onDeleteFile")
+            if (tool_bar_.current_id !== -1) {
+                //console.log("current_id="+tool_bar_.current_id)
+                for (var i = tab_view.count - 1 ;i > -1 ;i--) {
+                     var item_id = tab_view.getTab(i).item.children[0].children[0].item.current_id_
+                    //console.log("tab_view.current_id_="+ item_id)
+                    if (item_id == tool_bar_.current_id) {
+                      // console.log("removeTab i="+i)
+                        tab_view.removeTab(i)
+                    }
+                    //if (tab_view.count > 0)
+                }
+                app_data.deleteModel(tool_bar_.current_id);
+            }
+        }
     }
 
     menuBar: MenuBarWidget {}// {id:menu_bar_}
     header: ToolBarWidget { id:tool_bar_}
     ItemContexMenu {id: item_context_menu_}
+    ToolBarContextMenu {id: tool_bar_context_menu_}
 
     TabViewWidget {
         id:tab_view
         anchors.fill:parent
-        //z:0
     }
 
     //    Rectangle{

@@ -85,21 +85,21 @@ int AppModel::haveSameModelByProperty(const ItemEnums::EItemProperty property_ty
 
 void AppModel::createItem(const QString &path){
     // LOOGGER("+");
-   // auto future = QtConcurrent::run([=]() {
-        model_counter_++;
-        Item *item = new Item(this);
-        pItem ptem = pItem(item, &QObject::deleteLater);
-        ptem.get()->setupDefault(default_property_map_);
-        ptem.get()->setFile(path);
-        ptem.get()->setProperty(ItemEnums::EItemProperty::kId, QString::number(model_counter_));
-        QString icon = getPropperIcon(path);
-        ptem.get()->setProperty(ItemEnums::EItemProperty::kIcon, icon);
-        // parseItem(ptem);//--
-        int row = app_data_.size();
-        beginInsertRows(QModelIndex(), row, row);
-        app_data_.push_back(ptem);
-        endInsertRows();
-   // });
+    // auto future = QtConcurrent::run([=]() {
+    model_counter_++;
+    Item *item = new Item(this);
+    pItem ptem = pItem(item, &QObject::deleteLater);
+    ptem.get()->setupDefault(default_property_map_);
+    ptem.get()->setFile(path);
+    ptem.get()->setProperty(ItemEnums::EItemProperty::kId, QString::number(model_counter_));
+    QString icon = getPropperIcon(path);
+    ptem.get()->setProperty(ItemEnums::EItemProperty::kIcon, icon);
+    // parseItem(ptem);//--
+    int row = app_data_.size();
+    beginInsertRows(QModelIndex(), row, row);
+    app_data_.push_back(ptem);
+    endInsertRows();
+    // });
 }
 
 int AppModel::getLastCreatedItemId(){
@@ -110,6 +110,17 @@ void AppModel::saveFile(const QString file_path, const QString id) {
     Props item_status;
     pItem item = getItemByID(id);
     item.get()->saveFile(file_path);
+}
+
+void AppModel::deleteFile(const QString id){
+    if (id != "-1"){
+        pItem  item = getItemByID(id);
+        item.get()->deleteFile();
+        int index = app_data_.indexOf(item);
+        beginRemoveRows(QModelIndex(), index, index);
+        app_data_.remove(index);
+        endRemoveRows();
+    }
 }
 
 QString AppModel::getPropperIcon(const QString file_name) {

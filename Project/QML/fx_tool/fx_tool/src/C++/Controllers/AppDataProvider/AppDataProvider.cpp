@@ -102,6 +102,11 @@ void AppDataProvider::saveFile(const QString file_path, const QString id) {
     }
 }
 
+void AppDataProvider::deleteModel(const QString id) {
+    //LOOGGER("id= "+ id );
+    model_->deleteFile(id);
+}
+
 
 ItemModelBase *AppDataProvider::getModelByID(const QString id) {
     // LOOGGER("+");

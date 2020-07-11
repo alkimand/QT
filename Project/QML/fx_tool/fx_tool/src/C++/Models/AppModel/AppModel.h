@@ -36,6 +36,7 @@ public:
     void createItem(const QString &path = "");
     int getLastCreatedItemId();
     void saveFile(const QString file_path, const QString id);
+    void deleteFile( const QString id);
 
     //private:
 

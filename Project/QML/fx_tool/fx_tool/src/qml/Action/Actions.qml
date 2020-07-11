@@ -21,8 +21,8 @@ Item
     signal removeRow();
     signal addRow();
     signal copyRow();
-    
-    //signal pushTollBar(var item_id);
+    signal deleteFile();
+      //signal pushTollBar(var item_id);
 
 
     property Action pushTolBarButton : Action {
@@ -214,13 +214,24 @@ Item
             root.addRow();
         }
     }
-        property Action copyRowAction:Action {
+    
+    property Action copyRowAction:Action {
         icon.source: toolBarIconPath + 'copy_row.png'
         icon.name: "Copy row"
         text: "Copy row"
         onTriggered: {
             console.log("Action:" + text);
             root.copyRow();
+        }
+    }
+    
+    property Action deleteFileAction:Action {
+        icon.source: toolBarIconPath + 'delete_file.png'
+        icon.name: "Copy row"
+        text: "Delete file"
+        onTriggered: {
+            console.log("Action:" + text);
+            root.deleteFile();
         }
     }
 

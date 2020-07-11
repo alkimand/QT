@@ -45,6 +45,7 @@ public slots:
     void parseItem(QString id, int view_id = -1);
     void openFile(const QString file_path);
     void saveFile(const QString file_path, const QString id);
+    void deleteModel(const QString id);
     ItemModelBase* getModelByID(const QString id);
     QString getFileTitleByID(const QString id);
     QString getFilePathByID(const QString id);

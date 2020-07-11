@@ -25,7 +25,7 @@ ToolButton {
         hoverEnabled: true
         propagateComposedEvents: true
         preventStealing: true
-
+        acceptedButtons : Qt.LeftButton | Qt.RightButton
         onEntered: {
             control.buttonBackColor = "#77a9ef"
         }
@@ -35,7 +35,15 @@ ToolButton {
         }
 
         onClicked: {
-            tool_bar_.pushTollBar(control.table_id)
+            //console.log("test ToolButton")
+            if (mouse.button === Qt.LeftButton) {
+                  tool_bar_.pushTollBar(control.table_id);
+            }
+            else {
+                tool_bar_.current_id  = control.table_id;
+                tool_bar_context_menu_.popup();
+            }
+
         }
     }
 }

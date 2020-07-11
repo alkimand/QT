@@ -25,6 +25,7 @@ public:
     ItemModelBase *getModel();
     bool isPropertyExist(const ItemEnums::EItemProperty propertyType);
     void saveFile(const QString file_path);
+    void deleteFile();
     ~Item();
 private:
 

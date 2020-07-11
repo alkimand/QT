@@ -23,6 +23,7 @@ public:
     const FileData &getFileModel();
     void setCMap(FileData map);
     void save(const QString file_name, const FileData values);
+    void deleteFile();
   //  void setDataToStdMap();
 
 

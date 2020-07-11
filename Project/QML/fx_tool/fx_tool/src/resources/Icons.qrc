@@ -16,5 +16,6 @@
         <file>../../src/images/ToolBarIcon/freeinstagramdownload.ico</file>
         <file>../../src/images/ToolBarIcon/freetiktokdownloader.ico</file>        
         <file>../../src/images/ToolBarIcon/vimeodownload.ico</file>
+        <file>../../src/images/ToolBarIcon/delete_file.png</file>
     </qresource>
 </RCC>

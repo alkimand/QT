@@ -122,6 +122,7 @@ OTHER_FILES += \
     $${QML_SOURSE_TOOL_BAR_PATH}/CustomToolButton/CustomToolButtonText.qml \
     $${QML_SOURSE_TOOL_BAR_PATH}/CustomToolButton/ToolButtonLoader.qml \
     $${QML_SOURSE_TOOL_BAR_PATH}/CustomToolButton/CustomToolButton.qml \
+    $${QML_SOURSE_MENU_BAR_PATH}/ToolBarContextMenu/ToolBarContextMenu.qml \
 #MenuBar
     $${QML_SOURSE_MENU_BAR_PATH}/HeaderMenuBar/MenuBarWidget.qml \
     $${QML_SOURSE_MENU_BAR_PATH}/HeaderMenuBar/MenuBarBasic.qml \
@@ -167,6 +168,7 @@ DISTFILES += \
     $${IMAGES_PATH}/remove_row.png \
     $${IMAGES_PATH}/add_row.png \
     $${IMAGES_PATH}/dvdvideosoft_big.png \
+    $${IMAGES_PATH}/delete_file.png \
     $${IMAGES_PATH}/freevideodownloader.ico \
     $${IMAGES_PATH}/freeyoutubetomp3converter.ico \
     $${IMAGES_PATH}/freeinstagramdownload.ico \

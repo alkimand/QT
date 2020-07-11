@@ -73,7 +73,7 @@ void VariedItem::parse() {
 
 void VariedItem::readFile(QString file_path, sys::IDataBuff &buff, int &error) {
     //LOOGGER("+");
-  //  errno_t err;
+    //  errno_t err;
     error = 1;
     QByteArray ba = file_path.toLocal8Bit();
     const char *fname = ba.data();
@@ -145,5 +145,11 @@ void VariedItem::save(QString file_name, const FileData value_map) {
 
     }
     setItemProperty(ItemEnums::EItemProperty::kStatus, Props(status));
+}
+
+void VariedItem::deleteFile(){
+    if (file_.open(QFile::ReadWrite )) {
+        file_.remove();
+    }
 }
 

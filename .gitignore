@@ -40,3 +40,5 @@ qt_5_7_0_sse
 *.filters
 *%_CL_*%
 /Project/C++/Pr/*.user
+/Project/QML/fx_tool/fx_tool/MVS2017_64
+*%user%

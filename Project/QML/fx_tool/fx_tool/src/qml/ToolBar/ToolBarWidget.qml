@@ -9,6 +9,7 @@ ToolBar
 {
     id: control
     width: parent.width
+    property int current_id: -1
     //implicitHeight: grid_view_.height
     height: 30
     focusReason : Qt.MouseFocusReason
@@ -18,8 +19,13 @@ ToolBar
     }
 
     signal pushTollBar(real item_id)
+    signal pushTollBarRightButon(real item_id)
 
     onPushTollBar: {
+        main_root.onTolBarButtonPush(item_id)
+    }
+
+    onPushTollBarRightButon: {
         main_root.onTolBarButtonPush(item_id)
     }
 
