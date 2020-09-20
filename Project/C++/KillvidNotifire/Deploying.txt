@@ -1,0 +1,1 @@
+windeployqt F:\QT_2\Project\QML\KillvidNotifire\release\KillvidNotifire.exe

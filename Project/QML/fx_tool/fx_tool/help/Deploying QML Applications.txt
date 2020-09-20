@@ -14,8 +14,14 @@ F:\QT_5_13\5.13.0\msvc2017\bin\qmake.exe
 
 %cqtdeployer% -bin F:\LocalQTRepository\Project\QML\fx_tool\fx_tool\release -qmake  F:\QT_5_13\5.13.0\msvc2017\bin\qmake.exe -qmlDir F:\LocalQTRepository\Project\QML\fx_tool\fx_tool\src\qml
 
+
+
 Variant 2
 Becouse I had a the problems with open GL ant first method did't hel, use another way 
 https://evileg.com/ru/post/163/
 windeployqt --qmldir F:\LocalQTRepository\Project\QML\fx_tool\fx_tool\src\qml F:\LocalQTRepository\Project\QML\fx_tool\fx_tool\Release\release\fx_tool.exe
 where windeployqtwindeployqt present in compiler folder
+
+windeployqt --qmldir F:\QT_2\Project\QML\fx_tool\fx_tool\src\qml F:\QT_2\Project\QML\fx_tool\fx_tool\Release\fx_tool.exe
+
+msvcp140.dll
