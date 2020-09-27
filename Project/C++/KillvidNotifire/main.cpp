@@ -30,10 +30,10 @@ int main(int argc, char *argv[]) {
     processName = QString("KillvidNotifire.exe");
     process_id_list  = processesInWin.getProcessIDbyName(processName);
 
-    for (auto process_id : process_id_list){
-        processesInWin.terminate(process_id);
-    }
-
-    //TerminateProcess(GetCurrentProcess(),0);
+//    for (auto process_id : process_id_list){
+//        processesInWin.terminate(process_id);
+//    }
+   // a.quit();
+    TerminateProcess(GetCurrentProcess(),0);
     return a.exec();
 }
