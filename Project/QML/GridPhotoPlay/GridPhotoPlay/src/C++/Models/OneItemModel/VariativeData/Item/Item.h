@@ -1,7 +1,7 @@
 #ifndef ITEM_H
 #define ITEM_H
 
-#include "VariedItemBase.h"
+#include "VariedItem.h"
 #include "ItemModelBase.h"
 
 #include <QObject>

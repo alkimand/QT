@@ -55,7 +55,7 @@ C_SOURSE_UTILS_PATH = $${PROJECT_ROOT_PATH}/src/C++/utilities/
 SOURCES += \
         main.cpp \
         $${C_SOURSE_CONTROLLERS_PATH}/AppDataProvider/AppDataProvider.cpp \
-        $${C_SOURSE_VARAIATIVE_DATA_PATH}/AbstractItemBase/VariedItemBase.cpp \
+        $${C_SOURSE_VARAIATIVE_DATA_PATH}/AbstractItemBase/VariedItem.cpp \
         $${C_SOURSE_VARAIATIVE_DATA_PATH}/AbstractItemBase/iAbstractItemBase.cpp \
         $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/AbstractModel/ItemModelBase.cpp \
         $${C_SOURSE_VARAIATIVE_DATA_PATH}/Item/Item.cpp \
@@ -65,7 +65,7 @@ SOURCES += \
         $${C_SOURSE_UTILS_PATH}/serialization.cpp
 HEADERS += \
         $${C_SOURSE_CONTROLLERS_PATH}/AppDataProvider/AppDataProvider.h \
-        $${C_SOURSE_VARAIATIVE_DATA_PATH}/AbstractItemBase/VariedItemBase.h \
+        $${C_SOURSE_VARAIATIVE_DATA_PATH}/AbstractItemBase/VariedItem.h \
         $${C_SOURSE_VARAIATIVE_DATA_PATH}/AbstractItemBase/iAbstractItemBase.h \
         $${C_SOURSE_VARAIATIVE_DATA_PATH}/AbstractItemBase/ItemPropery.h \
         $${C_SOURSE_VARAIATIVE_DATA_PATH}/AbstractItemBase/ItemConstant.h \

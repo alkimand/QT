@@ -1,4 +1,4 @@
-#include "VariedItemBase.h"
+#include "VariedItem.h"
 #include <QDebug>
 //#include <QTextCodec>
 #include  <stdio.h>
@@ -14,7 +14,7 @@
 
 #include "iAbstractItemBase.h"
 
-static const char className[] = "VariedItemBase::";
+static const char className[] = "VariedItem::";
 
 VariedItem::VariedItem(QObject *parent): iAbstractItemBase(parent){
     //AbstractItem::AbstractItem() {

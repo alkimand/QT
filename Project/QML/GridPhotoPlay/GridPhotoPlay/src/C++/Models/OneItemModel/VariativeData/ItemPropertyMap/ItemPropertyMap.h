@@ -1,7 +1,7 @@
 #ifndef ITEM_PROPERTY_MAP
 #define ITEM_PROPERTY_MAP
 
-#include "VariedItemBase.h"
+#include "VariedItem.h"
 
 #include <ItemPropery.h>
 
