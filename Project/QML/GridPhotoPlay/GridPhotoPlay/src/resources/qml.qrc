@@ -1,0 +1,34 @@
+<RCC>
+    <qresource prefix="/">
+        <file>../../main.qml</file>
+        <file>../../src/qml/Action/Actions.qml</file>
+        <file>../../src/qml/ToolBar/CustomToolButton/CustomToolButton.qml</file>
+        <file>../../src/qml/ToolBar/CustomToolButton/CustomToolButtonIconText.qml</file>
+        <file>../../src/qml/ToolBar/CustomToolButton/CustomToolButtonIcon.qml</file>
+        <file>../../src/qml/ToolBar/CustomToolButton/CustomToolButtonText.qml</file>
+        <file>../../src/qml/ToolBar/CustomToolButton/ToolButtonLoader.qml</file>
+        <file>../../src/qml/ToolBar/CustomComboBox/CustomComboBox.qml</file>
+        <file>../../src/qml/ToolBar/ToolBarWidget.qml</file>
+        <file>../../src/qml/Menu/HeaderMenuBar/MenuBarWidget.qml</file>
+        <file>../../src/qml/Menu/HeaderMenuBar/MenuBarBasic.qml</file>
+        <file>../../src/qml/Menu/ContextMenuBase.qml</file>
+        <file>../../src/qml/Menu/ContextMenuSeparator.qml</file>
+        <file>../../src/qml/Menu/CheckIndicator.qml</file>
+        <file>../../src/qml/Menu/MenuBarContextMenu/FileContexMenu/FileContexMenu.qml</file>
+        <file>../../src/qml/Menu/TabContextMenu/TabContextMenu.qml</file>
+        <file>../../src/qml/Menu/ToolBarContextMenu/ToolBarContextMenu.qml</file>
+        <file>../../src/qml/Menu/TableViewContexMenu/ItemContexMenu/ItemContexMenu.qml</file>
+        <file>../../src/qml/TabView/TabViewWidget.qml</file>
+        <file>../../src/qml/TabView/Style/TabViewStyle.qml</file>
+        <file>../../src/qml/TabView/Style/OneTabBaseStyle.qml</file>
+        <file>../../src/qml/TabView/Tab/MouseEvent.qml</file>
+        <file>../../src/qml/TableView/BaseTableView.qml</file>
+        <file>../../src/qml/TableView/ItemDelegate/ItemDelegate/EditableLable.qml</file>
+         <file>../../src/qml/TableView/ItemDelegate/ItemDelegate/CheckBox.qml</file>       
+        <file>../../src/qml/TableView/ItemDelegate/Loaders/ColumnProvider.qml</file>
+        <file>../../src/qml/FileDialog/FileDialogWidget.qml</file>
+        <file>../../src/qml/FileDialog/OpenDialogWidget.qml</file>
+        <file>../../src/qml/FileDialog/SaveDialogWidget.qml</file>   
+        <file>../../src/qml/GridView/GridViewWidget.qml</file>             
+    </qresource>
+</RCC>

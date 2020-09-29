@@ -1,0 +1,21 @@
+<RCC>
+    <qresource prefix="/">
+        <file>../../src/images/ToolBarIcon/filenew.png</file>
+        <file>../../src/images/ToolBarIcon/fileopen.png</file>
+        <file>../../src/images/ToolBarIcon/filesave.png</file>
+        <file>../../src/images/ToolBarIcon/qt-logo.png</file>
+        <file>../../src/images/ToolBarIcon/close.png</file>
+        <file>../../src/images/ToolBarIcon/plus.png</file>
+        <file>../../src/images/ToolBarIcon/refresh.png</file>   
+        <file>../../src/images/ToolBarIcon/remove_row.png</file> 
+        <file>../../src/images/ToolBarIcon/add_row.png</file>   
+        <file>../../src/images/ToolBarIcon/copy_row.png</file>     
+        <file>../../src/images/ToolBarIcon/dvdvideosoft_big.png</file>       
+        <file>../../src/images/ToolBarIcon/freevideodownloader.ico</file>
+        <file>../../src/images/ToolBarIcon/freeyoutubetomp3converter.ico</file>
+        <file>../../src/images/ToolBarIcon/freeinstagramdownload.ico</file>
+        <file>../../src/images/ToolBarIcon/freetiktokdownloader.ico</file>        
+        <file>../../src/images/ToolBarIcon/vimeodownload.ico</file>
+        <file>../../src/images/ToolBarIcon/delete_file.png</file>
+    </qresource>
+</RCC>
