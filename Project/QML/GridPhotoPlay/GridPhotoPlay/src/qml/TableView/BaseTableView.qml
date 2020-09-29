@@ -3,7 +3,7 @@ import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.12
 import QtQuick.Controls.Styles 1.4
 
-import ItemModelBase 1.0
+import AbstractTableItemData 1.0
 import AppDataProvider 1.0
 
 

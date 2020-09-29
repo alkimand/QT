@@ -1,8 +1,8 @@
 #ifndef ITEM_H
 #define ITEM_H
 
-#include "VariedItem.h"
-#include "ItemModelBase.h"
+#include "ItemPropertyWrapper.h"
+#include "AbstractTableItemData.h"
 
 #include <QObject>
 #include <QHash>
@@ -22,15 +22,15 @@ public:
     void setupDefault(const ItemPropertyMap &default_map_);
     void parse();
     void cleanModel();
-    ItemModelBase *getModel();
+    AbstractTableItemData *getModel();
     bool isPropertyExist(const ItemEnums::EItemProperty propertyType);
     void saveFile(const QString file_path);
     void deleteFile();
     ~Item();
 private:
 
-    VariedItem    *property_;
-    ItemModelBase    *model_;
+    ItemPropertyWrapper               *property_;
+    AbstractTableItemData    *model_;
 };
 
 #endif // ITEM_H

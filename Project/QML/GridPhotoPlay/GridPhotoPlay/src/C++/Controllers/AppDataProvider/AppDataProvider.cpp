@@ -104,7 +104,7 @@ void AppDataProvider::deleteModel(const QString id) {
 }
 
 
-ItemModelBase *AppDataProvider::getModelByID(const QString id) {
+AbstractTableItemData *AppDataProvider::getModelByID(const QString id) {
     // LOOGGER("+");
     return model_->getItemByID(id)->getModel();
 }

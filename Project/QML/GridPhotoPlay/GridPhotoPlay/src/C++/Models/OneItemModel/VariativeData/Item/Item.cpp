@@ -4,8 +4,8 @@
 static const char className[] = "Item::";
 
 Item::Item(QObject *parent): QObject(parent) {
-    property_ = new VariedItem(this);
-    model_ = new ItemModelBase(this);
+    property_ = new ItemPropertyWrapper(this);
+    model_ = new AbstractTableItemData(this);
 }
 
 void Item::setFile(const QString &path) {
@@ -66,7 +66,7 @@ void Item::cleanModel() {
     model_->cleanModelData();
 }
 
-ItemModelBase *Item::getModel() {
+AbstractTableItemData *Item::getModel() {
     return model_;
 }
 

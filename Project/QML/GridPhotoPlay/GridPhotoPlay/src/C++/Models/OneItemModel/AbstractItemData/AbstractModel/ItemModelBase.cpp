@@ -1,4 +1,4 @@
-#include "ItemModelBase.h"
+#include "AbstractTableItemData.h"
 #include <QDebug>
 #include <QVector>
 #include <QFileDialog>
@@ -6,10 +6,10 @@
 
 
 
-static const char className[] = "ItemModelBase::";
+static const char className[] = "AbstractTableItemData::";
 
 
-ItemModelBase::ItemModelBase(QObject *parent):QAbstractTableModel(parent){
+AbstractTableItemData::AbstractTableItemData(QObject *parent):QAbstractTableModel(parent){
     //Q_UNUSED(parent);
     //parentModel_ = this;
     // modelType_ = modelType
@@ -22,23 +22,23 @@ ItemModelBase::ItemModelBase(QObject *parent):QAbstractTableModel(parent){
 
 }
 
-//ItemModelBase::ItemModelBase(QObject *parent)
+//AbstractTableItemData::AbstractTableItemData(QObject *parent)
 //{
 
 //}
 
 
-int ItemModelBase::rowCount(const QModelIndex &parent) const {
+int AbstractTableItemData::rowCount(const QModelIndex &parent) const {
     Q_UNUSED(parent);
     return worksheet_data_.size();
 }
 
-int ItemModelBase::columnCount(const QModelIndex &parent) const {
+int AbstractTableItemData::columnCount(const QModelIndex &parent) const {
     Q_UNUSED(parent);
     return column_count_;
 }
 
-QHash<int, QByteArray> ItemModelBase::roleNames() const {
+QHash<int, QByteArray> AbstractTableItemData::roleNames() const {
     QHash<int, QByteArray> roles;
     //    roles.insert(Qt::UserRole + DATA_ID::FEATURE, FEATURE_S);
     //    roles.insert(Qt::UserRole + DATA_ID::FEATURE_NAME, FEATURE_NAME_S);//FEATURE_NAME_S
@@ -48,7 +48,7 @@ QHash<int, QByteArray> ItemModelBase::roleNames() const {
     return roles;
 }
 
-Qt::ItemFlags ItemModelBase::flags(const QModelIndex &index) const {
+Qt::ItemFlags AbstractTableItemData::flags(const QModelIndex &index) const {
     Qt::ItemFlags flags = QAbstractTableModel::flags(index);
     if(index.isValid()){
         flags |= Qt::ItemIsEditable;
@@ -56,7 +56,7 @@ Qt::ItemFlags ItemModelBase::flags(const QModelIndex &index) const {
     return flags;
 }
 
-QVariant ItemModelBase::headerData(int section, Qt::Orientation orientation, int role) const {
+QVariant AbstractTableItemData::headerData(int section, Qt::Orientation orientation, int role) const {
     Q_UNUSED(orientation);
     if(role != Qt::DisplayRole){
         return QVariant();
@@ -76,7 +76,7 @@ QVariant ItemModelBase::headerData(int section, Qt::Orientation orientation, int
 }
 
 
-QVariant ItemModelBase::data(const QModelIndex &index, int role) const {
+QVariant AbstractTableItemData::data(const QModelIndex &index, int role) const {
     if (!index.isValid())
         return QVariant();
 
@@ -112,7 +112,7 @@ QVariant ItemModelBase::data(const QModelIndex &index, int role) const {
     return result;
 }
 
-void ItemModelBase::createModel(const FileData &map){
+void AbstractTableItemData::createModel(const FileData &map){
     //LOOGGER("+");
     int size=0;
     std::map<std::string, std::string>::const_iterator it;
@@ -148,11 +148,11 @@ void ItemModelBase::createModel(const FileData &map){
 //    }
 }
 
-void ItemModelBase::removeRow(const int row) {
+void AbstractTableItemData::removeRow(const int row) {
     worksheet_data_.remove(row);
 }
 
-void ItemModelBase::addRow(const int row){
+void AbstractTableItemData::addRow(const int row){
     Date_Map map;
     map[DATA_ID::FEATURE] = QVariant("");
     map[DATA_ID::FEATURE_NAME]= QVariant("");
@@ -160,13 +160,13 @@ void ItemModelBase::addRow(const int row){
     worksheet_data_.insert(row + 1,map);
 }
 
-void ItemModelBase::copyRow(const int row){
+void AbstractTableItemData::copyRow(const int row){
     Date_Map map = worksheet_data_.at(row);
     worksheet_data_.insert(row + 1, map);
 }
 
 
-bool ItemModelBase::setData(const QModelIndex &index, const QVariant &value, int role) {
+bool AbstractTableItemData::setData(const QModelIndex &index, const QVariant &value, int role) {
     bool result = false;
     // qDebug()<< "setData"+value.toString();
     if (index.isValid() && role==Qt::EditRole) {
@@ -198,11 +198,11 @@ bool ItemModelBase::setData(const QModelIndex &index, const QVariant &value, int
     return result;
 }
 
-ItemModelBase::~ItemModelBase() {
-    //  qDebug()<< "~ItemModelBase()";
+AbstractTableItemData::~AbstractTableItemData() {
+    //  qDebug()<< "~AbstractTableItemData()";
 }
 
-//void ItemModelBase::SetupModel() {
+//void AbstractTableItemData::SetupModel() {
 //    int m[6] = {0, 1, 2, 3, 4, 5};
 //    int count = 0;
 //    int c[3] = {0, 1, 2};
@@ -216,11 +216,11 @@ ItemModelBase::~ItemModelBase() {
 //    }
 //}
 
-void ItemModelBase::cleanModelData(){
+void AbstractTableItemData::cleanModelData(){
     //LOOGGER("+");
     worksheet_data_.clear();
 }
 
-QVector<Date_Map> *ItemModelBase::getData(){
+QVector<Date_Map> *AbstractTableItemData::getData(){
     return &worksheet_data_;
 }

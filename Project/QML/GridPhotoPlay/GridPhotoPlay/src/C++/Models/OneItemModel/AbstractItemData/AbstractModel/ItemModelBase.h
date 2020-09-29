@@ -12,13 +12,13 @@
 
 typedef QHash<DATA_ID, QVariant> Date_Map;
 
-class ItemModelBase : public QAbstractTableModel {
+class AbstractTableItemData : public QAbstractTableModel {
     Q_OBJECT
 public:
     //explicit
     //Q_ENUM(DATA_ID)
 
-    ItemModelBase(QObject *parent = nullptr);
+    AbstractTableItemData(QObject *parent = nullptr);
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
 
@@ -32,7 +32,7 @@ public:
 
 //private:
     
-    virtual ~ItemModelBase();
+    virtual ~AbstractTableItemData();
 
 public slots:
    void removeRow(const int row);

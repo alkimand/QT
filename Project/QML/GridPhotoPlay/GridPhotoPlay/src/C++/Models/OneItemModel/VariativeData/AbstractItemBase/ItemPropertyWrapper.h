@@ -10,11 +10,11 @@
 
 
 
-class VariedItem: public iAbstractItemBase {
+class ItemPropertyWrapper: public iAbstractItemBase {
 
 
 public:
-    VariedItem(QObject *parent = nullptr);
+    ItemPropertyWrapper(QObject *parent = nullptr);
 
     void setFile(const QString &path);
     void parse();

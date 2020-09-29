@@ -1,4 +1,4 @@
-#include "VariedItem.h"
+#include "ItemPropertyWrapper.h"
 #include <QDebug>
 //#include <QTextCodec>
 #include  <stdio.h>
@@ -14,15 +14,15 @@
 
 #include "iAbstractItemBase.h"
 
-static const char className[] = "VariedItem::";
+static const char className[] = "ItemPropertyWrapper::";
 
-VariedItem::VariedItem(QObject *parent): iAbstractItemBase(parent){
+ItemPropertyWrapper::ItemPropertyWrapper(QObject *parent): iAbstractItemBase(parent){
     //AbstractItem::AbstractItem() {
     // itemData_.insert(int(ItemEnums::EItemProperty::kTextValue_1), "test");
     // itemData_.insert(int(ItemEnums::EItemProperty::kTextValue_3), 1000);
 }
 
-void VariedItem::setFile(const QString &path) {
+void ItemPropertyWrapper::setFile(const QString &path) {
     if (!QFile(path).exists())
         return;
     //qDebug()<< "AbstractItemBase::setFile - " + path;
@@ -40,7 +40,7 @@ void VariedItem::setFile(const QString &path) {
     //toDo icons
 }
 
-void VariedItem::parse() {
+void ItemPropertyWrapper::parse() {
     //LOOGGER("+");
     QString status = QString(ItemEnums::eItemStatus::kParseError);
     QString path = getItemProperty(ItemEnums::EItemProperty::kFilePath);
@@ -71,7 +71,7 @@ void VariedItem::parse() {
     //LOOGGER("-");
 }
 
-void VariedItem::readFile(QString file_path, sys::IDataBuff &buff, int &error) {
+void ItemPropertyWrapper::readFile(QString file_path, sys::IDataBuff &buff, int &error) {
     //LOOGGER("+");
     //  errno_t err;
     error = 1;
@@ -95,7 +95,7 @@ void VariedItem::readFile(QString file_path, sys::IDataBuff &buff, int &error) {
     error = 0;
 }
 
-void VariedItem::writeFile(QString file_path, sys::IDataBuff &buff, int &error){
+void ItemPropertyWrapper::writeFile(QString file_path, sys::IDataBuff &buff, int &error){
     QByteArray ba = file_path.toLocal8Bit();
     const char *fname = ba.data();
     QByteArray data;
@@ -111,15 +111,15 @@ void VariedItem::writeFile(QString file_path, sys::IDataBuff &buff, int &error){
 
 
 
-const FileData &VariedItem::getFileModel() {
+const FileData &ItemPropertyWrapper::getFileModel() {
     return value_map_;
 }
 
-void VariedItem::setCMap(FileData map){
+void ItemPropertyWrapper::setCMap(FileData map){
     value_map_ = map;
 }
 
-void VariedItem::save(QString file_name, const FileData value_map) {
+void ItemPropertyWrapper::save(QString file_name, const FileData value_map) {
     QString status = QString(ItemEnums::eItemStatus::kSaveError);
     if (!file_name.isEmpty()){
         QFileInfo check_file(file_name);
@@ -147,7 +147,7 @@ void VariedItem::save(QString file_name, const FileData value_map) {
     setItemProperty(ItemEnums::EItemProperty::kStatus, QString(status));
 }
 
-void VariedItem::deleteFile(){
+void ItemPropertyWrapper::deleteFile(){
     if (file_.open(QFile::ReadWrite )) {
         file_.remove();
     }

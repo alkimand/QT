@@ -55,9 +55,9 @@ C_SOURSE_UTILS_PATH = $${PROJECT_ROOT_PATH}/src/C++/utilities/
 SOURCES += \
         main.cpp \
         $${C_SOURSE_CONTROLLERS_PATH}/AppDataProvider/AppDataProvider.cpp \
-        $${C_SOURSE_VARAIATIVE_DATA_PATH}/AbstractItemBase/VariedItem.cpp \
+        $${C_SOURSE_VARAIATIVE_DATA_PATH}/AbstractItemBase/ItemPropertyWrapper.cpp \
         $${C_SOURSE_VARAIATIVE_DATA_PATH}/AbstractItemBase/iAbstractItemBase.cpp \
-        $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/AbstractModel/ItemModelBase.cpp \
+        $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/AbstractModel/AbstractTableItemData.cpp \
         $${C_SOURSE_VARAIATIVE_DATA_PATH}/Item/Item.cpp \
         $${C_SOURSE_MODEL_PATH}/AppModel/AppModel.cpp \
         $${QML_CUSTOM_CLASSES}/BorderRadiusWidget/borderradiuswidget.cpp \
@@ -65,11 +65,11 @@ SOURCES += \
         $${C_SOURSE_UTILS_PATH}/serialization.cpp
 HEADERS += \
         $${C_SOURSE_CONTROLLERS_PATH}/AppDataProvider/AppDataProvider.h \
-        $${C_SOURSE_VARAIATIVE_DATA_PATH}/AbstractItemBase/VariedItem.h \
+        $${C_SOURSE_VARAIATIVE_DATA_PATH}/AbstractItemBase/ItemPropertyWrapper.h \
         $${C_SOURSE_VARAIATIVE_DATA_PATH}/AbstractItemBase/iAbstractItemBase.h \
         $${C_SOURSE_VARAIATIVE_DATA_PATH}/AbstractItemBase/ItemPropery.h \
         $${C_SOURSE_VARAIATIVE_DATA_PATH}/AbstractItemBase/ItemConstant.h \
-        $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/AbstractModel/ItemModelBase.h \
+        $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/AbstractModel/AbstractTableItemData.h \
         $${C_SOURSE_VARAIATIVE_DATA_PATH}/Item/Item.h \
         $${C_SOURSE_MODEL_PATH}/AppModel/AppModel.h \
         $${QML_CUSTOM_CLASSES}/BorderRadiusWidget/borderradiuswidget.h \

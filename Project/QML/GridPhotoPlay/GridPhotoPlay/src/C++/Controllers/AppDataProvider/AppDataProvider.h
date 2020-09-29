@@ -48,7 +48,7 @@ public slots:
     void saveFile(const QString file_path, const QString id);
 
     void deleteModel(const QString id);
-    ItemModelBase* getModelByID(const QString id);
+    AbstractTableItemData* getModelByID(const QString id);
 
 //QML Layer
     QString getFileTitleByID(const QString id);
