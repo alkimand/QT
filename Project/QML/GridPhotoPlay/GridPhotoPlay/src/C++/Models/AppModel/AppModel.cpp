@@ -86,16 +86,14 @@ int AppModel::haveSameModelByProperty(const ItemEnums::EItemProperty property_ty
 
 void AppModel::createItem(const QString &path){
     // LOOGGER("+");
-    // auto future = QtConcurrent::run([=]() {
-    //model_counter_++;
     Item *item = new Item(this);
     pItem ptem = pItem(item, &QObject::deleteLater);
     ptem.get()->setupDefault(default_property_map_);
     ptem.get()->setFile(path);
     ptem.get()->setProperty(ItemEnums::EItemProperty::kId, QString::number(app_data_.size()));
-    QString icon = getPropperIcon(path);
-    ptem.get()->setProperty(ItemEnums::EItemProperty::kIcon, icon);
-    // parseItem(ptem);//--
+    //QString icon = getPropperIcon(path);
+    //ptem.get()->setProperty(ItemEnums::EItemProperty::kIcon, icon);
+     parseItem(ptem);//--
     int row = app_data_.size();
     beginInsertRows(QModelIndex(), row, row);
     app_data_.push_back(ptem);

@@ -1,0 +1,10 @@
+Item - Item = VariedItem + AbstractTableItemData
+VariedItem :: iAbstractItemBase  - переопределение + херня - сециализация
+iAbstractItemBase- хранит QHash
+ItemModelBase :: QAbstractTableModel
+
+
+AppDataProvider имеет мембер AppModel
+AppModel :: QAbstractTableModel
+
+Item - picture

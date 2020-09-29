@@ -5,12 +5,12 @@
 #include <QObject>
 #include <QFileInfo>
 #include <databuf.h>
-#include "iAbstractItemBase.h"
+#include "AbstractPropertyConteiner.h"
 //typedef QString QString;
 
 
 
-class ItemPropertyWrapper: public iAbstractItemBase {
+class ItemPropertyWrapper: public AbstractPropertyConteiner {
 
 
 public:

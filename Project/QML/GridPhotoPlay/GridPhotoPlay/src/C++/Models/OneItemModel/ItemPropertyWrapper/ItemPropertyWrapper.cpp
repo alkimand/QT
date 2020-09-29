@@ -1,4 +1,4 @@
-#include "QStingItemPropertyMap.h"
+#include "ItemPropertyWrapper.h"
 #include <QDebug>
 //#include <QTextCodec>
 #include  <stdio.h>
@@ -12,17 +12,17 @@
 #include <cstdio>
 #include <iostream>
 
-#include "iAbstractItemBase.h"
+#include "AbstractPropertyConteiner.h"
 
-static const char className[] = "QStingItemPropertyMap::";
+static const char className[] = "ItemPropertyWrapper::";
 
-QStingItemPropertyMap::QStingItemPropertyMap(QObject *parent): iAbstractItemBase(parent){
+ItemPropertyWrapper::ItemPropertyWrapper(QObject *parent): AbstractPropertyConteiner(parent){
     //AbstractItem::AbstractItem() {
     // itemData_.insert(int(ItemEnums::EItemProperty::kTextValue_1), "test");
     // itemData_.insert(int(ItemEnums::EItemProperty::kTextValue_3), 1000);
 }
 
-void QStingItemPropertyMap::setFile(const QString &path) {
+void ItemPropertyWrapper::setFile(const QString &path) {
     if (!QFile(path).exists())
         return;
     //qDebug()<< "AbstractItemBase::setFile - " + path;
@@ -40,7 +40,7 @@ void QStingItemPropertyMap::setFile(const QString &path) {
     //toDo icons
 }
 
-void QStingItemPropertyMap::parse() {
+void ItemPropertyWrapper::parse() {
     //LOOGGER("+");
     QString status = QString(ItemEnums::eItemStatus::kParseError);
     QString path = getItemProperty(ItemEnums::EItemProperty::kFilePath);
@@ -71,7 +71,7 @@ void QStingItemPropertyMap::parse() {
     //LOOGGER("-");
 }
 
-void QStingItemPropertyMap::readFile(QString file_path, sys::IDataBuff &buff, int &error) {
+void ItemPropertyWrapper::readFile(QString file_path, sys::IDataBuff &buff, int &error) {
     //LOOGGER("+");
     //  errno_t err;
     error = 1;
@@ -95,7 +95,7 @@ void QStingItemPropertyMap::readFile(QString file_path, sys::IDataBuff &buff, in
     error = 0;
 }
 
-void QStingItemPropertyMap::writeFile(QString file_path, sys::IDataBuff &buff, int &error){
+void ItemPropertyWrapper::writeFile(QString file_path, sys::IDataBuff &buff, int &error){
     QByteArray ba = file_path.toLocal8Bit();
     const char *fname = ba.data();
     QByteArray data;
@@ -111,15 +111,15 @@ void QStingItemPropertyMap::writeFile(QString file_path, sys::IDataBuff &buff, i
 
 
 
-const FileData &QStingItemPropertyMap::getFileModel() {
+const FileData &ItemPropertyWrapper::getFileModel() {
     return value_map_;
 }
 
-void QStingItemPropertyMap::setCMap(FileData map){
+void ItemPropertyWrapper::setCMap(FileData map){
     value_map_ = map;
 }
 
-void QStingItemPropertyMap::save(QString file_name, const FileData value_map) {
+void ItemPropertyWrapper::save(QString file_name, const FileData value_map) {
     QString status = QString(ItemEnums::eItemStatus::kSaveError);
     if (!file_name.isEmpty()){
         QFileInfo check_file(file_name);
@@ -147,7 +147,7 @@ void QStingItemPropertyMap::save(QString file_name, const FileData value_map) {
     setItemProperty(ItemEnums::EItemProperty::kStatus, QString(status));
 }
 
-void QStingItemPropertyMap::deleteFile(){
+void ItemPropertyWrapper::deleteFile(){
     if (file_.open(QFile::ReadWrite )) {
         file_.remove();
     }

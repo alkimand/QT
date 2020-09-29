@@ -48,30 +48,33 @@ DEFINES += QT_DEPRECATED_WARNINGS
 QML_CUSTOM_CLASSES = $${PROJECT_ROOT_PATH}/src/C++/QMLCustomClasses/
 #models paths
 C_SOURSE_MODEL_PATH = $${PROJECT_ROOT_PATH}/src/C++/Models/
-    C_SOURSE_VARAIATIVE_DATA_PATH = $${C_SOURSE_MODEL_PATH}/OneItemModel/VariativeData
-    C_SOURSE_ABSTRACT_ITEM_DATA_PATH = $${C_SOURSE_MODEL_PATH}/OneItemModel/AbstractItemData
+    C_SOURSE_VARAIATIVE_DATA_PATH = $${C_SOURSE_MODEL_PATH}/OneItemModel/ItemPropertyWrapper
+    C_SOURSE_ABSTRACT_ITEM_DATA_PATH = $${C_SOURSE_MODEL_PATH}/OneItemModel
+    C_SOURSE_TILE_DATA_PATH = $${C_SOURSE_MODEL_PATH}/Tile
 C_SOURSE_CONTROLLERS_PATH = $${PROJECT_ROOT_PATH}/src/C++/Controllers/
 C_SOURSE_UTILS_PATH = $${PROJECT_ROOT_PATH}/src/C++/utilities/
 SOURCES += \
         main.cpp \
         $${C_SOURSE_CONTROLLERS_PATH}/AppDataProvider/AppDataProvider.cpp \
-        $${C_SOURSE_VARAIATIVE_DATA_PATH}/AbstractItemBase/ItemPropertyWrapper.cpp \
-        $${C_SOURSE_VARAIATIVE_DATA_PATH}/AbstractItemBase/iAbstractItemBase.cpp \
-        $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/AbstractModel/AbstractTableItemData.cpp \
-        $${C_SOURSE_VARAIATIVE_DATA_PATH}/Item/Item.cpp \
+        $${C_SOURSE_VARAIATIVE_DATA_PATH}/ItemPropertyWrapper.cpp \
+        $${C_SOURSE_VARAIATIVE_DATA_PATH}/AbstractPropertyConteiner/AbstractPropertyConteiner.cpp \
+        $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/AbstractTableModel/AbstractTableItemData.cpp \
+        $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/Item/Item.cpp \
         $${C_SOURSE_MODEL_PATH}/AppModel/AppModel.cpp \
+        $${C_SOURSE_MODEL_PATH}/Tile/Tile.cpp \
         $${QML_CUSTOM_CLASSES}/BorderRadiusWidget/borderradiuswidget.cpp \
         $${C_SOURSE_UTILS_PATH}/DataBuff/databuf.cpp \
         $${C_SOURSE_UTILS_PATH}/serialization.cpp
 HEADERS += \
         $${C_SOURSE_CONTROLLERS_PATH}/AppDataProvider/AppDataProvider.h \
-        $${C_SOURSE_VARAIATIVE_DATA_PATH}/AbstractItemBase/ItemPropertyWrapper.h \
-        $${C_SOURSE_VARAIATIVE_DATA_PATH}/AbstractItemBase/iAbstractItemBase.h \
-        $${C_SOURSE_VARAIATIVE_DATA_PATH}/AbstractItemBase/ItemPropery.h \
-        $${C_SOURSE_VARAIATIVE_DATA_PATH}/AbstractItemBase/ItemConstant.h \
-        $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/AbstractModel/AbstractTableItemData.h \
-        $${C_SOURSE_VARAIATIVE_DATA_PATH}/Item/Item.h \
+        $${C_SOURSE_VARAIATIVE_DATA_PATH}/ItemPropertyWrapper.h \
+        $${C_SOURSE_VARAIATIVE_DATA_PATH}/AbstractPropertyConteiner/AbstractPropertyConteiner.h \
+        $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}//ItemPropery.h \
+        $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/ItemConstant.h \
+        $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/AbstractTableModel/AbstractTableItemData.h \
+        $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/Item/Item.h \
         $${C_SOURSE_MODEL_PATH}/AppModel/AppModel.h \
+        $${C_SOURSE_MODEL_PATH}/Tile/Tile.h \
         $${QML_CUSTOM_CLASSES}/BorderRadiusWidget/borderradiuswidget.h \
         $${C_SOURSE_UTILS_PATH}/qs_utils.h \
         $${C_SOURSE_UTILS_PATH}/serialization.h \
@@ -93,10 +96,13 @@ QML_IMPORT_PATH =
 INCLUDEPATH += $${PROJECT_ROOT_PATH}/src \
                $${C_SOURSE_CONTROLLERS_PATH}/AppDataProvider/ \
                $${QML_CUSTOM_CLASSES}/BorderRadiusWidget/ \
-               $${C_SOURSE_VARAIATIVE_DATA_PATH}/AbstractItemBase/ \
-               $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/AbstractModel/ \
-               $${C_SOURSE_VARAIATIVE_DATA_PATH}/Item/ \
+               $${C_SOURSE_VARAIATIVE_DATA_PATH}/AbstractPropertyConteiner/ \
+               $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/AbstractTableModel/ \
+               $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH} \
+               $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/Item/ \
+               $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/ItemPropertyWrapper/ \
                $${C_SOURSE_MODEL_PATH}/AppModel/ \
+               $${C_SOURSE_MODEL_PATH}/Tile/ \
                $${C_SOURSE_UTILS_PATH}/DataBuff/ \
                $${C_SOURSE_UTILS_PATH}/ \
                $${IMPORT_PATH}/ \

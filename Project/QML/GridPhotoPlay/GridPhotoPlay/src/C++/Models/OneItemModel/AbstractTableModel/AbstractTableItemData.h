@@ -2,15 +2,21 @@
 #define I_WidgetModelBase_H
 #include <QObject>
 #include <QVector>
+#include <QList>
 #include <QAbstractTableModel>
+#include <QSharedPointer>
 #include "ItemPropery.h"
 #include "ItemConstant.h"
+#include <Tile.h>
 #include <QSharedPointer>
 #include <QHash>
 
 //http://www.quizful.net/post/Qt.Iteratori.Kontejneri
 
-typedef QHash<DATA_ID, QVariant> Date_Map;
+//typedef QHash<DATA_ID, QVariant> Date_Map;
+typedef  QSharedPointer<Tile> pTile;
+typedef QList<QList<pTile>> Tiles;
+
 
 class AbstractTableItemData : public QAbstractTableModel {
     Q_OBJECT
@@ -35,18 +41,20 @@ public:
     virtual ~AbstractTableItemData();
 
 public slots:
-   void removeRow(const int row);
-   void addRow(const int row);
-   void copyRow(const int row);
+   //void removeRow(const int row);
+   //void addRow(const int row);
+  // void copyRow(const int row);
 
  public:
     void cleanModelData();
-    QVector<Date_Map> *getData();
+   // QVector<Date_Map> *getData();
 
 protected:
    // ItemEnums::EModelType date_type_;
-    QVector <Date_Map> worksheet_data_;
+
+    //QVector <Date_Map> worksheet_data_;
     int column_count_=               3;
+    Tiles tiles;
 
     //void SetupModel();
 

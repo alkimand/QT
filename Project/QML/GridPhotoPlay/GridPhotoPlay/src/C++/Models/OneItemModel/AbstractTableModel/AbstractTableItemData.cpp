@@ -22,20 +22,17 @@ AbstractTableItemData::AbstractTableItemData(QObject *parent):QAbstractTableMode
 
 }
 
-//AbstractTableItemData::AbstractTableItemData(QObject *parent)
-//{
-
-//}
-
 
 int AbstractTableItemData::rowCount(const QModelIndex &parent) const {
     Q_UNUSED(parent);
-    return worksheet_data_.size();
+    return tiles.size();
 }
 
 int AbstractTableItemData::columnCount(const QModelIndex &parent) const {
     Q_UNUSED(parent);
-    return column_count_;
+    if (tiles.size() > 0)
+        return tiles.at(0).size();
+    return 0;
 }
 
 QHash<int, QByteArray> AbstractTableItemData::roleNames() const {
@@ -98,12 +95,12 @@ QVariant AbstractTableItemData::data(const QModelIndex &index, int role) const {
         // result = worksheet_data_.at(index.row()).value(DATA_ID(index.column()));
         // result = worksheet_data_.at(index.row()).value(DATA_ID(index.column()));
         //return worksheet_data_.at(index.row()).value(DATA_ID(index.column()));
-        result =  worksheet_data_.at(index.row()).value(DATA_ID(index.column()));
+       // result =  worksheet_data_.at(index.row()).value(DATA_ID(index.column()));
         //QString("%1, %2").arg(index.column()).arg(index.row());
         break;
 
     case (int(Qt::UserRole + MODEL_ROLES::DISPLAY)):
-        result = worksheet_data_.at(index.row()).value(DATA_ID(index.column()));
+       // result = worksheet_data_.at(index.row()).value(DATA_ID(index.column()));
         break;
 
     }
@@ -114,29 +111,29 @@ QVariant AbstractTableItemData::data(const QModelIndex &index, int role) const {
 
 void AbstractTableItemData::createModel(const FileData &map){
     //LOOGGER("+");
-    int size=0;
-    std::map<std::string, std::string>::const_iterator it;
-    it = map.begin();
-    map.begin();
-    while (it != map.end()){
-        QStringList text = QString::fromUtf8(it->first.c_str()).split(".");
-        Date_Map map;
-        if (text.size() > 1){
-            size = 3;
-            map[DATA_ID::FEATURE] = QVariant(text.at(0));
-            map[DATA_ID::FEATURE_NAME] = QVariant(text.at(1));
-            map[DATA_ID::IS_ACTIVE] = QVariant(QString::fromUtf8(it->second.c_str()));
-        }
-        else {
-            size = 2;
-            map[DATA_ID::FEATURE] = QVariant(text.at(0));
-            map[DATA_ID::FEATURE_NAME] = QVariant(QString::fromUtf8(it->second.c_str()));
-            column_count_ = 2 ;
-            // map[DATA_ID::IS_ACTIVE] = QVariant(QString(""));
-        }
-        worksheet_data_.append(map);
+//    int size=0;
+//    std::map<std::string, std::string>::const_iterator it;
+//    it = map.begin();
+//    map.begin();
+//    while (it != map.end()){
+//        QStringList text = QString::fromUtf8(it->first.c_str()).split(".");
+//        Date_Map map;
+//        if (text.size() > 1){
+//            size = 3;
+//            map[DATA_ID::FEATURE] = QVariant(text.at(0));
+//            map[DATA_ID::FEATURE_NAME] = QVariant(text.at(1));
+//            map[DATA_ID::IS_ACTIVE] = QVariant(QString::fromUtf8(it->second.c_str()));
+//        }
+//        else {
+//            size = 2;
+//            map[DATA_ID::FEATURE] = QVariant(text.at(0));
+//            map[DATA_ID::FEATURE_NAME] = QVariant(QString::fromUtf8(it->second.c_str()));
+//            column_count_ = 2 ;
+//            // map[DATA_ID::IS_ACTIVE] = QVariant(QString(""));
+//        }
+//        worksheet_data_.append(map);
         //qDebug() << QString::fromUtf8(it->first.c_str())<< "=" <<QString::fromUtf8(it->second.c_str());
-        ++it;
+        //++it;
     }
 //    if (!worksheet_data_.isEmpty() && size ==3){
 
@@ -146,55 +143,55 @@ void AbstractTableItemData::createModel(const FileData &map){
 //       // qSort(worksheet_data_->begin(), sworksheet_data_end(), prefLessThan);
 
 //    }
-}
+//}
 
-void AbstractTableItemData::removeRow(const int row) {
-    worksheet_data_.remove(row);
-}
+//void AbstractTableItemData::removeRow(const int row) {
+//    worksheet_data_.remove(row);
+//}
 
-void AbstractTableItemData::addRow(const int row){
-    Date_Map map;
-    map[DATA_ID::FEATURE] = QVariant("");
-    map[DATA_ID::FEATURE_NAME]= QVariant("");
-    map[DATA_ID::IS_ACTIVE] = "0";
-    worksheet_data_.insert(row + 1,map);
-}
+//void AbstractTableItemData::addRow(const int row){
+//    Date_Map map;
+//    map[DATA_ID::FEATURE] = QVariant("");
+//    map[DATA_ID::FEATURE_NAME]= QVariant("");
+//    map[DATA_ID::IS_ACTIVE] = "0";
+//    worksheet_data_.insert(row + 1,map);
+//}
 
-void AbstractTableItemData::copyRow(const int row){
-    Date_Map map = worksheet_data_.at(row);
-    worksheet_data_.insert(row + 1, map);
-}
+//void AbstractTableItemData::copyRow(const int row){
+//    Date_Map map = worksheet_data_.at(row);
+//    worksheet_data_.insert(row + 1, map);
+//}
 
 
 bool AbstractTableItemData::setData(const QModelIndex &index, const QVariant &value, int role) {
     bool result = false;
     // qDebug()<< "setData"+value.toString();
-    if (index.isValid() && role==Qt::EditRole) {
-        switch (role){
-        case (int(Qt::EditRole)):
-            if (worksheet_data_.size() > index.row()) {
-                if(worksheet_data_.at(index.row()).contains(DATA_ID(index.column()))) {
-                    worksheet_data_[index.row()][DATA_ID(index.column())] = value.toString();
-                }
-                else {
-                    Date_Map temp (worksheet_data_.at(index.row()));
-                    temp[DATA_ID(index.column())] = value.toString();
-                    worksheet_data_.replace(index.row(), temp);
-                }
-            }
-            else {
-                Date_Map temp;
-                temp[DATA_ID(index.column())] = value.toString();
-                worksheet_data_.insert(index.row(), temp);
-            }
+//    if (index.isValid() && role==Qt::EditRole) {
+//        switch (role){
+//        case (int(Qt::EditRole)):
+//            if (worksheet_data_.size() > index.row()) {
+//                if(worksheet_data_.at(index.row()).contains(DATA_ID(index.column()))) {
+//                    worksheet_data_[index.row()][DATA_ID(index.column())] = value.toString();
+//                }
+//                else {
+//                    Date_Map temp (worksheet_data_.at(index.row()));
+//                    temp[DATA_ID(index.column())] = value.toString();
+//                    worksheet_data_.replace(index.row(), temp);
+//                }
+//            }
+//            else {
+//                Date_Map temp;
+//                temp[DATA_ID(index.column())] = value.toString();
+//                worksheet_data_.insert(index.row(), temp);
+//            }
 
-            //emit dataChanged(index, index);
-            result = true;
-            break;
-        }
-        QString temp =  QString::number(index.row())+" " +  QString::number(index.column());
-        //qDebug()<< "setdata " + temp + " =" + value.toString();
-    }
+//            //emit dataChanged(index, index);
+//            result = true;
+//            break;
+//        }
+//        QString temp =  QString::number(index.row())+" " +  QString::number(index.column());
+//        //qDebug()<< "setdata " + temp + " =" + value.toString();
+//    }
     return result;
 }
 
@@ -218,9 +215,9 @@ AbstractTableItemData::~AbstractTableItemData() {
 
 void AbstractTableItemData::cleanModelData(){
     //LOOGGER("+");
-    worksheet_data_.clear();
+    //worksheet_data_.clear();
 }
 
-QVector<Date_Map> *AbstractTableItemData::getData(){
-    return &worksheet_data_;
-}
+//QVector<Date_Map> *AbstractTableItemData::getData(){
+//    return &worksheet_data_;
+//}

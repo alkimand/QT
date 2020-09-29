@@ -89,18 +89,18 @@ TableView {
     }
 
     function removeRow(item_row) {
-        table_view.model.removeRow(item_row);
-        table_view.model.modelReset();
+       // table_view.model.removeRow(item_row);
+      //  table_view.model.modelReset();
     }
 
     function addRow(item_row) {
-        table_view.model.addRow(item_row);
-        table_view.model.modelReset();
+       // table_view.model.addRow(item_row);
+      //  table_view.model.modelReset();
     }
 
     function copyRow(item_row) {
-        table_view.model.copyRow(item_row);
-        table_view.model.modelReset();
+        //table_view.model.copyRow(item_row);
+        //table_view.model.modelReset();
     }
 }
 

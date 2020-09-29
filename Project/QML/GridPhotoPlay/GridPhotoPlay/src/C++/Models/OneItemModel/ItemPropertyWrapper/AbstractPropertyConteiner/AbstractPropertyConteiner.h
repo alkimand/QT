@@ -12,9 +12,9 @@ typedef QString QString;
 
 
 
-class iAbstractItemBase: public QObject {
+class AbstractPropertyConteiner: public QObject {
 public:
-    iAbstractItemBase(QObject *parent = nullptr);
+    AbstractPropertyConteiner(QObject *parent = nullptr);
     void setItemProperty( ItemEnums::EItemProperty propertyType, QString value);
     void setDefaultPropertyMap(const ItemPropertyMap &default_map);
     const QString &getItemProperty(const ItemEnums::EItemProperty &propertyType);

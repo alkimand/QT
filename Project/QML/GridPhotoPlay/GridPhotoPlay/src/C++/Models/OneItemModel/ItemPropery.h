@@ -45,7 +45,7 @@ public:
         kFileName,
         kIcon,
         kDateLastSaved,
-        kFormat,
+        kFormat
     };
 
     Q_ENUM(EItemProperty)
@@ -58,6 +58,7 @@ public:
        kRemoving,
        kParseError,
        kSaveError
+
         };
 
     Q_ENUM(eItemStatus)

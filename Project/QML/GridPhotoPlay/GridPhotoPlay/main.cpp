@@ -3,7 +3,7 @@
 #include <QQuickView>
 #include "borderradiuswidget.h"
 #include "AppDataProvider.h"
-#include "AbstractTableItemData.h"
+
 
 
 //https://doc.qt.io/qt-5/qqmlengine.html#qmlRegisterSingletonType
@@ -28,7 +28,6 @@ int main(int argc, char *argv[]) {
     qmlRegisterType<BorderRadiusWidget>("BorderRadiusWidget.qml", 1, 0, "BorderRadiusWidget");
     qmlRegisterType<AbstractTableItemData>("AbstractTableItemData", 1, 0, "AbstractTableItemData");
     qmlRegisterType<AppDataProvider>("AppDataProvider", 1, 0, "AppDataProvider");
-
     gui_app.setOrganizationName("test");
     gui_app.setOrganizationDomain("test");
 
