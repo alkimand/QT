@@ -4,15 +4,14 @@
 
 #include <AbstractPropertyConteiner.h>
 
+template <typename Key, typename Val>
+class Tile : public AbstractPropertyConteiner <Key, Val>{
 
-class Tile : public AbstractPropertyConteiner{
-
-    Q_OBJECT
 public:
     //explicit
-    Tile();
+    //Tile();
 
-    virtual ~Tile();
+   // virtual ~Tile();
 };
 
 #endif // I_WidgetModelBase_H

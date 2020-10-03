@@ -5,46 +5,46 @@
 
 static const char className[] = "AbstractPropertyConteiner::";
 
-AbstractPropertyConteiner::AbstractPropertyConteiner(QObject *parent): QObject(parent){
-    //AbstractItem::AbstractItem() {
-    // itemData_.insert(int(ItemEnums::EItemProperty::kTextValue_1), "test");
-    // itemData_.insert(int(ItemEnums::EItemProperty::kTextValue_3), 1000);
-}
-
-void AbstractPropertyConteiner::setItemProperty(ItemEnums::EItemProperty property_type, QString value) {
-    if (item_data_.contains(property_type))
-        item_data_[property_type] = value;
-    else
-        item_data_.insert(property_type, QString(value));
-}
-
-void AbstractPropertyConteiner::setDefaultPropertyMap(const ItemPropertyMap &default_map) {
-    if (default_map.isEmpty())
-        return;
-    item_data_ = default_map;
-
-    //QHashIterator<ItemEnums::EItemProperty, QString> i(default_map);
-//    for (auto &elem : default_map){
-//        //elem
-//        item_data_.insert(elem,default_map[elem]);
-//    }
-//    while (i.hasNext()) {
-//        i.next();
-//        item_data_.insert(i.key(),i.value());
-//    }
-    //qDebug()<< "AbstractPropertyConteiner::setDefaultPropertyMap - ";
-
-}
+//AbstractPropertyConteiner::AbstractPropertyConteiner(QObject *parent): QHash(){
+//    //AbstractItem::AbstractItem() {
+//    // itemData_.insert(int(ItemEnums::EItemProperty::kTextValue_1), "test");
+//    // itemData_.insert(int(ItemEnums::EItemProperty::kTextValue_3), 1000);
+//}
 
 
-const QString &AbstractPropertyConteiner::getItemProperty(const ItemEnums::EItemProperty &property_type) {
-        return  (item_data_[property_type]);
-}
+//template <typename T>
+//AbstractPropertyConteiner<T>::AbstractPropertyConteiner(){
 
-bool AbstractPropertyConteiner::isPropertyExist(const ItemEnums::EItemProperty propertyType){
-    bool exist_property = false;
-    ItemPropertyMap::const_iterator finder = item_data_.find(propertyType);
-    if (finder != item_data_.end())
-        exist_property = true;
-    return exist_property;
-}
+//}
+
+//template<typename T> // = insert
+//void AbstractPropertyConteiner<T>::setItemProperty(const T &propertyType, const QString &value) {
+//   // this->insert(propertyType,value);
+//}
+
+//template<typename T>
+//void AbstractPropertyConteiner<T>::setDefaultPropertyMap(ItemPropertyMap default_map){
+////    if (default_map.isEmpty())
+////        return;
+////    item_data_ = default_map;
+//}
+
+//template<typename T> // =
+//const QString AbstractPropertyConteiner<T>::getItemProperty(const T &propertyType){
+//    return "";
+//    //return  (item_data_[property_type]);
+//}
+
+//template<typename T>
+//bool AbstractPropertyConteiner<T>::isPropertyExist(const T &propertyType){
+//    qDebug()<< "AbstractPropertyConteiner::isPropertyExist - ";
+//    bool exist_property = false;
+//    //        ItemPropertyMap::const_iterator finder = item_data_.find(propertyType);
+//    //        if (finder != item_data_.end())
+//    //            exist_property = true;
+//    return exist_property;
+//}
+
+
+
+

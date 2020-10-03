@@ -29,14 +29,14 @@ public:
 
 public:
    // void setDirectory(QString directory);
-    void parseFolder(const QString &&file_path);
-    void parseItem(pItem item);
-    pItem  getItemByID(const QString id);
-    int haveSameModelByProperty(const ItemEnums::EItemProperty propertyType, const QString property);
-    void createItem(const QString &path = "");
-    int getLastCreatedItemId();
-    void saveFile(const QString file_path, const QString id);
-    void deleteFile( const QString id);
+    //void parseFolder(const QString &&file_path);
+    //void parseItem(pItem item);
+   // pItem  getItemByID(const QString id);
+   // int haveSameModelByProperty(const ItemEnums::EItemProperty propertyType, const QString property);
+   // void createItem(const QString &path = "");
+   // int getLastCreatedItemId();
+    //void saveFile(const QString file_path, const QString id);
+    //void deleteFile( const QString id);
 
     //private:
 
@@ -44,16 +44,14 @@ protected:
 
     QList <pItem>                       app_data_;
 
-    ItemPropertyMap       default_property_map_;
+    QHash<ItemEnums::EItemProperty, QString>       default_property_map_;
     //int                   model_counter_ = -1;
 
 private:
     void Init();
 
-    QStringList FindFilies(const QString &path = "");
-
-
-     QString getPropperIcon(const QString file_name = "");
+    //QStringList FindFilies(const QString &path = "");
+    //QString getPropperIcon(const QString file_name = "");
 
 signals:
    // void itemParsed(int id);

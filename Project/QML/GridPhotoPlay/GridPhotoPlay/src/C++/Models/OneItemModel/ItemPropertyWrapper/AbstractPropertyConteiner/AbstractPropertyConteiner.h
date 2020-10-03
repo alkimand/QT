@@ -1,28 +1,24 @@
-#ifndef I_ABSTRACY_ITEM_BASE_H
-#define I_ABSTRACY_ITEM_BASE_H
+#ifndef ABSTRACTPROPERTYCONTEINER
+#define ABSTRACTPROPERTYCONTEINER
 
 #include <QObject>
-//#include <QHash>
+#include <QHash>
 
 #include <ItemPropery.h>
-typedef QHash<ItemEnums::EItemProperty, QString>        ItemPropertyMap;
 
 
-typedef QString QString;
-
-
-
-class AbstractPropertyConteiner: public QObject {
+template <typename Key, typename Val>
+class AbstractPropertyConteiner: public QHash<Key, Val>  {
 public:
-    AbstractPropertyConteiner(QObject *parent = nullptr);
-    void setItemProperty( ItemEnums::EItemProperty propertyType, QString value);
-    void setDefaultPropertyMap(const ItemPropertyMap &default_map);
-    const QString &getItemProperty(const ItemEnums::EItemProperty &propertyType);
-    //const FileData &getFileModel();
-    bool isPropertyExist(const ItemEnums::EItemProperty propertyType);
+//    typedef QHash<T, QString>           ItemPropertyMap;
+//    AbstractPropertyConteiner();
+//    void setItemProperty( const T &propertyType,const QString &value);
+//    void setDefaultPropertyMap(ItemPropertyMap default_map);
+//    const QString getItemProperty(const T &propertyType);;
+//    bool isPropertyExist(const T &propertyType);
 protected:
 
-    ItemPropertyMap     item_data_;
+    //ItemPropertyMap     item_data_;
 
 
 private:
@@ -31,4 +27,4 @@ private:
 
 };
 
-#endif // I_ABSTRACY_ITEM_BASE_H
+#endif // ABSTRACTPROPERTYCONTEINER

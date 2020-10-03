@@ -4,8 +4,6 @@
 #include <QFileDialog>
 #include <QTextStream>
 
-
-
 static const char className[] = "AbstractTableItemData::";
 
 
