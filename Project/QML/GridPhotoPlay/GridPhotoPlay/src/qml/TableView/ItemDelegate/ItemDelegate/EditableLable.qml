@@ -7,7 +7,7 @@ ItemDelegate {
     property string placeholderText: placeholderText_L
     //property alias placeholderText
     property color labelFontColor: "white"
-    property color labelРighlightingFontColor:  "#4385ef"
+    property color labelРighlightingFontColor:  "white"//"#4385ef"
     property color labelBackgroundRectangleColor:"white"
     property int labelFontSize: 12
     property int labelBorderColorWidth:1

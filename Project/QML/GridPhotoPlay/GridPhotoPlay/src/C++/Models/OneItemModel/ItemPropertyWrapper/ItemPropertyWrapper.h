@@ -1,18 +1,21 @@
-#ifndef VARIED_ITEM_H
-#define VARIED_ITEM_H
+#ifndef ITEMPROPERTYWRAPPER_H
+#define ITEMPROPERTYWRAPPER_H
 #include "ItemPropery.h"
 #include <QHash>
 #include <QObject>
 #include <QFileInfo>
+
 #include <databuf.h>
+
 #include "AbstractPropertyConteiner.h"
-//typedef QString QString;
+
 
 
 template <typename Key, typename Val>
-class ItemPropertyWrapper: public AbstractPropertyConteiner <Key,Val > {
+class ItemPropertyWrapper: public  AbstractPropertyConteiner<Key, Val> {
+//class ItemPropertyWrapper: public QHash<Key, Val>      {
 public:
-    typedef QHash<Key, Val>                       ItemPropertyMap;
+    //typedef QHash<Key, Val>                       ItemPropertyMap;
 //    void setFile(const QString &path);
 //    void parse();
 //    void readFile(QString file_name, sys::IDataBuff& buff, int &error);
@@ -33,4 +36,4 @@ private:
 
 };
 
-#endif // VARIED_ITEM_H
+#endif // ITEMPROPERTYWRAPPER_H

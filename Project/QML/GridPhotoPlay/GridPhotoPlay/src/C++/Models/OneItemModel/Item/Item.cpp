@@ -4,10 +4,27 @@
 static const char className[] = "Item::";
 
 Item::Item(QObject *parent): QObject(parent) {
-    //property_ = new AbstractPropertyConteiner<ItemEnums::EItemProperty>();
-    //property_ = new AbstractPropertyConteiner<int>();
-    property_ = new ItemPropertyWrapper<ItemEnums::EItemProperty, QString>();
-    model_ = new AbstractTableItemData(this);
+    //str_property_ = new ItemPropertyWrapper<ItemEnums::EItemProperty, QString>();
+    //model_ = new AbstractTableItemData(this);
+}
+
+Item::ItemConteiner Item::getConteinerTupe(const ItemEnums::EItemProperty & property){
+        ItemConteiner cinteiner_tupe = ItemConteiner::string;
+        switch (property) {
+        case ItemEnums::EItemProperty::kNone:
+        case ItemEnums::EItemProperty::kId:
+        case ItemEnums::EItemProperty::kStatus:
+            cinteiner_tupe = ItemConteiner::integer;
+            break;
+        case ItemEnums::EItemProperty::kFilePath:
+        case ItemEnums::EItemProperty::kFileName:
+        case ItemEnums::EItemProperty::kIcon:
+        case ItemEnums::EItemProperty::kDateLastSaved:
+        case ItemEnums::EItemProperty::kFormat:
+            cinteiner_tupe = ItemConteiner::string;
+            break;
+    }
+    return cinteiner_tupe;
 }
 
 //void Item::setFile(const QString &path) {
@@ -16,56 +33,97 @@ Item::Item(QObject *parent): QObject(parent) {
 
 //void Item::setProperty(const ItemEnums::EItemProperty property, const QString value) {
 //    if (property!=ItemEnums::EItemProperty::kNone)
-//        property_->setItemProperty(property, QString(value));
+//        switch (property) {
+//        case ItemEnums::EItemProperty::kFilePath:
+//        case ItemEnums::EItemProperty::kFileName:
+//        case ItemEnums::EItemProperty::kIcon:
+//        case ItemEnums::EItemProperty::kDateLastSaved:
+//        case ItemEnums::EItemProperty::kFormat:
+//        str_property_.insert(property, value);
+//            break;
+//        }
+//    // property_->insert(property, QString(value));
 //}
 
-//const QString  Item::getProperty(const ItemEnums::EItemProperty property) {
+//void Item::setProperty(const ItemEnums::EItemProperty property, const int value) {
 //    if (property!=ItemEnums::EItemProperty::kNone)
-//        return property_->getItemProperty(property);
-//    return QString("");
+//        switch (property) {
+//        case ItemEnums::EItemProperty::kNone:
+//        case ItemEnums::EItemProperty::kId:
+//        case ItemEnums::EItemProperty::kStatus:
+//            int_property_.insert(property, value);
+//            break;
+//        }
 //}
 
-////QString Item::getProperty(const ItemEnums::EItemProperty property){
-////    if (property!=ItemEnums::EItemProperty::kNone)
-////        property_->getItemProperty(property, QString(property));
-////}
+
+QString Item::getProperty(const ItemEnums::EItemProperty property){
+    //if (property != ItemEnums::EItemProperty::kNone)
+    if (str_property_.find(property) != str_property_.end()){
+        return str_property_.find(property).value();
+    }
+    else if (int_property_.find(property) != int_property_.end()){
+        return QString::number(int_property_.find(property).value());
+    }
+    return QString("");
+}
 
 
 
 
 
-//void Item::setupDefault(const QHash<ItemEnums::EItemProperty,QString> &default_map){
-//    if (default_map.isEmpty()){
-//        LOOGGER("NO Default map");
-//        return;
-//    }
+void Item::setupDefault(const QHash<ItemEnums::EItemProperty,QString> &default_map){
+    if (default_map.isEmpty()){
+        LOOGGER("NO Default map");
+        return;
+    }
+    for(auto i = default_map.begin();i != default_map.end();++i){
+        switch (i.key()) {
+        case ItemEnums::EItemProperty::kNone:
+        case ItemEnums::EItemProperty::kId:
+        case ItemEnums::EItemProperty::kStatus:
+            int_property_.insert(i.key(),(i.value().toInt()));
+            break;
+        case ItemEnums::EItemProperty::kFilePath:
+        case ItemEnums::EItemProperty::kFileName:
+        case ItemEnums::EItemProperty::kIcon:
+        case ItemEnums::EItemProperty::kDateLastSaved:
+        case ItemEnums::EItemProperty::kFormat:
+            str_property_.insert(i.key(),i.value());
+            break;
+        }
+    }
+}
 //    property_->setDefaultPropertyMap(default_map);
 //}
 
-//void Item::parse() {
-//    //LOOGGER("+");
-//    property_->parse();
-//    FileData file_data;
-//    file_data = property_->getFileModel();
-//    if (file_data.empty()) {
-//        property_->setItemProperty(ItemEnums::EItemProperty::kStatus, QString(ItemEnums::eItemStatus::kParseError));
-//        LOOGGER("::ParseError");
-//        return;
-//    }
-//    model_->createModel(file_data);
-//}
+void Item::parse() {
+    //LOOGGER("+");
+    //property_->parse();
+    FileData file_data;
+    //    file_data = property_->getFileModel();
+    //    if (file_data.empty()) {
+    //        property_->setItemProperty(ItemEnums::EItemProperty::kStatus, QString(ItemEnums::eItemStatus::kParseError));
+    //        LOOGGER("::ParseError");
+    //        return;
+    //    }
+    model_.createModel(file_data);
+}
 
 //void Item::cleanModel() {
 //    model_->cleanModelData();
-//}
 
 //AbstractTableItemData *Item::getModel() {
 //    return model_;
 //}
 
-//bool Item::isPropertyExist(const ItemEnums::EItemProperty propertyType){
-//    return property_->isPropertyExist(propertyType);
-//}
+bool Item::isPropertyExist(const ItemEnums::EItemProperty property){
+    if (str_property_.find(property) != str_property_.end())
+        return true;
+    else if (int_property_.find(property) != int_property_.end())
+        return true;
+    return false;
+}
 
 //void Item::saveFile(const QString file_path){
 //    FileData c_map;
@@ -103,14 +161,17 @@ Item::Item(QObject *parent): QObject(parent) {
 //    property_->deleteFile();
 //}
 
-Item::~Item() {
-    //qDebug()<<"~Item";
-    if (property_)
-        delete property_;
-    if (model_)
-        delete model_;
-    // fs::FxConfig cfg_;
-}
+
+//Item::~Item() {
+//    //qDebug()<<"~Item";
+//    //    if (int_property_)
+//    //        delete int_property_;
+//    //    if (model_)
+//    //        delete model_;
+//    // fs::FxConfig cfg_;
+//}
+
+
 
 
 

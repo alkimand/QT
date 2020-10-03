@@ -28,15 +28,15 @@ public:
     virtual ~AppModel();
 
 public:
-   // void setDirectory(QString directory);
-    //void parseFolder(const QString &&file_path);
-    //void parseItem(pItem item);
-   // pItem  getItemByID(const QString id);
-   // int haveSameModelByProperty(const ItemEnums::EItemProperty propertyType, const QString property);
-   // void createItem(const QString &path = "");
-   // int getLastCreatedItemId();
-    //void saveFile(const QString file_path, const QString id);
-    //void deleteFile( const QString id);
+    //void setDirectory(QString directory);
+    void parseFolder(const QString &&file_path);
+    void parseItem(pItem item);
+    pItem  getItemByID(const QString id);
+    int getIDModelByProperty(const ItemEnums::EItemProperty propertyType, const QString property);
+    void createItem(const QString &path = "");
+    int getLastCreatedItemId();
+    void saveFile(const QString file_path, const QString id);
+    void deleteFile( const QString id);
 
     //private:
 
@@ -50,8 +50,8 @@ protected:
 private:
     void Init();
 
-    //QStringList FindFilies(const QString &path = "");
-    //QString getPropperIcon(const QString file_name = "");
+    QStringList FindFilies(const QString &path = "");
+    QString getPropperIcon(const QString file_name = "");
 
 signals:
    // void itemParsed(int id);
