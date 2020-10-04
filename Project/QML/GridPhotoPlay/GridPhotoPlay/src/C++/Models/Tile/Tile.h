@@ -1,18 +1,23 @@
 #ifndef TILE
 #define TILE
 #include <QObject>
+#include <QImage>
+#include <QPair>
 
-#include <AbstractPropertyConteiner.h>
-
-template <typename Key, typename Val>
-class Tile : public AbstractPropertyConteiner <Key, Val>{
+class Tile : public QImage {
 
 public:
+    explicit Tile(QImage &original_image, QPair<int, int> coordinate, QImage i_template);
     //explicit
     //Tile();
 
    // virtual ~Tile();
+
+
+private:
+        QImage *original_image_;
+        QImage template_;
 };
 
-#endif // I_WidgetModelBase_H
+#endif // TILE
 

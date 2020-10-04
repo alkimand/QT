@@ -7,12 +7,12 @@
 #include <QSharedPointer>
 #include "ItemPropery.h"
 #include "ItemConstant.h"
-#include <Tile.h>
+#include <tile.h>
 #include <QSharedPointer>
 #include <QHash>
 
-typedef  QSharedPointer<Tile<ItemEnums::EItemProperty, QString>> pTile;
-typedef QList<QList<pTile>> Tiles;
+//typedef  QSharedPointer<Tile<ItemEnums::EItemProperty, QString>> pTile;
+//typedef QList<QList<pTile>> Tiles;
 
 
 class AbstractTableItemData : public QAbstractTableModel {
@@ -27,7 +27,7 @@ public:
     Qt::ItemFlags flags(const QModelIndex &index) const;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
-    void createModel(const FileData &map);
+    void createModel(QList<QList <Tile*>>  &tiles);
     bool setData(const QModelIndex &index, const QVariant &value, int role);
 
     virtual ~AbstractTableItemData();
@@ -44,10 +44,11 @@ protected:
 
     //QVector <Date_Map> worksheet_data_;
     int column_count_=               3;
-    Tiles tiles;
+    //Tiles tiles;
 
     //void SetupModel();
 
+    QList<QList <Tile*>>                                                   *tiles_;
 };
 
 #endif // I_WidgetModelBase_H

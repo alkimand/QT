@@ -105,13 +105,13 @@ void AppDataProvider::deleteModel(const QString id) {
 }
 
 
-//AbstractTableItemData *AppDataProvider::getModelByID(const QString id) {
-//    // LOOGGER("+");
-//    //return model_->getItemByID(id)->getModel();
-//}
+AbstractTableItemData *AppDataProvider::getModelByID(const QString id) {
+     LOOGGER("+");
+    return model_->getItemByID(id)->getModel();
+}
 
 
-//QString AppDataProvider::getFileTitleByID(const QString id) {
+//QString AppDataPrGovider::getFileTitleByID(const QString id) {
 //   // return model_->getItemByID(id)->getProperty(ItemEnums::EItemProperty::kFileName);
 //}
 

@@ -20,6 +20,7 @@ class QStringList;
 class AppDataProvider: public QObject {
     Q_OBJECT
     Q_PROPERTY(AppModel * model READ getModel  NOTIFY modelChanged)
+   // Q_PROPERTY(AppModel * model READ getModel  NOTIFY modelChanged)
 
 public:
     AppDataProvider(QObject *parent = nullptr);
@@ -37,6 +38,7 @@ signals:
 private:
     AppModel  *model_;
 
+
 private:
 
 
@@ -48,7 +50,7 @@ public slots:
     void saveFile(const QString file_path, const QString id);
 
     void deleteModel(const QString id);
-    //AbstractTableItemData* getModelByID(const QString id);
+    AbstractTableItemData* getModelByID(const QString id);
 
 //QML Layer
     //QString getFileTitleByID(const QString id);

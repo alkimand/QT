@@ -10,7 +10,7 @@
 #include <QSharedPointer>
 #include <QHash>
 
-#define  FX_EXTENSION                      "*.fx"
+
 
 typedef  QSharedPointer<Item> pItem;
 
@@ -33,7 +33,7 @@ public:
     void parseItem(pItem item);
     pItem  getItemByID(const QString id);
     int getIDModelByProperty(const ItemEnums::EItemProperty propertyType, const QString property);
-    void createItem(const QString &path = "");
+    void createItem(const QString &&path = "");
     int getLastCreatedItemId();
     void saveFile(const QString file_path, const QString id);
     void deleteFile( const QString id);

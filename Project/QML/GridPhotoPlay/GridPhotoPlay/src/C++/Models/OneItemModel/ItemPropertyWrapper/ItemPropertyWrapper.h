@@ -29,9 +29,9 @@ public:
 
 
 private:
-    QFile               file_;
-    QFileInfo           file_info_;
-    FileData            value_map_;
+    //QFile               file_;
+    //QFileInfo           file_info_;
+   // FileData            value_map_;
 
 
 };

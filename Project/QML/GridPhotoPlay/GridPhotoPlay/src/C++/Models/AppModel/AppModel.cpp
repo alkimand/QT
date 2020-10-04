@@ -42,19 +42,26 @@ AppModel::AppModel(QObject *parent):QAbstractTableModel(parent){
 void AppModel::parseItem(pItem item){
     //LOOGGER("+");
     //qDebug() << QThread::currentThreadId();
-    QString item_status;
+    int item_status;
     if (item.get()->isPropertyExist(ItemEnums::EItemProperty::kStatus)){
-        item_status = item.get()->getProperty(ItemEnums::EItemProperty::kStatus);
-        if (item_status == QString(ItemEnums::eItemStatus::kParsed)) {
-            //item.get()->cleanModel();
-        }
+        item_status = item.get()->getProperty(ItemEnums::EItemProperty::kStatus).toInt();
+        //int f = int (ItemEnums::eItemStatus::kInit);
+        //int s = (item.get()->getProperty(ItemEnums::EItemProperty::kStatus)).toInt();
 
-        if (item_status != QString(ItemEnums::eItemStatus::kInit)){
-            item.get()->setProperty(ItemEnums::EItemProperty::kStatus, QString(ItemEnums::eItemStatus::kParseError));
-            int id = item.get()->getProperty(ItemEnums::EItemProperty::kId).toInt();//--
+        if (item_status == int (ItemEnums::eItemStatus::kInit)){
+            item.get()->setProperty(ItemEnums::EItemProperty::kStatus, int(ItemEnums::eItemStatus::kParsing));
+            int id = item.get()->getProperty(ItemEnums::EItemProperty::kId).toInt();
+            item.get()->setProperty(ItemEnums::EItemProperty::kId, id);
             item.get()->parse();
-            if (item.get()->getProperty(ItemEnums::EItemProperty::kStatus) != QString(ItemEnums::eItemStatus::kParseError)){
-                item.get()->setProperty(ItemEnums::EItemProperty::kStatus, QString(ItemEnums::eItemStatus::kParsed));
+            if (item.get()->getProperty(ItemEnums::EItemProperty::kStatus).toInt() != int(ItemEnums::eItemStatus::kParseError)) {
+
+                item.get()->setProperty(ItemEnums::EItemProperty::kStatus,
+                                        int(ItemEnums::eItemStatus::kParsed));
+            }
+            else if (item_status == int (ItemEnums::eItemStatus::kParsed)){
+                //item.get()->cleanModel();
+            }
+            else if (item_status != int (ItemEnums::eItemStatus::kInit)){
                 //emit itemParsed(id);
             }
         }
@@ -85,21 +92,19 @@ int AppModel::getIDModelByProperty(const ItemEnums::EItemProperty property_type,
 }
 
 
-void AppModel::createItem(const QString &path){
+void AppModel::createItem(const QString &&path){
     // LOOGGER("+");
     Item *item = new Item(this);
     pItem ptem = pItem(item, &QObject::deleteLater);
     ptem.get()->setupDefault(default_property_map_);
-    //ptem.get()->setFile(path);
-    ptem.get()->setProperty(ItemEnums::EItemProperty::kId, QString::number(app_data_.size()));
-    //QString icon = getPropperIcon(path);
-    //ptem.get()->setProperty(ItemEnums::EItemProperty::kIcon, icon);
-     parseItem(ptem);//--
-    int row = app_data_.size();
-    beginInsertRows(QModelIndex(), row, row);
+    ptem.get()->setProperty(ItemEnums::EItemProperty::kId, app_data_.size());
+    ptem.get()->setProperty(ItemEnums::EItemProperty::kFilePath, std::move(path));
+    parseItem(ptem);
+
+    //int row = app_data_.size();
+    //beginInsertRows(QModelIndex(), row, row);
     app_data_.push_back(ptem);
-    endInsertRows();
-    // });
+    //endInsertRows();
 }
 
 int AppModel::getLastCreatedItemId(){
@@ -194,7 +199,7 @@ QVariant AppModel::data(const QModelIndex &index, int role) const {
     Q_UNUSED(role);
     if (!index.isValid())
         return QVariant();
-/*    QVariant result;
+    /*    QVariant result;
     switch (role) {
     case (int(Qt::DisplayRole)):
         result =  "";//app_data_.at(index.row()).value(DATA_ID(index.column()));
@@ -217,7 +222,7 @@ QVariant AppModel::data(const QModelIndex &index, int role) const {
     //qDebug()<< "data " + temp + " = " + result.toString();
 
     //return result;
-        return QVariant();
+    return QVariant();
 }
 
 bool AppModel::setData(const QModelIndex &index, const QVariant &value, int role) {
@@ -258,18 +263,17 @@ bool AppModel::setData(const QModelIndex &index, const QVariant &value, int role
 void AppModel::Init(){
     default_property_map_.insert(ItemEnums::EItemProperty::kId, QString::number(-1));
     default_property_map_.insert(ItemEnums::EItemProperty::kStatus,  QString::number(int(ItemEnums::eItemStatus::kInit)));
-    default_property_map_.insert(ItemEnums::EItemProperty::kFilePath,"");
-    default_property_map_.insert(ItemEnums::EItemProperty::kFileName,"");
+    //default_property_map_.insert(ItemEnums::EItemProperty::kFilePath,"");
+    //default_property_map_.insert(ItemEnums::EItemProperty::kFileName,"");
     default_property_map_.insert(ItemEnums::EItemProperty::kIcon, DEFAULT_ICON);
     default_property_map_.insert(ItemEnums::EItemProperty::kDateLastSaved,"");
-    default_property_map_.insert(ItemEnums::EItemProperty::kFormat,"fx");
+    //default_property_map_.insert(ItemEnums::EItemProperty::kFormat,"jpg");
 }
 
 void AppModel::parseFolder(const QString &&file_path){
     LOOGGER("parse one file - "+ file_path);
-    for (const QString &filePath : FindFilies(file_path)) {
+    for (const QString &filePath : FindFilies(file_path))
         this->createItem(QDir::toNativeSeparators(filePath));
-    }
 }
 
 QStringList AppModel::FindFilies(const QString &file_path) {
@@ -278,7 +282,7 @@ QStringList AppModel::FindFilies(const QString &file_path) {
     if (file_path.isEmpty())
         path = QDir::currentPath();
     QStringList filters;
-    filters << FX_EXTENSION;
+    filters << JPG_EXTENSION;
     QDirIterator it(path, filters, QDir::Files | QDir::NoSymLinks | QDir::NoDotAndDotDot, QDirIterator::NoIteratorFlags);
     while (it.hasNext())
         files << it.next();
@@ -292,6 +296,6 @@ QStringList AppModel::FindFilies(const QString &file_path) {
 
 
 AppModel::~AppModel() {
-     LOOGGER("~AppModel");
+    LOOGGER("~AppModel");
     //qDebug()<< "~ItemModel()";
 }

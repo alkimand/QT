@@ -50,7 +50,6 @@ QML_CUSTOM_CLASSES = $${PROJECT_ROOT_PATH}/src/C++/QMLCustomClasses/
 C_SOURSE_MODEL_PATH = $${PROJECT_ROOT_PATH}/src/C++/Models/
     C_SOURSE_VARAIATIVE_DATA_PATH = $${C_SOURSE_MODEL_PATH}/OneItemModel/ItemPropertyWrapper
     C_SOURSE_ABSTRACT_ITEM_DATA_PATH = $${C_SOURSE_MODEL_PATH}/OneItemModel
-    C_SOURSE_TILE_DATA_PATH = $${C_SOURSE_MODEL_PATH}/Tile
 C_SOURSE_CONTROLLERS_PATH = $${PROJECT_ROOT_PATH}/src/C++/Controllers/
 C_SOURSE_UTILS_PATH = $${PROJECT_ROOT_PATH}/src/C++/utilities/
 SOURCES += \
@@ -61,7 +60,7 @@ SOURCES += \
         $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/AbstractTableModel/AbstractTableItemData.cpp \
         $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/Item/Item.cpp \
         $${C_SOURSE_MODEL_PATH}/AppModel/AppModel.cpp \
-        $${C_SOURSE_MODEL_PATH}/Tile/Tile.cpp \
+        $${C_SOURSE_MODEL_PATH}/Tile/tile.cpp \
         $${QML_CUSTOM_CLASSES}/BorderRadiusWidget/borderradiuswidget.cpp \
         $${C_SOURSE_UTILS_PATH}/DataBuff/databuf.cpp \
         $${C_SOURSE_UTILS_PATH}/serialization.cpp
@@ -74,7 +73,7 @@ HEADERS += \
         $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/AbstractTableModel/AbstractTableItemData.h \
         $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/Item/Item.h \
         $${C_SOURSE_MODEL_PATH}/AppModel/AppModel.h \
-        $${C_SOURSE_MODEL_PATH}/Tile/Tile.h \
+        $${C_SOURSE_MODEL_PATH}/Tile/tile.h \
         $${QML_CUSTOM_CLASSES}/BorderRadiusWidget/borderradiuswidget.h \
         $${C_SOURSE_UTILS_PATH}/qs_utils.h \
         $${C_SOURSE_UTILS_PATH}/serialization.h \

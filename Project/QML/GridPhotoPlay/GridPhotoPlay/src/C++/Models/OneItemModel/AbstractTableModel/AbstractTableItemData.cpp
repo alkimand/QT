@@ -13,9 +13,9 @@ AbstractTableItemData::AbstractTableItemData(QObject *parent):QAbstractTableMode
     // modelType_ = modelType
     //setupWidgetModel();
 
-    QString path = QDir::currentPath();
-    QString fileName = "test.txt";
-    QString fullFilePath = path  + "/" + fileName;
+   // QString path = QDir::currentPath();
+   // QString fileName = "test.txt";
+   // QString fullFilePath = path  + "/" + fileName;
     //SetupModel();
 
 }
@@ -23,24 +23,26 @@ AbstractTableItemData::AbstractTableItemData(QObject *parent):QAbstractTableMode
 
 int AbstractTableItemData::rowCount(const QModelIndex &parent) const {
     Q_UNUSED(parent);
-    return tiles.size();
+    if (tiles_->size() > 0)
+        return tiles_->size();
 }
 
 int AbstractTableItemData::columnCount(const QModelIndex &parent) const {
     Q_UNUSED(parent);
-    if (tiles.size() > 0)
-        return tiles.at(0).size();
+    if (tiles_->size() > 0)
+        return tiles_->at(0).size();
     return 0;
 }
 
 QHash<int, QByteArray> AbstractTableItemData::roleNames() const {
-    QHash<int, QByteArray> roles;
+    //QHash<int, QByteArray> roles;
     //    roles.insert(Qt::UserRole + DATA_ID::FEATURE, FEATURE_S);
     //    roles.insert(Qt::UserRole + DATA_ID::FEATURE_NAME, FEATURE_NAME_S);//FEATURE_NAME_S
     //    roles.insert(Qt::UserRole + DATA_ID::IS_ACTIVE, IS_ACTIVE_S);
-    roles.insert(Qt::EditRole, EDITE_S);
-    roles.insert(Qt::DisplayRole, DISPLAY_S);
-    return roles;
+    return { {Qt::DisplayRole, "display"} };
+   // roles.insert(Qt::EditRole, EDITE_S);
+   // roles.insert(Qt::DisplayRole, DISPLAY_S);
+   // return roles;
 }
 
 Qt::ItemFlags AbstractTableItemData::flags(const QModelIndex &index) const {
@@ -77,25 +79,26 @@ QVariant AbstractTableItemData::data(const QModelIndex &index, int role) const {
 
     QVariant result;
     switch (role) {
-    //    case (int(Qt::UserRole + DATA_ID::FEATURE)):
-    //    case (int(Qt::UserRole + DATA_ID::NAME)):
-    //    case (int(Qt::UserRole + DATA_ID::IS_ACTIVE)):
-    //        if (worksheet_data_.size() > index.row()
-    //                && worksheet_data_.at(index.row()).contains(DATA_ID(role - int(Qt::UserRole)))
-    //                && index.column() < 4) {
-    //            result = worksheet_data_.at(index.row()).value(DATA_ID(role - int(Qt::UserRole)));
-    //             //qDebug()<< "data" + result.toString();
-    //           // return worksheet_data_.at(index.row()).value(DATA_ID(role - int(Qt::UserRole)));
-    //        }
-    //        break;
+    case Qt::DisplayRole:
+            return QString("%1, %2").arg(index.column()).arg(index.row());
+        case (int(Qt::UserRole + DATA_ID::ICON)):
 
-    case (int(Qt::DisplayRole)):
+//            if (tiles_->size() > index.row()
+//                && tiles_->at(index.row()).contains(DATA_ID(role - int(Qt::UserRole)))
+//                    && index.column() < 4) {
+//                result = worksheet_data_.at(index.row()).value(DATA_ID(role - int(Qt::UserRole)));
+//                 //qDebug()<< "data" + result.toString();
+//               // return worksheet_data_.at(index.row()).value(DATA_ID(role - int(Qt::UserRole)));
+//            }
+            break;
+
+   // case (int(Qt::DisplayRole)):
         // result = worksheet_data_.at(index.row()).value(DATA_ID(index.column()));
         // result = worksheet_data_.at(index.row()).value(DATA_ID(index.column()));
         //return worksheet_data_.at(index.row()).value(DATA_ID(index.column()));
        // result =  worksheet_data_.at(index.row()).value(DATA_ID(index.column()));
         //QString("%1, %2").arg(index.column()).arg(index.row());
-        break;
+     //   break;
 
     case (int(Qt::UserRole + MODEL_ROLES::DISPLAY)):
        // result = worksheet_data_.at(index.row()).value(DATA_ID(index.column()));
@@ -104,10 +107,12 @@ QVariant AbstractTableItemData::data(const QModelIndex &index, int role) const {
     }
     QString temp =  QString::number(index.row())+" " +  QString::number(index.column());//index.row();
     //qDebug()<< "data " + temp + " =" + result.toString();
-    return result;
+    return temp;
+        //result;
 }
 
-void AbstractTableItemData::createModel(const FileData &map){
+void AbstractTableItemData::createModel( QList<QList <Tile*>>  &tiles){
+    tiles_ = &tiles;
     //LOOGGER("+");
 //    int size=0;
 //    std::map<std::string, std::string>::const_iterator it;
@@ -164,7 +169,7 @@ void AbstractTableItemData::createModel(const FileData &map){
 bool AbstractTableItemData::setData(const QModelIndex &index, const QVariant &value, int role) {
     bool result = false;
     // qDebug()<< "setData"+value.toString();
-//    if (index.isValid() && role==Qt::EditRole) {
+    if (index.isValid() && role==Qt::EditRole) {
 //        switch (role){
 //        case (int(Qt::EditRole)):
 //            if (worksheet_data_.size() > index.row()) {
@@ -189,7 +194,7 @@ bool AbstractTableItemData::setData(const QModelIndex &index, const QVariant &va
 //        }
 //        QString temp =  QString::number(index.row())+" " +  QString::number(index.column());
 //        //qDebug()<< "setdata " + temp + " =" + value.toString();
-//    }
+    }
     return result;
 }
 

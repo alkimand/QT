@@ -35,7 +35,7 @@ enum DATA_ID {
     FEATURE_NAME,
     IS_ACTIVE   ,
     NAME        ,
-//  ICON        ,
+    ICON
 //    EDITE
     };
 
@@ -44,7 +44,7 @@ enum MODEL_ROLES {
     EDITE           ,
     TITLE           ,
     ID              ,
-    ICON_PATH            ,
+    ICON_PATH
 
 };
 
