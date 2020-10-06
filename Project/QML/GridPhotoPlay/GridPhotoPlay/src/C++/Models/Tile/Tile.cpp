@@ -1,17 +1,18 @@
 #include "tile.h"
-#include "ItemConstant.h"
+//#include "ItemConstant.h"
 
-#include <QDebug>
-#include <QPixmap>
-#include <QPainter>
-#include <QRgb>
-#include <QImage>
-#include <QDebug>
+//Tile::Tile(QImage &original_image, QPair<int, int> coordinate, QImage &i_template){
+//   // : QImage(i_template) {
+//    //original_image_= &original_image;
+//    //template_ = &i_template;
+//   // QPixmap puzzleImage;
+//}
+
+//Tile::~Tile() {
+
+//}
 
 
-Tile::Tile(QImage &original_image, QPair<int, int> coordinate, QImage i_template) : QImage(i_template),
-    template_(i_template) {
-    original_image_= &original_image;
+Tile::Tile(QPair<int, int> coordinate, QPixmap &original_pixmap, QPixmap &_template) {
 
-    //QPixmap puzzleImage;
 }

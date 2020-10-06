@@ -1,6 +1,6 @@
 #include "AbstractTableItemData.h"
 #include <QDebug>
-#include <QVector>
+
 #include <QFileDialog>
 #include <QTextStream>
 
@@ -23,14 +23,15 @@ AbstractTableItemData::AbstractTableItemData(QObject *parent):QAbstractTableMode
 
 int AbstractTableItemData::rowCount(const QModelIndex &parent) const {
     Q_UNUSED(parent);
-    if (tiles_->size() > 0)
-        return tiles_->size();
+    //if (tiles_->size() > 0)
+//        return tiles_->size();
+    return 0;
 }
 
 int AbstractTableItemData::columnCount(const QModelIndex &parent) const {
     Q_UNUSED(parent);
-    if (tiles_->size() > 0)
-        return tiles_->at(0).size();
+    //if (tiles_->size() > 0)
+     //   return tiles_->at(0).size();
     return 0;
 }
 
@@ -111,9 +112,9 @@ QVariant AbstractTableItemData::data(const QModelIndex &index, int role) const {
         //result;
 }
 
-void AbstractTableItemData::createModel( QList<QList <Tile*>>  &tiles){
+void AbstractTableItemData::setupModel( QList<QList <QSharedPointer<Tile>>>  tiles){
     tiles_ = &tiles;
-    //LOOGGER("+");
+    LOOGGER("+");
 //    int size=0;
 //    std::map<std::string, std::string>::const_iterator it;
 //    it = map.begin();
@@ -137,7 +138,7 @@ void AbstractTableItemData::createModel( QList<QList <Tile*>>  &tiles){
 //        worksheet_data_.append(map);
         //qDebug() << QString::fromUtf8(it->first.c_str())<< "=" <<QString::fromUtf8(it->second.c_str());
         //++it;
-    }
+ //   }
 //    if (!worksheet_data_.isEmpty() && size ==3){
 
 //        std::sort(worksheet_data_.begin(), worksheet_data_.end(), [] (Date_Map lh, Date_Map rh)
@@ -146,7 +147,7 @@ void AbstractTableItemData::createModel( QList<QList <Tile*>>  &tiles){
 //       // qSort(worksheet_data_->begin(), sworksheet_data_end(), prefLessThan);
 
 //    }
-//}
+}
 
 //void AbstractTableItemData::removeRow(const int row) {
 //    worksheet_data_.remove(row);

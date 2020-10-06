@@ -9,7 +9,7 @@ Item::Item(QObject *parent): QObject(parent) {
 
    //QPixmap puzzleImage;
   // image_.load("test.jpg");
-   if (!image_.load("test.jpg")) {
+   if (!user_image_.load("test.jpg")) {
        LOOGGER("NO Default image");
        return;
    }
@@ -17,25 +17,87 @@ Item::Item(QObject *parent): QObject(parent) {
 
 }
 
+void Item::setFile(QString file_path) {
 
-Item::ItemConteiner Item::getConteinerTupe(const ItemEnums::EItemProperty & property){
-    ItemConteiner cinteiner_tupe = ItemConteiner::string;
-    switch (property) {
-    case ItemEnums::EItemProperty::kNone:
-    case ItemEnums::EItemProperty::kId:
-    case ItemEnums::EItemProperty::kStatus:
-        cinteiner_tupe = ItemConteiner::integer;
-        break;
-    case ItemEnums::EItemProperty::kFilePath:
-    case ItemEnums::EItemProperty::kFileName:
-    case ItemEnums::EItemProperty::kIcon:
-    case ItemEnums::EItemProperty::kDateLastSaved:
-    case ItemEnums::EItemProperty::kFormat:
-        cinteiner_tupe = ItemConteiner::string;
-        break;
-    }
-    return cinteiner_tupe;
 }
+
+void Item::setFileName(QString file_name) {
+
+}
+
+void Item::setFilePath(const QString &file_name) {
+     file_.setFileName(file_name);
+     file_info_.setFile(file_name);
+}
+
+void Item::setWindowSize(const QSize && window_size) {
+    window_size_ = std::move(window_size);
+}
+
+void Item::setMaxWindowRow(const int &&max_row) {
+    max_row_ = std::move(max_row);
+}
+
+void Item::setMaxWindowColumn(const int &&max_column) {
+    max_column_ = std::move(max_column);
+}
+
+void Item::setupTileTemplateMap() {
+
+    QPixmap pixmap;
+
+    pixmap.load("");
+    tile_template_pix_map_.insert(Tile::eTileTemlate::kLeft, pixmap);
+    tile_template_size_map_.insert(Tile::eTileTemlate::kLeft, pixmap.size());
+
+
+
+}
+
+int Item::getTileIdby() {
+    return 0;
+}
+
+int Item::getId() {
+    return id_;
+
+}
+
+//void Item::setId(int id){
+//    id_ = id;
+//}
+
+void Item::setId(const int &&id){
+    id_ = std::move(id);
+}
+
+Item::eItemStatus Item::getStatus() {
+    return status_;
+}
+
+void Item::setStatus(const Item::eItemStatus &&new_status){
+    status_= std::move(new_status);
+}
+
+
+//Item::ItemConteiner Item::getConteinerTupe(const ItemEnums::EItemProperty & property){
+//    ItemConteiner cinteiner_tupe = ItemConteiner::string;
+//    switch (property) {
+//    case ItemEnums::EItemProperty::kNone:
+//    case ItemEnums::EItemProperty::kId:
+//    case ItemEnums::EItemProperty::kStatus:
+//        cinteiner_tupe = ItemConteiner::integer;
+//        break;
+//    case ItemEnums::EItemProperty::kFilePath:
+//    case ItemEnums::EItemProperty::kFileName:
+//    case ItemEnums::EItemProperty::kIcon:
+//    case ItemEnums::EItemProperty::kDateLastSaved:
+//    case ItemEnums::EItemProperty::kFormat:
+//        cinteiner_tupe = ItemConteiner::string;
+//        break;
+//    }
+//    return cinteiner_tupe;
+//}
 
 //void Item::setFile(const QString &path) {
 //    property_->setFile(QString(path));
@@ -67,47 +129,55 @@ Item::ItemConteiner Item::getConteinerTupe(const ItemEnums::EItemProperty & prop
 //}
 
 
-QString Item::getProperty(const ItemEnums::EItemProperty property) {
-    ItemConteiner cinteiner_tupe = getConteinerTupe(property);
-    if (cinteiner_tupe == ItemConteiner::string) {
-        if (str_property_.find(property) != str_property_.end())
-            return str_property_.find(property).value();
-    }
+//QString Item::getProperty(const ItemEnums::EItemProperty property) {
+//    ItemConteiner cinteiner_tupe = getConteinerTupe(property);
+//    if (cinteiner_tupe == ItemConteiner::string) {
+//        if (str_property_.find(property) != str_property_.end())
+//            return str_property_.find(property).value();
+//    }
 
-    else if (cinteiner_tupe == ItemConteiner::integer) {
-        if (int_property_.find(property) != int_property_.end()){
-            return QString::number(int_property_.find(property).value());
-        }
-    }
-    return QString("");
-}
+//    else if (cinteiner_tupe == ItemConteiner::integer) {
+//        if (int_property_.find(property) != int_property_.end()){
+//            return QString::number(int_property_.find(property).value());
+//        }
+//    }
+//    return QString("");
+//}
 
 
-void Item::setupDefault(const QHash<ItemEnums::EItemProperty,QString> &default_map) {
-    if (default_map.isEmpty()) {
-        LOOGGER("NO Default map");
-        return;
-    }
-    for(auto i = default_map.begin();i != default_map.end();++i) {
-        ItemConteiner cinteiner_tupe = getConteinerTupe(i.key());
-        if (cinteiner_tupe == ItemConteiner::string)
-            str_property_.insert(i.key(),QString(i.value()));
-        else if (cinteiner_tupe == ItemConteiner::integer)
-            int_property_.insert(i.key(),i.value().toInt());
-    }
-}
+//void Item::setupDefault(const QHash<ItemEnums::EItemProperty,QString> &default_map) {
+//    if (default_map.isEmpty()) {
+//        LOOGGER("NO Default map");
+//        return;
+//    }
+//    for(auto i = default_map.begin();i != default_map.end();++i) {
+
+
+
+
+//    }
+//}
 
 
 void Item::parse() {
     LOOGGER("+");
-    file_.setFileName(getProperty(ItemEnums::EItemProperty::kFileName));
-    file_info_.setFile(getProperty(ItemEnums::EItemProperty::kFileName));
-    QList <Tile*> row;
+   // window_size_.setWidth(800);
+  //  window_size_.setHeight(800);
+
+
+    QList <pTile> row;
     QImage template_("puzle.png");
+    QPixmap template__("puzle.png");
+    QPair<int,int> addres = {0,0};
+
     for(int i=0;i<10;++i){
+        QPair<int,int> addres;
+        addres.first = i;
         QPair<int,int> coordinate = {50*i, 50*i};
-        Tile *tile = new Tile(image_, coordinate, template_);
-        row.append(tile);
+
+        Tile *tile = new Tile(coordinate, user_image_, template__);
+        pTile ptile = pTile(tile, &QObject::deleteLater);
+        row.append(ptile);
     }
 
     tiles_.append(row);
@@ -125,23 +195,23 @@ void Item::parse() {
     //        LOOGGER("::ParseError");
     //        return;
     //    }
-    model_.createModel(tiles_);
+    model_.setupModel(tiles_);
 }
 
-//void Item::cleanModel() {
-//    model_->cleanModelData();
-
+void Item::cleanModel() {
+   // tiles_.clear();
+}
 AbstractTableItemData *Item::getModel() {
     return &model_;
 }
 
-bool Item::isPropertyExist(const ItemEnums::EItemProperty property){
-    if (str_property_.find(property) != str_property_.end())
-        return true;
-    else if (int_property_.find(property) != int_property_.end())
-        return true;
-    return false;
-}
+//bool Item::isPropertyExist(const ItemEnums::EItemProperty property){
+//    if (str_property_.find(property) != str_property_.end())
+//        return true;
+//    else if (int_property_.find(property) != int_property_.end())
+//        return true;
+//    return false;
+//}
 
 //void Item::saveFile(const QString file_path){
 //    FileData c_map;

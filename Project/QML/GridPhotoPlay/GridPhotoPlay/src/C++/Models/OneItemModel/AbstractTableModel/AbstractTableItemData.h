@@ -8,6 +8,7 @@
 #include "ItemPropery.h"
 #include "ItemConstant.h"
 #include <tile.h>
+//#include "Item.h"
 #include <QSharedPointer>
 #include <QHash>
 
@@ -27,7 +28,7 @@ public:
     Qt::ItemFlags flags(const QModelIndex &index) const;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
-    void createModel(QList<QList <Tile*>>  &tiles);
+    void setupModel(QList<QList <QSharedPointer<Tile>>>  tiles);
     bool setData(const QModelIndex &index, const QVariant &value, int role);
 
     virtual ~AbstractTableItemData();
@@ -47,8 +48,8 @@ protected:
     //Tiles tiles;
 
     //void SetupModel();
-
-    QList<QList <Tile*>>                                                   *tiles_;
+    QList<QList<QSharedPointer<Tile>>>                                                   *tiles_;
+   // QList<QList <pTile>>                                                   *tiles_;
 };
 
 #endif // I_WidgetModelBase_H

@@ -10,7 +10,7 @@ import "src/qml/GridView"
 ApplicationWindow {
     id: main_root
     visible: true
-    width: 500
+    width: 800
     height: 800
     title: qsTr("GridPhotoPlay")
 

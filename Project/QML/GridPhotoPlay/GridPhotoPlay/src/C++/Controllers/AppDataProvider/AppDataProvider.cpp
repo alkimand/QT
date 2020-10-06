@@ -23,7 +23,7 @@ AppDataProvider::AppDataProvider(QObject *parent):QObject(parent) {
     Init();
 }
 
-void AppDataProvider::appStart(){
+void AppDataProvider::appStart() {
     this->Init();
 
 }
@@ -32,7 +32,7 @@ AppModel *AppDataProvider::getModel() {
     return model_;
 }
 
-QString AppDataProvider::getDefaultDir(){
+QString AppDataProvider::getDefaultDir() {
     QString path;
     QSettings ini(QSettings::IniFormat, QSettings::UserScope,"DVDVideoSoft","");
     QString product_setting_path =   QFileInfo(ini.fileName()).absolutePath();
@@ -69,22 +69,22 @@ void AppDataProvider::parseItem(QString id, int view_id){
 
 void AppDataProvider::openFile(const QString file_path) {
     //LOOGGER("+");
-    QString real_file_path = file_path.mid(8);
-    QFileInfo check_file(real_file_path);
-    if (check_file.exists() && check_file.isFile()){
-        int id = model_->getIDModelByProperty(ItemEnums::EItemProperty::kFilePath, real_file_path);
-        if (id != -1) {
-            parseItem(QString::number(id));
-        }
-        else {
-            model_->createItem(QDir::toNativeSeparators(real_file_path));
-            id = model_->getLastCreatedItemId();
-            parseItem(QString::number(id));
-        }
-    }
-    else {
-        LOOGGER("wrong file name from qml" + file_path);
-    }
+//    QString real_file_path = file_path.mid(8);
+//    QFileInfo check_file(real_file_path);
+//    if (check_file.exists() && check_file.isFile()){
+//        int id = model_->getIDModelByProperty(ItemEnums::EItemProperty::kFilePath, real_file_path);
+//        if (id != -1) {
+//            parseItem(QString::number(id));
+//        }
+//        else {
+//            model_->createItem(QDir::toNativeSeparators(real_file_path));
+//            id = model_->getLastCreatedItemId();
+//            parseItem(QString::number(id));
+//        }
+//    }
+//    else {
+//        LOOGGER("wrong file name from qml" + file_path);
+//    }
 }
 
 
