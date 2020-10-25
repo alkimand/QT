@@ -43,3 +43,5 @@ qt_5_7_0_sse
 /Project/QML/fx_tool/fx_tool/MVS2017_64
 *%user%
 /Project/C++/KillvidNotifire/*.autosave
+*%MVS*%
+/Project/QML/fx_tool/fx_tool/builds/*MVS*

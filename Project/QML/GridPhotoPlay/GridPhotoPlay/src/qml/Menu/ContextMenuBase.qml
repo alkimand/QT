@@ -38,7 +38,7 @@ Menu {
         }
 
         indicator:
-            Item {
+            Onegamecontroller {
             id: indicator
             visible: true
             implicitWidth: menuItem.implicitHeight

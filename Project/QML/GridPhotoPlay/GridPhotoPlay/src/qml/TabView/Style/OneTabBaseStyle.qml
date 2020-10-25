@@ -356,7 +356,7 @@ Rectangle {
         font.family : textFont
         font.pointSize : textHeight
         color: tabBarTextColor
-        //flickableItem: Item{}
+        //flickableItem: Onegamecontroller{}
         inputMethodHints: Qt.ImhNoPredictiveText
         //        inputMethodHints: Qt.ImhSensitiveData
         //                          | Qt.ImhPreferUppercase

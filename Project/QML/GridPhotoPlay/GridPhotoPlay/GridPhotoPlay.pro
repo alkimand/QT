@@ -4,7 +4,7 @@ PROJECT_ROOT_PATH = $${PWD}/
 win32: OS_SUFFIX = win32
 linux-g++: OS_SUFFIX = linux
 
-QT += qml quick core quickcontrols2 widgets concurrent opengl
+QT += qml quick core quickcontrols2 widgets concurrent opengl multimedia gui
 CONFIG += c++11
 
 #CONFIG(debug, debug|release) {
@@ -19,21 +19,15 @@ LIBS_PATH = $${PROJECT_ROOT_PATH}/lib/$${OS_SUFFIX}/
 INC_PATH = $${PROJECT_ROOT_PATH}/include/
 IMPORT_PATH = $${PROJECT_ROOT_PATH}/import/
 BIN_PATH = $${PROJECT_ROOT_PATH}/bin/$${BUILD_FLAG}/
-
 IMAGES_PATH = $${PROJECT_ROOT_PATH}/src/images/ToolBarIcon/
-
 BUILD_PATH = $${PROJECT_ROOT_PATH}/build/$${BUILD_FLAG}/$${TARGET}/
+
 #RCC_DIR = $${BUILD_PATH}/rcc/
 
 #UI_DIR = $${BUILD_PATH}/ui/
 #MOC_DIR = $${BUILD_PATH}/moc/
 #OBJECTS_DIR = $${BUILD_PATH}/obj/
 LIBS += -L$${LIBS_PATH}/
-
-# The following define makes your compiler emit warnings if you use
-# any Qt feature that has been marked deprecated (the exact warnings
-# depend on your compiler). Refer to the documentation for the
-# deprecated API to know how to port your code away from it.
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
@@ -47,39 +41,96 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 QML_CUSTOM_CLASSES = $${PROJECT_ROOT_PATH}/src/C++/QMLCustomClasses/
 #models paths
-C_SOURSE_MODEL_PATH = $${PROJECT_ROOT_PATH}/src/C++/Models/
-    C_SOURSE_VARAIATIVE_DATA_PATH = $${C_SOURSE_MODEL_PATH}/OneItemModel/ItemPropertyWrapper
-    C_SOURSE_ABSTRACT_ITEM_DATA_PATH = $${C_SOURSE_MODEL_PATH}/OneItemModel
-C_SOURSE_CONTROLLERS_PATH = $${PROJECT_ROOT_PATH}/src/C++/Controllers/
-C_SOURSE_UTILS_PATH = $${PROJECT_ROOT_PATH}/src/C++/utilities/
+C_SOURSE_MODEL_PATH =       $${PROJECT_ROOT_PATH}/src/C++/Models
+C_SOURSE_CONTROLLERS_PATH = $${PROJECT_ROOT_PATH}/src/C++/Controllers
+#C_SOURSE_UTILS_PATH =       $${PROJECT_ROOT_PATH}/src/C++/utilities
 SOURCES += \
         main.cpp \
-        $${C_SOURSE_CONTROLLERS_PATH}/AppDataProvider/AppDataProvider.cpp \
-        $${C_SOURSE_VARAIATIVE_DATA_PATH}/ItemPropertyWrapper.cpp \
-        $${C_SOURSE_VARAIATIVE_DATA_PATH}/AbstractPropertyConteiner/AbstractPropertyConteiner.cpp \
-        $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/AbstractTableModel/AbstractTableItemData.cpp \
-        $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/Item/Item.cpp \
-        $${C_SOURSE_MODEL_PATH}/AppModel/AppModel.cpp \
+        $${C_SOURSE_CONTROLLERS_PATH}/appdatacontroller.cpp \
+        $${C_SOURSE_CONTROLLERS_PATH}/pixmap_controller.cpp \
+      #  $${C_SOURSE_VARAIATIVE_DATA_PATH}/ItemPropertyWrapper.cpp \
+       # $${C_SOURSE_VARAIATIVE_DATA_PATH}/AbstractPropertyConteiner/AbstractPropertyConteiner.cpp \
+       # $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/AbstractTableModel/AbstractTableItemData.cpp \
+       # $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/OneGameController.cpp \
+        $${C_SOURSE_MODEL_PATH}/appdata.cpp \
+        $${C_SOURSE_MODEL_PATH}/item.cpp \
+        $${C_SOURSE_MODEL_PATH}/Item/puzzlepath.cpp \
+        $${C_SOURSE_MODEL_PATH}/Item/graphicsview.cpp \
+        $${C_SOURSE_MODEL_PATH}/Item/pathpoints.cpp \
+        $${C_SOURSE_MODEL_PATH}/Item/random_points.cpp \
+        $${C_SOURSE_MODEL_PATH}/Tile/movableitem.cpp \
+        $${C_SOURSE_MODEL_PATH}/Tile/puzzleitem.cpp \
+        $${C_SOURSE_MODEL_PATH}/Tile/rotatableitem.cpp \
+        $${C_SOURSE_MODEL_PATH}/Tile/selectableitem.cpp \
+        $${C_SOURSE_MODEL_PATH}/Tile/settableitem.cpp \
+        $${C_SOURSE_MODEL_PATH}/Tile/itemground.cpp \
         $${C_SOURSE_MODEL_PATH}/Tile/tile.cpp \
-        $${QML_CUSTOM_CLASSES}/BorderRadiusWidget/borderradiuswidget.cpp \
-        $${C_SOURSE_UTILS_PATH}/DataBuff/databuf.cpp \
-        $${C_SOURSE_UTILS_PATH}/serialization.cpp
+        src/ui/TestForms/mainwindow.cpp
+      #  $${C_SOURSE_MODEL_PATH}/Tile/tile.cpp \
+        #$${QML_CUSTOM_CLASSES}/BorderRadiusWidget/borderradiuswidget.cpp \
+        #$${C_SOURSE_UTILS_PATH}/DataBuff/databuf.cpp \
+      # # $${C_SOURSE_UTILS_PATH}/serialization.cpp \
+      #  $${C_SOURSE_MODEL_PATH}/Item/graphicsview.cpp \
+      #  $${C_SOURSE_MODEL_PATH}/Item/itemground.cpp \
+      #  $${C_SOURSE_MODEL_PATH}/Item/pathpoints.cpp \
+      #  $${C_SOURSE_MODEL_PATH}/Item/puzzlegame.cpp \
+       # $${C_SOURSE_MODEL_PATH}/Item/puzzlepath.cpp \
+     #   s$${C_SOURSE_MODEL_PATH}/Item/random_points.cpp \
+    #    $${C_SOURSE_MODEL_PATH}/Item/movableitem.cpp \
+      #  $${C_SOURSE_MODEL_PATH}/Item/puzzleitem.cpp \
+       # $${C_SOURSE_MODEL_PATH}/Tile/puzzlematrix.cpp \
+        #s$${C_SOURSE_MODEL_PATH}/Tile/rotatableitem.cpp \
+      #  $${C_SOURSE_MODEL_PATH}/Tile/selectableitem.cpp \
+        #$${C_SOURSE_MODEL_PATH}/Tile/settableitem.cpp \
+        #$${C_SOURSE_CONTROLLERS_PATH}/sound_controller/media.cpp \
+      #  $${C_SOURSE_CONTROLLERS_PATH}/sound_controller/soundcontroller.cpp \
+       # $${C_SOURSE_CONTROLLERS_PATH}/sound_controller/universalmodebutton.cpp
 HEADERS += \
-        $${C_SOURSE_CONTROLLERS_PATH}/AppDataProvider/AppDataProvider.h \
-        $${C_SOURSE_VARAIATIVE_DATA_PATH}/ItemPropertyWrapper.h \
-        $${C_SOURSE_VARAIATIVE_DATA_PATH}/AbstractPropertyConteiner/AbstractPropertyConteiner.h \
-        $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}//ItemPropery.h \
-        $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/ItemConstant.h \
-        $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/AbstractTableModel/AbstractTableItemData.h \
-        $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/Item/Item.h \
-        $${C_SOURSE_MODEL_PATH}/AppModel/AppModel.h \
+        $${C_SOURSE_CONTROLLERS_PATH}/appdatacontroller.h \
+        $${C_SOURSE_CONTROLLERS_PATH}/pixmap_controller.h \
+        $${C_SOURSE_MODEL_PATH}/appdata.h \
+      #  $${C_SOURSE_VARAIATIVE_DATA_PATH}/AbstractPropertyConteiner/AbstractPropertyConteiner.h \
+        $${C_SOURSE_MODEL_PATH}/item.h \
+        $${C_SOURSE_MODEL_PATH}/Item/itemproperties.h \
+        $${C_SOURSE_MODEL_PATH}/Item/itemconstants.h \
+        $${C_SOURSE_MODEL_PATH}/Item/itemenums.h \
+        $${C_SOURSE_MODEL_PATH}/Item/graphicsview.h \
+        $${C_SOURSE_MODEL_PATH}/Item/puzzlepath.h \
+        $${C_SOURSE_MODEL_PATH}/Item/pathpoints.h \
+        $${C_SOURSE_MODEL_PATH}/Item/random_points.h \
+        $${C_SOURSE_MODEL_PATH}/Tile/movableitem.h \
+        $${C_SOURSE_MODEL_PATH}/Tile/puzzleitem.h \
+        $${C_SOURSE_MODEL_PATH}/Tile/rotatableitem.h \
+        $${C_SOURSE_MODEL_PATH}/Tile/selectableitem.h \
+        $${C_SOURSE_MODEL_PATH}/Tile/settableitem.h \
+        $${C_SOURSE_MODEL_PATH}/Tile/itemground.h \
         $${C_SOURSE_MODEL_PATH}/Tile/tile.h \
-        $${QML_CUSTOM_CLASSES}/BorderRadiusWidget/borderradiuswidget.h \
-        $${C_SOURSE_UTILS_PATH}/qs_utils.h \
-        $${C_SOURSE_UTILS_PATH}/serialization.h \
-        $${C_SOURSE_UTILS_PATH}/DataBuff/databuf.h \
-        $${C_SOURSE_UTILS_PATH}/DataBuff/idatabuf.h \
-        $${C_SOURSE_UTILS_PATH}/lite_gamma.h
+    src/ui/TestForms/mainwindow.h
+      #  $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/AbstractTableModel/AbstractTableItemData.h \
+      #  $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/OneGameController.h \
+       # $${C_SOURSE_MODEL_PATH}/UserSession/UserSession.h \
+       # $${C_SOURSE_MODEL_PATH}/Tile/tile.h \
+       # $${QML_CUSTOM_CLASSES}/BorderRadiusWidget/borderradiuswidget.h \
+       # $${C_SOURSE_UTILS_PATH}/qs_utils.h \
+       # $${C_SOURSE_UTILS_PATH}/serialization.h \
+        #$${C_SOURSE_UTILS_PATH}/DataBuff/databuf.h \
+       # $${C_SOURSE_UTILS_PATH}/DataBuff/idatabuf.h \
+       # $${C_SOURSE_UTILS_PATH}/lite_gamma.h \
+      #  $${C_SOURSE_MODEL_PATH}/Item/graphicsview.h \
+     #   $${C_SOURSE_MODEL_PATH}/Item/itemground.h \
+      #  $${C_SOURSE_MODEL_PATH}/Item/pathpoints.h \
+       # $${C_SOURSE_MODEL_PATH}/Item/puzzlegame.h \
+      #  $${C_SOURSE_MODEL_PATH}/Item/puzzlepath.h \
+       # $${C_SOURSE_MODEL_PATH}/Item/random_points.h \
+       # $${C_SOURSE_MODEL_PATH}/Tile/movableitem.h \
+       # $${C_SOURSE_MODEL_PATH}/Tile/puzzleitem.h \
+       # $${C_SOURSE_MODEL_PATH}/Tile/puzzlematrix.h \
+      #  $${C_SOURSE_MODEL_PATH}/Tile/rotatableitem.h \
+       # $${C_SOURSE_MODEL_PATH}/Tile/selectableitem.h \
+        #$${C_SOURSE_MODEL_PATH}/Tile/settableitem.h \
+       # $${C_SOURSE_CONTROLLERS_PATH}/sound_controller/media.h \
+       # $${C_SOURSE_CONTROLLERS_PATH}/sound_controller/soundcontroller.h \
+      #  $${C_SOURSE_CONTROLLERS_PATH}/sound_controller/universalmodebutton.h
 
 QRC_DIR_PATH = $${PROJECT_ROOT_PATH}/src/resources \
 
@@ -93,20 +144,20 @@ TRANSLATIONS += \
 QML_IMPORT_PATH =
 
 INCLUDEPATH += $${PROJECT_ROOT_PATH}/src \
-               $${C_SOURSE_CONTROLLERS_PATH}/AppDataProvider/ \
-               $${QML_CUSTOM_CLASSES}/BorderRadiusWidget/ \
-               $${C_SOURSE_VARAIATIVE_DATA_PATH}/AbstractPropertyConteiner/ \
-               $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/AbstractTableModel/ \
-               $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH} \
-               $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/Item/ \
-               $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/ItemPropertyWrapper/ \
-               $${C_SOURSE_MODEL_PATH}/AppModel/ \
-               $${C_SOURSE_MODEL_PATH}/Tile/ \
-               $${C_SOURSE_UTILS_PATH}/DataBuff/ \
-               $${C_SOURSE_UTILS_PATH}/ \
+               $${C_SOURSE_CONTROLLERS_PATH}/ \
+               $${C_SOURSE_MODEL_PATH}/ \
+             #  $${QML_CUSTOM_CLASSES}/BorderRadiusWidget/ \
+              # $${C_SOURSE_VARAIATIVE_DATA_PATH}/AbstractPropertyConteiner/ \
+              # $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/AbstractTableModel/ \
+              # $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH} \
+               #$${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/ItemPropertyWrapper/ \
+              # $${C_SOURSE_MODEL_PATH}/UserSession/ \
+            #  $${C_SOURSE_MODEL_PATH}/Tile/ \
+              # $${C_SOURSE_UTILS_PATH}/DataBuff/ \
+              # $${C_SOURSE_UTILS_PATH}/ \
                $${IMPORT_PATH}/ \
-               $${INC_PATH}/
-
+               $${INC_PATH}/ \
+             #  $${PROJECT_ROOT_PATH}/src/C++/sound_controller/
                # $${QML_CUSTOM_CLASSES}/BorderRadiusWidget
 
 # Additional import path used to resolve QML modules just for Qt Quick Designer
@@ -184,7 +235,8 @@ DISTFILES += \
     $${IMAGES_PATH}/freeyoutubetomp3converter.ico \
     $${IMAGES_PATH}/freeinstagramdownload.ico \
     $${IMAGES_PATH}/freetiktokdownloader.ico \
-    $${IMAGES_PATH}/vimeodownload.ico
+    $${IMAGES_PATH}/vimeodownload.ico \
+    src/qml/GridView/GridViewWidget.qml
 
 QML_DESIGNER_IMPORT_PATH =
 
@@ -192,3 +244,6 @@ QML_DESIGNER_IMPORT_PATH =
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+FORMS += \
+    src/ui/TestForms/mainwindow.ui

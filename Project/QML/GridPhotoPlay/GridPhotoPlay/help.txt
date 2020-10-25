@@ -1,0 +1,4 @@
+pixmap to qml
+    https://forum.qt.io/topic/69209/how-to-display-a-qpixmap-qimage-in-qml/14
+    https://doc.qt.io/qt-5/qquickimageprovider.html
+    Image Response Provider

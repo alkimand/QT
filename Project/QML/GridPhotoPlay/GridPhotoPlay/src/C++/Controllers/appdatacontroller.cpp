@@ -1,0 +1,129 @@
+#include <QDebug>
+#include <QWidget>
+#include <QFileDialog>
+#include <QDesktopServices>
+#include <QDirIterator>
+#include <QLatin1String>
+#include <QStringList>
+#include <QDir>
+#include <QSysInfo>
+#include <QSettings>
+#include <QLatin1String>
+#include <QFuture>
+#include <QtConcurrent>
+#include <QExplicitlySharedDataPointer>
+#include <QSharedPointer>
+#include <QQmlApplicationEngine>
+
+#include <appdatacontroller.h>
+
+static const char className[] = "AppDataController::";
+
+//AppDataController::AppDataController(QQmlApplicationEngine &engine, QObject *parent):QObject(parent){ //, engine_(&engine) {
+AppDataController::AppDataController(QObject *parent):QObject(parent){ //, engine_(&engine) {
+    appStart();
+}
+
+void AppDataController::appStart() {
+    Init();
+}
+
+AppData *AppDataController::getData() {
+    return app_data_;
+}
+
+void AppDataController::setApplicationEngine(QQmlApplicationEngine &engine){
+    engine_= &engine;
+}
+
+void AppDataController::registerQMLType(const int id) {
+    pItem item = app_data_->getItemByID(id);
+    QString s_id = QString("pixmap_id_" + QString::number(id)).toLatin1();// cant have only id as string in register type qml
+    if (!item.isNull()) {
+       if (engine_) {
+           //engine_->addImageProvider(QLatin1String(s_id.toUtf8()), app_data_->getItemByID(id).get()->getPixmapController());
+           engine_->addImageProvider(QLatin1String("pixmap_id"), app_data_->getItemByID(id).get()->getPixmapController());
+       }
+       else {
+           qDebug()<< ("NO engine " + QString::number(id));
+       }
+    }
+    else {
+        qDebug()<< ("NO item by id in registerQMLType = " + QString::number(id));
+       return;
+    }
+}
+
+QString AppDataController::getDefaultDir() {
+    QString path;
+    QSettings ini(QSettings::IniFormat, QSettings::UserScope,"DVDVideoSoft","");
+    QString product_setting_path =   QFileInfo(ini.fileName()).absolutePath();
+    if (!product_setting_path.isEmpty()){
+        path += QFileInfo(ini.fileName()).absolutePath();
+        path +="/DVDVideoSoft";
+    }
+
+    //  }
+    //LOOGGER("= " + path);
+    return path;
+}
+
+void AppDataController::openFile(const QString file_path){
+    //LOOGGER("+");
+    //    QString real_file_path = file_path.mid(8);
+    //    QFileInfo check_file(real_file_path);
+    //    if (check_file.exists() && check_file.isFile()){
+    //        int id = model_->getIDModelByProperty(ItemEnums::EItemProperty::kFilePath, real_file_path);
+    //        if (id != -1) {
+    //            parseItem(QString::number(id));
+    //        }
+    //        else {
+    //            model_->createItem(QDir::toNativeSeparators(real_file_path));
+    //            id = model_->getLastCreatedItemId();
+    //            parseItem(QString::number(id));
+    //        }
+    //    }
+    //    else {
+    //        LOOGGER("wrong file name from qml" + file_path);
+    //    }
+}
+
+
+void AppDataController::saveFile(const QString file_path, const QString id) {
+    //LOOGGER("+ file_path=" + file_path);
+    //    if (id!="-1" && !id.isEmpty()) {
+    //        QString real_file_path = file_path;
+    //        if (file_path.contains("file:///")){
+    //            real_file_path = file_path.mid(8);
+    //        }
+    //        model_->saveFile(real_file_path , id);
+    //    }
+}
+
+void AppDataController::deleteModel(const QString id) {
+    //LOOGGER("id= "+ id );
+    // model_->deleteFile(id);
+}
+
+
+
+void AppDataController::Init() {
+    app_data_ = new AppData(this);
+    QString default_dir = getDefaultDir();
+    default_dir = "";//--
+    if (default_dir.isEmpty())
+        default_dir = QDir::currentPath();
+    // app_data_->parseFolder(default_dir);
+    app_data_->createItem("test.jpg",5,5, false);
+   // registerQMLType(0);
+    // engine_->addImageProvider(QLatin1String("0"), app_data_->getPixmapController(0));
+
+    // app_data_->registerQMLType(engine_);
+}
+
+AppDataController::~AppDataController() {
+    // app_data_->deleteLater();
+    //delete app_data_;
+}
+
+

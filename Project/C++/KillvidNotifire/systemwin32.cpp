@@ -26,7 +26,7 @@ systemWin32::systemWin32()
 }
 
 
-bool systemWin32::processExist(int process_id) {
+bool systemWin32::processExist(const int &process_id) {
     auto it = std::find(win32sysMap.begin(), win32sysMap.end(), process_id);
     if (it != win32sysMap.end()){
         return true;
@@ -35,7 +35,7 @@ bool systemWin32::processExist(int process_id) {
 }
 
 
-QString systemWin32::getProcessNamebyID(int process_id) {
+QString systemWin32::getProcessNamebyID(const int &process_id) {
     QMultiMap <int, QString>::iterator it = win32sysMap.find(process_id);
     if (it != win32sysMap.end())
         return it.value();
@@ -43,7 +43,7 @@ QString systemWin32::getProcessNamebyID(int process_id) {
 }
 
 
-QList <int> systemWin32::getProcessIDbyName(QString process_name) {
+QList <int> systemWin32::getProcessIDbyName(const QString &process_name) {
     QList <int> process_id_list;
     QMultiMap<int, QString>::iterator i = win32sysMap.begin();
     while (i != win32sysMap.end()) {
@@ -66,7 +66,7 @@ QStringList systemWin32::getAllProcessList(){
     return win32sysMap.values();
 }
 
-void systemWin32::terminate(int process_id){
+void systemWin32::terminate(const int &process_id){
     HANDLE hProcess = OpenProcess(PROCESS_TERMINATE, FALSE, process_id);
     if (hProcess == NULL){
         qDebug()<< ("couldn't open process\n");

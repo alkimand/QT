@@ -31,19 +31,25 @@ ApplicationWindow {
 //        }
 
 //    }
-
+//    Image {
+//        width: 150;
+//        height: 150
+//        id: img
+//        source: "image://pixmap_id/1_1"
+//        visible: true
+//    }
 
     GridViewWidget {
        anchors.fill: parent
         //width: 320;
         //height: 480
        //model: app_data.getModelByID(0);
-        //columns:10
+        columns:5
        // model:  app_data.getModelByID(0);
        //number of rows you the the grid to have
-        //rows: 4
-        cellWidth: main_root.width/10;
+        rows: 5
+        cellWidth: main_root.width/5;
         cellHeight: main_root.height/5;
-        cell_field_size: 15
+        cell_field_size: 0//15
     }
 }

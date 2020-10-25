@@ -1,18 +1,15 @@
-#include "tile.h"
+#include <Tile/tile.h>
 //#include "ItemConstant.h"
 
-//Tile::Tile(QImage &original_image, QPair<int, int> coordinate, QImage &i_template){
-//   // : QImage(i_template) {
-//    //original_image_= &original_image;
-//    //template_ = &i_template;
-//   // QPixmap puzzleImage;
-//}
+void Tile::setID(int id) {
+    id_=id;
+}
 
-//Tile::~Tile() {
+Tile::Tile(PuzzlePath *path, const QPixmap &source, const QRect &rect, QPointF correct_corner_possition, QObject *parent):
+    SettableItem(path, source, rect, correct_corner_possition, parent) {
 
-//}
+}
 
-
-Tile::Tile(QPair<int, int> coordinate, QPixmap &original_pixmap, QPixmap &_template) {
-
+QPixmap *Tile::getPixmap() {
+    return pixmap_;
 }

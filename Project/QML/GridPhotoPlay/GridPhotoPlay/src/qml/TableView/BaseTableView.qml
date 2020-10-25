@@ -4,7 +4,7 @@ import QtQuick.Controls 2.12
 import QtQuick.Controls.Styles 1.4
 
 import AbstractTableItemData 1.0
-import AppDataProvider 1.0
+import AppDataController 1.0
 
 
 import "./ItemDelegate/Loaders"

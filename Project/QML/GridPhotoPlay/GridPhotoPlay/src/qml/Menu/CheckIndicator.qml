@@ -1,6 +1,6 @@
 import QtQuick 2.12
 
-Item {
+Onegamecontroller {
     implicitWidth: 40
     implicitHeight: 40
     Rectangle {

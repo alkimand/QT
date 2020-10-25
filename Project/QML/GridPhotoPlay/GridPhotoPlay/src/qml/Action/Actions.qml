@@ -3,7 +3,7 @@ import QtQuick.Controls 2.4
 import QtQml.Models 2.12
 pragma Singleton
 
-Item
+Onegamecontroller
 {
     id: root
     property string toolBarIconPath: '../../images/ToolBarIcon/'

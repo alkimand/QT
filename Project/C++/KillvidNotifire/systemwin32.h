@@ -16,11 +16,11 @@ class systemWin32
 {
 public:
     systemWin32();
-    bool processExist(int process_id);
-    QString getProcessNamebyID(int process_id);
-    QList <int> getProcessIDbyName(QString process_name);
+    bool processExist(const int &process_id);
+    QString getProcessNamebyID(const int &process_id);
+    QList <int> getProcessIDbyName(const QString &process_name);
     QStringList getAllProcessList();
-    void terminate(int process_id);
+    void terminate(const int &process_id);
 private:
     QMultiMap <int, QString> win32sysMap;
     QString copyToQString(WCHAR array[MAX_PATH]);

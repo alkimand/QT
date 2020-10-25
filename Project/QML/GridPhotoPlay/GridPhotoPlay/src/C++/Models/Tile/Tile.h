@@ -1,49 +1,24 @@
 #ifndef TILE
 #define TILE
 #include <QObject>
-//#include <QSharedPointer>
 
-#include <QImage>
-#include <QPair>
-#include <QDebug>
-#include <QPixmap>
-#include <QPainter>
-#include <QRgb>
+#include <Tile/settableitem.h>
 
-class Tile : public QObject,  public QPixmap {
+class Tile : public SettableItem {
     Q_OBJECT
+    Q_INTERFACES(QGraphicsItem)
 
 public:
-    enum eTileTemlate {
-        kLeft = 0,
-        kTopLeft ,
-        kTop,
-        kTopRight,
-        kRight,
-        kBottomRight,
-        kBottom,
-        kBottomLeft,
-        kCenter_type_1,
-        kCenter_type_2,
-        kCenter_type_3
-    };
-
-
-
-public:
-   //explicit
-    //Tile(QObject *parent = nullptr){};
-    Tile(QPair<int, int> coordinate, QPixmap &original_pixmap, QPixmap &_template);
-    //explicit
-    //Tile();
-
+    void setID(int id);
+    Tile(PuzzlePath *path, const QPixmap& source, const QRect &rect,
+            QPointF correct_corner_possition, QObject *parent = nullptr);
+    QPixmap *getPixmap();
     //virtual ~Tile();
 
 
 private:
-        QImage *original_image_;
-        QImage *template_;
-        int id_;
+    int id_ = -1;
+
 };
 
 
