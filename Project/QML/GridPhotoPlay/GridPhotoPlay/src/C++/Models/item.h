@@ -41,8 +41,8 @@ class Tile;
 
 typedef  QSharedPointer<Tile> pTile;
 typedef  QVector<QVector <pTile> > TileMatrix;
-typedef  QHash<QString, QPixmap*> TilePixmap;
-
+typedef  QHash<QString, QPixmap*> IndexPixmap;
+typedef  QHash<ePixmapControllerType, QString> ImageControllerMap;
 
 
 class Item: public QObject {
@@ -52,11 +52,6 @@ public:
 
 public:
     explicit Item(QString path, int id = -1, QObject *parent = nullptr);
-
-    //property
-    //void setFile(QString file_path);
-   // void setFileName(QString file_name);
-    //void setFilePath(QString &file_name);
 
     void setWindowSize(QSize);
     void setMaxWindowRow(int);
@@ -78,10 +73,11 @@ private:
 public:   //
     void createPaths(size_t rows, size_t columns, bool rotated);
     void createTiles();
-    void createPixmapController();
-    PixmapController *getPixmapController();
+    //void createPixmapController();
+    //PixmapController *getPixmapController();
+    QQuickImageProvider *getPixmapController(ePixmapControllerType );
     void parse();
-   // TilePixmap *getPixmap();
+   // IndexBodyPixmap *getPixmap();
     //TileMatrix getTileMatrix();//--
     void getPimapsFromImage();
     void cleanModel();
@@ -125,19 +121,30 @@ private:
 
     //QGraphicsScene *scene_ = nullptr;
     //GraphicsView   *view_= nullptr;
+
+    //data
     TileMatrix      tiles_matrix_;
     PathsMatrix     paths_matrix_;
 
+
     QHash<int, QGraphicsPixmapItem> pixel_map_;
-    TilePixmap map_;
+
+    IndexPixmap body_map_;
+    IndexPixmap border_map_;
+
+    const int GroundLayer = 0;
 
     //SoundController m_sound;
    // QLabel m_label;
+//controls
 
-    const int GroundLayer = 0;
+
+
+
   //  int m_selectionLayer;
     int piece_count_;
     bool m_image_orientation;
+
 };
 
 #endif // ITEM_H

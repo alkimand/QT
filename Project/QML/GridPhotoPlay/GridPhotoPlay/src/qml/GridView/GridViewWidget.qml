@@ -56,8 +56,8 @@ GridView {
 
     // width: 320;
     //height: 480
-    //cellWidth: 80;
-    //cellHeight: 80
+   // cellWidth: 80;
+   // cellHeight: 80
     property int columns
     property int rows
     property int cell_field_size
@@ -92,26 +92,35 @@ GridView {
 
         model: ListModel {
             id: colorModel
-            ListElement { image_source: "image://pixmap_id/0_0" }
-            ListElement { image_source: "image://pixmap_id/0_1" }
-            ListElement { image_source: "image://pixmap_id/0_2" }
-            ListElement { image_source: "image://pixmap_id/0_3" }
-            ListElement { image_source: "image://pixmap_id/0_4" }
-            ListElement { image_source: "image://pixmap_id/1_0" }
-            ListElement { image_source: "image://pixmap_id/1_1" }
-            ListElement { image_source: "image://pixmap_id/1_2" }
-            ListElement { image_source: "image://pixmap_id/1_3" }
-            ListElement { image_source: "image://pixmap_id/1_4" }
-            ListElement { image_source: "image://pixmap_id/2_0" }
-            ListElement { image_source: "image://pixmap_id/2_1" }
-            ListElement { image_source: "image://pixmap_id/2_2" }
-            ListElement { image_source: "image://pixmap_id/2_3" }
-            ListElement { image_source: "image://pixmap_id/2_4" }
-            ListElement { image_source: "image://pixmap_id/3_0" }
-            ListElement { image_source: "image://pixmap_id/3_1" }
-            ListElement { image_source: "image://pixmap_id/3_2" }
-            ListElement { image_source: "image://pixmap_id/3_3" }
-            ListElement { image_source: "image://pixmap_id/3_4" }
+            ListElement {
+                image_source: "image://tile_body_id/0_0"
+                border_source: "image://tile_border_id/0_0"
+            }
+            ListElement {
+                image_source: "image://tile_body_id/0_1"
+                border_source: "image://tile_border_id/0_1"
+            }
+            ListElement {
+                image_source: "image://tile_body_id/0_2"
+                border_source: "image://tile_border_id/0_2"
+            }
+            ListElement { image_source: "image://tile_border_id/0_3" }
+            ListElement { image_source: "image://tile_border_id/0_4" }
+            ListElement { image_source: "image://tile_body_id/0_0" }
+            ListElement { image_source: "image://tile_body_id/0_1" }
+            ListElement { image_source: "image://tile_body_id/1_2" }
+            ListElement { image_source: "image://tile_body_id/1_3" }
+            ListElement { image_source: "image://tile_body_id/1_4" }
+            ListElement { image_source: "image://tile_body_id/2_0" }
+            ListElement { image_source: "image://tile_body_id/2_1" }
+            ListElement { image_source: "image://tile_body_id/2_2" }
+            ListElement { image_source: "image://tile_body_id/2_3" }
+            ListElement { image_source: "image://tile_body_id/2_4" }
+            ListElement { image_source: "image://tile_body_id/3_0" }
+            ListElement { image_source: "image://tile_body_id/3_1" }
+            ListElement { image_source: "image://tile_body_id/3_2" }
+            ListElement { image_source: "image://tile_body_id/3_3" }
+            ListElement { image_source: "image://tile_body_id/3_4" }
             //ListElement { Loader { sourceComponent: img } }
             // }
 
@@ -148,72 +157,93 @@ GridView {
             width: root.cellWidth;
             height: root.cellHeight;
 
-//            onEntered: {
-//                console.log("onEntered")
+            //            onEntered: {
+            //                console.log("onEntered")
 
-//                var on = drag.source.visualIndex;
-//                var to = icon.visualIndex;
-//                if (on!==to){
-//                    console.log("drag.source.visualIndex= "+drag.source.visualIndex);
-//                    console.log("icon.visualIndex= "+icon.visualIndex);
-//                    switch (root.getOrientation(on,to, columns, rows)) {
-//                    case 0:
-//                        visualModel.items.move(on, to);
-//                        visualModel.items.move(to + 1, on);
-//                        break;
-//                    case 1:
-//                        visualModel.items.move(on, to);
-//                        break;
-//                    case 2:
-//                        visualModel.items.move(on, to);
-//                        visualModel.items.move(to - 1, on);
-//                        break;
-//                    case 3:
-//                        visualModel.items.move(to, on);
-//                        break;
-//                    default:
-//                        break;
-//                    }
-//                    //visualModel.items.move(on, to)
-//                    //visualModel.items.move(to+1, on)
-//                }
-//                //visualModel.items.move(icon.visualIndex, drag.source.visualIndex)
-//            }
+            //                var on = drag.source.visualIndex;
+            //                var to = icon.visualIndex;
+            //                if (on!==to){
+            //                    console.log("drag.source.visualIndex= "+drag.source.visualIndex);
+            //                    console.log("icon.visualIndex= "+icon.visualIndex);
+            //                    switch (root.getOrientation(on,to, columns, rows)) {
+            //                    case 0:
+            //                        visualModel.items.move(on, to);
+            //                        visualModel.items.move(to + 1, on);
+            //                        break;
+            //                    case 1:
+            //                        visualModel.items.move(on, to);
+            //                        break;
+            //                    case 2:
+            //                        visualModel.items.move(on, to);
+            //                        visualModel.items.move(to - 1, on);
+            //                        break;
+            //                    case 3:
+            //                        visualModel.items.move(to, on);
+            //                        break;
+            //                    default:
+            //                        break;
+            //                    }
+            //                    //visualModel.items.move(on, to)
+            //                    //visualModel.items.move(to+1, on)
+            //                }
+            //                //visualModel.items.move(icon.visualIndex, drag.source.visualIndex)
+            //            }
             property int visualIndex: DelegateModel.itemsIndex
             Binding { target: icon; property: "visualIndex"; value: visualIndex }
 
 
-                        Rectangle {
-                            id: icon
-                            property int visualIndex: 0
-                            color: "#00000000"
-             width: root.width - 8;
-             height: root.height - 8;
-            //                anchors {
-            //                    horizontalCenter: parent.horizontalCenter;
-            //                    verticalCenter: parent.verticalCenter
-            //                }
-            //                radius: 0//3
-            //                // color: model.color
-
-            ////                Text {
-            ////                    anchors.centerIn: parent
-            ////                    // color: "white"
-            ////                    //text: display
-            ////                    //parent.visualIndex
-            ////                }
-            Image {
+            Rectangle {
+                id: icon
                 property int visualIndex: 0
-                //id: icon
-                anchors.centerIn: parent
-                source: model.image_source
-                //width: root.width - 8;
-               // height: root.height - 8;
-                anchors {
-                    horizontalCenter: parent.horizontalCenter;
-                    verticalCenter: parent.verticalCenter
+                color: "#00000000"
+                width: root.width - 8;
+                height: root.height - 8;
+                TapHandler {
+                    id:tapHandler
+                    acceptedDevices: PointerDevice.Mouse | PointerDevice.Stylus
+                    onTapped: console.log("clicked")
                 }
-            }
+                //                anchors {
+                //                    horizontalCenter: parent.horizontalCenter;
+                //                    verticalCenter: parent.verticalCenter
+                //                }
+                //                radius: 0//3
+                //                // color: model.color
+
+                ////                Text {
+                ////                    anchors.centerIn: parent
+                ////                    // color: "white"
+                ////                    //text: display
+                ////                    //parent.visualIndex
+                ////                }
+                Image {
+                    property int visualIndex: 0
+                    //id: icon
+                    anchors.centerIn: parent
+                    source: model.image_source
+                    //width: root.width - 8;
+                    // height: root.height - 8;
+                    anchors {
+                        horizontalCenter: parent.horizontalCenter;
+                        verticalCenter: parent.verticalCenter
+                    }
+                    z:0
+                }
+
+                Image {
+                    id:border
+                    //id: icon
+                    anchors.centerIn: parent
+                    source: model.border_source
+                    //width: root.width - 8;
+                    // height: root.height - 8;
+                    anchors {
+                        horizontalCenter: parent.horizontalCenter;
+                        verticalCenter: parent.verticalCenter
+                    }
+                    visible: tapHandler.pressed ? 1 : 0
+                    z:1
+                }
 
 
                 DragHandler {
@@ -254,27 +284,27 @@ GridView {
         }
         //! [1]
     }
-    function getOrientation (on, to, max_colum, max_height){
+    //    function getOrientation (on, to, max_colum, max_height){
 
-        var orientation = 0;
+    //        var orientation = 0;
 
-        switch (on - to ){
-        case max_colum:
-            orientation = 0;
-            break;
-        case -1 :
-            orientation = 1;
-            break;
-        case -max_colum :
-            orientation = 2;
-            break;
-        case 1 :
-            orientation = 3;
-            break;
-        default:
-            break;
-        }
-        console.log("getOrientation = "+orientation);
-        return orientation;
-    }
+    //        switch (on - to ){
+    //        case max_colum:
+    //            orientation = 0;
+    //            break;
+    //        case -1 :
+    //            orientation = 1;
+    //            break;
+    //        case -max_colum :
+    //            orientation = 2;
+    //            break;
+    //        case 1 :
+    //            orientation = 3;
+    //            break;
+    //        default:
+    //            break;
+    //        }
+    //        console.log("getOrientation = "+orientation);
+    //        return orientation;
+    //    }
 }

@@ -15,7 +15,7 @@ public:
              QObject *parent = nullptr);
   ~PuzzleItem() override;
 
-  static QHash<int, QGraphicsPixmapItem> *pixel_map_;
+  //static QHash<int, QGraphicsPixmapItem> *pixel_map_;
 
   QRectF boundingRect() const override;
   void paint(QPainter *painter,
@@ -30,6 +30,7 @@ protected:
   PuzzlePath* path_;
   QPixmap* user_pixmap_;
   QPixmap* pixmap_;
+  QPixmap* border_pixmap_;
 };
 
 #endif // PUZZLEITEM_H

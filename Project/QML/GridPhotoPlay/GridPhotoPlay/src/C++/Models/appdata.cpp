@@ -81,7 +81,7 @@ void AppData::createItem(QString path, int rows, int columns, bool is_rotated) {
     pItem ptem = pItem(item, &QObject::deleteLater);
     ptem.get()->createPaths(rows, columns,is_rotated);
     ptem.get()->createTiles();
-    ptem.get()->createPixmapController();
+   // ptem.get()->createPixmapController();
 
     //parseItem(ptem);
     app_data_.push_back(ptem);
@@ -89,6 +89,10 @@ void AppData::createItem(QString path, int rows, int columns, bool is_rotated) {
 
 int AppData::getLastCreatedItemId(){
     return  app_data_.size();
+}
+
+bool AppData::isEmpty(){
+    return app_data_.isEmpty();
 }
 
 
@@ -112,8 +116,8 @@ int AppData::getLastCreatedItemId(){
 
 
 
-PixmapController *AppData::getPixmapController(const int id){
-    return app_data_.at(id).get()->getPixmapController();
+QQuickImageProvider *AppData::getPixmapController(const int id){
+    return app_data_.at(id).get()->getPixmapController(ePixmapControllerType::kTileBorder);
 }
 
 //QString AppData::getPropperIcon(const QString file_name) {

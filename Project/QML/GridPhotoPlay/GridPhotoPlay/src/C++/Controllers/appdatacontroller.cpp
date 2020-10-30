@@ -38,20 +38,27 @@ void AppDataController::setApplicationEngine(QQmlApplicationEngine &engine){
 
 void AppDataController::registerQMLType(const int id) {
     pItem item = app_data_->getItemByID(id);
-    QString s_id = QString("pixmap_id_" + QString::number(id)).toLatin1();// cant have only id as string in register type qml
-    if (!item.isNull()) {
-       if (engine_) {
-           //engine_->addImageProvider(QLatin1String(s_id.toUtf8()), app_data_->getItemByID(id).get()->getPixmapController());
-           engine_->addImageProvider(QLatin1String("pixmap_id"), app_data_->getItemByID(id).get()->getPixmapController());
-       }
-       else {
-           qDebug()<< ("NO engine " + QString::number(id));
-       }
+    if (!item.isNull() && !dataIsEmpty()) {
+        pItem item = app_data_->getItemByID(id);
+        if (engine_ && !item.isNull()) {
+            ImageControllerMap::iterator it;
+            for (it = image_controller_map_.begin(); it != image_controller_map_.end(); ++it) {
+                QString image_root_path = it.value();
+                engine_->addImageProvider(QLatin1String(image_root_path.toLatin1()), item.get()->getPixmapController(it.key()));
+            }
+        }
+        else {
+            qDebug()<< ("NO engine " + QString::number(id));
+        }
     }
     else {
         qDebug()<< ("NO item by id in registerQMLType = " + QString::number(id));
-       return;
+        return;
     }
+}
+
+bool AppDataController::dataIsEmpty() {
+    return app_data_->isEmpty();
 }
 
 QString AppDataController::getDefaultDir() {
@@ -109,13 +116,16 @@ void AppDataController::deleteModel(const QString id) {
 
 void AppDataController::Init() {
     app_data_ = new AppData(this);
+    //image_controller_map_.insert(kTilePixmap, QString(TILE_BODY_IMAGE_PROVIDER));
+    image_controller_map_.insert(kTilePixmap, "tile_body_id");
+    image_controller_map_.insert(kTileBorder, QString(TILE_BORDER_IMAGE_PROVIDER));
     QString default_dir = getDefaultDir();
     default_dir = "";//--
     if (default_dir.isEmpty())
         default_dir = QDir::currentPath();
     // app_data_->parseFolder(default_dir);
     app_data_->createItem("test.jpg",5,5, false);
-   // registerQMLType(0);
+    // registerQMLType(0);
     // engine_->addImageProvider(QLatin1String("0"), app_data_->getPixmapController(0));
 
     // app_data_->registerQMLType(engine_);

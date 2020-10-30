@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
     engine.rootContext()->setContextProperty("app_data", &app);
     //app.
    //engine.addImageProvider(QLatin1String("colors"), new PixmapController);
-    engine.addImageProvider(QLatin1String("colors"), new PixmapController);
+   // engine.addImageProvider(QLatin1String("tile"), new PixmapController);
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &gui_app, [url](QObject *obj, const QUrl &objUrl) {

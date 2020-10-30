@@ -22,30 +22,29 @@ class AppDataController: public QObject {
     //Q_PROPERTY(AppModel * data READ getData  NOTIFY dataChanged)
 
 public:
-    //AppDataController(QQmlApplicationEngine &engine,QObject *parent = nullptr);
     AppDataController(QObject *parent = nullptr);
     void Init();
     ~AppDataController();
 
-    //QML
 public:
-    //QScopedPointer<AppData> getData() ;
     AppData* getData() ;
     void setApplicationEngine(QQmlApplicationEngine &engine);
     void registerQMLType(const int id);
-    QQmlApplicationEngine *engine_;
+
 
 signals:
     void itemParsed(QString item_id, int view_id = -1);
     void dataChanged();
 
-
 private:
     //QScopedPointer<AppData>  app_data_;
     AppData  *app_data_;
+    ImageControllerMap image_controller_map_;
+    QQmlApplicationEngine *engine_;
 
 
 private:
+    bool dataIsEmpty();
 public slots:
     void appStart();
     void openFile(const QString file_path);

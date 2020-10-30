@@ -32,18 +32,19 @@ public:
     pItem  getItemByID(const int id);
     void createItem(QString path ="test.jpg" , int rows = 5, int columns = 5, bool is_rotated = false);
     int getLastCreatedItemId();
+    bool isEmpty();
     //void saveFile(const QString file_path, const QString id);
     //void deleteFile( const QString id);
-    PixmapController *getPixmapController(const int id);
+    QQuickImageProvider *getPixmapController(const int id);
     //private:
 
 protected:
 
-    QList <pItem>                       app_data_;
     //QHash<ItemEnums::EItemProperty, QString>       default_property_map_;
     //int                   model_counter_ = -1;
 
 private:
+
     void Init();
     QStringList getFiliesFromFolder(const QString &path = "");
 
@@ -52,7 +53,8 @@ private:
 signals:
    // void itemParsed(int id);
 
-
+private:
+    QList <pItem>                       app_data_;
 };
 
 #endif // APP_MODEL_H

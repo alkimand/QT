@@ -15,6 +15,13 @@ typedef std::map<std::string, std::string>  FileData;
 
 class ItemEnums : public QObject
 {
+    enum eTileSide {
+        kUp = -1,
+        kRight,
+        kDown,
+        kLeft
+    };
+
     Q_OBJECT
 public:
 

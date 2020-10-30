@@ -6,6 +6,7 @@ static const char className[] = "Item::";
 
 Item::Item(QString path, int id, QObject *parent): QObject(parent), id_(std::move(id)) {
     QFileInfo file(std::move(path));
+
     bool is_file_exist = false;
     if (file.exists() && file.isFile())
         is_file_exist = true;
@@ -85,28 +86,44 @@ void Item::createTiles() {
             Tile *tile = new Tile(paths_matrix_[i][j],
                           user_pixmap_,QRect(x, y, conrete_item_width, conrete_item_height),
                           QPointF(x, y));
+            body_map_.insert(QString::number(i)+"_"+QString::number(j), tile->getPixmap());
+            border_map_.insert(QString::number(i)+"_"+QString::number(j), tile->getBorderPixmap());
 
-            map_.insert(QString::number(i)+"_"+QString::number(j), tile->getPixmap());
             pTile ptile = pTile(tile, &QObject::deleteLater);
         }
     }
 }
 
-void Item::createPixmapController(){
-    pixmap_controller_= new PixmapController();
-    pixmap_controller_->setPixmap(&map_);
-}
+//void Item::createPixmapController(){
+//    pixmap_controller_= new PixmapController();
+//    pixmap_controller_->setPixmap(&map_);
+//}
 
-PixmapController *Item::getPixmapController(){
-    PixmapController *pixmap_controller;
-    if (pixmap_controller_)
-         pixmap_controller = pixmap_controller_;
-    else {
-        pixmap_controller = new PixmapController();
-        pixmap_controller->setPixmap(&map_);
-        pixmap_controller_ = pixmap_controller;
+//PixmapController *Item::getPixmapController(){
+//    PixmapController *pixmap_controller;
+//    if (pixmap_controller_)
+//         pixmap_controller = pixmap_controller_;
+//    else {
+//        pixmap_controller = new PixmapController();
+//        pixmap_controller->setPixmap(&map_);
+//        pixmap_controller_ = pixmap_controller;
+//    }
+//    return pixmap_controller;
+//}
+
+QQuickImageProvider *Item::getPixmapController(ePixmapControllerType type) {
+    PixmapController *pixmap_controller = new PixmapController();
+    IndexPixmap *map;
+    switch (type) {
+    case ePixmapControllerType::kTilePixmap:
+        map = &body_map_;
+        break;
+    case ePixmapControllerType::kTileBorder:
+        map = &border_map_;
+        break;
     }
-    return pixmap_controller;
+    pixmap_controller->setPixmap(map);
+    return static_cast<QQuickImageProvider*>(pixmap_controller);
 }
 
 void Item::createPaths(size_t rows, size_t columns, bool is_rotated) {
@@ -259,7 +276,7 @@ void Item::parse() {
     //  model_.setupModel(tiles_);
 }
 
-//TilePixmap *Item::getPixmap() {
+//IndexBodyPixmap *Item::getPixmap() {
 //    return &map;
 //}
 

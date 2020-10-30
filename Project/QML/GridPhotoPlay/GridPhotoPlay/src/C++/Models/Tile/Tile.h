@@ -13,6 +13,7 @@ public:
     Tile(PuzzlePath *path, const QPixmap& source, const QRect &rect,
             QPointF correct_corner_possition, QObject *parent = nullptr);
     QPixmap *getPixmap();
+    QPixmap *getBorderPixmap();
     //virtual ~Tile();
 
 

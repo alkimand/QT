@@ -47,7 +47,7 @@ ApplicationWindow {
         columns:5
        // model:  app_data.getModelByID(0);
        //number of rows you the the grid to have
-        rows: 5
+        rows: 4
         cellWidth: main_root.width/5;
         cellHeight: main_root.height/5;
         cell_field_size: 0//15

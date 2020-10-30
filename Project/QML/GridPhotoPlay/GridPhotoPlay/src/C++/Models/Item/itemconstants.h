@@ -12,6 +12,10 @@
 #define ID_S                                  "ID"
 #define ICON_S                                "icon_"
 
+//ImageProvider
+#define TILE_BODY_IMAGE_PROVIDER                  "tile_body_id"
+#define TILE_BORDER_IMAGE_PROVIDER                "tile_border_id"
+
 #define DEFAULT_ICON                          "qt-logo.png"
 #define FREEYTVDOWNLOADER                     "FreeYTVDownloader"
 #define FREEYTVDOWNLOADER_ICON                "freevideodownloader.ico"

@@ -35,6 +35,7 @@ PuzzleItem::PuzzleItem(PuzzlePath *path,const QPixmap& source,
     painter.begin(&imgMask);
     painter.setBrush(maskColor);
     painter.drawPath(path_->path);
+    //painter.setPen(QPen(Qt::GlobalColor::red, 2, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
     painter.end();
 
     QPixmap mask;
@@ -42,6 +43,39 @@ PuzzleItem::PuzzleItem(PuzzlePath *path,const QPixmap& source,
     //pieceImage.setMask(mask.mask());
     pixmap_->setMask(mask.mask());
     pixmap_item_ = new QGraphicsPixmapItem(*pixmap_);
+    QSize path_size = pixmap_->size();
+   // ind
+    path_size.scale(path_size.width()+10,path_size.height()+10,Qt::AspectRatioMode::KeepAspectRatio);
+   //QImage imgMask3(pixmap_->size().scale(pixmap_->width(),pixmap_->height()));
+    QImage imgMask2(path_size, QImage::Format_ARGB32);
+    imgMask2.fill(Qt::red);
+    //imgMask2.fill(Qt::GlobalColor::transparent);
+
+   QPainter painter2;
+    painter2.begin(&imgMask2);
+   // painter2.setPen(QPen(Qt::GlobalColor::red, 5, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
+    QPen pen(Qt::green, 10, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+    painter2.setPen(pen);
+    //painter2.setPen({QColor(255, 117, 56), 1});
+    //painter2.setBrush(Qt::cyan);
+    painter2.drawPath(path_->path);
+
+
+
+    //
+    //painter2.setBrush(maskColor);
+    //painter2.drawPath(path_->path);
+    painter2.end();
+
+    border_pixmap_ = new QPixmap(pixmap_->size());
+    border_pixmap_->convertFromImage(imgMask2);
+
+   // QPainter painter_2;
+    //painter_2.begin(&imgMask);
+    //painter_2.setBrush(maskColor);
+    //painter_2.end();
+
+
     //pixmap_item_ = new QGraphicsPixmapItem(pieceImage);
 
 }
