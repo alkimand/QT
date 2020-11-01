@@ -60,15 +60,15 @@ void PuzzleItem::paint(QPainter *painter,
         pixmap_item_->paint(painter, option, widget);
 }
 
-void PuzzleItem::createBoreder(PuzzlePath *border_path) {
+void PuzzleItem::createBoreder(PuzzlePath *border_path, int indent) {
     border_path_ = border_path;
-    border_path_->path.translate(-border_path_->upleft_dx, -border_path_->upleft_dy);
+    border_path_->path.translate(-border_path_->upleft_dx + indent/2, -border_path_->upleft_dy + indent/2);
     QImage imgMask(pixmap_->size(), QImage::Format_ARGB32);
     imgMask.fill(Qt::red);
     QPainter painter;
     painter.begin(&imgMask);
     // painter2.setPen(QPen(Qt::GlobalColor::red, 5, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
-    QPen pen(Qt::green, 10, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+    QPen pen(Qt::green, 6, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
     painter.setPen(pen);
     //painter2.setPen({QColor(255, 117, 56), 1});
     //painter2.setBrush(Qt::cyan);

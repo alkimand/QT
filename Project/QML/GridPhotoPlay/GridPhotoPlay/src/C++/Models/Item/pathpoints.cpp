@@ -5,6 +5,8 @@
 #include <qmath.h>
 #include <QPen>
 #include <QPainter>
+#include <QDebug>
+
 #include <Item/random_points.h>
 #include <Item/pathpoints.h>
 namespace  point_utilities {
@@ -21,11 +23,11 @@ void randCurvePath(SidePointsConteiner& path) {
     if (rand()%2)
         return;
 
-    if (path.type == SidePointsConteiner::Type::HorizontalZigZag) {
+    if (path.type == SidePointsConteiner::eLineType::HorizontalZigZag) {
         for (auto &point : path.points)
             point.setY(-point.y());
     }
-    if (path.type == SidePointsConteiner::Type::VerticalZigZag) {
+    if (path.type == SidePointsConteiner::eLineType::VerticalZigZag) {
         for (auto &point : path.points)
             point.setX(-point.x());
     }
@@ -42,7 +44,7 @@ SidePointsConteiner verticalPath(int width, int height) {
     const QPoint range(width/20, height/20);
 
     SidePointsConteiner path;
-    path.type = SidePointsConteiner::Type::VerticalZigZag;
+    path.type = SidePointsConteiner::eLineType::VerticalZigZag;
 
     path.points = {
         QPoint(0, 0),
@@ -79,7 +81,7 @@ SidePointsConteiner horizontalPath(int width, int height)  {
     const QPoint range(width/20, height/20);
 
     SidePointsConteiner path;
-    path.type = SidePointsConteiner::Type::HorizontalZigZag;
+    path.type = SidePointsConteiner::eLineType::HorizontalZigZag;
 
     path.points = {
         QPoint(0,0),
@@ -104,25 +106,26 @@ SidePointsConteiner horizontalPath(int width, int height)  {
 
 SidePointsConteiner horizLinePath(int width) {
     SidePointsConteiner path;
-    path.type = SidePointsConteiner::Type::HorizontalLine;
+    path.type = SidePointsConteiner::eLineType::HorizontalLine;
 
     path.points = {
         QPoint(0,0),
         QPoint(width, 0)
     };
+    //qDebug()<<"horizLinePath - width = " + QString::number(width);
 
     return path;
 }
 
 SidePointsConteiner vertLinePath(int height) {
     SidePointsConteiner path;
-    path.type = SidePointsConteiner::Type::VerticalLine;
+    path.type = SidePointsConteiner::eLineType::VerticalLine;
 
     path.points = {
         QPoint(0,0),
         QPoint(0, height)
     };
-
+   // qDebug() << "vertLinePath - height = " +  QString::number(height);
     return path;
 }
 
@@ -139,19 +142,21 @@ QSize pathSize(SidePointsConteiner &path) {
                  (minMaxY.second->y() - minMaxY.first->y()) * sign(minMaxY.first->y()));
 }
 
-void createVerticalPoints (QPixmap& source, QHash <eType, SidePointsConteinerMatrix> &vertical_points, size_t rows, size_t column) {
-    int indent = 50;
-    const int colVert_m = column + 1;
+void createVerticalPoints (QPixmap& source, QHash <eType, SidePointsConteinerMatrix> &vertical_points, size_t rows, size_t columns) {
+    int indent = 6;
+    const int colVert_m = columns + 1;
     const int colVert_n = rows;
-    int width = source.width()/column;
-    int height = source.height()/rows;
-
+    int width;
+    int height;
     QHash<eType,SidePointsConteinerMatrix>::iterator it;
     for (it = vertical_points.begin(); it != vertical_points.end();++it) {
-        if (it.key()== eType::kBody) {}
+        if (it.key()== eType::kBody) {
+            width = source.width()/columns;
+            height = source.height()/rows;
+        }
         else if (it.key()== eType::kBorder) {
-            width = width - indent;
-            height = height - indent;
+            width = source.width()/columns  - indent;
+            height = source.height()/rows- indent;
         }
         else
             return;
@@ -164,25 +169,27 @@ void createVerticalPoints (QPixmap& source, QHash <eType, SidePointsConteinerMat
                 else
                     it.value()[i][j] = verticalPath(width, height);
         }
-
     }
 }
 
-void createHorizontalPoints (QPixmap& source, QHash<eType, SidePointsConteinerMatrix> &horizontal_points, size_t row, size_t column) {
-    int indent = 50;
-    int colHoriz_n = row + 1;
-    int colHoriz_m = column + 1;
-    int width = source.width()/column;
-    int height = source.height()/row;
+void createHorizontalPoints (QPixmap& source, QHash<eType, SidePointsConteinerMatrix> &horizontal_points, size_t rows, size_t columns) {
+    int indent = 6;
+    int colHoriz_n = rows + 1;
+    int colHoriz_m = columns + 1;
+    int width;
+    int height;
 
     QHash<eType,SidePointsConteinerMatrix>::iterator it;
     for (it = horizontal_points.begin(); it != horizontal_points.end();++it) {
         if (it.key()== eType::kBody) {
-
+            width = source.width()/columns;
+            height = source.height()/rows;
         }
-        else if (it.key()== eType::kBorder){
-            width = width - indent;
-            height = height - indent;
+        else if (it.key()== eType::kBorder) {
+          //  width = width - indent;
+            //height = height - indent;
+          width = source.width()/columns - indent;
+          height = source.height()/rows - indent;
         }
         else
             return;

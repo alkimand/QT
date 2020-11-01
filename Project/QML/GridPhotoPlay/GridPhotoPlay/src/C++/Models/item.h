@@ -110,6 +110,7 @@ private:
     QSize window_size_ = {0,0};
     int   max_row_ = 0;
     int   max_column_ = 0;
+    int   border_width_ = 6;
     bool is_rotated_ = false;
     QImage user_image_;
 

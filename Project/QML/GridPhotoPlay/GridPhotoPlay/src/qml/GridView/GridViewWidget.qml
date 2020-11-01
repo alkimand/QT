@@ -110,17 +110,17 @@ GridView {
             ListElement { image_source: "image://tile_body_id/0_1" }
             ListElement { image_source: "image://tile_body_id/1_2" }
             ListElement { image_source: "image://tile_body_id/1_3" }
-            ListElement { image_source: "image://tile_body_id/1_4" }
-            ListElement { image_source: "image://tile_body_id/2_0" }
-            ListElement { image_source: "image://tile_body_id/2_1" }
-            ListElement { image_source: "image://tile_body_id/2_2" }
-            ListElement { image_source: "image://tile_body_id/2_3" }
-            ListElement { image_source: "image://tile_body_id/2_4" }
-            ListElement { image_source: "image://tile_body_id/3_0" }
-            ListElement { image_source: "image://tile_body_id/3_1" }
-            ListElement { image_source: "image://tile_body_id/3_2" }
-            ListElement { image_source: "image://tile_body_id/3_3" }
-            ListElement { image_source: "image://tile_body_id/3_4" }
+//            ListElement { image_source: "image://tile_body_id/1_4" }
+//            ListElement { image_source: "image://tile_body_id/2_0" }
+//            ListElement { image_source: "image://tile_body_id/2_1" }
+//            ListElement { image_source: "image://tile_body_id/2_2" }
+//            ListElement { image_source: "image://tile_body_id/2_3" }
+//            ListElement { image_source: "image://tile_body_id/2_4" }
+//            ListElement { image_source: "image://tile_body_id/3_0" }
+//            ListElement { image_source: "image://tile_body_id/3_1" }
+//            ListElement { image_source: "image://tile_body_id/3_2" }
+//            ListElement { image_source: "image://tile_body_id/3_3" }
+//            ListElement { image_source: "image://tile_body_id/3_4" }
             //ListElement { Loader { sourceComponent: img } }
             // }
 

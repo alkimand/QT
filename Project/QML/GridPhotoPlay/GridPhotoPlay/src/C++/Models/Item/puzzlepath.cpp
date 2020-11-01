@@ -6,11 +6,11 @@ namespace  path_utilities {
 void reverse(SidePointsConteiner& path) {
     auto size = pathSize(path);
     for (auto &point : path.points) {
-        if (path.type == SidePointsConteiner::Type::HorizontalZigZag ||
-            path.type == SidePointsConteiner::Type::HorizontalLine)
+        if (path.type == SidePointsConteiner::eLineType::HorizontalZigZag ||
+            path.type == SidePointsConteiner::eLineType::HorizontalLine)
             point.setX(point.x() - size.width());
-        if (path.type == SidePointsConteiner::Type::VerticalZigZag ||
-            path.type == SidePointsConteiner::Type::VerticalLine)
+        if (path.type == SidePointsConteiner::eLineType::VerticalZigZag ||
+            path.type == SidePointsConteiner::eLineType::VerticalLine)
             point.setY(point.y() - size.height());
     }
 
@@ -22,8 +22,8 @@ QPainterPath createPainterPath(SidePointsConteiner path,  bool need_reverse) {
         reverse(path);
     }
     QPainterPath painterPath;
-    if (path.type == SidePointsConteiner::Type::HorizontalZigZag ||
-        path.type == SidePointsConteiner::Type::VerticalZigZag) {
+    if (path.type == SidePointsConteiner::eLineType::HorizontalZigZag ||
+        path.type == SidePointsConteiner::eLineType::VerticalZigZag) {
         painterPath.moveTo(path.points[0]);
         painterPath.lineTo(path.points[1]);
         for (size_t i = 1; i < path.points.size() - 2; i += 2) {

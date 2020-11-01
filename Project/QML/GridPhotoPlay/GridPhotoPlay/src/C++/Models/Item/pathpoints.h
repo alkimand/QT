@@ -9,7 +9,7 @@
 #include <Item/itemenums.h>
 
 struct SidePointsConteiner {
-  enum class Type {
+  enum class eLineType {
     HorizontalLine,
     VerticalLine,
     HorizontalZigZag,
@@ -17,7 +17,7 @@ struct SidePointsConteiner {
   };
 
   QVector<QPoint> points;
-  Type type;
+  eLineType type;
 };
 
 typedef QVector<QVector<SidePointsConteiner> > SidePointsConteinerMatrix;

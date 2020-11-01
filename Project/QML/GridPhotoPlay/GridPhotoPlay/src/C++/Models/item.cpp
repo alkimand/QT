@@ -89,7 +89,7 @@ void Item::createTiles() {
             Tile *tile = new Tile(paths[row][column],
                           user_pixmap_,QRect(x, y, specify_item_width, specify_item_height),
                           QPointF(x, y));
-            tile->createBoreder(border_path[row][column]);
+            tile->createBoreder(border_path[row][column], border_width_);
 
             body_map_.insert(QString::number(row)+ "_" + QString::number(column), tile->getPixmap());
             border_map_.insert(QString::number(row)+ "_" + QString::number(column), tile->getBorderPixmap());
