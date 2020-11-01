@@ -22,12 +22,15 @@ public:
              const QStyleOptionGraphicsItem *option,
              QWidget *widget = nullptr) override;
 
+  void createBoreder(PuzzlePath *border_path);
 
 private:
   QGraphicsPixmapItem* pixmap_item_;
 
 protected:
+  QRect rect_;
   PuzzlePath* path_;
+  PuzzlePath* border_path_;
   QPixmap* user_pixmap_;
   QPixmap* pixmap_;
   QPixmap* border_pixmap_;

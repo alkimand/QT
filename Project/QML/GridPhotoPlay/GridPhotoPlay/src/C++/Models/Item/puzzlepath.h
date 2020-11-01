@@ -3,7 +3,10 @@
 
 #include <QPainterPath>
 #include <Item/pathpoints.h>
+#include <Item/itemenums.h>
 
+struct PuzzlePath;
+typedef QVector<QVector <PuzzlePath*>> PathsMatrix;
 
 struct  PuzzlePath {
   QPainterPath path;
@@ -21,15 +24,16 @@ struct  PuzzlePath {
   }
 };
 
-QPainterPath getPainterPath(PathPoints path, bool need_reverse);
+namespace  path_utilities {
 
-//! строит элемент пазла из четырех зигзагов
-PuzzlePath* createPuzzlePathItem(PathPoints& up, PathPoints& right,
-                       PathPoints& down, PathPoints& left);
 
-typedef QVector<QVector <PuzzlePath*>> PathsMatrix;
+QPainterPath getPainterPath(SidePointsConteiner path, bool need_reverse);
 
-//! создает пазлы для заданной картинки и количества фигур
-PathsMatrix getPathsMatrix(QPixmap& source, size_t n_rows, size_t n_columns);
+PuzzlePath* createPuzzlePath(SidePointsConteiner& up, SidePointsConteiner& right,
+                       SidePointsConteiner& down, SidePointsConteiner& left);
+
+void createPaths(QPixmap& source, QHash<eType,PathsMatrix> &out_paths, QHash<eType,SidePointsConteinerMatrix> &input_vertical_points,
+              QHash<eType,SidePointsConteinerMatrix> &input_horizontal_points, size_t rows, size_t columns);
+}
 
 #endif // PUZZLEPATH_H

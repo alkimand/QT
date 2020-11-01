@@ -75,11 +75,12 @@ pItem AppData::getItemByID(const int id){
 }
 
 
-void AppData::createItem(QString path, int rows, int columns, bool is_rotated) {
+void AppData::createItem(QString image_path, int rows, int columns, bool is_rotated) {
     // LOOGGER("+");
-    Item *item = new Item(path, app_data_.size(), this);
+    Item *item = new Item(image_path, app_data_.size(), rows, columns, is_rotated, this);
     pItem ptem = pItem(item, &QObject::deleteLater);
-    ptem.get()->createPaths(rows, columns,is_rotated);
+
+    ptem.get()->createPaths();
     ptem.get()->createTiles();
    // ptem.get()->createPixmapController();
 
@@ -117,7 +118,7 @@ bool AppData::isEmpty(){
 
 
 QQuickImageProvider *AppData::getPixmapController(const int id){
-    return app_data_.at(id).get()->getPixmapController(ePixmapControllerType::kTileBorder);
+    return app_data_.at(id).get()->getPixmapController(eType::kBorder);
 }
 
 //QString AppData::getPropperIcon(const QString file_name) {

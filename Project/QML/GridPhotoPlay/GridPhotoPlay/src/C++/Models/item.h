@@ -23,9 +23,8 @@
 #include <Item/itemproperties.h>
 #include <Item/graphicsview.h>
 #include <Item/puzzlepath.h>
+#include <Item/pathpoints.h>
 #include <Tile/tile.h>
-#include <Tile/settableitem.h>
-#include <Tile/itemground.h>
 #include <Item/random_points.h>
 
 //utilities
@@ -42,7 +41,7 @@ class Tile;
 typedef  QSharedPointer<Tile> pTile;
 typedef  QVector<QVector <pTile> > TileMatrix;
 typedef  QHash<QString, QPixmap*> IndexPixmap;
-typedef  QHash<ePixmapControllerType, QString> ImageControllerMap;
+typedef  QHash<eType, QString> ImageControllerMap;
 
 
 class Item: public QObject {
@@ -51,7 +50,7 @@ class Item: public QObject {
 public:
 
 public:
-    explicit Item(QString path, int id = -1, QObject *parent = nullptr);
+    explicit Item(QString path, int id = -1, int rows = 0, int columns = 0, bool is_rotated = false, QObject *parent = nullptr);
 
     void setWindowSize(QSize);
     void setMaxWindowRow(int);
@@ -71,11 +70,12 @@ private:
     //ItemConteiner getConteinerTupe(const ItemEnums::EItemProperty &);
 
 public:   //
-    void createPaths(size_t rows, size_t columns, bool rotated);
+    //void createVerticalPoints(size_t rows, size_t columns, bool rotated);
+    void createPaths();
     void createTiles();
     //void createPixmapController();
     //PixmapController *getPixmapController();
-    QQuickImageProvider *getPixmapController(ePixmapControllerType );
+    QQuickImageProvider *getPixmapController(eType );
     void parse();
    // IndexBodyPixmap *getPixmap();
     //TileMatrix getTileMatrix();//--
@@ -110,7 +110,7 @@ private:
     QSize window_size_ = {0,0};
     int   max_row_ = 0;
     int   max_column_ = 0;
-
+    bool is_rotated_ = false;
     QImage user_image_;
 
    // QHash<Tile::eTileKindTemlate, QPixmap>                                      tile_template_pix_map_;
@@ -126,8 +126,11 @@ private:
     TileMatrix      tiles_matrix_;
     PathsMatrix     paths_matrix_;
 
+    QHash<eType, PathsMatrix> paths_;
+    QHash<eType, SidePointsConteinerMatrix> vertical_points_;
+    QHash<eType, SidePointsConteinerMatrix> horizontal_points_;
 
-    QHash<int, QGraphicsPixmapItem> pixel_map_;
+    //QHash<int, QGraphicsPixmapItem> pixel_map_;
 
     IndexPixmap body_map_;
     IndexPixmap border_map_;

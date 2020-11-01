@@ -4,7 +4,7 @@
 
 #include <QQuickView>
 #include <appdatacontroller.h>
-#include "src/ui/TestForms/mainwindow.h"//--
+
 
 //#include <item.h> //--
 

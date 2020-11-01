@@ -55,17 +55,17 @@ SOURCES += \
         $${C_SOURSE_MODEL_PATH}/appdata.cpp \
         $${C_SOURSE_MODEL_PATH}/item.cpp \
         $${C_SOURSE_MODEL_PATH}/Item/puzzlepath.cpp \
-        $${C_SOURSE_MODEL_PATH}/Item/graphicsview.cpp \
+        #$${C_SOURSE_MODEL_PATH}/Item/graphicsview.cpp \
         $${C_SOURSE_MODEL_PATH}/Item/pathpoints.cpp \
         $${C_SOURSE_MODEL_PATH}/Item/random_points.cpp \
-        $${C_SOURSE_MODEL_PATH}/Tile/movableitem.cpp \
+     #   $${C_SOURSE_MODEL_PATH}/Tile/movableitem.cpp \
         $${C_SOURSE_MODEL_PATH}/Tile/puzzleitem.cpp \
-        $${C_SOURSE_MODEL_PATH}/Tile/rotatableitem.cpp \
-        $${C_SOURSE_MODEL_PATH}/Tile/selectableitem.cpp \
-        $${C_SOURSE_MODEL_PATH}/Tile/settableitem.cpp \
-        $${C_SOURSE_MODEL_PATH}/Tile/itemground.cpp \
-        $${C_SOURSE_MODEL_PATH}/Tile/tile.cpp \
-        src/ui/TestForms/mainwindow.cpp
+       # $${C_SOURSE_MODEL_PATH}/Tile/rotatableitem.cpp \
+       # $${C_SOURSE_MODEL_PATH}/Tile/selectableitem.cpp \
+       # $${C_SOURSE_MODEL_PATH}/Tile/settableitem.cpp \
+       # $${C_SOURSE_MODEL_PATH}/Tile/itemground.cpp \
+        $${C_SOURSE_MODEL_PATH}/Tile/tile.cpp
+       # src/ui/TestForms/mainwindow.cpp
       #  $${C_SOURSE_MODEL_PATH}/Tile/tile.cpp \
         #$${QML_CUSTOM_CLASSES}/BorderRadiusWidget/borderradiuswidget.cpp \
         #$${C_SOURSE_UTILS_PATH}/DataBuff/databuf.cpp \
@@ -94,18 +94,18 @@ HEADERS += \
         $${C_SOURSE_MODEL_PATH}/Item/itemproperties.h \
         $${C_SOURSE_MODEL_PATH}/Item/itemconstants.h \
         $${C_SOURSE_MODEL_PATH}/Item/itemenums.h \
-        $${C_SOURSE_MODEL_PATH}/Item/graphicsview.h \
+       # $${C_SOURSE_MODEL_PATH}/Item/graphicsview.h \
         $${C_SOURSE_MODEL_PATH}/Item/puzzlepath.h \
         $${C_SOURSE_MODEL_PATH}/Item/pathpoints.h \
         $${C_SOURSE_MODEL_PATH}/Item/random_points.h \
-        $${C_SOURSE_MODEL_PATH}/Tile/movableitem.h \
+      #  $${C_SOURSE_MODEL_PATH}/Tile/movableitem.h \
         $${C_SOURSE_MODEL_PATH}/Tile/puzzleitem.h \
-        $${C_SOURSE_MODEL_PATH}/Tile/rotatableitem.h \
-        $${C_SOURSE_MODEL_PATH}/Tile/selectableitem.h \
-        $${C_SOURSE_MODEL_PATH}/Tile/settableitem.h \
-        $${C_SOURSE_MODEL_PATH}/Tile/itemground.h \
-        $${C_SOURSE_MODEL_PATH}/Tile/tile.h \
-    src/ui/TestForms/mainwindow.h
+       # $${C_SOURSE_MODEL_PATH}/Tile/rotatableitem.h \
+     #   $${C_SOURSE_MODEL_PATH}/Tile/selectableitem.h \
+      #  $${C_SOURSE_MODEL_PATH}/Tile/settableitem.h \
+     #   $${C_SOURSE_MODEL_PATH}/Tile/itemground.h \
+        $${C_SOURSE_MODEL_PATH}/Tile/tile.h
+  #  src/ui/TestForms/mainwindow.h
       #  $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/AbstractTableModel/AbstractTableItemData.h \
       #  $${C_SOURSE_ABSTRACT_ITEM_DATA_PATH}/OneGameController.h \
        # $${C_SOURSE_MODEL_PATH}/UserSession/UserSession.h \

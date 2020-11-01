@@ -44,9 +44,10 @@
 
     };
 
-    enum ePixmapControllerType {
-        kTilePixmap,
-        kTileBorder
+
+    enum eType {
+        kBody,
+        kBorder
     };
 
     //Q_ENUM(eItemStatus)

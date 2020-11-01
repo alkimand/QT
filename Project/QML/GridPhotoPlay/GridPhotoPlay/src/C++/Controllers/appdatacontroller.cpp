@@ -116,9 +116,9 @@ void AppDataController::deleteModel(const QString id) {
 
 void AppDataController::Init() {
     app_data_ = new AppData(this);
-    //image_controller_map_.insert(kTilePixmap, QString(TILE_BODY_IMAGE_PROVIDER));
-    image_controller_map_.insert(kTilePixmap, "tile_body_id");
-    image_controller_map_.insert(kTileBorder, QString(TILE_BORDER_IMAGE_PROVIDER));
+    //image_controller_map_.insert(kBody, QString(TILE_BODY_IMAGE_PROVIDER));
+    image_controller_map_.insert(kBody, QString(TILE_BODY_IMAGE_PROVIDER));
+    image_controller_map_.insert(kBorder, QString(TILE_BORDER_IMAGE_PROVIDER));
     QString default_dir = getDefaultDir();
     default_dir = "";//--
     if (default_dir.isEmpty())

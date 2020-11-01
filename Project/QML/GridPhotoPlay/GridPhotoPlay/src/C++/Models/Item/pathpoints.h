@@ -1,12 +1,14 @@
-#ifndef QTITEM_H
-#define QTITEM_H
+#ifndef PATH_POINTS_H
+#define PATH_POINTS_H
 
 #include <vector>
 #include <QPoint>
 #include <QSize>
 #include <QPixmap>
+#include <QList>
+#include <Item/itemenums.h>
 
-struct PathPoints {
+struct SidePointsConteiner {
   enum class Type {
     HorizontalLine,
     VerticalLine,
@@ -14,37 +16,29 @@ struct PathPoints {
     VerticalZigZag,
   };
 
-  std::vector<QPoint> points;
+  QVector<QPoint> points;
   Type type;
 };
 
-typedef std::vector<std::vector<PathPoints> > PathPointsMatrix;
+typedef QVector<QVector<SidePointsConteiner> > SidePointsConteinerMatrix;
 
-//! формирует точки горизонтального зигзага
-PathPoints horizontalPath(int w, int h);
+namespace  point_utilities {
+SidePointsConteiner horizontalPath(int w, int h);
 
-//! формирует точки вертикального зигзага
-PathPoints verticalPath(int w, int h);
+SidePointsConteiner verticalPath(int w, int h);
 
-//! формирует точки горизонтальной прямой (граница пазла)
-PathPoints horizLinePath(int w);
+SidePointsConteiner horizLinePath(int w);
 
-//! формирует точки горизонтальной вертикальной (граница пазла)
-PathPoints vertLinePath(int h);
+SidePointsConteiner vertLinePath(int h);
 
-//! случайным образом отражает выгнутный путь в вогнутый
-void randCurvePath(PathPoints& path);
+void randCurvePath(SidePointsConteiner& path);
 
-//! возвращает размеры зигзага или линии
-QSize pathSize(PathPoints &path);
+QSize pathSize(SidePointsConteiner &path);
 
-//! формирует матрицу из горизонтальных крючков
-//! для заданного изображения и количества фигур
-PathPointsMatrix getHorizPoints (QPixmap& source, size_t n_rows, size_t n_columns);
+void createHorizontalPoints (QPixmap& source, QHash<eType,SidePointsConteinerMatrix> &vertical_points, size_t rows, size_t columns);
 
-//! формирует матрицу из вертикальных крючков
-//! для заданного изображения и количества фигур
-PathPointsMatrix getVerPoints (QPixmap& source, size_t n_rows, size_t n_column);
-#endif // QTITEM_H
+void createVerticalPoints (QPixmap& source, QHash<eType, SidePointsConteinerMatrix> &horizontal_points, size_t rows, size_t column);
+}
+#endif
 
 

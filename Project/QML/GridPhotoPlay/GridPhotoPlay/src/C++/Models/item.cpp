@@ -4,7 +4,7 @@
 static const char className[] = "Item::";
 
 
-Item::Item(QString path, int id, QObject *parent): QObject(parent), id_(std::move(id)) {
+Item::Item(QString path, int id, int rows, int columns, bool is_rotated, QObject *parent): QObject(parent), id_(std::move(id)),max_row_(rows), max_column_(columns), is_rotated_(is_rotated)  {
     QFileInfo file(std::move(path));
 
     bool is_file_exist = false;
@@ -70,26 +70,32 @@ void Item::setStatus(eItemStatus new_status){
 
 void Item::createTiles() {
     const QColor maskColor(122, 163, 39);
-    const auto rows = paths_matrix_.size();
-    const auto colums = paths_matrix_[0].size();
-    const auto item_height = user_pixmap_.size().height() / rows;
-    const auto item_width = user_pixmap_.size().width() / colums;
-    tiles_matrix_.resize(rows);
-    for (int i = 0; i < rows; i++) {
-        tiles_matrix_[i].resize(colums);
-        for (int j = 0; j < colums; j++) {
-            auto& path = *paths_matrix_[i][j];
-            auto x = item_width * j + path.upleft_dx;
-            auto y = item_height * i + path.upleft_dy;
-            auto conrete_item_width = item_width - path.upleft_dx + path.downright_dx;
-            auto conrete_item_height = item_height - path.upleft_dy + path.downright_dy;
-            Tile *tile = new Tile(paths_matrix_[i][j],
-                          user_pixmap_,QRect(x, y, conrete_item_width, conrete_item_height),
+
+    const int item_height = user_pixmap_.size().height() / max_row_;
+    const int item_width = user_pixmap_.size().width() / max_column_;
+
+    auto paths = paths_[eType::kBody];
+    auto border_path = paths_[eType::kBorder];
+
+    tiles_matrix_.resize(max_row_);
+    for (int row = 0; row < max_row_; row++) {
+        tiles_matrix_[row].resize(max_column_);
+        for (int column = 0; column < max_column_; column++) {
+            auto& path = *paths[row][column];
+            int x = item_width * column + path.upleft_dx;
+            int y = item_height * row + path.upleft_dy;
+            int specify_item_width = item_width - path.upleft_dx + path.downright_dx;
+            int specify_item_height = item_height - path.upleft_dy + path.downright_dy;
+            Tile *tile = new Tile(paths[row][column],
+                          user_pixmap_,QRect(x, y, specify_item_width, specify_item_height),
                           QPointF(x, y));
-            body_map_.insert(QString::number(i)+"_"+QString::number(j), tile->getPixmap());
-            border_map_.insert(QString::number(i)+"_"+QString::number(j), tile->getBorderPixmap());
+            tile->createBoreder(border_path[row][column]);
+
+            body_map_.insert(QString::number(row)+ "_" + QString::number(column), tile->getPixmap());
+            border_map_.insert(QString::number(row)+ "_" + QString::number(column), tile->getBorderPixmap());
 
             pTile ptile = pTile(tile, &QObject::deleteLater);
+            tiles_matrix_[row][column] = ptile;
         }
     }
 }
@@ -111,14 +117,14 @@ void Item::createTiles() {
 //    return pixmap_controller;
 //}
 
-QQuickImageProvider *Item::getPixmapController(ePixmapControllerType type) {
+QQuickImageProvider *Item::getPixmapController(eType type) {
     PixmapController *pixmap_controller = new PixmapController();
     IndexPixmap *map;
     switch (type) {
-    case ePixmapControllerType::kTilePixmap:
+    case eType::kBody:
         map = &body_map_;
         break;
-    case ePixmapControllerType::kTileBorder:
+    case eType::kBorder:
         map = &border_map_;
         break;
     }
@@ -126,9 +132,29 @@ QQuickImageProvider *Item::getPixmapController(ePixmapControllerType type) {
     return static_cast<QQuickImageProvider*>(pixmap_controller);
 }
 
-void Item::createPaths(size_t rows, size_t columns, bool is_rotated) {
-    piece_count_ = rows * columns;
-    paths_matrix_ = getPathsMatrix(user_pixmap_, rows, columns);
+void Item::createPaths() {
+    piece_count_ = max_row_ * max_column_;
+
+    PathsMatrix body;
+    PathsMatrix border;
+    SidePointsConteinerMatrix body_vertical_points;
+    SidePointsConteinerMatrix body_horizontal_points;
+
+    SidePointsConteinerMatrix border_vertical_points;
+    SidePointsConteinerMatrix border_horizontal_points;
+
+    paths_.insert(eType::kBody, body);
+    paths_.insert(eType::kBorder, border);
+
+    vertical_points_.insert(eType::kBody, body_vertical_points);
+    horizontal_points_.insert(eType::kBody, body_horizontal_points);
+    vertical_points_.insert(eType::kBorder, border_vertical_points);
+    horizontal_points_.insert(eType::kBorder, border_horizontal_points);
+
+    point_utilities::createVerticalPoints(user_pixmap_,  vertical_points_, max_row_, max_column_);
+    point_utilities::createHorizontalPoints(user_pixmap_, horizontal_points_, max_row_, max_column_);
+
+    path_utilities::createPaths(user_pixmap_, paths_, vertical_points_, horizontal_points_, max_row_, max_column_);
 }
 
 //void Item::
