@@ -38,9 +38,11 @@
     enum MODEL_ROLES {
         DISPLAY     = 0 ,
         EDITE           ,
-        TITLE           ,
-        ID              ,
-        ICON_PATH
+        IMAGE_SOURCE    ,
+        BORDER_SOURCE   ,
+        ID,
+        ORIGIN_X,
+        ORIGIN_Y,
 
     };
 

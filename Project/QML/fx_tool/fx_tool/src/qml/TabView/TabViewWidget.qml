@@ -59,10 +59,6 @@ C1.TabView {
                         view_id_ = temp;
                         // console.log("view_id_ =" + view_id_);
                     }
-
-                    //                    function test() {
-                    //                        console.log("test Loader")
-                    //                    }
                 }
             }
         }

@@ -39,10 +39,9 @@ QPainterPath createPainterPath(SidePointsConteiner path,  bool need_reverse) {
     return painterPath;
 }
 
-PuzzlePath* createPuzzlePath(SidePointsConteiner& up, SidePointsConteiner& right,
-                                 SidePointsConteiner& down, SidePointsConteiner& left) {
-    QPainterPath full_path;
-
+PuzzlePath* createPuzzlePath(const SidePointsConteiner& up, const SidePointsConteiner& right,
+                             const SidePointsConteiner& down, const SidePointsConteiner& left) {
+    QVector <QPainterPath> paths;
     int width = pathSize(up).width();
     int height = pathSize(right).height();
 
@@ -79,40 +78,25 @@ PuzzlePath* createPuzzlePath(SidePointsConteiner& up, SidePointsConteiner& right
     downPath.translate(width, height);
     leftPath.translate(0, height);
 
-    full_path.connectPath(upPath);
-    full_path.connectPath(rightPath);
-    full_path.connectPath(downPath);
-    full_path.connectPath(leftPath);
+    paths.push_back(upPath);
+    paths.push_back(rightPath);
+    paths.push_back(downPath);
+    paths.push_back(leftPath);
 
-    return new PuzzlePath(full_path, upleft_dx, upleft_dy, downright_dx, downright_dy);
+    return new PuzzlePath(paths, upleft_dx, upleft_dy, downright_dx, downright_dy);
 }
 
-void createPaths(QPixmap& source, QHash<eType,PathsMatrix> &out_paths, QHash<eType,SidePointsConteinerMatrix> &input_vertical_points, QHash<eType,SidePointsConteinerMatrix> &input_horizontal_points, size_t rows, size_t columns){
-    QHash<eType,PathsMatrix>::iterator it;
-    for (it = out_paths.begin(); it != out_paths.end();++it) {
-        SidePointsConteinerMatrix vertical_points;
-        SidePointsConteinerMatrix horizontal_points;
-        if (it.key()== eType::kBody) {
-            vertical_points = input_vertical_points[eType::kBody];
-            horizontal_points = input_horizontal_points[eType::kBody];
+void createPaths(PathsMatrix &out_paths,const SidePointsConteinerMatrix &vertical_points,const
+                 SidePointsConteinerMatrix &horizontal_points, const int rows, const int columns) {
+    out_paths.resize(rows);
+    for (int row = 0; row < rows; ++row) {
+        out_paths[row].resize(columns);
+        for (int column = 0; column < columns; ++column) {
+            out_paths[row][column] = path_utilities::createPuzzlePath (
+                horizontal_points[row][column], vertical_points[row][column+1],
+                horizontal_points[row+1][column], vertical_points[row][column]
+                );
         }
-        else if (it.key()== eType::kBorder) {
-            vertical_points = input_vertical_points[eType::kBorder];
-            horizontal_points = input_horizontal_points[eType::kBorder];
-        }
-        else
-            return;
-        it.value().resize(rows);
-        for (int row = 0; row < rows; row++) {
-            it.value()[row].resize(columns);
-            for (int column = 0; column < columns; column++) {
-                it.value()[row][column] = path_utilities::createPuzzlePath (
-                    horizontal_points[row][column], vertical_points[row][column+1],
-                    horizontal_points[row+1][column], vertical_points[row][column]
-                    );
-            }
-        }
-        // }
     }
 }
 }

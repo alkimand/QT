@@ -58,9 +58,13 @@ GridView {
     //height: 480
    // cellWidth: 80;
    // cellHeight: 80
-    property int columns
-    property int rows
+   // property int columns
+    //property int rows
     property int cell_field_size
+    Rectangle {
+      id: tt
+      property int aaa: 10000//children 1 of grid
+    }
     //property int itemsPerPage: columns * rows
     //property int page_width_:0
     //property int page_height_:0
@@ -90,32 +94,62 @@ GridView {
         id: visualModel
         //model: app_data.getModelByID(0);
 
-        model: ListModel {
-            id: colorModel
-            ListElement {
-                image_source: "image://tile_body_id/0_0"
-                border_source: "image://tile_border_id/0_0"
-            }
-            ListElement {
-                image_source: "image://tile_body_id/0_1"
-                border_source: "image://tile_border_id/0_1"
-            }
-            ListElement {
-                image_source: "image://tile_body_id/0_2"
-                border_source: "image://tile_border_id/0_2"
-            }
-            ListElement { image_source: "image://tile_border_id/0_3" }
-            ListElement { image_source: "image://tile_border_id/0_4" }
-            ListElement { image_source: "image://tile_body_id/0_0" }
-            ListElement { image_source: "image://tile_body_id/0_1" }
-            ListElement { image_source: "image://tile_body_id/1_2" }
-            ListElement { image_source: "image://tile_body_id/1_3" }
+        model: app_data.getModelByID(0);
+            // ListModel {
+            //id: colorModel
+//            ListElement {
+//                image_source: "image://tile_body_id/0_0"
+//                border_source: "image://tile_border_id/0_0"
+//            }
+//            ListElement {
+//                image_source: "image://tile_body_id/0_1"
+//                border_source: "image://tile_border_id/0_1"
+//            }
+//            ListElement {
+//                image_source: "image://tile_body_id/0_2"
+//                border_source: "image://tile_border_id/0_2"
+//            }
+//            ListElement {
+//                image_source: "image://tile_body_id/0_3"
+//                border_source: "image://tile_border_id/0_3"
+//            }
+//            ListElement {
+//                image_source: "image://tile_body_id/0_4"
+//                border_source: "image://tile_border_id/0_4"
+//            }
+
+//            ListElement {
+//                image_source: "image://tile_body_id/1_0"
+//                border_source: "image://tile_border_id/1_0"
+//            }
+//            ListElement {
+//                image_source: "image://tile_body_id/1_1"
+//                border_source: "image://tile_border_id/1_1"
+//            }
+//            ListElement {
+//                image_source: "image://tile_body_id/1_2"
+//                border_source: "image://tile_border_id/1_2"
+//            }
+
+//            ListElement {
+//                image_source: "image://tile_body_id/1_3"
+//                border_source: "image://tile_border_id/1_3"
+//            }
+//            ListElement {
+//                image_source: "image://tile_body_id/1_4"
+//                border_source: "image://tile_border_id/1_4"
+//            }
+
+//            ListElement { image_source: "image://tile_body_id/0_0" }
+//            ListElement { image_source: "image://tile_body_id/0_1" }
+//            ListElement { image_source: "image://tile_body_id/0_2" }
+//            ListElement { image_source: "image://tile_body_id/0_3" }
+//           ListElement { image_source: "image://tile_body_id/0_4" }
+//            ListElement { image_source: "image://tile_body_id/1_0" }
+//            ListElement { image_source: "image://tile_body_id/1_1" }
+//            ListElement { image_source: "image://tile_body_id/1_2" }
+//            ListElement { image_source: "image://tile_body_id/1_3" }
 //            ListElement { image_source: "image://tile_body_id/1_4" }
-//            ListElement { image_source: "image://tile_body_id/2_0" }
-//            ListElement { image_source: "image://tile_body_id/2_1" }
-//            ListElement { image_source: "image://tile_body_id/2_2" }
-//            ListElement { image_source: "image://tile_body_id/2_3" }
-//            ListElement { image_source: "image://tile_body_id/2_4" }
 //            ListElement { image_source: "image://tile_body_id/3_0" }
 //            ListElement { image_source: "image://tile_body_id/3_1" }
 //            ListElement { image_source: "image://tile_body_id/3_2" }
@@ -149,7 +183,7 @@ GridView {
             //                                ListElement { color: "goldenrod" }
             //                                ListElement { color: "crimson" }
             //                                ListElement { color: "teal" }
-        }
+        //}
         //! [1]
         delegate: DropArea {
             id: delegateRoot
@@ -201,26 +235,17 @@ GridView {
                 TapHandler {
                     id:tapHandler
                     acceptedDevices: PointerDevice.Mouse | PointerDevice.Stylus
-                    onTapped: console.log("clicked")
+                    onTapped: console.log("rectangle clicked")
                 }
-                //                anchors {
-                //                    horizontalCenter: parent.horizontalCenter;
-                //                    verticalCenter: parent.verticalCenter
-                //                }
-                //                radius: 0//3
-                //                // color: model.color
-
-                ////                Text {
-                ////                    anchors.centerIn: parent
-                ////                    // color: "white"
-                ////                    //text: display
-                ////                    //parent.visualIndex
-                ////                }
+                Rectangle {
+                  id: ttt
+                  property int aa: 1000
+                }
                 Image {
                     property int visualIndex: 0
                     //id: icon
                     anchors.centerIn: parent
-                    source: model.image_source
+                    source: image_source//model.image_source
                     //width: root.width - 8;
                     // height: root.height - 8;
                     anchors {
@@ -234,7 +259,7 @@ GridView {
                     id:border
                     //id: icon
                     anchors.centerIn: parent
-                    source: model.border_source
+                    source: border_source//model.border_source
                     //width: root.width - 8;
                     // height: root.height - 8;
                     anchors {
@@ -280,9 +305,23 @@ GridView {
                     icon.height = root.cellHeight - root.cell_field_size;
                 }
             }
+            Component.onCompleted: {
+                 console.log("icon-rectangle Completed");
+                icon.anchors.horizontalCenter = undefined;
+               icon.anchors.verticalCenter= undefined;
 
+
+            }
         }
         //! [1]
+    }
+
+    Component.onCompleted: {
+         console.log("Grid onCompleted");
+
+       // icon.anchors.horizontalCenter= undefined
+       // icon.anchors.verticalCenter= undefined
+
     }
     //    function getOrientation (on, to, max_colum, max_height){
 

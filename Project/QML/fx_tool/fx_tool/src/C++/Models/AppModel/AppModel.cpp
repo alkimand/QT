@@ -219,27 +219,7 @@ bool AppModel::setData(const QModelIndex &index, const QVariant &value, int role
     // qDebug()<< "setData"+value.toString();
     if (index.isValid() && (role==Qt::EditRole
                             || role==(Qt::UserRole + MODEL_ROLES::TITLE))) {
-        //        switch (role){
-        //        case (int(Qt::EditRole)):
-        //            if (worksheet_data_.size() > index.row()) {
-        //                if(worksheet_data_.at(index.row()).contains(DATA_ID(index.column()))) {
-        //                    worksheet_data_[index.row()][DATA_ID(index.column())] = value.toString();
-        //                }
-        //                else {
-        //                    Date_Map temp (worksheet_data_.at(index.row()));
-        //                    temp[DATA_ID(index.column())] = value.toString();
-        //                    worksheet_data_.replace(index.row(), temp);
-        //                }
-        //            }
-        //            else {
-        //                Date_Map temp;
-        //                temp[DATA_ID(index.column())] = value.toString();
-        //                worksheet_data_.insert(index.row(), temp);
-        //            }
-        //            //emit dataChanged(index, index);
-        //            result = true;
-        //            break;
-        //        }
+
         app_data_.at(index.row()).get()->setProperty(ItemEnums::EItemProperty::kFileName, value.toString());
         result = true;
         //QString temp =  QString::number(index.row())+" " +  QString::number(index.column());

@@ -1,6 +1,8 @@
 #ifndef TILE
 #define TILE
 #include <QObject>
+#include <QSharedPointer>
+#include <QVector>
 
 #include <Tile/puzzleitem.h>
 
@@ -23,6 +25,8 @@ private:
     int id_ = -1;
 };
 
+typedef  QSharedPointer<Tile> pTile;
+typedef  QVector<QVector <pTile> > TileMatrix;
 
 //typedef  QSharedPointer<Tile> pTile;
 

@@ -21,12 +21,91 @@
 
 static const char className[] = "AppData::";
 
-AppData::AppData(QObject *parent):QObject(parent){
+AppData::AppData(QObject *parent):QAbstractTableModel(parent){
     //Q_UNUSED(parent);
     //    QString path = QDir::currentPath();
     //    QString fileName = "test.txt";
     //    QString fullFilePath = path  + "/" + fileName;
     Init();
+}
+
+int AppData::rowCount(const QModelIndex &parent) const {
+    Q_UNUSED(parent);
+    return app_data_.size();
+}
+
+int AppData::columnCount(const QModelIndex &parent) const {
+    Q_UNUSED(parent);
+    return APP_MAIN_MODEL_COUNT;
+}
+
+QHash<int, QByteArray> AppData::roleNames() const {
+    QHash<int, QByteArray> roles;
+   // roles.insert(Qt::UserRole + MODEL_ROLES::TITLE, TITLE_S);
+    roles.insert(Qt::UserRole + MODEL_ROLES::ID, ID_S);
+   // roles.insert(Qt::UserRole + MODEL_ROLES::ICON_PATH, ICON_S);
+    roles.insert(Qt::EditRole, EDITE_S);
+    roles.insert(Qt::DisplayRole, DISPLAY_S);
+    return roles;
+}
+
+Qt::ItemFlags AppData::flags(const QModelIndex &index) const {
+    Qt::ItemFlags flags = QAbstractTableModel::flags(index);
+    if(index.isValid()){
+        flags |= Qt::ItemIsEditable;
+    }
+    return flags;
+}
+
+QVariant AppData::headerData(int section, Qt::Orientation orientation, int role) const {
+    Q_UNUSED(orientation);
+    if(role != Qt::DisplayRole){
+        return QVariant();
+    }
+    switch (section) {
+    case int(DATA_ID::FEATURE):
+        return tr(FEATURE_S);
+        break;
+    case int(DATA_ID::FEATURE_NAME):
+        return tr(NAME_S);
+        break;
+    case int(DATA_ID::IS_ACTIVE):
+        return tr(IS_ACTIVE_S);
+        break;
+    }
+    return QVariant();
+}
+
+QVariant AppData::data(const QModelIndex &index, int role) const {
+    if (!index.isValid())
+        return QVariant();
+    QVariant result;
+    switch (role) {
+    case (int(Qt::DisplayRole)):
+        result =  "";//app_data_.at(index.row()).value(DATA_ID(index.column()));
+        //QString("%1, %2").arg(index.column()).arg(index.row());
+        break;
+//    case (int(Qt::UserRole + MODEL_ROLES::TITLE)):
+//           // result = app_data_.at(index.row()).get()->getProperty(ItemEnums::EItemProperty::kFileName);
+//        break;
+    case (int(Qt::UserRole + MODEL_ROLES::ID)):
+            result = QString("%1, %2").arg(index.column()).arg(index.row());
+        break;
+    }
+    QString temp =  QString::number(index.row())+" " +  QString::number(index.column());//index.row();
+    //qDebug()<< "data " + temp + " = " + result.toString();
+    return result;
+}
+
+bool AppData::setData(const QModelIndex &index, const QVariant &value, int role) {
+    bool result = false;
+    // qDebug()<< "setData"+value.toString();
+    if (index.isValid() && (role==Qt::EditRole)) {
+                         //   || role==(Qt::UserRole + MODEL_ROLES::TITLE))) {
+       // app_data_.at(index.row()).get()->setProperty(ItemEnums::EItemProperty::kFileName, value.toString());
+        result = true;
+    }
+     return result;
 }
 
 void AppData::parseItem(pItem item){
@@ -62,16 +141,16 @@ void AppData::parseItem(pItem item){
 
 pItem AppData::getItemByID(const int id){
     pItem item = nullptr;
-    foreach (pItem it, app_data_){
+    foreach (pItem it, app_data_) {
         if (it.get()->getId() == id){
             item = it;
             break;
         }
     }
-    if (!item.isNull())
-        return item;
-    else
+    if (item.isNull())
         qDebug()<< ("NO item by id = " + QString::number(id));
+
+    return item;
 }
 
 
@@ -80,15 +159,18 @@ void AppData::createItem(QString image_path, int rows, int columns, bool is_rota
     Item *item = new Item(image_path, app_data_.size(), rows, columns, is_rotated, this);
     pItem ptem = pItem(item, &QObject::deleteLater);
 
+    ptem.get()->createPoints();
     ptem.get()->createPaths();
     ptem.get()->createTiles();
+    ptem.get()->setupModel();
+
    // ptem.get()->createPixmapController();
 
     //parseItem(ptem);
     app_data_.push_back(ptem);
 }
 
-int AppData::getLastCreatedItemId(){
+int AppData::getLastCreatedItemId() {
     return  app_data_.size();
 }
 

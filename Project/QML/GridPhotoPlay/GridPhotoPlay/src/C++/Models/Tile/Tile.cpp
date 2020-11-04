@@ -11,7 +11,7 @@ Tile::Tile(PuzzlePath *path, const QPixmap &source, const QRect &rect, QPointF c
 }
 
 QPixmap *Tile::getPixmap() {
-    return pixmap_;
+    return piece_pixmap_;
 }
 
 QPixmap *Tile::getBorderPixmap(){

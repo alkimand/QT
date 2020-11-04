@@ -5,6 +5,7 @@
 #include <QQuickView>
 #include <appdatacontroller.h>
 
+#include "Item/AbstractTableModel/ItemModelBase.h"
 
 //#include <item.h> //--
 
@@ -23,34 +24,24 @@ int main(int argc, char *argv[]) {
     QGuiApplication::setLibraryPaths(paths);
 
     QGuiApplication::setAttribute(Qt::AA_UseDesktopOpenGL);
-    //QGuiApplication gui_app(argc, argv);
+
 
     //apps engine
+    //QGuiApplication gui_app(argc, argv); // or
     QApplication gui_app(argc, argv);
     QQmlApplicationEngine engine;
 
     qmlRegisterSingletonType( QUrl("qrc:/src/qml/Action/Actions.qml"), "Actions", 1, 0, "Actions" );
     //qmlRegisterType<BorderRadiusWidget>("BorderRadiusWidget.qml", 1, 0, "BorderRadiusWidget");
-   // qmlRegisterType<AbstractTableItemData>("AbstractTableItemData", 1, 0, "AbstractTableItemData");
+
     qmlRegisterType<AppDataController>("AppDataController", 1, 0, "AppDataController");
+    qmlRegisterType<ItemModelBase>("ItemModelBase", 1, 0, "ItemModelBase");
     gui_app.setOrganizationName("MicrolabSystem");
     gui_app.setOrganizationDomain("MicrolabSystem");
-
-   // AppDataController app(engine);
     AppDataController app;
     app.setApplicationEngine(engine);
     app.registerQMLType(0);
-  //  MainWindow w;
-
-    //Item *item = new Item("test.jpg",0);
-   // item->load(5,5,false);
-
-   // w.show();
-
     engine.rootContext()->setContextProperty("app_data", &app);
-    //app.
-   //engine.addImageProvider(QLatin1String("colors"), new PixmapController);
-   // engine.addImageProvider(QLatin1String("tile"), new PixmapController);
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &gui_app, [url](QObject *obj, const QUrl &objUrl) {

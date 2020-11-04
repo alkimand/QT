@@ -19,7 +19,7 @@ class QQmlApplicationEngine;
 
 class AppDataController: public QObject {
     Q_OBJECT
-    //Q_PROPERTY(AppModel * data READ getData  NOTIFY dataChanged)
+    Q_PROPERTY(AppData * data READ getData  NOTIFY dataChanged)
 
 public:
     AppDataController(QObject *parent = nullptr);
@@ -51,7 +51,7 @@ public slots:
     void saveFile(const QString file_path, const QString id);
 
     void deleteModel(const QString id);
-    //AbstractTableItemData* getModelByID(const QString id);
+    ItemModelBase *getModelByID(const QString id);
 
 //QML Layer
     //QString getFileTitleByID(const QString id);

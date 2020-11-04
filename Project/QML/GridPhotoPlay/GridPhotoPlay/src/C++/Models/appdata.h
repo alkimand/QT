@@ -17,10 +17,18 @@ typedef  QSharedPointer<Item> pItem;
 class PixmapController;
 //Class QQmlApplicationEngine;
 
-class AppData : public QObject {
+class AppData : public QAbstractTableModel {
     Q_OBJECT
 public:
-    AppData(QObject*);
+    AppData(QObject*parent = nullptr);
+
+    int rowCount(const QModelIndex &parent = QModelIndex()) const;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const;
+    QHash<int, QByteArray> roleNames() const;
+    Qt::ItemFlags flags(const QModelIndex &index) const;
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
+    bool setData(const QModelIndex &index, const QVariant &value, int role);
 
     virtual ~AppData();
 

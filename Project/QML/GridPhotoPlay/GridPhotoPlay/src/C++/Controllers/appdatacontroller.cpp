@@ -108,15 +108,22 @@ void AppDataController::saveFile(const QString file_path, const QString id) {
 }
 
 void AppDataController::deleteModel(const QString id) {
-    //LOOGGER("id= "+ id );
+    LOOGGER("id= "+ id );
     // model_->deleteFile(id);
+}
+
+ItemModelBase *AppDataController::getModelByID(const QString id) {
+
+     //return app_data_->getItemByID(0)->getModel();
+
+    return app_data_->getItemByID(id.toInt())->getModel();
 }
 
 
 
 void AppDataController::Init() {
     app_data_ = new AppData(this);
-    //image_controller_map_.insert(kBody, QString(TILE_BODY_IMAGE_PROVIDER));
+   // image_controller_map_.insert(kBody, QString(TILE_BODY_IMAGE_PROVIDER));
     image_controller_map_.insert(kBody, QString(TILE_BODY_IMAGE_PROVIDER));
     image_controller_map_.insert(kBorder, QString(TILE_BORDER_IMAGE_PROVIDER));
     QString default_dir = getDefaultDir();

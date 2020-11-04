@@ -50,6 +50,7 @@ SOURCES += \
         $${C_SOURSE_CONTROLLERS_PATH}/pixmap_controller.cpp \
         $${C_SOURSE_MODEL_PATH}/appdata.cpp \
         $${C_SOURSE_MODEL_PATH}/item.cpp \
+        $${C_SOURSE_MODEL_PATH}/Item/AbstractTableModel\ItemModelBase.cpp \
         $${C_SOURSE_MODEL_PATH}/Item/puzzlepath.cpp \
         $${C_SOURSE_MODEL_PATH}/Item/pathpoints.cpp \
         $${C_SOURSE_MODEL_PATH}/Item/random_points.cpp \
@@ -60,6 +61,7 @@ HEADERS += \
         $${C_SOURSE_CONTROLLERS_PATH}/pixmap_controller.h \
         $${C_SOURSE_MODEL_PATH}/appdata.h \
         $${C_SOURSE_MODEL_PATH}/item.h \
+        $${C_SOURSE_MODEL_PATH}/Item/AbstractTableModel\ItemModelBase.h \
         $${C_SOURSE_MODEL_PATH}/Item/itemproperties.h \
         $${C_SOURSE_MODEL_PATH}/Item/itemconstants.h \
         $${C_SOURSE_MODEL_PATH}/Item/itemenums.h \

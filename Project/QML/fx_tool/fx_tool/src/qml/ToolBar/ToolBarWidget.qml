@@ -5,8 +5,7 @@ import QtQuick.Dialogs 1.2
 import Actions 1.0
 import "./CustomToolButton"
 
-ToolBar
-{
+ToolBar {
     id: control
     width: parent.width
     property int current_id: -1

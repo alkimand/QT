@@ -24,6 +24,7 @@
 #include <Item/graphicsview.h>
 #include <Item/puzzlepath.h>
 #include <Item/pathpoints.h>
+#include "Item/AbstractTableModel/ItemModelBase.h"
 #include <Tile/tile.h>
 #include <Item/random_points.h>
 
@@ -36,10 +37,7 @@
 #define  JPG_EXTENSION                     "*.jpg"
 
 //typedef  QSharedPointer<Tile> pTile;
-class Tile;
 
-typedef  QSharedPointer<Tile> pTile;
-typedef  QVector<QVector <pTile> > TileMatrix;
 typedef  QHash<QString, QPixmap*> IndexPixmap;
 typedef  QHash<eType, QString> ImageControllerMap;
 
@@ -71,8 +69,10 @@ private:
 
 public:   //
     //void createVerticalPoints(size_t rows, size_t columns, bool rotated);
+    void createPoints();
     void createPaths();
     void createTiles();
+    void setupModel();
     //void createPixmapController();
     //PixmapController *getPixmapController();
     QQuickImageProvider *getPixmapController(eType );
@@ -81,7 +81,7 @@ public:   //
     //TileMatrix getTileMatrix();//--
     void getPimapsFromImage();
     void cleanModel();
-    // AbstractTableItemData *getModel();
+    ItemModelBase *getModel();
 
 signals:
     void finished(bool win);
@@ -110,7 +110,7 @@ private:
     QSize window_size_ = {0,0};
     int   max_row_ = 0;
     int   max_column_ = 0;
-    int   border_width_ = 6;
+    int   indent_ = 2;
     bool is_rotated_ = false;
     QImage user_image_;
 
@@ -124,19 +124,26 @@ private:
     //GraphicsView   *view_= nullptr;
 
     //data
+public:
+
     TileMatrix      tiles_matrix_;
+    QVector<QVector<QString>> index_;
+private:
     PathsMatrix     paths_matrix_;
 
+
+    QHash<eType, SidePointsConteinerMatrix> points_;
     QHash<eType, PathsMatrix> paths_;
     QHash<eType, SidePointsConteinerMatrix> vertical_points_;
     QHash<eType, SidePointsConteinerMatrix> horizontal_points_;
 
     //QHash<int, QGraphicsPixmapItem> pixel_map_;
 
-    IndexPixmap body_map_;
-    IndexPixmap border_map_;
+   // IndexPixmap body_map_;
+   // IndexPixmap border_map_;
+    QHash<eType,IndexPixmap>  indexPixmap_;
 
-    const int GroundLayer = 0;
+    ItemModelBase    *model_;
 
     //SoundController m_sound;
    // QLabel m_label;
