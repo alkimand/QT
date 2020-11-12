@@ -24,7 +24,7 @@ Item {
     TableView {
         id: table
         anchors.fill: parent
-        visible:false
+        //visible:false
         //property  string current_id_: parent.current_id_
         // property  int view_id_: parent.view_id_
         // anchors.fill: parent
@@ -115,13 +115,17 @@ Item {
                 property  string originID: ID;
                 property bool isSelected: false
                 onIsSelectedChanged: {
-                    if (isSelected==true)
+                    if (isSelected==true){
                         border.visible = true;
-                    else
+                        tile_container.z = 2
+                    }
+                    else{
                         border.visible = false;
+                        tile_container.z = 0
+                    }
                 }
-                width: 150-8//root.cellWidth;
-                height: 150-8//root.cellHeight;
+                //width: 150-8//root.cellWidth;
+                //height: 150-8//root.cellHeight;
                 // width: root.width - 8;
                 // height: root.height - 8;
                 //            TapHandler {
@@ -193,15 +197,16 @@ Item {
 
                     states: [
                         State {
-                            //when: drop_area.containsDrag
-                            when: drop_area.containsDrag
+                            when: delegateRoot.containsDrag
+                           // when: drop_area.containsDrag
 //                            PropertyChanges {
 //                                target: dropRectangle
 //                                color: "grey"
 //                            }
+
                             PropertyChanges {
                                 target: icon
-                                opacity: 0.5
+                                opacity: 0.0
                             }
 
 
@@ -233,6 +238,9 @@ Item {
                             tile_container.z = 1;
 
                     }
+                    onEntered: {
+                        console.log("onEntered index=" + tile_container.originID)
+                    }
 
                     onReleased:{
                         tile_container.z =0;
@@ -247,12 +255,18 @@ Item {
                 tile_container.parent = root;
                 tile_container.x = tile_container.originX;
                 tile_container.y = tile_container.originY;
+                tile_container.parent = table
             }
         }
 
         Component.onCompleted: {
             //  console.log("onCompleted");
         }
+         MouseArea {
+             onEntered: {
+                 console.log("onEntered i" )
+             }
+         }
     }
     //ColumnProvider {
     //        placeholderText_L:  { return typeof display_ !== "undefined" ? display_:""}

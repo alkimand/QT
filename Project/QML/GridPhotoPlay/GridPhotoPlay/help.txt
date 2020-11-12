@@ -2,3 +2,22 @@ pixmap to qml
     https://forum.qt.io/topic/69209/how-to-display-a-qpixmap-qimage-in-qml/14
     https://doc.qt.io/qt-5/qquickimageprovider.html
     Image Response Provider
+
+
+https://evileg.com/ru/post/192/ - Фрагменты
+http://www.cutehacks.com/blog/2016/9/23/friendlier-network-requests-in-qml
+
+draganddrop
+
+puzzle
+RegistryDemo
+samegame
+shapes
+PhotoViewer
+photosurface
+ImageProvider
+
+https://habr.com/ru/post/134377/
+
+https://doc.qt.io/qt-5/qquickimageprovider.html#details
+https://doc.qt.io/qt-5/qquickimageprovider.html#requestPixmap
