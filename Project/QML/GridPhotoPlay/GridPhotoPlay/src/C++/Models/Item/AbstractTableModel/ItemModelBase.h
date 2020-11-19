@@ -16,6 +16,7 @@
 
 class ItemModelBase : public QAbstractTableModel {
     Q_OBJECT
+    //Q_PROPERTY(bool PointInsideTile READ isPointInsideTile)
 public:
     //explicit
     //Q_ENUM(DATA_ID)
@@ -32,16 +33,26 @@ public:
 
     bool setData(const QModelIndex &index, const QVariant &value, int role);
 
-//private:
+
     
     virtual ~ItemModelBase();
+private:
+    bool isUserClickInsideBody(QString tile_index, int mouse_area_x, int mouse_area_y);
+    QString getSelectedTileId(QString tile_index, int mouse_area_x, int mouse_area_y);
 
 public slots:
+   void onClick(QString tile_index, int mouse_area_x, int mouse_area_y);
+
+signals:
+    void selectTile(QString tile_id);
+    //void modelChanged();
+
  // void removeRow(const int row);
   /// void addRow(const int row);
   // void copyRow(const int row);
 
  public:
+    // bool isPointInsideTile(QString tile_index, int mouse_area_x, int mouse_area_y);
     //void cleanModelData();
    // QVector<Date_Map> *getData();
 
@@ -58,6 +69,7 @@ private:
     TileMatrix      *tiles_matrix_;
     QPair<int, int > size_;
     QPair<int, int > origin_coordinates_;
+
 };
 
 #endif // I_WidgetModelBase_H

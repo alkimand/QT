@@ -43,13 +43,19 @@
         ID,
         ORIGIN_X,
         ORIGIN_Y,
-
+        CURENT_INDEX,
+        BODY,
+        BACKGROUND_SOURCE,
+        BACKGROUND_BORDER_SOURCE
     };
 
 
     enum eType {
         kBody,
-        kBorder
+        kSimpleBorder,
+        kSelectionBorder,
+        kBackgroundBorder,
+        Background
     };
 
     //Q_ENUM(eItemStatus)

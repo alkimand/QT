@@ -22,19 +22,26 @@ public:
                const QStyleOptionGraphicsItem *option,
                QWidget *widget = nullptr) override;
 
-    void createBorder(PuzzlePath *border_path, const int indent = 0);
+
+    void createBackgroundBorder(PuzzlePath *border_path, const int indent = 0, const QColor &color = Qt::black);
+    void createSelectionBorder(PuzzlePath *border_path, const int indent = 0, const QColor &color = Qt::yellow);
+   // void createBorder(PuzzlePath *border_path, const int indent = 0, const QColor &color = Qt::yellow);
+    QPixmap* createBorderPixmap(PuzzlePath *border_path, const int indent = 0, const QColor &color = Qt::yellow);
+    void createTouchesBorder(PuzzlePath *border_path, const int indent = 0);
     void setAddress(QPair<int, int> address);
     QPair <int, int> getOriginCoordinates();
     QString getSIndex();
     void setIndex(QPair<int, int> index);
 
 private:
-    QGraphicsPixmapItem* pixmap_item_;
+    void createBackgroundPixmap();
+    //QGraphicsPixmapItem* pixmap_item_;
 
 protected:
     QRect rect_;
     PuzzlePath* path_;
     PuzzlePath* border_path_;
+
     QPair<int, int> address_;
     QPair<int, int> index_;
 
@@ -42,7 +49,9 @@ protected:
 
     QPixmap* user_pixmap_;
     QPixmap* piece_pixmap_;
-    QPixmap* border_pixmap_;
+    QPixmap* background_piece_pixmap_;
+    QPixmap* selection_border_pixmap_;
+    QPixmap* background_border_pixmap_;
 };
 
 #endif // PUZZLEITEM_H

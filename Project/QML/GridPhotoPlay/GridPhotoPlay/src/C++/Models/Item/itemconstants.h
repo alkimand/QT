@@ -11,6 +11,10 @@
 #define ORIGIN_X_S                            "origin_x"
 #define ORIGIN_Y_S                            "origin_y"
 #define DISPLAY_S                             "display_"
+#define CURENT_INDEX_S                        "curentIndex"
+#define BODY_S                                "body"
+#define BACKGROUND_SOURCE_S                   "background_source"
+#define BACKGROUND_BORDER_SOURCE_S            "background_border_source"
 #define EDITE_S                               "edite"
 #define TITLE_S                               "title"
 #define ID_S                                  "ID"
@@ -19,6 +23,8 @@
 //ImageProvider
 #define TILE_BODY_IMAGE_PROVIDER                  "tile_body_id"
 #define TILE_BORDER_IMAGE_PROVIDER                "tile_border_id"
+#define TILE_BACKGOUND_IMAGE_PROVIDER             "tile_background_id"
+#define TILE_BACKGOUND_BORDER_IMAGE_PROVIDER      "tile_background_border_id"
 
 #define DEFAULT_ICON                          "qt-logo.png"
 #define FREEYTVDOWNLOADER                     "FreeYTVDownloader"

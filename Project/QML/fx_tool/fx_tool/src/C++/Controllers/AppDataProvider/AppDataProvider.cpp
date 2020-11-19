@@ -140,3 +140,7 @@ AppDataProvider::~AppDataProvider() {
 }
 
 
+
+int AppDataProvider::getScreenWidth() {
+    return 800;
+}

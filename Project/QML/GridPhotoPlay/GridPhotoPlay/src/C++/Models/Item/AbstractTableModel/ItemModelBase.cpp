@@ -42,9 +42,10 @@ QHash<int, QByteArray> ItemModelBase::roleNames() const {
     roles.insert(Qt::UserRole + MODEL_ROLES::ID, ID_S);
     roles.insert(Qt::UserRole + MODEL_ROLES::ORIGIN_X, ORIGIN_X_S);
     roles.insert(Qt::UserRole + MODEL_ROLES::ORIGIN_Y, ORIGIN_Y_S);
-    //    roles.insert(Qt::UserRole + DATA_ID::IS_ACTIVE, IS_ACTIVE_S);
-    //roles.insert(Qt::EditRole, EDITE_S);
-    //roles.insert(Qt::DisplayRole, DISPLAY_S);
+    roles.insert(Qt::UserRole + MODEL_ROLES::CURENT_INDEX, CURENT_INDEX_S);
+    roles.insert(Qt::UserRole + MODEL_ROLES::BODY, BODY_S);
+    roles.insert(Qt::UserRole + MODEL_ROLES::BACKGROUND_SOURCE, BACKGROUND_SOURCE_S);
+    roles.insert(Qt::UserRole + MODEL_ROLES::BACKGROUND_BORDER_SOURCE, BACKGROUND_BORDER_SOURCE_S);
     return roles;
 }
 
@@ -84,23 +85,18 @@ QVariant ItemModelBase::data(const QModelIndex &index, int role) const {
     QVariant result;
     QString pixmap_controller_template = "image://" + QString("%1") + "/" + tiles_matrix_->at(index.row()).at(index.column()).get()->getSIndex();
     switch (role) {
-        //    //    case (int(Qt::UserRole + DATA_ID::FEATURE)):
-        //    //    case (int(Qt::UserRole + DATA_ID::NAME)):
-        //    //    case (int(Qt::UserRole + DATA_ID::IS_ACTIVE)):
-        //    //        if (worksheet_data_.size() > index.row()
-        //    //                && worksheet_data_.at(index.row()).contains(DATA_ID(role - int(Qt::UserRole)))
-        //    //                && index.column() < 4) {
-        //    //            result = worksheet_data_.at(index.row()).value(DATA_ID(role - int(Qt::UserRole)));
-        //    //             //qDebug()<< "data" + result.toString();
-        //    //           // return worksheet_data_.at(index.row()).value(DATA_ID(role - int(Qt::UserRole)));
-
     case (int(Qt::UserRole + MODEL_ROLES::IMAGE_SOURCE)):
         result = pixmap_controller_template.arg(QString(TILE_BODY_IMAGE_PROVIDER));
-        // (TILE_BODY_IMAGE_PROVIDER) + "/" + QString::number(index.row())+"_" +  QString::number(index.column());//index.row();
         break;
-
+    case (int(Qt::UserRole + MODEL_ROLES::BACKGROUND_SOURCE)):
+        result = pixmap_controller_template.arg(QString(TILE_BACKGOUND_IMAGE_PROVIDER));
+        //result = pixmap_controller_template.arg(QString(TILE_BODY_IMAGE_PROVIDER));
+        break;
     case (int(Qt::UserRole + MODEL_ROLES::BORDER_SOURCE)):
         result = pixmap_controller_template.arg(QString(TILE_BORDER_IMAGE_PROVIDER));
+        break;
+    case (int(Qt::UserRole + MODEL_ROLES::BACKGROUND_BORDER_SOURCE)):
+        result = pixmap_controller_template.arg(QString(TILE_BACKGOUND_BORDER_IMAGE_PROVIDER));
         break;
     case (int(Qt::UserRole + MODEL_ROLES::ID)):
         result = tiles_matrix_->at(index.row()).at(index.column()).get()->getSIndex();
@@ -159,38 +155,57 @@ QVariant ItemModelBase::data(const QModelIndex &index, int role) const {
 
 bool ItemModelBase::setData(const QModelIndex &index, const QVariant &value, int role) {
     bool result = true;
-    //    // qDebug()<< "setData"+value.toString();
-    //    if (index.isValid() && role==Qt::EditRole) {
-    //        switch (role){
-    //        case (int(Qt::EditRole)):
-    //            if (worksheet_data_.size() > index.row()) {
-    //                if(worksheet_data_.at(index.row()).contains(DATA_ID(index.column()))) {
-    //                    worksheet_data_[index.row()][DATA_ID(index.column())] = value.toString();
-    //                }
-    //                else {
-    //                    Date_Map temp (worksheet_data_.at(index.row()));
-    //                    temp[DATA_ID(index.column())] = value.toString();
-    //                    worksheet_data_.replace(index.row(), temp);
-    //                }
-    //            }
-    //            else {
-    //                Date_Map temp;
-    //                temp[DATA_ID(index.column())] = value.toString();
-    //                worksheet_data_.insert(index.row(), temp);
-    //            }
+   // qDebug()<< "setData"+value.toString();
+    if (index.isValid() && role){//==Qt::EditRole) {
+        switch (role){
+        case (int(Qt::UserRole + MODEL_ROLES::BODY)):
+           // qDebug()<< "Qt::UserRole + MODEL_ROLES::CURENT_INDEX"+value.toString();
+            //            if (worksheet_data_.size() > index.row()) {
+            //                if(worksheet_data_.at(index.row()).contains(DATA_ID(index.column()))) {
+            //                    worksheet_data_[index.row()][DATA_ID(index.column())] = value.toString();
+            //                }
+            //                else {
+            //                    Date_Map temp (worksheet_data_.at(index.row()));
+            //                    temp[DATA_ID(index.column())] = value.toString();
+            //                    worksheet_data_.replace(index.row(), temp);
+            //                }
+            //            }
+            //            else {
+            //                Date_Map temp;
+            //                temp[DATA_ID(index.column())] = value.toString();
+            //                worksheet_data_.insert(index.row(), temp);
+            //            }
 
-    //            //emit dataChanged(index, index);
-    //            result = true;
-    //            break;
-    //        }
-    //        QString temp =  QString::number(index.row())+" " +  QString::number(index.column());
-    //        //qDebug()<< "setdata " + temp + " =" + value.toString();
-    //    }
+            //            //emit dataChanged(index, index);
+            //            result = true;
+            break;
+        }
+        //        QString temp =  QString::number(index.row())+" " +  QString::number(index.column());
+        //        //qDebug()<< "setdata " + temp + " =" + value.toString();
+    }
     return result;
 }
 
 ItemModelBase::~ItemModelBase() {
     //  qDebug()<< "~ItemModelBase()";
+}
+
+bool ItemModelBase::isUserClickInsideBody(QString tile_index, int mouse_area_x, int mouse_area_y) {
+    return true;
+}
+
+QString ItemModelBase::getSelectedTileId(QString tile_index, int mouse_area_x, int mouse_area_y) {
+    QString selected_tile_id = tile_index;
+    if (!isUserClickInsideBody(tile_index, mouse_area_x, mouse_area_y)){
+       // selected_tile_id = getSelectedTileId()
+    }
+    return selected_tile_id;
+}
+
+void ItemModelBase::onClick(QString tile_index, int mouse_area_x, int mouse_area_y) {
+    //LOOGGER("tile_index=" + tile_index +" mouse_area_x="+ QString::number(mouse_area_x)+ " mouse_area_y="+ QString::number(mouse_area_y));
+    QString selected_tile_id = getSelectedTileId(tile_index, mouse_area_x, mouse_area_y);
+    emit selectTile(selected_tile_id);
 }
 
 //void ItemModelBase::SetupModel() {

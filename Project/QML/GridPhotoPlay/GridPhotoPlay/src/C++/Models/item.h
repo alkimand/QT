@@ -50,7 +50,7 @@ public:
 public:
     explicit Item(QString path, int id = -1, int rows = 0, int columns = 0, bool is_rotated = false, QObject *parent = nullptr);
 
-    void setWindowSize(QSize);
+    void setWindowSize(const QSize);
     void setMaxWindowRow(int);
     void setMaxWindowColumn(int);
 
@@ -73,15 +73,15 @@ public:   //
     void createPaths();
     void createTiles();
     void setupModel();
-    //void createPixmapController();
-    //PixmapController *getPixmapController();
     QQuickImageProvider *getPixmapController(eType );
     void parse();
+    void setScreenSize(const int screen_width, const int screen_height);
+    void loadUserImage();
    // IndexBodyPixmap *getPixmap();
     //TileMatrix getTileMatrix();//--
-    void getPimapsFromImage();
     void cleanModel();
     ItemModelBase *getModel();
+
 
 signals:
     void finished(bool win);
@@ -111,6 +111,7 @@ private:
     int   max_row_ = 0;
     int   max_column_ = 0;
     int   indent_ = 2;
+    int   black_grid_border_indent_ = 1;
     bool is_rotated_ = false;
     QImage user_image_;
 

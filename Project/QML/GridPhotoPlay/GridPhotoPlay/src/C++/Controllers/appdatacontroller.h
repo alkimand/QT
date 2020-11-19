@@ -32,6 +32,7 @@ public:
     void registerQMLType(const int id);
 
 
+
 signals:
     void itemParsed(QString item_id, int view_id = -1);
     void dataChanged();
@@ -49,9 +50,11 @@ public slots:
     void appStart();
     void openFile(const QString file_path);
     void saveFile(const QString file_path, const QString id);
-
+    bool isPointInsideTile(int model_id, QString tile_index, int x, int y);
     void deleteModel(const QString id);
     ItemModelBase *getModelByID(const QString id);
+    int getScreenWidth();
+    int getScreenHeight();
 
 //QML Layer
     //QString getFileTitleByID(const QString id);

@@ -14,6 +14,16 @@ QPixmap *Tile::getPixmap() {
     return piece_pixmap_;
 }
 
-QPixmap *Tile::getBorderPixmap(){
-    return border_pixmap_;
+QPixmap *Tile::getSelectionBorderPixmap(){
+    return selection_border_pixmap_;
 }
+
+QPixmap *Tile::getBackGroundBorderPixmap(){
+    return background_border_pixmap_;
+}
+
+QPixmap *Tile::getBackGroundPixmap() {
+    //return piece_pixmap_;
+    return background_piece_pixmap_;
+}
+

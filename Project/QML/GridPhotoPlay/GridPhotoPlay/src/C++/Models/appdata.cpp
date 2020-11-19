@@ -41,9 +41,9 @@ int AppData::columnCount(const QModelIndex &parent) const {
 
 QHash<int, QByteArray> AppData::roleNames() const {
     QHash<int, QByteArray> roles;
-   // roles.insert(Qt::UserRole + MODEL_ROLES::TITLE, TITLE_S);
+    // roles.insert(Qt::UserRole + MODEL_ROLES::TITLE, TITLE_S);
     roles.insert(Qt::UserRole + MODEL_ROLES::ID, ID_S);
-   // roles.insert(Qt::UserRole + MODEL_ROLES::ICON_PATH, ICON_S);
+    // roles.insert(Qt::UserRole + MODEL_ROLES::ICON_PATH, ICON_S);
     roles.insert(Qt::EditRole, EDITE_S);
     roles.insert(Qt::DisplayRole, DISPLAY_S);
     return roles;
@@ -85,14 +85,14 @@ QVariant AppData::data(const QModelIndex &index, int role) const {
         result =  "";//app_data_.at(index.row()).value(DATA_ID(index.column()));
         //QString("%1, %2").arg(index.column()).arg(index.row());
         break;
-//    case (int(Qt::UserRole + MODEL_ROLES::TITLE)):
-//           // result = app_data_.at(index.row()).get()->getProperty(ItemEnums::EItemProperty::kFileName);
-//        break;
+        //    case (int(Qt::UserRole + MODEL_ROLES::TITLE)):
+        //           // result = app_data_.at(index.row()).get()->getProperty(ItemEnums::EItemProperty::kFileName);
+        //        break;
     case (int(Qt::UserRole + MODEL_ROLES::ID)):
-            result = QString("%1, %2").arg(index.column()).arg(index.row());
+        result = QString("%1, %2").arg(index.column()).arg(index.row());
         break;
     }
-    QString temp =  QString::number(index.row())+" " +  QString::number(index.column());//index.row();
+    //QString temp =  QString::number(index.row())+" " +  QString::number(index.column());//index.row();
     //qDebug()<< "data " + temp + " = " + result.toString();
     return result;
 }
@@ -101,11 +101,11 @@ bool AppData::setData(const QModelIndex &index, const QVariant &value, int role)
     bool result = false;
     // qDebug()<< "setData"+value.toString();
     if (index.isValid() && (role==Qt::EditRole)) {
-                         //   || role==(Qt::UserRole + MODEL_ROLES::TITLE))) {
-       // app_data_.at(index.row()).get()->setProperty(ItemEnums::EItemProperty::kFileName, value.toString());
+        //   || role==(Qt::UserRole + MODEL_ROLES::TITLE))) {
+        // app_data_.at(index.row()).get()->setProperty(ItemEnums::EItemProperty::kFileName, value.toString());
         result = true;
     }
-     return result;
+    return result;
 }
 
 void AppData::parseItem(pItem item){
@@ -116,24 +116,24 @@ void AppData::parseItem(pItem item){
     //item.get()->load()
     //eItemStatus status = item.get()->getStatus();
     //if (status ==  eItemStatus::kStatusNone) {
-      //  item.get()->setStatus(eItemStatus::kParsing);
-        //int id = item.get()->getId();
-        //item.get()->setId(std::move(id));
-      //  item.get()->parse();
-       // if (item.get()->getStatus() != eItemStatus::kParseError) {
+    //  item.get()->setStatus(eItemStatus::kParsing);
+    //int id = item.get()->getId();
+    //item.get()->setId(std::move(id));
+    //  item.get()->parse();
+    // if (item.get()->getStatus() != eItemStatus::kParseError) {
 
-            //                item.get()->setProperty(ItemEnums::EItemProperty::kStatus,
-            //                                        int(ItemEnums::eItemStatus::kParsed));
-       // }
-        //else {
-       //     return;
-      //  }
-        //            else if (item_status == int (ItemEnums::eItemStatus::kParsed)){
-        //                //item.get()->cleanModel();
-        //            }
-        //            else if (item_status != int (ItemEnums::eItemStatus::kStatusNone)){
-        //                //emit itemParsed(id);
-        //            }
+    //                item.get()->setProperty(ItemEnums::EItemProperty::kStatus,
+    //                                        int(ItemEnums::eItemStatus::kParsed));
+    // }
+    //else {
+    //     return;
+    //  }
+    //            else if (item_status == int (ItemEnums::eItemStatus::kParsed)){
+    //                //item.get()->cleanModel();
+    //            }
+    //            else if (item_status != int (ItemEnums::eItemStatus::kStatusNone)){
+    //                //emit itemParsed(id);
+    //            }
     //}
 
 }
@@ -159,14 +159,16 @@ void AppData::createItem(QString image_path, int rows, int columns, bool is_rota
     Item *item = new Item(image_path, app_data_.size(), rows, columns, is_rotated, this);
     pItem ptem = pItem(item, &QObject::deleteLater);
 
+    //user image
+    ptem.get()->loadUserImage();
+    ptem.get()->setScreenSize(screen_width_,screen_height_);
+
+    //points
     ptem.get()->createPoints();
     ptem.get()->createPaths();
     ptem.get()->createTiles();
     ptem.get()->setupModel();
 
-   // ptem.get()->createPixmapController();
-
-    //parseItem(ptem);
     app_data_.push_back(ptem);
 }
 
@@ -178,6 +180,14 @@ bool AppData::isEmpty(){
     return app_data_.isEmpty();
 }
 
+
+int AppData::getScreenWidth() {
+    return screen_width_;
+}
+
+int AppData::getScreenHeight() {
+    return screen_height_;
+}
 
 //void AppData::saveFile(const QString file_path, const QString id) {
 //    QString item_status;
@@ -199,9 +209,9 @@ bool AppData::isEmpty(){
 
 
 
-QQuickImageProvider *AppData::getPixmapController(const int id){
-    return app_data_.at(id).get()->getPixmapController(eType::kBorder);
-}
+//QQuickImageProvider *AppData::getPixmapController(const int item_id){
+//    return app_data_.at(item_id).get()->getPixmapController(eType::kSelectionBorder);
+//}
 
 //QString AppData::getPropperIcon(const QString file_name) {
 //    QString icon = DEFAULT_ICON;
@@ -226,12 +236,14 @@ void AppData::Init(){
     // default_property_map_.insert(ItemEnums::EItemProperty::kDateLastSaved,"");
     //default_property_map_.insert(ItemEnums::EItemProperty::kFormat,"jpg");
     //parseFolder();
+    screen_width_= 500;
+    screen_height_= 500;
 }
 
 void AppData::parseFolder(QString path){
     //LOOGGER("parse one file - "+ file_path);
-   // for (QString &path : getFiliesFromFolder(file_path))
-       this->createItem(QDir::toNativeSeparators(path));
+    // for (QString &path : getFiliesFromFolder(file_path))
+    this->createItem(QDir::toNativeSeparators(path));
 }
 
 QStringList AppData::getFiliesFromFolder(const QString &file_path) {

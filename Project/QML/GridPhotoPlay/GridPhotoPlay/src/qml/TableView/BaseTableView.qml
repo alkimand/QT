@@ -5,7 +5,7 @@ import QtQuick.Controls.Styles 1.4
 import QtQml.Models 2.12
 
 //import AppDataController 1.0
-
+import ItemModelBase 1.0
 
 import "./ItemDelegate/Loaders"
 
@@ -19,7 +19,25 @@ import "./ItemDelegate/Loaders"
 import "./ItemDelegate/ItemDelegate"
 Item {
     id: root
-    property alias model : table.model
+    property int model_id:0
+    property string selectedTileId: '0'
+    //property alias model : table.model
+    signal cliked(string tile_id,real mouseX, real mouseY);
+
+    Connections {
+        target: root
+        onCliked: {
+            app_data.getModelByID(root.model_id).onClick(tile_id, mouseX, mouseY);
+        }
+    }
+    Connections {
+        target: app_data.getModelByID(root.model_id)
+        onSelectTile:{
+            //console.log("signal from Iem data"+tile_id);
+            selectedTileId = tile_id;
+
+        }
+    }
 
     TableView {
         id: table
@@ -30,7 +48,9 @@ Item {
         // anchors.fill: parent
         // height:600
         //width:800
+        //ItemSelectionModel:app_data.getModelByID(root.model_id);
         columnSpacing: 0
+        model:  app_data.getModelByID(root.model_id);
         rowSpacing: 0
         clip: true
         // cellWidth: root.width/5
@@ -58,49 +78,24 @@ Item {
         // model: app_data.getModelByID(current_id_)
 
         reuseItems : true
-        z:1
+        //z:1
         //    onWidthChanged: {
         //        table_view.forceLayout()
         //        table_view.x=0
         //    }
         delegate: DropArea {
             id: delegateRoot
+            onXChanged: {
+                // console.log("onXChanged= "+delegateRoot.x);
+            }
 
             // width: 150//root.cellWidth;
             //height: 150//root.cellHeight;
-            //            onEntered: {
-            //                console.log("onEntered")
+            onEntered: {
+                console.log("onEntered DropArea")
+            }
 
-            //                var on = drag.source.visualIndex;
-            //                var to = icon.visualIndex;
-            //                if (on!==to){
-            //                    console.log("drag.source.visualIndex= "+drag.source.visualIndex);
-            //                    console.log("icon.visualIndex= "+icon.visualIndex);
-            //                    switch (root.getOrientation(on,to, columns, rows)) {
-            //                    case 0:
-            //                        visualModel.items.move(on, to);
-            //                        visualModel.items.move(to + 1, on);
-            //                        break;
-            //                    case 1:
-            //                        visualModel.items.move(on, to);
-            //                        break;
-            //                    case 2:
-            //                        visualModel.items.move(on, to);
-            //                        visualModel.items.move(to - 1, on);
-            //                        break;
-            //                    case 3:
-            //                        visualModel.items.move(to, on);
-            //                        break;
-            //                    default:
-            //                        break;
-            //                    }
-            //                    //visualModel.items.move(on, to)
-            //                    //visualModel.items.move(to+1, on)
-            //                }
-            //                //visualModel.items.move(icon.visualIndex, drag.source.visualIndex)
-            //            }
-            //property int visualIndex: DelegateModel.itemsIndex
-            //Binding { target: icon; property: "visualIndex"; value: visualIndex }
+
 
 
 
@@ -113,44 +108,29 @@ Item {
                 property  int originX: origin_x;
                 property  int originY: origin_y;
                 property  string originID: ID;
-                property bool isSelected: false
-                onIsSelectedChanged: {
-                    if (isSelected==true){
-                        border.visible = true;
-                        tile_container.z = 2
-                    }
-                    else{
-                        border.visible = false;
-                        tile_container.z = 0
+                property bool isSetuped:false
+                onXChanged: {
+                    if (tile_container.isSetuped === true){
+                        // console.log("tile_container.isSetuped= "+ tile_container.isSetuped);
+                        selectedTileId = tile_container.originID
+                        console.log("onXChanged= "+ tile_container.x);
                     }
                 }
-                //width: 150-8//root.cellWidth;
-                //height: 150-8//root.cellHeight;
-                // width: root.width - 8;
-                // height: root.height - 8;
-                //            TapHandler {
-                //                id:tapHandler
-                //                acceptedDevices: PointerDevice.Mouse | PointerDevice.Stylus
-                //                onTapped: console.log("onTapped clicked")
-                //            }
-                //            Rectangle {
-                //              id: ttt
-                //              property int aa: 1000
-                //            }
                 Image {
                     property int visualIndex: 0
                     id: icon
                     anchors.centerIn: parent
                     source: image_source//model.image_source
-                    //anchors.fill: parent
-                    // width:paintedWidth;
-                    //height:paintedHeight
-                    // height: root.height - 8;
                     anchors {
                         horizontalCenter: parent.horizontalCenter;
                         verticalCenter: parent.verticalCenter
                     }
                     z:0
+                    MouseArea{
+                        onEntered: {
+                            console.log("onEntered icon")
+                        }
+                    }
                 }
 
                 Image {
@@ -158,30 +138,34 @@ Item {
                     //id: icon
                     anchors.centerIn: parent
                     source: border_source//model.border_source
-                    //width: root.width - 8;
-                    // height: root.height - 8;
                     anchors {
                         horizontalCenter: parent.horizontalCenter;
                         verticalCenter: parent.verticalCenter
                     }
 
-                    visible:false// tapHandler.pressed ? 1 : 0
-                    z:1
+                    visible:(root.selectedTileId==tile_container.originID)?true:false;// tapHandler.pressed ? 1 : 0
+                    MouseArea{
+                        onEntered: {
+                            console.log("onEntered border")
+                        }
+                    }
+                    //z:1
                 }
 
 
-//                DragHandler {
-//                    id: dragHandler
-//                    // xAxis.maximum : 250
-//                    //  xAxis.minimum : 140
-//                }
+                //                DragHandler {
+                //                    id: dragHandler
+                //                    // xAxis.maximum : 250
+                //                    //  xAxis.minimum : 140
+                //                }
 
 
 
                 Drag.active: {
+                    id:drag
                     //console.log("dragHandler.active")
-                     mouse_area.drag.active
-                   // dragHandler.active
+                    mouse_area.drag.active
+                    // dragHandler.active
                 }
                 Drag.source: tile_container
                 Drag.hotSpot.x: 36
@@ -190,19 +174,19 @@ Item {
                 DropArea {
                     id: drop_area
                     anchors.fill: parent
-//                    Rectangle {
-//                        id: dropRectangle
-//                        anchors.fill: parent
-//                        z:-1
+                    //                    Rectangle {
+                    //                        id: dropRectangle
+                    //                        anchors.fill: parent
+                    //                        z:-1
 
                     states: [
                         State {
                             when: delegateRoot.containsDrag
-                           // when: drop_area.containsDrag
-//                            PropertyChanges {
-//                                target: dropRectangle
-//                                color: "grey"
-//                            }
+                            // when: drop_area.containsDrag
+                            //                            PropertyChanges {
+                            //                                target: dropRectangle
+                            //                                color: "grey"
+                            //                            }
 
                             PropertyChanges {
                                 target: icon
@@ -224,28 +208,41 @@ Item {
                     tile_container.width = icon.paintedWidth
                     tile_container.height = icon.paintedHeight
                 }
+
                 MouseArea {
                     id: mouse_area
                     anchors.fill: parent
                     drag.target: tile_container
+                    hoverEnabled:true
                     propagateComposedEvents : true
+                   // preventStealing: true
+
                     onClicked: {
                         console.log("onClicked index=" + tile_container.originID)
-                        tile_container.isSelected =  !tile_container.isSelected
-                        if (tile_container.z ===1)
-                            tile_container.z = 0;
-                        else
-                            tile_container.z = 1;
+                        //tile_container.isSelected =  !tile_container.isSelected
+                        //if(app_data.getModelByID(root.model_id).isPointInsideTile( tile_container.originID, mouse_area.mouseX, mouse_area.mouseY)){
+                        //mouse_area.propagateComposedEvents = false;
+                        //console.log("PointInsideTile")
+                        //}
+                        root.cliked(tile_container.originID,mouse_area.mouseX, mouse_area.mouseY);
+                        // else
+                        //console.log("PointOutsideTile")
+                        // curentIndex = 2;
+                        //if (tile_container.z ===1)
+                        //     tile_container.z = 0;
+                        //  else
+                        //     tile_container.z = 1;
 
                     }
                     onEntered: {
-                        console.log("onEntered index=" + tile_container.originID)
+                        root.cliked(tile_container.originID,mouse_area.mouseX, mouse_area.mouseY);
+                        console.log("onEntered mouse_area index=" + tile_container.originID)
                     }
 
                     onReleased:{
-                        tile_container.z =0;
-                    console.log("onReleased index=" + tile_container.originID)
-                    tile_container.Drag.target !== null ? tile_container.Drag.target : root
+                        //tile_container.z =0;
+                        console.log("onReleased index=" + tile_container.originID)
+                        tile_container.Drag.target !== null ? tile_container.Drag.target : root
                     }
 
                 }
@@ -253,20 +250,24 @@ Item {
             Component.onCompleted: {
                 //console.log("icon-rectangle change parent Completed");
                 tile_container.parent = root;
-                tile_container.x = tile_container.originX;
+                tile_container.x = tile_container.originX-000;
                 tile_container.y = tile_container.originY;
-                tile_container.parent = table
+                //tile_container.parent = table;
+                tile_container.isSetuped = true;
+
+                curentIndex = 1;
+
             }
         }
 
         Component.onCompleted: {
             //  console.log("onCompleted");
         }
-         MouseArea {
-             onEntered: {
-                 console.log("onEntered i" )
-             }
-         }
+        MouseArea {
+            onEntered: {
+                console.log("onEntered i" )
+            }
+        }
     }
     //ColumnProvider {
     //        placeholderText_L:  { return typeof display_ !== "undefined" ? display_:""}

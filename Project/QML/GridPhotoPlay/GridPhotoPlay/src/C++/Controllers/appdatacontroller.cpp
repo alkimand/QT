@@ -36,25 +36,33 @@ void AppDataController::setApplicationEngine(QQmlApplicationEngine &engine){
     engine_= &engine;
 }
 
-void AppDataController::registerQMLType(const int id) {
-    pItem item = app_data_->getItemByID(id);
+void AppDataController::registerQMLType(const int item_id) {
+    pItem item = app_data_->getItemByID(item_id);
     if (!item.isNull() && !dataIsEmpty()) {
-        pItem item = app_data_->getItemByID(id);
+        pItem item = app_data_->getItemByID(item_id);
         if (engine_ && !item.isNull()) {
             ImageControllerMap::iterator it;
             for (it = image_controller_map_.begin(); it != image_controller_map_.end(); ++it) {
-                QString image_root_path = it.value();
-                engine_->addImageProvider(QLatin1String(image_root_path.toLatin1()), item.get()->getPixmapController(it.key()));
+                engine_->addImageProvider(QLatin1String(it.value().toLatin1()), item.get()->getPixmapController(it.key()));
             }
         }
         else {
-            qDebug()<< ("NO engine " + QString::number(id));
+            qDebug()<< ("NO engine at item_id=" + QString::number(item_id));
         }
     }
     else {
-        qDebug()<< ("NO item by id in registerQMLType = " + QString::number(id));
+        qDebug()<< ("NO item by id in registerQMLType at item_id= " + QString::number(item_id));
         return;
     }
+}
+
+int AppDataController::getScreenWidth() {
+    return app_data_->getScreenWidth();
+
+}
+
+int AppDataController::getScreenHeight() {
+   return app_data_->getScreenHeight();
 }
 
 bool AppDataController::dataIsEmpty() {
@@ -107,6 +115,12 @@ void AppDataController::saveFile(const QString file_path, const QString id) {
     //    }
 }
 
+bool AppDataController::isPointInsideTile(int model_id,  QString tile_index, int mouse_area_x, int mouse_area_y) {
+   // getModelByID(QString::number(model_id)).;
+    LOOGGER("tile_index=" + tile_index +" mouse_area_x="+ QString::number(mouse_area_x)+ " mouse_area_y="+ QString::number(mouse_area_y));
+    return true;
+}
+
 void AppDataController::deleteModel(const QString id) {
     LOOGGER("id= "+ id );
     // model_->deleteFile(id);
@@ -124,18 +138,17 @@ ItemModelBase *AppDataController::getModelByID(const QString id) {
 void AppDataController::Init() {
     app_data_ = new AppData(this);
    // image_controller_map_.insert(kBody, QString(TILE_BODY_IMAGE_PROVIDER));
-    image_controller_map_.insert(kBody, QString(TILE_BODY_IMAGE_PROVIDER));
-    image_controller_map_.insert(kBorder, QString(TILE_BORDER_IMAGE_PROVIDER));
-    QString default_dir = getDefaultDir();
-    default_dir = "";//--
-    if (default_dir.isEmpty())
-        default_dir = QDir::currentPath();
-    // app_data_->parseFolder(default_dir);
-    app_data_->createItem("test.jpg",5,5, false);
-    // registerQMLType(0);
-    // engine_->addImageProvider(QLatin1String("0"), app_data_->getPixmapController(0));
+    image_controller_map_.insert(eType::kBody, QString(TILE_BODY_IMAGE_PROVIDER));
+    image_controller_map_.insert(eType::Background, QString(TILE_BACKGOUND_BORDER_IMAGE_PROVIDER));
+    image_controller_map_.insert(eType::kSelectionBorder, QString(TILE_BORDER_IMAGE_PROVIDER));
+    image_controller_map_.insert(eType::kBackgroundBorder, QString(TILE_BACKGOUND_BORDER_IMAGE_PROVIDER));
 
-    // app_data_->registerQMLType(engine_);
+//    QString default_dir = getDefaultDir();
+//    default_dir = "";//--
+//    if (default_dir.isEmpty())
+//        default_dir = QDir::currentPath();
+    // app_data_->parseFolder(default_dir);
+    app_data_->createItem("test.jpg",20,20, false);
 }
 
 AppDataController::~AppDataController() {

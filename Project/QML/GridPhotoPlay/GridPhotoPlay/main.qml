@@ -3,11 +3,11 @@ import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Controls 1.4 as C1
 import QtQuick.Dialogs 1.2
-import QtQuick.Controls.Styles 1.4
+//import QtQuick.Controls.Stylles 1.4
 
 //import "src/qml/GridView"
 
-import "src/qml/TableView"
+import "src/qml/Scene"
 
 ApplicationWindow {
     id: main_root
@@ -51,13 +51,35 @@ ApplicationWindow {
 //              ctx.fillRect(0, 0, width, height);
 //          }
 
+Column{
+    id:column
+    //anchors.left: parent.left
+    //anchors.right: parent.right
+    anchors.horizontalCenter: parent.horizontalCenter;
 
-BaseTableView{
-     anchors.fill: parent
-     id: table_view_template
-     //ItemModelBase:app_data.getModelByID(0);
-     model:  app_data.getModelByID(0);
+    property int screen_width: app_data.getScreenWidth();
+    property int screen_height: app_data.getScreenHeight()
+    width:screen_width +400
+    BackGroundWidget {
+        id: screen
+        model_id:0
+        anchors.horizontalCenter: parent.horizontalCenter;
+        width: 1000//column.screen_width;
+        height:1000//column.screen_height;
+    }
+
+//    BaseTableView{
+//        id: screen2
+//        model_id:0
+//        anchors.left: parent.left
+//        anchors.right: parent.right
+//        anchors.top: screen.bottom
+
+//      //   anchors.fill: parent
+
+//    }
 }
+
 
 
 

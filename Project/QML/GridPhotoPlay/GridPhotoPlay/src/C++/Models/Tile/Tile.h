@@ -17,7 +17,10 @@ public:
 
     QPixmap *getPixmap();
 
-    QPixmap *getBorderPixmap();
+    QPixmap *getSelectionBorderPixmap();
+    QPixmap *getBackGroundBorderPixmap();
+    QPixmap *getBackGroundPixmap();
+
     //virtual ~Tile();
 
 

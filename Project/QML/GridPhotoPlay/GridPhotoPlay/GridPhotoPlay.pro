@@ -108,6 +108,7 @@ QML_SOURSE_PATH = $${PROJECT_ROOT_PATH}/src/qml/
     QML_SOURSE_MENU_BAR_PATH    =  $${QML_SOURSE_PATH}/Menu
     QML_SOURSE_TAB_VIEW_PATH    =  $${QML_SOURSE_PATH}/TabView
     QML_SOURSE_TABLE_VIEW_PATH  =  $${QML_SOURSE_PATH}/TableView
+    QML_SOURSE_SCENE_PATH       =  $${QML_SOURSE_PATH}/Scene
     QML_SOURSE_FILE_DIALOG_PATH =  $${QML_SOURSE_PATH}/FileDialog
     QML_SOURSE_GRIDVIEW_PATH    =  $${QML_SOURSE_PATH}/GridView
 OTHER_FILES += \
@@ -137,18 +138,19 @@ OTHER_FILES += \
 #TabView_menu
     $${QML_SOURSE_TAB_VIEW_PATH}/Tab/MouseEvent.qml \
     $${QML_SOURSE_MENU_BAR_PATH}/TabContextMenu/TabContextMenu.qml \
-#TableView
-    $${QML_SOURSE_TABLE_VIEW_PATH}/BaseTableView.qml \
+#Scene
+    $${QML_SOURSE_TAB_VIEW_PATH}/BackGroundWidget.qml \
+   # $${QML_SOURSE_TABLE_VIEW_PATH}/BaseTableView.qml \
 #
     #TableView Item Delegats
-    $${QML_SOURSE_TABLE_VIEW_PATH}/ItemDelegate/ItemDelegate/EditableLable.qml \
-    $${QML_SOURSE_TABLE_VIEW_PATH}/ItemDelegate/ItemDelegate/CheckBox.qml \
+ #  $${QML_SOURSE_TABLE_VIEW_PATH}/ItemDelegate/ItemDelegate/EditableLable.qml \
+  #  $${QML_SOURSE_TABLE_VIEW_PATH}/ItemDelegate/ItemDelegate/CheckBox.qml \
 #
     #TableView Loaders
-    $${QML_SOURSE_MENU_BAR_PATH}/ItemDelegate/Loaders/ColumnProvider.qml \
+   # $${QML_SOURSE_MENU_BAR_PATH}/ItemDelegate/Loaders/ColumnProvider.qml \
 #
     #TableView ContextMenu
-    $${QML_SOURSE_MENU_BAR_PATH}/TableViewContexMenu/ItemContexMenu/ItemContexMenu.qml \
+    #$${QML_SOURSE_MENU_BAR_PATH}/TableViewContexMenu/ItemContexMenu/ItemContexMenu.qml \
 #FileDialog
     $${QML_SOURSE_FILE_DIALOG_PATH}/FileDialogWidget.qml \
     $${QML_SOURSE_FILE_DIALOG_PATH}/OpenDialogWidget.qml \

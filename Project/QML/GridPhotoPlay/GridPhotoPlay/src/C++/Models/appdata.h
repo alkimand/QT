@@ -41,10 +41,13 @@ public:
     void createItem(QString image_path ="test.jpg" , int rows = 5, int columns = 5, bool is_rotated = false);
     int getLastCreatedItemId();
     bool isEmpty();
+    int getScreenWidth();
+    int getScreenHeight();
     //void saveFile(const QString file_path, const QString id);
     //void deleteFile( const QString id);
-    QQuickImageProvider *getPixmapController(const int id);
+    //QQuickImageProvider *getPixmapController(const int id);
     //private:
+
 
 protected:
 
@@ -56,6 +59,8 @@ private:
     void Init();
     QStringList getFiliesFromFolder(const QString &path = "");
 
+    int screen_width_= 0;
+    int screen_height_= 0;
    // QString getPropperIcon(const QString file_name = "");
 
 signals:
@@ -63,6 +68,7 @@ signals:
 
 private:
     QList <pItem>                       app_data_;
+
 };
 
 #endif // APP_MODEL_H

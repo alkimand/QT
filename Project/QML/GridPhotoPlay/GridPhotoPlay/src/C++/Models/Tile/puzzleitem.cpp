@@ -44,53 +44,77 @@ PuzzleItem::PuzzleItem(PuzzlePath *path,const QPixmap& source,
 
     QPixmap mask;
     mask.convertFromImage(imgMask);
-    //pieceImage.setMask(mask.mask());
     piece_pixmap_->setMask(mask.mask());
-    //qDebug()<< "piece_pixmap_";
-    // qDebug()<< QString::number(piece_pixmap_->size().width()) + " " + QString::number(piece_pixmap_->size().height());
-    pixmap_item_ = new QGraphicsPixmapItem(*piece_pixmap_);
+
+    background_piece_pixmap_ =  piece_pixmap_;//-
 }
 
 QRectF PuzzleItem::boundingRect() const {
-    if (pixmap_item_) {
-        auto rect = pixmap_item_->boundingRect();
-        return rect;
-    }
+   // if (pixmap_item_) {
+       // auto rect = pixmap_item_->boundingRect();
+       // return rect;
+   // }
     return QRectF(0,0,0,0);
 }
 
 void PuzzleItem::paint(QPainter *painter,
                        const QStyleOptionGraphicsItem *option,
                        QWidget *widget) {
-    if (pixmap_item_)
-        pixmap_item_->paint(painter, option, widget);
+   // if (pixmap_item_)
+      //  pixmap_item_->paint(painter, option, widget);
 }
 
-void PuzzleItem::createBorder(PuzzlePath *border_path, const int indent) {
-    //qDebug()<< ("createBorder");
+void PuzzleItem::createBackgroundBorder(PuzzlePath *border_path, const int indent, const QColor &color) {
 
+    background_border_pixmap_ = createBorderPixmap(border_path, indent, color);
+}
+
+void PuzzleItem::createSelectionBorder(PuzzlePath *border_path, const int indent, const QColor &color) {
+    selection_border_pixmap_ = createBorderPixmap(border_path, indent, color);
+}
+
+//void PuzzleItem::createBorder(PuzzlePath *border_path, const int indent,const  QColor &color ) {
+//    //qDebug()<< ("createBorder");
+
+////    QPainterPath full_path_;
+////    border_path_ = border_path;
+////    for (auto &it : border_path_->path)
+////        full_path_.connectPath(it);
+////    full_path_.translate(-border_path_->upleft_dx + indent/2, -border_path_->upleft_dy + indent/2);
+////    QImage imgMask(piece_pixmap_->size(), QImage::Format_ARGB32);
+////    imgMask.fill(Qt::GlobalColor::transparent);
+////    QPainter painter;
+////    painter.begin(&imgMask);;
+////    QPen pen(color, indent, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+////    painter.setPen(pen);
+////    painter.drawPath(full_path_);
+////    painter.end();
+
+////    selection_border_pixmap_ = new QPixmap(piece_pixmap_->size());
+////    selection_border_pixmap_->convertFromImage(imgMask);
+//}
+
+QPixmap* PuzzleItem::createBorderPixmap(PuzzlePath *border_path, const int indent, const QColor &color) {
     QPainterPath full_path_;
-    border_path_ = border_path;
-    for (auto &it : border_path_->path)
+    for (auto &it : border_path->path)
         full_path_.connectPath(it);
-    //full_path_.translate(-path_->upleft_dx, -path_->upleft_dy);
-    full_path_.translate(-border_path_->upleft_dx + indent/2, -border_path_->upleft_dy + indent/2);
+    full_path_.translate(-border_path->upleft_dx + indent/2, -border_path->upleft_dy + indent/2);
     QImage imgMask(piece_pixmap_->size(), QImage::Format_ARGB32);
-    //qDebug()<< QString::number(piece_pixmap_->size().width()) + " " + QString::number(piece_pixmap_->size().height());
     imgMask.fill(Qt::GlobalColor::transparent);
     QPainter painter;
-    painter.begin(&imgMask);
-    // painter2.setPen(QPen(Qt::GlobalColor::red, 5, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
-   // QPen pen(Qt::black, indent, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
-    QPen pen(Qt::yellow, indent, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+    painter.begin(&imgMask);;
+    QPen pen(color, indent, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
     painter.setPen(pen);
-    //painter2.setPen({QColor(255, 117, 56), 1});
-    //painter2.setBrush(Qt::cyan);
     painter.drawPath(full_path_);
     painter.end();
 
-    border_pixmap_ = new QPixmap(piece_pixmap_->size());
-    border_pixmap_->convertFromImage(imgMask);
+    QPixmap *border_pixmap = new QPixmap(piece_pixmap_->size());
+    border_pixmap->convertFromImage(imgMask);
+    return border_pixmap;
+}
+
+void PuzzleItem::createTouchesBorder(PuzzlePath *border_path, const int indent) {
+    //createBorderPixmap(border_path, indent);
 }
 
 void PuzzleItem::setAddress(QPair<int, int> address) {
@@ -111,4 +135,8 @@ QString PuzzleItem::getSIndex() {
 
 void PuzzleItem::setIndex(QPair<int, int> index) {
     index_= index;
+}
+
+void PuzzleItem::createBackgroundPixmap() {
+
 }
