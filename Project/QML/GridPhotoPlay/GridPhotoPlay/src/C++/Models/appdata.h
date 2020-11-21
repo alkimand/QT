@@ -38,7 +38,7 @@ public:
     void parseItem(pItem item);
     //void registerQMLType(QQmlApplicationEngine &engine);
     pItem  getItemByID(const int id);
-    void createItem(QString image_path ="test.jpg" , int rows = 5, int columns = 5, bool is_rotated = false);
+    void createItem(int &item_id, QString image_path ="test.jpg" , int rows = 5, int columns = 5, bool is_rotated = false);
     int getLastCreatedItemId();
     bool isEmpty();
     int getScreenWidth();

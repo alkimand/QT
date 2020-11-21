@@ -113,13 +113,13 @@ void Item::createTiles() {
 
             tile->setIndex(qMakePair(row, column));
 
-            tile->createSelectionBorder(paths_[eType::kSelectionBorder][row][column], indent_,  Qt::yellow);
+          //  tile->createSelectionBorder(paths_[eType::kSelectionBorder][row][column], indent_,  Qt::yellow);
             tile->createBackgroundBorder(paths_[eType::kBackgroundBorder][row][column], black_grid_border_indent_,  Qt::black);
            // tile->createTouchesBorderder(paths_[eType::kTouchesBorder][row][column], backgrount_touches_indent_);
 
             QString index = QString::number(row)+ "_" + QString::number(column);
             indexPixmap_[eType::kBody].insert(index, tile->getPixmap());
-            indexPixmap_[eType::kSelectionBorder].insert(index, tile->getSelectionBorderPixmap());
+            //indexPixmap_[eType::kSelectionBorder].insert(index, tile->getSelectionBorderPixmap());
             indexPixmap_[eType::Background].insert(index, tile->getBackGroundPixmap());;
             indexPixmap_[eType::kBackgroundBorder].insert(index, tile->getBackGroundBorderPixmap());
             pTile ptile = pTile(tile, &QObject::deleteLater);
@@ -130,14 +130,12 @@ void Item::createTiles() {
 }
 
 void Item::setupModel() {
-    QPair<int, int> size {tiles_matrix_.size(),tiles_matrix_[0].size()};
+    //QPair<int, int> size {tiles_matrix_.size(),tiles_matrix_[0].size()};
     model_ = new ItemModelBase(&tiles_matrix_, this);
-    //model_ = new ItemModelBase(size, this);
-
 }
 
 
-QQuickImageProvider *Item::getPixmapController(eType type) {
+QQuickImageProvider *Item::getPixmapController(const eType type) {
     PixmapController *pixmap_controller = new PixmapController();
     auto index_map = indexPixmap_.find(type);
     if (index_map!=indexPixmap_.end())

@@ -73,7 +73,7 @@ public:   //
     void createPaths();
     void createTiles();
     void setupModel();
-    QQuickImageProvider *getPixmapController(eType );
+    QQuickImageProvider *getPixmapController(const eType );
     void parse();
     void setScreenSize(const int screen_width, const int screen_height);
     void loadUserImage();

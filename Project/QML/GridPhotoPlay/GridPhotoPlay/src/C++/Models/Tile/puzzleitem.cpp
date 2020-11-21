@@ -46,7 +46,9 @@ PuzzleItem::PuzzleItem(PuzzlePath *path,const QPixmap& source,
     mask.convertFromImage(imgMask);
     piece_pixmap_->setMask(mask.mask());
 
-    background_piece_pixmap_ =  piece_pixmap_;//-
+   background_piece_pixmap_ = new QPixmap(user_pixmap_->copy(rect_));
+   background_piece_pixmap_->setMask(mask.mask());
+    //background_piece_pixmap_ =  piece_pixmap_;//-
 }
 
 QRectF PuzzleItem::boundingRect() const {

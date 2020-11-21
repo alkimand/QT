@@ -60,12 +60,19 @@ Column{
     property int screen_width: app_data.getScreenWidth();
     property int screen_height: app_data.getScreenHeight()
     width:screen_width +400
-    BackGroundWidget {
-        id: screen
+    DropWidget {
+        id: drop_widget
         model_id:0
         anchors.horizontalCenter: parent.horizontalCenter;
         width: 1000//column.screen_width;
         height:1000//column.screen_height;
+    }
+    DraggedWidget{
+        id: drag_widget
+        model_id:0
+        anchors.horizontalCenter: parent.horizontalCenter;
+        width: 1000
+        height:1000
     }
 
 //    BaseTableView{

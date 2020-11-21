@@ -37,7 +37,7 @@ public:
     
     virtual ~ItemModelBase();
 private:
-    bool isUserClickInsideBody(QString tile_index, int mouse_area_x, int mouse_area_y);
+    bool isUserClickInsideBody(const QString tile_index, const int mouse_area_x, const int mouse_area_y);
     QString getSelectedTileId(QString tile_index, int mouse_area_x, int mouse_area_y);
 
 public slots:

@@ -110,7 +110,6 @@ QML_SOURSE_PATH = $${PROJECT_ROOT_PATH}/src/qml/
     QML_SOURSE_TABLE_VIEW_PATH  =  $${QML_SOURSE_PATH}/TableView
     QML_SOURSE_SCENE_PATH       =  $${QML_SOURSE_PATH}/Scene
     QML_SOURSE_FILE_DIALOG_PATH =  $${QML_SOURSE_PATH}/FileDialog
-    QML_SOURSE_GRIDVIEW_PATH    =  $${QML_SOURSE_PATH}/GridView
 OTHER_FILES += \
     main.qml \
 #Actions
@@ -156,8 +155,8 @@ OTHER_FILES += \
     $${QML_SOURSE_FILE_DIALOG_PATH}/OpenDialogWidget.qml \
     $${QML_SOURSE_FILE_DIALOG_PATH}/SaveDialogWidget.qml \
 #GridView
-   $${QML_SOURSE_FILE_DIALOG_PATH}/GridViewWidget.qml \
-
+   $${QML_SOURSE_SCENE_PATH}/DropWidget.qml \
+   $${QML_SOURSE_SCENE_PATH}/DraggedWidget.qml
 
 RC_FILE = $${PROJECT_ROOT_PATH}/src/images/AppIcon/AppIcon.rc
 
@@ -178,7 +177,6 @@ DISTFILES += \
     $${IMAGES_PATH}/freeinstagramdownload.ico \
     $${IMAGES_PATH}/freetiktokdownloader.ico \
     $${IMAGES_PATH}/vimeodownload.ico \
-    src/qml/GridView/GridViewWidget.qml
 
 QML_DESIGNER_IMPORT_PATH =
 

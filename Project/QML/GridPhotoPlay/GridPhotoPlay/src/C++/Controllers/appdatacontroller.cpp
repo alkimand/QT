@@ -85,6 +85,9 @@ QString AppDataController::getDefaultDir() {
 
 void AppDataController::openFile(const QString file_path){
     //LOOGGER("+");
+    int item_id = 0;
+    app_data_->createItem(item_id, "test.jpg",10,10, false);
+    registerQMLType(item_id);
     //    QString real_file_path = file_path.mid(8);
     //    QFileInfo check_file(real_file_path);
     //    if (check_file.exists() && check_file.isFile()){
@@ -137,10 +140,9 @@ ItemModelBase *AppDataController::getModelByID(const QString id) {
 
 void AppDataController::Init() {
     app_data_ = new AppData(this);
-   // image_controller_map_.insert(kBody, QString(TILE_BODY_IMAGE_PROVIDER));
     image_controller_map_.insert(eType::kBody, QString(TILE_BODY_IMAGE_PROVIDER));
-    image_controller_map_.insert(eType::Background, QString(TILE_BACKGOUND_BORDER_IMAGE_PROVIDER));
-    image_controller_map_.insert(eType::kSelectionBorder, QString(TILE_BORDER_IMAGE_PROVIDER));
+    image_controller_map_.insert(eType::Background, QString(TILE_BACKGOUND_IMAGE_PROVIDER));
+    //image_controller_map_.insert(eType::kSelectionBorder, QString(TILE_BORDER_IMAGE_PROVIDER));
     image_controller_map_.insert(eType::kBackgroundBorder, QString(TILE_BACKGOUND_BORDER_IMAGE_PROVIDER));
 
 //    QString default_dir = getDefaultDir();
@@ -148,7 +150,8 @@ void AppDataController::Init() {
 //    if (default_dir.isEmpty())
 //        default_dir = QDir::currentPath();
     // app_data_->parseFolder(default_dir);
-    app_data_->createItem("test.jpg",20,20, false);
+
+    //item_id
 }
 
 AppDataController::~AppDataController() {

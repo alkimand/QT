@@ -34,7 +34,7 @@ public:
 
 
 signals:
-    void itemParsed(QString item_id, int view_id = -1);
+    void itemParsed(QString item_id = "", int view_id = -1);
     void dataChanged();
 
 private:
@@ -48,11 +48,11 @@ private:
     bool dataIsEmpty();
 public slots:
     void appStart();
-    void openFile(const QString file_path);
-    void saveFile(const QString file_path, const QString id);
-    bool isPointInsideTile(int model_id, QString tile_index, int x, int y);
-    void deleteModel(const QString id);
-    ItemModelBase *getModelByID(const QString id);
+    void openFile(const QString file_path = "");
+    void saveFile(const QString file_path, const QString id = 0);
+    bool isPointInsideTile(int model_id = 0, QString tile_index = "", int x = 0, int y = 0);
+    void deleteModel(const QString id = "");
+    ItemModelBase *getModelByID(const QString id = "");
     int getScreenWidth();
     int getScreenHeight();
 

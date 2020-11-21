@@ -37,13 +37,14 @@ int ItemModelBase::columnCount(const QModelIndex &parent) const {
 
 QHash<int, QByteArray> ItemModelBase::roleNames() const {
     QHash<int, QByteArray> roles;
-    roles.insert(Qt::UserRole + MODEL_ROLES::IMAGE_SOURCE, IMAGE_SOURCE_S);
-    roles.insert(Qt::UserRole + MODEL_ROLES::BORDER_SOURCE, BORDER_SOURCE_S);
+
     roles.insert(Qt::UserRole + MODEL_ROLES::ID, ID_S);
     roles.insert(Qt::UserRole + MODEL_ROLES::ORIGIN_X, ORIGIN_X_S);
     roles.insert(Qt::UserRole + MODEL_ROLES::ORIGIN_Y, ORIGIN_Y_S);
     roles.insert(Qt::UserRole + MODEL_ROLES::CURENT_INDEX, CURENT_INDEX_S);
     roles.insert(Qt::UserRole + MODEL_ROLES::BODY, BODY_S);
+    roles.insert(Qt::UserRole + MODEL_ROLES::IMAGE_SOURCE, IMAGE_SOURCE_S);
+    //roles.insert(Qt::UserRole + MODEL_ROLES::BORDER_SOURCE, BORDER_SOURCE_S);
     roles.insert(Qt::UserRole + MODEL_ROLES::BACKGROUND_SOURCE, BACKGROUND_SOURCE_S);
     roles.insert(Qt::UserRole + MODEL_ROLES::BACKGROUND_BORDER_SOURCE, BACKGROUND_BORDER_SOURCE_S);
     return roles;
@@ -92,10 +93,12 @@ QVariant ItemModelBase::data(const QModelIndex &index, int role) const {
         result = pixmap_controller_template.arg(QString(TILE_BACKGOUND_IMAGE_PROVIDER));
         //result = pixmap_controller_template.arg(QString(TILE_BODY_IMAGE_PROVIDER));
         break;
-    case (int(Qt::UserRole + MODEL_ROLES::BORDER_SOURCE)):
-        result = pixmap_controller_template.arg(QString(TILE_BORDER_IMAGE_PROVIDER));
-        break;
+//    case (int(Qt::UserRole + MODEL_ROLES::BORDER_SOURCE)):
+//        result = pixmap_controller_template.arg(QString(TILE_BORDER_IMAGE_PROVIDER));
+//       // result = pixmap_controller_template.arg(QString(TILE_BODY_IMAGE_PROVIDER));
+//        break;
     case (int(Qt::UserRole + MODEL_ROLES::BACKGROUND_BORDER_SOURCE)):
+       // result = pixmap_controller_template.arg(QString(TILE_BODY_IMAGE_PROVIDER));
         result = pixmap_controller_template.arg(QString(TILE_BACKGOUND_BORDER_IMAGE_PROVIDER));
         break;
     case (int(Qt::UserRole + MODEL_ROLES::ID)):
@@ -190,7 +193,7 @@ ItemModelBase::~ItemModelBase() {
     //  qDebug()<< "~ItemModelBase()";
 }
 
-bool ItemModelBase::isUserClickInsideBody(QString tile_index, int mouse_area_x, int mouse_area_y) {
+bool ItemModelBase::isUserClickInsideBody(const QString tile_index, const int mouse_area_x, const int mouse_area_y) {
     return true;
 }
 

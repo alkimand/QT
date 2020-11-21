@@ -40,7 +40,8 @@ int main(int argc, char *argv[]) {
     gui_app.setOrganizationDomain("MicrolabSystem");
     AppDataController app;
     app.setApplicationEngine(engine);
-    app.registerQMLType(0);
+    app.openFile("");
+    //app.registerQMLType(0);
     engine.rootContext()->setContextProperty("app_data", &app);
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

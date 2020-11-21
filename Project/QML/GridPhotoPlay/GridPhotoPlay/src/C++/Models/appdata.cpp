@@ -154,9 +154,10 @@ pItem AppData::getItemByID(const int id){
 }
 
 
-void AppData::createItem(QString image_path, int rows, int columns, bool is_rotated) {
+void AppData::createItem(int &item_id, QString image_path, int rows, int columns, bool is_rotated) {
     // LOOGGER("+");
-    Item *item = new Item(image_path, app_data_.size(), rows, columns, is_rotated, this);
+    item_id = app_data_.size();
+    Item *item = new Item(image_path, item_id, rows, columns, is_rotated, this);
     pItem ptem = pItem(item, &QObject::deleteLater);
 
     //user image
@@ -243,7 +244,7 @@ void AppData::Init(){
 void AppData::parseFolder(QString path){
     //LOOGGER("parse one file - "+ file_path);
     // for (QString &path : getFiliesFromFolder(file_path))
-    this->createItem(QDir::toNativeSeparators(path));
+    //this->createItem(QDir::toNativeSeparators(path));
 }
 
 QStringList AppData::getFiliesFromFolder(const QString &file_path) {
