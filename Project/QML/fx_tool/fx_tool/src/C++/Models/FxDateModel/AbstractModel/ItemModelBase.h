@@ -1,5 +1,5 @@
-#ifndef I_WidgetModelBase_H
-#define I_WidgetModelBase_H
+#ifndef ITEMMODELBASE
+#define ITEMMODELBASE
 #include <QObject>
 #include <QVector>
 #include <QAbstractTableModel>
@@ -8,15 +8,12 @@
 #include <QSharedPointer>
 #include <QHash>
 
-//http://www.quizful.net/post/Qt.Iteratori.Kontejneri
 
 typedef QHash<DATA_ID, QVariant> Date_Map;
 
 class ItemModelBase : public QAbstractTableModel {
     Q_OBJECT
 public:
-    //explicit
-    //Q_ENUM(DATA_ID)
 
     ItemModelBase(QObject *parent = nullptr);
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
@@ -30,26 +27,22 @@ public:
 
     bool setData(const QModelIndex &index, const QVariant &value, int role);
 
-//private:
+    //private:
     
     virtual ~ItemModelBase();
 
 public slots:
-   void removeRow(const int row);
-   void addRow(const int row);
-   void copyRow(const int row);
+    void removeRow(const int row);
+    void addRow(const int row);
+    void copyRow(const int row);
 
- public:
+public:
     void cleanModelData();
     QVector<Date_Map> *getData();
 
 protected:
-   // ItemEnums::EModelType date_type_;
     QVector <Date_Map> worksheet_data_;
     int column_count_=               3;
-
-    //void SetupModel();
-
 };
 
-#endif // I_WidgetModelBase_H
+#endif //ITEMMODELBASE

@@ -4,28 +4,15 @@
 #include <QFileDialog>
 #include <QTextStream>
 
-
-
 static const char className[] = "ItemModelBase::";
 
-
 ItemModelBase::ItemModelBase(QObject *parent):QAbstractTableModel(parent){
-    //Q_UNUSED(parent);
-    //parentModel_ = this;
-    // modelType_ = modelType
-    //setupWidgetModel();
+    Q_UNUSED(parent);
 
     QString path = QDir::currentPath();
     QString fileName = "test.txt";
     QString fullFilePath = path  + "/" + fileName;
-    //SetupModel();
-
 }
-
-//ItemModelBase::ItemModelBase(QObject *parent)
-//{
-
-//}
 
 
 int ItemModelBase::rowCount(const QModelIndex &parent) const {
@@ -40,9 +27,6 @@ int ItemModelBase::columnCount(const QModelIndex &parent) const {
 
 QHash<int, QByteArray> ItemModelBase::roleNames() const {
     QHash<int, QByteArray> roles;
-    //    roles.insert(Qt::UserRole + DATA_ID::FEATURE, FEATURE_S);
-    //    roles.insert(Qt::UserRole + DATA_ID::FEATURE_NAME, FEATURE_NAME_S);//FEATURE_NAME_S
-    //    roles.insert(Qt::UserRole + DATA_ID::IS_ACTIVE, IS_ACTIVE_S);
     roles.insert(Qt::EditRole, EDITE_S);
     roles.insert(Qt::DisplayRole, DISPLAY_S);
     return roles;
@@ -68,9 +52,6 @@ QVariant ItemModelBase::headerData(int section, Qt::Orientation orientation, int
     case int(DATA_ID::NAME):
         return tr(FEATURE_NAME_S);
         break;
-        //    case int(DATA_ID::IS_ACTIVE):
-        //        return tr(IS_ACTIVE_S);
-        //        break;
     }
     return QVariant();
 }
@@ -82,24 +63,9 @@ QVariant ItemModelBase::data(const QModelIndex &index, int role) const {
 
     QVariant result;
     switch (role) {
-    //    case (int(Qt::UserRole + DATA_ID::FEATURE)):
-    //    case (int(Qt::UserRole + DATA_ID::NAME)):
-    //    case (int(Qt::UserRole + DATA_ID::IS_ACTIVE)):
-    //        if (worksheet_data_.size() > index.row()
-    //                && worksheet_data_.at(index.row()).contains(DATA_ID(role - int(Qt::UserRole)))
-    //                && index.column() < 4) {
-    //            result = worksheet_data_.at(index.row()).value(DATA_ID(role - int(Qt::UserRole)));
-    //             //qDebug()<< "data" + result.toString();
-    //           // return worksheet_data_.at(index.row()).value(DATA_ID(role - int(Qt::UserRole)));
-    //        }
-    //        break;
-
     case (int(Qt::DisplayRole)):
-        // result = worksheet_data_.at(index.row()).value(DATA_ID(index.column()));
-        // result = worksheet_data_.at(index.row()).value(DATA_ID(index.column()));
-        //return worksheet_data_.at(index.row()).value(DATA_ID(index.column()));
         result =  worksheet_data_.at(index.row()).value(DATA_ID(index.column()));
-        //QString("%1, %2").arg(index.column()).arg(index.row());
+        //QString("%1, %2").arg(index.column()).arg(index.row()); //use for Debug
         break;
 
     case (int(Qt::UserRole + MODEL_ROLES::DISPLAY)):
@@ -135,22 +101,15 @@ void ItemModelBase::createModel(const FileData &map){
             // map[DATA_ID::IS_ACTIVE] = QVariant(QString(""));
         }
         worksheet_data_.append(map);
-        //qDebug() << QString::fromUtf8(it->first.c_str())<< "=" <<QString::fromUtf8(it->second.c_str());
         ++it;
     }
-//    if (!worksheet_data_.isEmpty() && size ==3){
-
-//        std::sort(worksheet_data_.begin(), worksheet_data_.end(), [] (Date_Map lh, Date_Map rh)
-//         {return lh[DATA_ID::FEATURE_NAME] < 2;});
-
-//       // qSort(worksheet_data_->begin(), sworksheet_data_end(), prefLessThan);
-
-//    }
 }
+
 
 void ItemModelBase::removeRow(const int row) {
     worksheet_data_.remove(row);
 }
+
 
 void ItemModelBase::addRow(const int row){
     Date_Map map;
@@ -159,6 +118,7 @@ void ItemModelBase::addRow(const int row){
     map[DATA_ID::IS_ACTIVE] = "0";
     worksheet_data_.insert(row + 1,map);
 }
+
 
 void ItemModelBase::copyRow(const int row){
     Date_Map map = worksheet_data_.at(row);
@@ -187,8 +147,6 @@ bool ItemModelBase::setData(const QModelIndex &index, const QVariant &value, int
                 temp[DATA_ID(index.column())] = value.toString();
                 worksheet_data_.insert(index.row(), temp);
             }
-
-            //emit dataChanged(index, index);
             result = true;
             break;
         }
@@ -201,20 +159,6 @@ bool ItemModelBase::setData(const QModelIndex &index, const QVariant &value, int
 ItemModelBase::~ItemModelBase() {
     //  qDebug()<< "~ItemModelBase()";
 }
-
-//void ItemModelBase::SetupModel() {
-//    int m[6] = {0, 1, 2, 3, 4, 5};
-//    int count = 0;
-//    int c[3] = {0, 1, 2};
-//    for (int &i : m){
-//        Q_UNUSED(i);
-//        Date_Map temp;
-//        for (int &j : c) {
-//            temp[DATA_ID(j)]= QVariant(count++).toString();
-//        }
-//        worksheet_data_.push_back(temp);
-//    }
-//}
 
 void ItemModelBase::cleanModelData(){
     //LOOGGER("+");

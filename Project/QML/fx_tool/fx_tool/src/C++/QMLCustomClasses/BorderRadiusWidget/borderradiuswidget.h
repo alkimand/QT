@@ -32,7 +32,7 @@ private:
     bool isActive;
     bool m_needUpdate;
 
- private:
+private:
     QSGGeometryNode* m_CircleNode = nullptr;
     void drawPartOfCircle(const int  &startAngle, const int &finishAngle, QSGGeometry &geometry);
 

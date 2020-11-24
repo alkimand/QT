@@ -8,10 +8,7 @@
 #include "iAbstractItemBase.h"
 typedef QString Props;
 
-
-
 class VariedItem: public iAbstractItemBase {
-
 
 public:
     VariedItem(QObject *parent = nullptr);
@@ -24,7 +21,7 @@ public:
     void setCMap(FileData map);
     void save(const QString file_name, const FileData values);
     void deleteFile();
-  //  void setDataToStdMap();
+    //  void setDataToStdMap();//+-
 
 
 
@@ -32,7 +29,6 @@ private:
     QFile               file_;
     QFileInfo           file_info_;
     FileData            value_map_;
-
 
 };
 

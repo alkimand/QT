@@ -21,22 +21,13 @@
 static const char className[] = "AppModel::";
 
 AppModel::AppModel(QObject *parent):QAbstractTableModel(parent){
-    //Q_UNUSED(parent);
-    //parentModel_ = this;
-    // modelType_ = modelType
-    //setupWidgetModel();
-
+    Q_UNUSED(parent);
     QString path = QDir::currentPath();
     QString fileName = "test.txt";
     QString fullFilePath = path  + "/" + fileName;
     Init();
-    //SetupModel();
-
 }
 
-//void AppModel::setDirectory(QString directory) {
-//    directory_ = directory;
-//}
 
 void AppModel::parseItem(pItem item){
     //LOOGGER("+");
@@ -60,6 +51,7 @@ void AppModel::parseItem(pItem item){
     }
 }
 
+
 pItem AppModel::getItemByID(const QString id){
     pItem item_ = nullptr;
     foreach (pItem item, app_data_){
@@ -70,6 +62,7 @@ pItem AppModel::getItemByID(const QString id){
     }
     return item_;
 }
+
 
 int AppModel::haveSameModelByProperty(const ItemEnums::EItemProperty property_type,const Props property) {
     int id = -1;
@@ -82,6 +75,7 @@ int AppModel::haveSameModelByProperty(const ItemEnums::EItemProperty property_ty
     }
     return id;
 }
+
 
 void AppModel::createItem(const QString &path){
     // LOOGGER("+");
@@ -102,15 +96,18 @@ void AppModel::createItem(const QString &path){
     // });
 }
 
+
 int AppModel::getLastCreatedItemId(){
     return model_counter_;
 }
+
 
 void AppModel::saveFile(const QString file_path, const QString id) {
     Props item_status;
     pItem item = getItemByID(id);
     item.get()->saveFile(file_path);
 }
+
 
 void AppModel::deleteFile(const QString id){
     if (id != "-1"){
@@ -122,6 +119,7 @@ void AppModel::deleteFile(const QString id){
         endRemoveRows();
     }
 }
+
 
 QString AppModel::getPropperIcon(const QString file_name) {
     QString icon = DEFAULT_ICON;
@@ -136,15 +134,18 @@ QString AppModel::getPropperIcon(const QString file_name) {
     return icon;
 }
 
+
 int AppModel::rowCount(const QModelIndex &parent) const {
     Q_UNUSED(parent);
     return app_data_.size();
 }
 
+
 int AppModel::columnCount(const QModelIndex &parent) const {
     Q_UNUSED(parent);
     return APP_MAIN_MODEL_COUNT;
 }
+
 
 QHash<int, QByteArray> AppModel::roleNames() const {
     QHash<int, QByteArray> roles;
@@ -152,12 +153,10 @@ QHash<int, QByteArray> AppModel::roleNames() const {
     roles.insert(Qt::UserRole + MODEL_ROLES::ID, ID_S);
     roles.insert(Qt::UserRole + MODEL_ROLES::ICON_PATH, ICON_S);
     roles.insert(Qt::EditRole, EDITE_S);
-    // return { {Qt::DisplayRole, "display"} };
-    //roles.insert(Qt::DisplayRole, "display");
     roles.insert(Qt::DisplayRole, DISPLAY_S);
-    //roles.insert(Qt::UserRole + DATA_ID::DISPLAY, DISPLAY_S);
     return roles;
 }
+
 
 Qt::ItemFlags AppModel::flags(const QModelIndex &index) const {
     Qt::ItemFlags flags = QAbstractTableModel::flags(index);
@@ -166,6 +165,7 @@ Qt::ItemFlags AppModel::flags(const QModelIndex &index) const {
     }
     return flags;
 }
+
 
 QVariant AppModel::headerData(int section, Qt::Orientation orientation, int role) const {
     Q_UNUSED(orientation);
@@ -193,8 +193,8 @@ QVariant AppModel::data(const QModelIndex &index, int role) const {
     QVariant result;
     switch (role) {
     case (int(Qt::DisplayRole)):
-        result =  "";//app_data_.at(index.row()).value(DATA_ID(index.column()));
-        //QString("%1, %2").arg(index.column()).arg(index.row());
+        result =  "";
+        //result = QString("%1, %2").arg(index.column()).arg(index.row());
         break;
     case (int(Qt::UserRole + MODEL_ROLES::TITLE)):
         if (app_data_.at(index.row()).get()->isPropertyExist(ItemEnums::EItemProperty::kFileName))
@@ -214,9 +214,9 @@ QVariant AppModel::data(const QModelIndex &index, int role) const {
     return result;
 }
 
+
 bool AppModel::setData(const QModelIndex &index, const QVariant &value, int role) {
     bool result = false;
-    // qDebug()<< "setData"+value.toString();
     if (index.isValid() && (role==Qt::EditRole
                             || role==(Qt::UserRole + MODEL_ROLES::TITLE))) {
 
@@ -227,6 +227,7 @@ bool AppModel::setData(const QModelIndex &index, const QVariant &value, int role
     }
     return result;
 }
+
 
 void AppModel::Init(){
     QString status =INT2QS(int(ItemEnums::eItemStatus::kInit));
@@ -240,12 +241,14 @@ void AppModel::Init(){
     default_property_map_.insert(ItemEnums::EItemProperty::kFormat,"fx");
 }
 
+
 void AppModel::parseFolder(const QString file_path){
     for (const QString &filePath : FindFilies(file_path)) {
         //LOOGGER("parse one file - "+ filePath);
         this->createItem(QDir::toNativeSeparators(filePath));
     }
 }
+
 
 QStringList AppModel::FindFilies(const QString file_path) {
     QStringList files;
@@ -260,30 +263,7 @@ QStringList AppModel::FindFilies(const QString file_path) {
     files.sort();
 
     return files;
-
-
-    // QString directory;
-
-    //directory = QFileDialog::getExistingDirectory(0, tr("Find Files"), QDir::currentPath());
-    //   QDir::toNativeSeparators(QFileDialog::getExistingDirectory(parent, tr("Find Files"), QDir::currentPath()));
-
-    //    QString filters("Excel files (*.xlsx , *.xls);;Text files (*.txt);;All files (*.*)");
-    //    //QString defaultFilter("Fx files (*.fx)");
-    //    QString defaultFilter("All files (*.*)");
-    //    QString defaultPath = path_;
-    //    //QString fullFilePath = QFileDialog::getSaveFileName(0, "Save file", defaultPath, filters, &defaultFilter);
-    //    //directory = QFileDialog::getExistingDirectory(0, tr("Find Files"), QDir::currentPath());
-    //    if (directory.isEmpty())
-    //        directory = QDir::currentPath();
-
-    //    QStringList filter;
-    //filter<<"*.fx";
-    //QDirIterator it(directory, filter, QDir::AllEntries | QDir::NoSymLinks | QDir::NoDotAndDotDot, QDirIterator::Subdirectories);
-    //QStringList files;
 }
-
-
-
 
 
 AppModel::~AppModel() {

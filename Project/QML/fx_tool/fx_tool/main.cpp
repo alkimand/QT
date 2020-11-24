@@ -6,7 +6,7 @@
 #include "ItemModelBase.h"
 
 
-//https://doc.qt.io/qt-5/qqmlengine.html#qmlRegisterSingletonType
+//toDO ->//https://doc.qt.io/qt-5/qqmlengine.html#qmlRegisterSingletonType
 int main(int argc, char *argv[]) {
 
     Q_INIT_RESOURCE(Icons);

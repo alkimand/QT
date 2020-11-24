@@ -8,14 +8,17 @@ Item::Item(QObject *parent): QObject(parent) {
     model_ = new ItemModelBase(this);
 }
 
+
 void Item::setFile(const QString &path) {
     property_->setFile(Props(path));
 }
+
 
 void Item::setProperty(const ItemEnums::EItemProperty property,const Props value) {
     if (property!=ItemEnums::EItemProperty::kNone)
         property_->setItemProperty(property, Props(value));
 }
+
 
 const Props  Item::getProperty(const ItemEnums::EItemProperty property) {
     if (property!=ItemEnums::EItemProperty::kNone)
@@ -23,22 +26,15 @@ const Props  Item::getProperty(const ItemEnums::EItemProperty property) {
     return Props("");
 }
 
-//Props Item::getProperty(const ItemEnums::EItemProperty property){
-//    if (property!=ItemEnums::EItemProperty::kNone)
-//        property_->getItemProperty(property, Props(property));
-//}
-
 
 void Item::setPath(const Props &path) {
     if (!path.isEmpty())
         property_->setItemProperty(ItemEnums::EItemProperty::kFilePath, Props(path));
-    //qDebug()<< "Item::setPath - " + path;
 }
 
 void Item::setFileName(const Props &path) {
     if (!path.isEmpty())
         property_->setItemProperty(ItemEnums::EItemProperty::kFileName, Props(path));
-    //qDebug()<< "setFileName - "+path;
 }
 
 void Item::setupDefault(const ItemPropertyMap &default_map){
@@ -79,7 +75,6 @@ void Item::saveFile(const QString file_path){
     QVector <Date_Map> * q_map = model_->getData();
     property_->setItemProperty(ItemEnums::EItemProperty::kFilePath, file_path);
 
-    //Qstring file
     QString line_1;
     QString line_2;
     for (auto iterator: *q_map ){
@@ -98,33 +93,23 @@ void Item::saveFile(const QString file_path){
             line_1 = (iterator.value(FEATURE)).toString();
             line_2 = (iterator.value(FEATURE_NAME)).toString();
         }
-        // std::string sline_1 = line_1.toStdString();
         if (!line_1.isEmpty() && !line_2.isEmpty())
             c_map.insert_or_assign(line_1.toStdString(),line_2.toStdString());
-        // c_map.insert(sline_1, sline_1);
     }
+    //toDo -> include 2 line map
     property_->save(file_path, c_map);
 }
+
 
 void Item::deleteFile(){
     property_->deleteFile();
 }
 
+
 Item::~Item() {
-    //qDebug()<<"~Item";
     if (property_)
         delete property_;
     if (model_)
         delete model_;
-    // fs::FxConfig cfg_;
 }
-
-
-
-//QVariant AbstractItem::getItemProperty(ItemEnums::EItemProperty property_type) {
-//    if (item_data_.contains((int)property_type))
-//        return item_data_[(int)property_type];
-//    return QVariant();
-//}
-
 

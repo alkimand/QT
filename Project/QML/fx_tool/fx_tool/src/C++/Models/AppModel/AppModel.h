@@ -27,8 +27,7 @@ public:
     bool setData(const QModelIndex &index, const QVariant &value, int role);
     virtual ~AppModel();
 
-public:
-   // void setDirectory(QString directory);
+public:;
     void parseFolder(const QString file_path);
     void parseItem(pItem item);
     pItem  getItemByID(const QString id);
@@ -38,13 +37,8 @@ public:
     void saveFile(const QString file_path, const QString id);
     void deleteFile( const QString id);
 
-    //private:
-
 protected:
-    //ItemEnums::EModelType date_type_;
-   // QVector <Date_Map> worksheet_data_;
     QVector<pItem>                     app_data_;
-    // void SetupModel();
     ItemPropertyMap       default_property_map_;
     int                   model_counter_ = -1;
 
@@ -52,12 +46,7 @@ private:
     void Init();
 
     QStringList FindFilies(const QString path = "");
-
-
-     QString getPropperIcon(const QString file_name = "");
-
-signals:
-   // void itemParsed(int id);
+    QString getPropperIcon(const QString file_name = "");
 
 
 };

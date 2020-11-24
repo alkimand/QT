@@ -1,4 +1,3 @@
-#include "AppDataProvider.h"
 #include <QDebug>
 #include <QWidget>
 #include <QFileDialog>
@@ -12,6 +11,7 @@
 #include <QtConcurrent>
 
 #include "ItemPropery.h"
+#include "AppDataProvider.h"
 
 #include <QExplicitlySharedDataPointer>
 
@@ -28,21 +28,15 @@ AppModel *AppDataProvider::getModel() {
     return model_;
 }
 
+
 QString AppDataProvider::getDefaultDir(){
-    //http://itnotesblog.ru/note.php?id=265
     QString path;
-    //  QString OS_type = QSysInfo::kernelType();
-    // QString product_version = QSysInfo::productVersion();
-    //  if (OS_type.contains("winnt") &&  product_version.toInt()>7){
     QSettings ini(QSettings::IniFormat, QSettings::UserScope,"DVDVideoSoft","");
     QString product_setting_path =   QFileInfo(ini.fileName()).absolutePath();
     if (!product_setting_path.isEmpty()){
         path += QFileInfo(ini.fileName()).absolutePath();
         path +="/DVDVideoSoft";
     }
-
-    //  }
-    //LOOGGER("= " + path);
     return path;
 }
 
@@ -102,6 +96,7 @@ void AppDataProvider::saveFile(const QString file_path, const QString id) {
     }
 }
 
+
 void AppDataProvider::deleteModel(const QString id) {
     //LOOGGER("id= "+ id );
     model_->deleteFile(id);
@@ -135,10 +130,10 @@ void AppDataProvider::Init() {
     model_->parseFolder(default_dir);
 }
 
+
 AppDataProvider::~AppDataProvider() {
     delete model_;
 }
-
 
 
 int AppDataProvider::getScreenWidth() {

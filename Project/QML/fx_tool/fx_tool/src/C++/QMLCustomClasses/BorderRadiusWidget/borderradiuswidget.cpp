@@ -29,23 +29,23 @@ QSGNode *BorderRadiusWidget::updatePaintNode(QSGNode *oldNode, QQuickItem::Updat
         m_CircleNode->setFlag(QSGNode::OwnsMaterial);
         QSGFlatColorMaterial* borderNonActiveMaterial = new QSGFlatColorMaterial();
         borderNonActiveMaterial->setColor(m_activeButtonColor);
-        m_CircleNode->setGeometry(geometry); 
+        m_CircleNode->setGeometry(geometry);
         m_CircleNode->setMaterial(borderNonActiveMaterial);
     }
-//    else {
-//       // root->markDirty(QSGNode::DirtyGeometry);
-//        //m_borderActiveNode->markDirty(QSGNode::DirtyGeometry);
-//        m_CircleNode->markDirty(QSGNode::DirtyMaterial);
-//        m_CircleNode->markDirty(QSGNode::DirtyGeometry);
-//            qDebug() << "mousePressEvent";
+    //    else {
+    //       // root->markDirty(QSGNode::DirtyGeometry);
+    //        //m_borderActiveNode->markDirty(QSGNode::DirtyGeometry);
+    //        m_CircleNode->markDirty(QSGNode::DirtyMaterial);
+    //        m_CircleNode->markDirty(QSGNode::DirtyGeometry);
+    //            qDebug() << "mousePressEvent";
 
-//    }
+    //    }
 
     if(m_needUpdate) {
-              QSGFlatColorMaterial *material = new QSGFlatColorMaterial;
-              material->setColor(m_activeButtonColor);
-              m_CircleNode->setMaterial(material);
-              m_needUpdate = false;
+        QSGFlatColorMaterial *material = new QSGFlatColorMaterial;
+        material->setColor(m_activeButtonColor);
+        m_CircleNode->setMaterial(material);
+        m_needUpdate = false;
     }
 
     return m_CircleNode;
@@ -56,11 +56,11 @@ QColor BorderRadiusWidget::activeButtonColor() const {
 }
 
 QColor BorderRadiusWidget::disactiveButtonColor() const {
-        return m_disactiveButtonColor;
+    return m_disactiveButtonColor;
 }
 
 int BorderRadiusWidget::radius() const {
-        return m_borderRadius;
+    return m_borderRadius;
 }
 
 void BorderRadiusWidget::setActiveButtonColor(const QColor &color) {
@@ -82,8 +82,8 @@ void BorderRadiusWidget::setDisactiveButtonColor(const QColor &color) {
 }
 
 void BorderRadiusWidget::setRadius(const int &radius){
-        if(m_borderRadius != radius) 
-            m_borderRadius = radius;
+    if(m_borderRadius != radius)
+        m_borderRadius = radius;
 }
 
 

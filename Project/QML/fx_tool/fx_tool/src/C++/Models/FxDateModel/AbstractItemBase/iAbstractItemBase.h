@@ -19,8 +19,6 @@ public:
 protected:
 
     ItemPropertyMap     item_data_;
-
-
 private:
 
 

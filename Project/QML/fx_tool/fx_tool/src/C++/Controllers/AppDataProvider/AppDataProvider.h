@@ -26,19 +26,14 @@ public:
     void Init();
     ~AppDataProvider();
 
-    //QML
 public:
     AppModel *getModel() ;
-    //qml
 signals:
     void itemParsed(QString item_id, int view_id = -1);
     void modelChanged();
 
 private:
     AppModel  *model_;
-
-private:
-
 
 public slots:
     void appStart();
@@ -55,54 +50,3 @@ public slots:
 };
 
 #endif // APP_DATA_PROVIDER_H
-
-
-//
-
-//Taskkill /IM fx_tool.exe /F
-//https://bulkin.me/notes/4342
-
-
-
-//ToDO
-//void registerSingleton(QQmlEngine *qmlEngine);
-
-
-//static QObject *registerSingleton(QQmlEngine *engine, QJSEngine *scriptEngine);
-
-
-//     static void registerSingleton_(QQmlEngine *qmlEngine){
-
-//        if (!s_instance_) {
-//            s_instance_ = new AppDataProvider();
-//        }
-
-//        QQmlContext *rootContext = qmlEngine->rootContext();
-
-//        //AppDataProvider *s_instance = new AppDataProvider();
-
-//        rootContext->setContextProperty("AppDataProvider", s_instance_);
-//    }
-
-//     static AppDataProvider &instance() {
-//         AppDataProvider  *tmp = new AppDataProvider();
-//         return tmp;
-//     };
-
-
-
-//     QObject * qmlAppDataInterface( QQmlEngine *e, QJSEngine * scriptEngine)
-//     {
-//         Q_UNUSED(scriptEngine)
-
-//         AppDataProvider *p = &AppDataProvider::instance();
-//         e->setObjectOwnership(p, QQmlEngine::CppOwnership);
-//         return p;
-//     }
-
-
-//    static AppDataProvider& instance(){
-//        qDebug()<< "instance";
-//        static AppDataProvider instance_;
-//        return instance_;
-//    }

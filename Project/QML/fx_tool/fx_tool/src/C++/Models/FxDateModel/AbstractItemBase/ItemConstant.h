@@ -23,10 +23,6 @@
 #define SPECIAL_ICON                          "dvdvideosoft_big.png"
 
 
-
-
-
-
 const int DATE_MAP_SIZE                        = 3;
 const int APP_MAIN_MODEL_COUNT                 = 1;
 
@@ -34,10 +30,8 @@ enum DATA_ID {
     FEATURE     = 0 ,
     FEATURE_NAME,
     IS_ACTIVE   ,
-    NAME        ,
-//  ICON        ,
-//    EDITE
-    };
+    NAME
+};
 
 enum MODEL_ROLES {
     DISPLAY     = 0 ,

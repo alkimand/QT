@@ -110,7 +110,7 @@ void DataBuff::set(void *pBytes, size_t size) {
         return;
 
     for (size_t i = 0; i < size; i++)
-         *((char *)data_ + i) = *(((char*)pBytes) + i);
+        *((char *)data_ + i) = *(((char*)pBytes) + i);
 }
 
 
@@ -136,7 +136,7 @@ void DataBuff::append(void *pBytes, size_t size) {
         return;
 
     for (size_t i = 0; i < size; i++)
-         *((char *)data_ + oldSize + i) = *(((char*)pBytes) + i);
+        *((char *)data_ + oldSize + i) = *(((char*)pBytes) + i);
 }
 
 

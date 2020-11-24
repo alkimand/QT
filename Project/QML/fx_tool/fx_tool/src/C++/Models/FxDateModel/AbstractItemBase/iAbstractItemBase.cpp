@@ -1,22 +1,21 @@
-#include "iAbstractItemBase.h"
 #include <QDebug>
 #include <QTextCodec>
 
+#include "iAbstractItemBase.h"
 
 static const char className[] = "iAbstractItemBase::";
 
 iAbstractItemBase::iAbstractItemBase(QObject *parent): QObject(parent){
-    //AbstractItem::AbstractItem() {
-    // itemData_.insert(int(ItemEnums::EItemProperty::kTextValue_1), "test");
-    // itemData_.insert(int(ItemEnums::EItemProperty::kTextValue_3), 1000);
 }
 
-void iAbstractItemBase::setItemProperty(ItemEnums::EItemProperty property_type, Props value) {
+void
+iAbstractItemBase::setItemProperty(ItemEnums::EItemProperty property_type, Props value) {
     if (item_data_.contains(property_type))
         item_data_[property_type] = Props(value);
     else
         item_data_.insert(property_type, Props(value));
 }
+
 
 void iAbstractItemBase::setDefaultPropertyMap(const ItemPropertyMap &default_map) {
     if (default_map.size()==0)
@@ -26,13 +25,13 @@ void iAbstractItemBase::setDefaultPropertyMap(const ItemPropertyMap &default_map
         i.next();
         item_data_.insert(i.key(),i.value());
     }
-    //qDebug()<< "iAbstractItemBase::setDefaultPropertyMap - ";
 }
 
 
 const Props &iAbstractItemBase::getItemProperty(const ItemEnums::EItemProperty &property_type) {
-        return  (item_data_[property_type]);
+    return  (item_data_[property_type]);
 }
+
 
 bool iAbstractItemBase::isPropertyExist(const ItemEnums::EItemProperty propertyType){
     bool exist_property = false;

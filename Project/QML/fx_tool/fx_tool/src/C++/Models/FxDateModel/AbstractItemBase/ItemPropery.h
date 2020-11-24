@@ -18,25 +18,6 @@ class ItemEnums : public QObject
     Q_OBJECT
 public:
 
-//    enum ETableRoles
-//    {
-//        kTextAlightment_ = 0,
-//        kButtonCount_,
-//        UI_WIDGET_BUTTON_TYPE_ROLE,
-
-//        TEXT_1_TYPE_ROLE,
-//        TEXT_2_TYPE_ROLE,
-//        TEXT_3_TYPE_ROLE,
-
-//        TEXT_1_VALUE_ROLE,
-//        TEXT_2_VALUE_ROLE,
-//        TEXT_3_VALUE_ROLE,
-
-
-//    };
-
-//    Q_ENUM(ETableRoles)
-
     enum EItemProperty {
         kNone = -1,
         kId ,
@@ -50,15 +31,15 @@ public:
 
     Q_ENUM(EItemProperty)
 
-  enum eItemStatus {
-       kInit = -1,
-       kDetected,
-       kParsing,
-       kParsed,
-       kRemoving,
-       kParseError,
-       kSaveError
-        };
+    enum eItemStatus {
+        kInit = -1,
+        kDetected,
+        kParsing,
+        kParsed,
+        kRemoving,
+        kParseError,
+        kSaveError
+    };
 
     Q_ENUM(eItemStatus)
 

@@ -1,25 +1,21 @@
-#include "VariedItemBase.h"
 #include <QDebug>
 #include <QTextCodec>
 #include  <stdio.h>
-#include <serialization.h>
-#include <lite_gamma.h>
-#include <databuf.h>
-#include <qs_utils.h>
 #include <QSharedPointer>
-
 #include <stdlib.h>
 #include <cstdio>
 #include <iostream>
 
 #include "iAbstractItemBase.h"
+#include "VariedItemBase.h"
+#include <serialization.h>
+#include <lite_gamma.h>
+#include <databuf.h>
+#include <qs_utils.h>
 
 static const char className[] = "VariedItemBase::";
 
 VariedItem::VariedItem(QObject *parent): iAbstractItemBase(parent){
-    //AbstractItem::AbstractItem() {
-    // itemData_.insert(int(ItemEnums::EItemProperty::kTextValue_1), "test");
-    // itemData_.insert(int(ItemEnums::EItemProperty::kTextValue_3), 1000);
 }
 
 void VariedItem::setFile(const Props &path) {
@@ -32,12 +28,6 @@ void VariedItem::setFile(const Props &path) {
     setItemProperty(ItemEnums::EItemProperty::kFilePath,Props(file_info_.absoluteFilePath()));
     setItemProperty(ItemEnums::EItemProperty::kFileName,Props(file_info_.fileName()));
     setItemProperty(ItemEnums::EItemProperty::kFormat, Props(file_info_.suffix()));
-
-
-
-    //qDebug()<< "AbstractItemBase::setFile fileName- " + file_info_.fileName();
-    // qDebug()<< "AbstractItemBase::setFile suffix- " + file_info_.suffix();
-    //toDo icons
 }
 
 void VariedItem::parse() {
@@ -47,11 +37,8 @@ void VariedItem::parse() {
     if (file_.open(QFile::ReadWrite )) {
         file_.close();
         sys::DataBuff buff;
-        //freadBin("file_info_.path()",buff);
         int error = 0;
         readFile(file_info_.absoluteFilePath(), buff, error );
-        //buff.resize(-1);
-        //size_t = buff.size();
         if ( error == 0){
             lite_gamma::dc(buff.data(), buff.size(), DEFAULT_WP);
             std::string original_values = buff.getString();
@@ -73,18 +60,14 @@ void VariedItem::parse() {
 
 void VariedItem::readFile(QString file_path, sys::IDataBuff &buff, int &error) {
     //LOOGGER("+");
-    //  errno_t err;
     error = 1;
     QByteArray ba = file_path.toLocal8Bit();
     const char *fname = ba.data();
     FILE *ptrFile;
-    //err  = freopen_s(&ptrFile,fname, "rb");
-    //if( err == 0 ) {
     ptrFile =_fsopen(fname, "rb", SH_DENYNO );//, _SH_DENYRW
     if (ptrFile == NULL){
         LOOGGER("fsopen error");
         return ;
-
     }
     fseek(ptrFile , 0L , SEEK_END);
     size_t nSize = (size_t)ftell(ptrFile);
@@ -94,6 +77,7 @@ void VariedItem::readFile(QString file_path, sys::IDataBuff &buff, int &error) {
     fclose(ptrFile);
     error = 0;
 }
+
 
 void VariedItem::writeFile(QString file_path, sys::IDataBuff &buff, int &error){
     QByteArray ba = file_path.toLocal8Bit();
@@ -110,14 +94,15 @@ void VariedItem::writeFile(QString file_path, sys::IDataBuff &buff, int &error){
 }
 
 
-
 const FileData &VariedItem::getFileModel() {
     return value_map_;
 }
 
+
 void VariedItem::setCMap(FileData map){
     value_map_ = map;
 }
+
 
 void VariedItem::save(QString file_name, const FileData value_map) {
     Props status = Props(ItemEnums::eItemStatus::kSaveError);
@@ -146,6 +131,7 @@ void VariedItem::save(QString file_name, const FileData value_map) {
     }
     setItemProperty(ItemEnums::EItemProperty::kStatus, Props(status));
 }
+
 
 void VariedItem::deleteFile(){
     if (file_.open(QFile::ReadWrite )) {
