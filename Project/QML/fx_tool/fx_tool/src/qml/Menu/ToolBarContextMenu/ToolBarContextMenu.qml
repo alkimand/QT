@@ -8,9 +8,5 @@ ContextMenuBase {
     id:control
     Component.onCompleted:{
        control.insertAction(0, Actions.deleteFileAction)
-
-     //  control.insertAction(4, Actions.openInExplorerAction)
-     //  control.insertAction(5, Actions.openDesktopServicesAction)
-     //  control.insertAction(6, Actions.renameTabAction)
     }
 }

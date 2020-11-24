@@ -9,7 +9,6 @@ ToolButton {
     text:""
     implicitHeight: tool_bar_grid_.cellHeight//mainToolBar.toolButtonImplicitHeight
     implicitWidth: tool_bar_grid_.cellWidth
-    //mainToolBar.toolButtonImplicitWidth
     property int textHeight: 10//mainToolBar.toolButtonTextHeight
     property string textFont: "Arial Narrow"
     property string sourceIconPath: "qt-logo.png"

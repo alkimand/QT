@@ -43,7 +43,6 @@ Menu {
             visible: true
             implicitWidth: menuItem.implicitHeight
             implicitHeight: menuItem.implicitHeight
-            //anchors.leftMargin: 20
             Rectangle {
                 anchors.fill: parent
                 anchors.leftMargin: 5
@@ -64,7 +63,6 @@ Menu {
             anchors.leftMargin: (menuItem.checkable)?menuItem.indicator.width:5
             anchors.rightMargin:(hasIndicator)?menuItem.arrow.width:0
             color: menuItem.highlighted ?"#77a9ef": "#deeef9"
-            //rightPadding:(hasIndicator)?menuItem.arrow.width:0
             Text {
                 id:text
                 anchors.top: parent.top
@@ -88,7 +86,6 @@ Menu {
             implicitHeight: 40
             opacity: enabled ? 1 : 0.3
             color: menuItem.highlighted ? "#77a9ef": "#deeef9"
-            //border.width:2
         }
     }
 
@@ -97,6 +94,5 @@ Menu {
         implicitHeight: root.itemImplicitHeight
         color:"#ffffff"
         border.color: "#77a9ef"
-        //radius: 2
     }
 }

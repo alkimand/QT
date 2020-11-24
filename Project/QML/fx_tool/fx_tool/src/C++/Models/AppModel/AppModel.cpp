@@ -21,7 +21,7 @@
 static const char className[] = "AppModel::";
 
 AppModel::AppModel(QObject *parent):QAbstractTableModel(parent){
-    Q_UNUSED(parent);
+    Q_UNUSED(parent)
     QString path = QDir::currentPath();
     QString fileName = "test.txt";
     QString fullFilePath = path  + "/" + fileName;
@@ -136,13 +136,13 @@ QString AppModel::getPropperIcon(const QString file_name) {
 
 
 int AppModel::rowCount(const QModelIndex &parent) const {
-    Q_UNUSED(parent);
+    Q_UNUSED(parent)
     return app_data_.size();
 }
 
 
 int AppModel::columnCount(const QModelIndex &parent) const {
-    Q_UNUSED(parent);
+    Q_UNUSED(parent)
     return APP_MAIN_MODEL_COUNT;
 }
 
@@ -168,22 +168,23 @@ Qt::ItemFlags AppModel::flags(const QModelIndex &index) const {
 
 
 QVariant AppModel::headerData(int section, Qt::Orientation orientation, int role) const {
-    Q_UNUSED(orientation);
+    Q_UNUSED(orientation)
+    QVariant result;
     if(role != Qt::DisplayRole){
         return QVariant();
     }
     switch (section) {
     case int(DATA_ID::FEATURE):
-        return tr(FEATURE_S);
+        result =  tr(FEATURE_S);
         break;
     case int(DATA_ID::FEATURE_NAME):
-        return tr(NAME_S);
+        result =  tr(NAME_S);
         break;
     case int(DATA_ID::IS_ACTIVE):
-        return tr(IS_ACTIVE_S);
+        result =  tr(IS_ACTIVE_S);
         break;
     }
-    return QVariant();
+    return result;
 }
 
 
@@ -230,8 +231,8 @@ bool AppModel::setData(const QModelIndex &index, const QVariant &value, int role
 
 
 void AppModel::Init(){
-    QString status =INT2QS(int(ItemEnums::eItemStatus::kInit));
-    QString id =INT2QS(0);
+    QString status =INT2QS(int(ItemEnums::eItemStatus::kInit))
+    QString id =INT2QS(0)
     default_property_map_.insert(ItemEnums::EItemProperty::kId, id );
     default_property_map_.insert(ItemEnums::EItemProperty::kStatus, status);
     default_property_map_.insert(ItemEnums::EItemProperty::kFilePath,"");

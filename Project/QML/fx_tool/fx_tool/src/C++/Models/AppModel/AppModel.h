@@ -27,7 +27,7 @@ public:
     bool setData(const QModelIndex &index, const QVariant &value, int role);
     virtual ~AppModel();
 
-public:;
+public:
     void parseFolder(const QString file_path);
     void parseItem(pItem item);
     pItem  getItemByID(const QString id);

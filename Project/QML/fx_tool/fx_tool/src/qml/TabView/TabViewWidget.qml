@@ -6,9 +6,7 @@ import "./Style"
 C1.TabView {
     id: root
     anchors.fill:parent
-    //anchors.leftMargin: 5
-    //anchors.leftMargin: 50
-    //property int curIndex: 0
+
     property string title:        "Default"
     property int contexMenuIndex:               -1
     property int indexUnderMouse:               -1
@@ -38,10 +36,6 @@ C1.TabView {
                 anchors.leftMargin:5
                 color: "white"
                 z:1
-
-                //                function test() {
-                //                    console.log("test Rectangle")
-                //                }
 
                 Loader {
                     id: table_view_loader
@@ -82,47 +76,22 @@ C1.TabView {
     }
     function selectTab(index) //ToDo //--
     {
-        //var tab=getTab(index)
         console.log("selectTab + ")
         console.log("index = +" + index)
         console.log("root.getTab(index).children[0].rowHeight = " + root.getTab(index).children[0].rowHeight)
         root.getTab(index).children[0].selectTab(2)
-        // root.selection.selectAll()
-        // tableView.selection.clear()
-        // tableView.selection.select(row)
-        //root.removeTab(index)
     }
     function renameTab(index) {
         console.log("root:renametab()")
         root.renametab()
     }
 
-    function sendTittleName(m_index, tittle)
-    {
-        //console.log("root:sendTittleName:index:" + m_index)
-        // console.log("root:sendTittleName:tittle:" + tittle)
-
-        //    if (root.getTab(m_index).item.children[0].type !== "NONE")
-
-        //if (root.getTab(m_index).item.children[0].type !== "NONE")
-        {
-            //console.log("BaseTableView:sendTittleName:" + tittle)
-            //console.log("root.getTab(m_index).item.children[0].type:" + root.getTab(m_index).type)
-            //console.log("root.getTab(m_index).item.children[0].type:" + root.getTab(m_index).item.type)
-            //console.log("0" + root.getTab(m_index).item.type)
-
-            //console.log("1" + root.getTab(m_index).item.children[0].type)
-            //console.log("root.getTab(m_index).item.children[0].type:" + root.getTab(m_index).type)
-            //root.getTab(m_index).item.children[0].sendNameDocument(tittle)
-            //sendTittleName(m_index, tittle)
-        }
+    function sendTittleName(m_index, tittle) {
     }
 
 
     function openInExplorer()
     {
-        //        text.selectAll()
-        //        text.forceActiveFocus()
         console.log(root.getTab(root.contexMenuIndex).item.children[0].type)
         console.log("openInExplorer")
         if (root.getTab(root.contexMenuIndex).item.children[0].type !== "NONE")
@@ -131,8 +100,6 @@ C1.TabView {
 
     function openInDesktopServices()
     {
-        //        text.selectAll()
-        //        text.forceActiveFocus()
         console.log("openInDesktopServices")
         if (root.getTab(root.contexMenuIndex).item.children[0].type !== "NONE")
             root.getTab(root.contexMenuIndex).item.children[0].openInDesktopServices()
@@ -140,18 +107,11 @@ C1.TabView {
 
     function removeColumnTab()
     {
-        //        text.selectAll()
-        //        text.forceActiveFocus()
-        //console.log("removeColumnTab")
         root.getTab(root.contexMenuIndex).item.children[0].removeColumnTable()
     }
 
     function restoreColumnTab()
     {
-        //        text.selectAll()
-        //        text.forceActiveFocus()
-        //console.log("restoreColumnTab")
-
         root.getTab(root.contexMenuIndex).item.children[0].restoreColumnTable()
     }
 }

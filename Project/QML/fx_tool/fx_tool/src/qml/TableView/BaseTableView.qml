@@ -6,16 +6,7 @@ import QtQuick.Controls.Styles 1.4
 import ItemModelBase 1.0
 import AppDataProvider 1.0
 
-
 import "./ItemDelegate/Loaders"
-
-//import "../ItemDelegat/HeaderDelegate"
-//import "../ItemDelegat/RowDelegat"
-//import "../../ContextMenu/TableViewContexMenu/HeaderContexMenu"
-//import "../../ContextMenu/TableViewContexMenu/ItemContexMenu"
-//import "../"
-//import "../ItemDelegat/HeaderDelegate"
-
 import "./ItemDelegate/ItemDelegate"
 
 TableView {
@@ -26,7 +17,6 @@ TableView {
     columnSpacing: 0
     rowSpacing: 0
     clip: true
-   // highlightRangeMode: ListView.StrictlyEnforceRange
     leftMargin:0
     rightMargin:0
     topMargin:10
@@ -37,13 +27,6 @@ TableView {
     columnWidthProvider: function (column) { return getWith(column) }
     rowHeightProvider :  function (row) { return 35}
     signal refreshModel()
-   // atYBeginning: false
-    //flickDeceleration :5
-    //contentY :100
-    //horizontalOvershoot :40
-    //boundsBehavior  : Flickable.OvershootBounds
-  //boundsMovement : Flickable.DragAndOvershootBounds
-    //verticalOvershoot :10
     model: app_data.getModelByID(current_id_)
 
     reuseItems : true
@@ -55,9 +38,6 @@ TableView {
     delegate: ColumnProvider {
         placeholderText_L:  { return typeof display_ !== "undefined" ? display_:""}
     }
-        /* EditableLable {
-        placeholderText:  display_
-    }*/
 
     Connections {
         target: table_view
@@ -85,7 +65,7 @@ TableView {
 
     function modelReset() {
         //console.log("modelReset");
-       table_view.model.modelReset();// = app_data.getModelByID(current_id_)
+        table_view.model.modelReset();// = app_data.getModelByID(current_id_)
     }
 
     function removeRow(item_row) {

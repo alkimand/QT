@@ -9,7 +9,6 @@ ToolBar {
     id: control
     width: parent.width
     property int current_id: -1
-    //implicitHeight: grid_view_.height
     height: 30
     focusReason : Qt.MouseFocusReason
     background: Rectangle  {
@@ -34,9 +33,7 @@ ToolBar {
         width: parent.width;
         cellHeight : 30
         cellWidth : 30
-        //orientation : ListView.Horizontal
         model: app_data.model//100
-        //snapMode:ListView.SnapOneItem
         delegate  :  CustomToolButton {
             property int button_type : 1
             action: Actions.pushTolBarButton

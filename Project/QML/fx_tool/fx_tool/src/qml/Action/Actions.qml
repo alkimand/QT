@@ -7,8 +7,6 @@ Item
 {
     id: root
     property string toolBarIconPath: '../../images/ToolBarIcon/'
-    //property string tableViewIconPath: '../../images/TableViewIcon/'
-    //property string appButtonIconPath: '../../images/AppButton/'
 
     signal closeTabAct();
     signal closeAllTabAct();
@@ -22,27 +20,21 @@ Item
     signal addRow();
     signal copyRow();
     signal deleteFile();
-      //signal pushTollBar(var item_id);
 
 
     property Action pushTolBarButton : Action {
         icon.source: toolBarIconPath + 'fileopen.png'
-        //shortcut : QKeySequence::Open
         icon.name: "document-open"
         property int item_id: -1
         text: "createTable"
 
         onTriggered: {
-            //fileDialog.selectExisting = true
-            //root.pushTollBar(item_id);
             console.log("Action:" + text);
-
         }
     }
     
     property Action fileOpenAction : Action {
         icon.source: toolBarIconPath + 'fileopen.png'
-        //shortcut : QKeySequence::Open
         icon.name: "document-open"
         text: "Open"
 
@@ -55,15 +47,11 @@ Item
     {
         id: addAction
         icon.source: toolBarIconPath + 'plus.png'
-        //shortcut : QKeySequence::Open)
         icon.name: "document-add"
         text: "Add"
 
         onTriggered: {
             console.log("Action:" + text);
-            //root.openAction();
-            //main_root.test()
-
         }
     }
 
@@ -71,13 +59,10 @@ Item
     {
         id: fileSaveAction
         icon.source: toolBarIconPath + 'filesave.png'
-
-        //shortcut : QKeySequence::Open)
         icon.name: "document-save"
         text: "Save"
 
         onTriggered: {
-            //console.log("Action:" + text);
             root.saveAction();
         }
     }
@@ -86,19 +71,16 @@ Item
     {
         id: fileSaveAsAction
         icon.source:  toolBarIconPath + 'filesave.png'
-        //shortcut : QKeySequence::Open)
         icon.name: "document-saveAs"
         text: "Save As..."
         onTriggered: {
             root.saveAsAction();
-            // console.log("Action:" + text);
         }
     }
 
     property Action closeAppAction:Action
     {
         icon.source: toolBarIconPath + 'close.png'
-        //shortcut : QKeySequence::Open)
         icon.name: "document-close"
         text: "Close"
         onTriggered: {
@@ -110,14 +92,11 @@ Item
     property Action closeTabAction:Action
     {
         icon.source: toolBarIconPath + 'close.png'
-        //shortcut : QKeySequence::Open)
         icon.name: "document-close"
         text: "Close"
 
         onTriggered: {
-            //console.log("Action:" + text);
             root.closeTabAct()
-            //tab_view_.removeTab(tab_view_.contexMenuIndex)
         }
     }
 
@@ -126,19 +105,16 @@ Item
     {
         id: closeAllButThisAction
         icon.source: toolBarIconPath + 'close.png'
-        //shortcut : QKeySequence::Open)
         icon.name: "document-close All"
         text: "Close all but this"
 
         onTriggered:{
-            //console.log("Action:" + text);
             root.closeAllButThis()
         }
     }
 
     property Action refreshAction:Action {
         icon.source: toolBarIconPath + 'refresh.png'
-        //shortcut : QKeySequence::Open)
         icon.name: ""
         text: "Refresh"
         onTriggered:{
@@ -151,15 +127,11 @@ Item
     {
         id: renameTabAction
         icon.source: toolBarIconPath + 'rename.png'
-        //shortcut : QKeySequence::Open)
         icon.name: "rename"
         text: "Rename Tab"
 
         onTriggered: {
-            //console.log("renameTabAction")
             console.log("Action:" + text);
-            //tab_view_.renameTab(tab_view_.contexMenuIndex)
-            //tab_view_.removeTab(tab_view_.currentIndex)
         }
     }
 
@@ -167,16 +139,11 @@ Item
     {
         id: openInExplorerAction
         icon.source: toolBarIconPath + 'explorer.png'
-        //shortcut : QKeySequence::Open)
         icon.name: "Open"
         text: "Open in Explorer"
 
-        onTriggered:
-        {
+        onTriggered: {
             console.log("Action:" + text);
-            //console.log("openInExplorerAction")
-            // tab_view_.openInExplorer()
-            //tab_view_.removeTab(tab_view_.currentIndex)
         }
     }
 
@@ -184,14 +151,11 @@ Item
     {
         id: openDesktopServicesAction
         icon.source: "../images/ToolBarIcon/explore.png"
-        //shortcut : QKeySequence::Open)
         icon.name: "Open"
         text: "Open in desktop services"
         onTriggered:
         {
             console.log("Action:" + text);
-            //  console.log("openInDesktopServicesAction")
-            // tab_view_.openInDesktopServices()
         }
     }
 

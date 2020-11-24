@@ -5,7 +5,6 @@ import QtQuick.Layouts 1.12
 ItemDelegate {
     id:root
     property string placeholderText: placeholderText_L
-    //property alias placeholderText
     property color labelFontColor: "white"
     property color labelРighlightingFontColor:  "#4385ef"
     property color labelBackgroundRectangleColor:"white"
@@ -41,16 +40,12 @@ ItemDelegate {
             color: root.labelРighlightingFontColor
             selectedTextColor : root.labelFontColor
             inputMethodHints: Qt.ImhDate//ImhNoPredictiveText
-            //inputMethodHints: Qt.ImhNoPredictiveText
             anchors.horizontalCenter: parent.horizontalCenter
-            // anchors.verticalCenter: parent.verticalCenter
             placeholderTextColor : root.labelРighlightingFontColor
             placeholderText : root.placeholderText
             selectByMouse : true
-            //overwriteMode :true
             selectByKeyboard :true
             wrapMode : TextEdit.WordWrap
-            //leftPadding:root.labelLeftPadding
             textMargin: 0
             activeFocusOnPress :false
 
@@ -64,7 +59,6 @@ ItemDelegate {
             }
 
             onEditingFinished: {
-                // console.log("onEditingFinished")
                 labelMouseArea.cursorShape = Qt.ArrowCursor;
                 root.finishEdit()
             }
@@ -76,27 +70,18 @@ ItemDelegate {
             }
 
             Keys.onPressed:  {
-                //console.log("Keys.onPressed= "+textArea.text)
-                //edite = textArea.text;
-                //textArea.text = display_
             }
 
             function _onEnterPressed(event) {
                 if (!(event.modifiers & Qt.ControlModifier)) {
-                    //console.log("_onEnterPressed=" + display_)
                     edite = textArea.text;
                     textArea.placeholderText = display_;
-                    //textArea.text=""; //bug ?
                     textArea.focus = false;
-                    //root.finishEdit()//bug ?
                 }
             }
 
             function finishEditHandler() {
-                // console.log("finishEditHandler =" + display_);
-                //name = textArea.text;
                 edite = textArea.text;
-                //if (textArea.placeholderText)
                 textArea.placeholderText = display_;
                 textArea.text="";
                 textArea.focus = false;
@@ -111,14 +96,12 @@ ItemDelegate {
             }
 
             MouseArea {
-                //enabled :false
                 id:labelMouseArea
                 anchors.fill: parent
                 cursorShape : Qt.ArrowCursor
                 acceptedButtons: Qt.LeftButton | Qt.RightButton
                 onClicked: {
                     if (mouse.button == Qt.LeftButton) {
-                        //console.log("onClicked "+ display_)
                         root.startEdit()
 
                         if (textArea.text === display_){
@@ -148,7 +131,6 @@ ItemDelegate {
                 }
                 onReleased: {
                     // console.log("onReleased")
-                    // root.stopFocusTextArea ()
                 }
 
                 onDoubleClicked: {
@@ -169,14 +151,10 @@ ItemDelegate {
                     // console.log("onFocusChanged")
                 }
                 onExited:{
-                    //  background_.color ="white"
-                    //("onExited = ")
-                    //  console.log("onExited")
                 }
 
                 onEntered: {
                     // console.log("onEntered")
-                    // background_.color ="red"
                 }
                 onCanceled: {
                     //

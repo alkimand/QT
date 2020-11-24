@@ -50,7 +50,7 @@ void VariedItem::parse() {
             status = Props(ItemEnums::eItemStatus::kParsing);
         }
         else {
-            LOOGGER("file open Error");
+            LOOGGER("file open Error")
         }
 
     }
@@ -65,8 +65,8 @@ void VariedItem::readFile(QString file_path, sys::IDataBuff &buff, int &error) {
     const char *fname = ba.data();
     FILE *ptrFile;
     ptrFile =_fsopen(fname, "rb", SH_DENYNO );//, _SH_DENYRW
-    if (ptrFile == NULL){
-        LOOGGER("fsopen error");
+    if (ptrFile == nullptr){
+        LOOGGER("fsopen error")
         return ;
     }
     fseek(ptrFile , 0L , SEEK_END);
@@ -80,13 +80,14 @@ void VariedItem::readFile(QString file_path, sys::IDataBuff &buff, int &error) {
 
 
 void VariedItem::writeFile(QString file_path, sys::IDataBuff &buff, int &error){
+    Q_UNUSED(error)
     QByteArray ba = file_path.toLocal8Bit();
     const char *fname = ba.data();
     QByteArray data;
     FILE *ptrFile;
     ptrFile =_fsopen(fname, "wb" , SH_DENYNO);
-    if (ptrFile == NULL){
-        LOOGGER("fsopen error");
+    if (ptrFile == nullptr){
+        LOOGGER("fsopen error")
         return ;
     }
     std::fwrite(buff.data(), buff.size(),1 ,ptrFile);

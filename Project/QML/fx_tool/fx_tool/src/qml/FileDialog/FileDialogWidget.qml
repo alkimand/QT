@@ -8,8 +8,6 @@ FileDialog {
     property int type_: dialog_type_L
     title: "Please choose a file"
     nameFilters: "(*.fx)"
-    //selectMultiple : false
-    //selectedNameFilter : "(*.fx)"
     fileMode: FileDialog.OpenFile
     folder : {"file:///" + app_data.getDefaultDir()}
     modality : Qt.WindowModal
@@ -29,9 +27,6 @@ FileDialog {
     }
 
     Component.onCompleted: {
-       // fileDialog.fileMode =  1//FileDialog.SaveFile
         fileDialog.open();
-       // console.log("onCompleted type_= " + type_)
-        //console.log("fileDialog.fileMode= " + fileDialog.fileMode)
     }
 }

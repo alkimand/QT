@@ -10,11 +10,9 @@ MenuBar {
             text: menuBarItem.text
             font: menuBarItem.font
             opacity: enabled ? 1.0 : 0.3
-            //color:  "black" //menuBarItem.highlighted ? "#ffffff" : "black"
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignVCenter
             elide: Text.ElideRight
-            //font.bold: enabled ? true : false
         }
 
         background: Rectangle{
