@@ -3,6 +3,7 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
     <BaseRootPath>$(SolutionDir)..\..\</BaseRootPath>
+    <CurentSolutionDirectory>$(MSBuildProjectDirectory)\</CurentSolutionDirectory>
     <BaseCommonFilesPath>$(BaseRootPath)Common\</BaseCommonFilesPath>
     <Base3rdpartyPath>$(BaseRootPath)3rdparty\</Base3rdpartyPath>
     <CurlPath>$(Base3rdpartyPath)libcurl-7.63.0-4-vc15-x64\</CurlPath>
@@ -14,18 +15,21 @@
     <BaseClientAPIPath>$(BaseCommonFilesPath)Client_IPI\</BaseClientAPIPath>
     <QTDIR>$(Base3rdpartyPath)qt_5_7_0_sse\</QTDIR>
     <BuildPath>$(BaseRootPath)Project\builds\</BuildPath>
-    <BaseCodePath>$(RemoteDebuggerWorkingDirectory)src\C++\</BaseCodePath>
-    <HeadersPath>$(BaseCodePath)definitions</HeadersPath>
-    <DefinitionPath>$(BaseCodePath)headers</DefinitionPath>
-    <BaseUICodePath>$(RemoteDebuggerWorkingDirectory)src\ui\</BaseUICodePath>
-    <PostScriptFolderPath>$(RemoteDebuggerWorkingDirectory)scripts\</PostScriptFolderPath>
-    <EnginePath>$(BaseRootPath)Project\C++\PuzzleGame\Engine</EnginePath>
+    <BaseCodePath>$(CurentSolutionDirectory)src\C++\</BaseCodePath>
+    <HeadersPath>$(BaseCodePath)definitions\</HeadersPath>
+    <DefinitionPath>$(BaseCodePath)headers\</DefinitionPath>
+    <BaseUICodePath>$(CurentSolutionDirectory)src\ui\</BaseUICodePath>
+    <PostScriptFolderPath>$(CurentSulutionDirectory)scripts\</PostScriptFolderPath>
+    <EnginePath>$(CurentSolutionDirectory)..\Engine\</EnginePath>
   </PropertyGroup>
   <PropertyGroup />
   <ItemDefinitionGroup />
   <ItemGroup>
     <BuildMacro Include="BaseRootPath">
       <Value>$(BaseRootPath)</Value>
+    </BuildMacro>
+    <BuildMacro Include="CurentSolutionDirectory">
+      <Value>$(CurentSolutionDirectory)</Value>
     </BuildMacro>
     <BuildMacro Include="BaseCommonFilesPath">
       <Value>$(BaseCommonFilesPath)</Value>
