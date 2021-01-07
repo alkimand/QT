@@ -24,10 +24,6 @@ int main(int argc, char *argv[]) {
     QGuiApplication::setLibraryPaths(paths);
 
     QGuiApplication::setAttribute(Qt::AA_UseDesktopOpenGL);
-
-
-    //apps engine
-    //QGuiApplication gui_app(argc, argv); // or
     QApplication gui_app(argc, argv);
     QQmlApplicationEngine engine;
 

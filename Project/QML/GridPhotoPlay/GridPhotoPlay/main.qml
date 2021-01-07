@@ -58,8 +58,8 @@ Column{
     anchors.horizontalCenter: parent.horizontalCenter;
 
     property int screen_width: app_data.getScreenWidth();
-    property int screen_height: app_data.getScreenHeight()
-    width:screen_width +400
+    property int screen_height: app_data.getScreenHeight();
+    width:screen_width + 400;
     DropWidget {
         id: drop_widget
         model_id:0

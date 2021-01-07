@@ -12,11 +12,14 @@
     <ZlibPath>$(Base3rdPartyPath)zlib-1.2.8-vc14-x64\</ZlibPath>
     <CurlPath_x64>$(Base3rdpartyPath)libcurl-7.63.0-4-vc15-x64\</CurlPath_x64>
     <BaseClientAPIPath>$(BaseCommonFilesPath)Client_IPI\</BaseClientAPIPath>
-    <QTDIR>$(Base3rdpartyPath)qt_5_12_0_sse\</QTDIR>
-    <BuildPath>$(BaseRootPath)Project\Builds\$(SolutionName)\$(Configuration)\$(PlatformName)\</BuildPath>
-    <BaseCodePath>$(RemoteDebuggerWorkingDirectory)src\C++code\</BaseCodePath>
+    <QTDIR>$(Base3rdpartyPath)qt_5_7_0_sse\</QTDIR>
+    <BuildPath>$(BaseRootPath)Project\builds\</BuildPath>
+    <BaseCodePath>$(RemoteDebuggerWorkingDirectory)src\C++\</BaseCodePath>
     <HeadersPath>$(BaseCodePath)definitions</HeadersPath>
     <DefinitionPath>$(BaseCodePath)headers</DefinitionPath>
+    <BaseUICodePath>$(RemoteDebuggerWorkingDirectory)src\ui\</BaseUICodePath>
+    <PostScriptFolderPath>$(RemoteDebuggerWorkingDirectory)scripts\</PostScriptFolderPath>
+    <EnginePath>$(BaseRootPath)Project\C++\PuzzleGame\Engine</EnginePath>
   </PropertyGroup>
   <PropertyGroup />
   <ItemDefinitionGroup />
@@ -69,6 +72,15 @@
     </BuildMacro>
     <BuildMacro Include="DefinitionPath">
       <Value>$(DefinitionPath)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BaseUICodePath">
+      <Value>$(BaseUICodePath)</Value>
+    </BuildMacro>
+    <BuildMacro Include="PostScriptFolderPath">
+      <Value>$(PostScriptFolderPath)</Value>
+    </BuildMacro>
+    <BuildMacro Include="EnginePath">
+      <Value>$(EnginePath)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>
