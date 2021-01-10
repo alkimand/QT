@@ -45,12 +45,13 @@ void MainWindow::onAddFolderBtn(eAddresType type) {
 
 
 void MainWindow::onSearchBtn() {
-    this->ui->comparedView->setModel(new QStringListModel(QStringList()));
+    files_.clear();
+    this->ui->comparingLbl->setText("");
+    this->ui->comparedView->setModel(new QStringListModel(files_));
+
     QString first_dir = this->ui->labelFirst->text();
     QString second_dir = this->ui->labelSecond->text();
-    if (!first_dir.isEmpty() && !second_dir.isEmpty() &&
-        (first_dir != second_dir) && QDir(first_dir).exists()
-        && QDir(second_dir).exists()) {
+    if (checkDirectory()) {
 
         QStringList fist_folder_list;
         QStringList second_folder_list;
@@ -64,17 +65,24 @@ void MainWindow::onSearchBtn() {
         fist_working_thread.waitForFinished();
         second_working_thread.waitForFinished();
 
-        QStringList    file_paths;
-        file_paths << fist_folder_list << second_folder_list;
-
-        this->ui->addedView->setModel(new QStringListModel(file_paths));
-
-        QString adding_text = "founded " + QString::number(file_paths.size()) + " files";
+        files_ << fist_folder_list << second_folder_list;
+        this->ui->addedView->setModel(new QStringListModel(files_));
+        QString adding_text = "founded " + QString::number(files_.size()) + " files";
         this->ui->addingLabel->setText(adding_text);
-        QString progress_text = "progress " + QString::number(0) + " of " + QString::number(file_paths.size());
-        this->ui->comparingLbl->setText(progress_text);
+    }
+    else {
+        QMessageBox msgBox;
+        msgBox.setText("Set the correct folder");
+        msgBox.exec();
+    }
+}
 
-        engine_.data()->compareFiles(file_paths);
+
+void MainWindow::onCompareBtn() {
+    if (checkDirectory()) {
+        QString progress_text = "progress " + QString::number(0) + " of " + QString::number(files_.size());
+        this->ui->comparingLbl->setText(progress_text);
+        engine_.data()->compareFiles(files_);
     }
     else {
         QMessageBox msgBox;
@@ -94,7 +102,7 @@ void MainWindow::onCompareFinished(QList<QList<QString>> file_container) {
             result_list << file_path;
         }
     }
-  this->ui->comparedView->setModel(new QStringListModel(result_list));
+    this->ui->comparedView->setModel(new QStringListModel(result_list));
 }
 
 
@@ -122,14 +130,25 @@ void MainWindow::setupUI() {
         onAddFolderBtn(eAddresType::second);});
 
     QObject::connect(this->ui->searchBtn, &QPushButton::clicked, this, &MainWindow::onSearchBtn);
+    QObject::connect(this->ui->compareBtn, &QPushButton::clicked, this, &MainWindow::onCompareBtn);
     QObject::connect(this->ui->stopBtn, &QPushButton::clicked, this, &MainWindow::onStopBtn);
 
     QObject::connect(engine_.data(), &Engine::setProgress, this, [this](const QPair <int, int> curent_progress) {
         QString text = "progress " + QString::number(curent_progress.first) + " of " + QString::number(curent_progress.second);
         this->ui->comparingLbl->setText(text);
-    });
+        });
 }
 
+
+bool MainWindow::checkDirectory() {
+    QString first_dir = this->ui->labelFirst->text();
+    QString second_dir = this->ui->labelSecond->text();
+    if (!first_dir.isEmpty() && !second_dir.isEmpty() &&
+        (first_dir != second_dir) && QDir(first_dir).exists()
+        && QDir(second_dir).exists())
+        return true;
+    return false;
+}
 
 MainWindow::~MainWindow() {
     delete ui;

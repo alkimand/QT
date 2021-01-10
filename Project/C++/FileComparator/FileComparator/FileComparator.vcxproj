@@ -45,10 +45,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(BuildPath)$(SolutionName)\</OutDir>
-    <TargetName>$(ProjectName)</TargetName>
+    <TargetName>$(SolutionName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(BuildPath)$(SolutionName)\</OutDir>
+    <TargetName>$(SolutionName)</TargetName>
   </PropertyGroup>
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
     <Import Project="$(QtMsBuild)\qt_defaults.props" />
@@ -83,6 +84,7 @@
       <AdditionalDependencies>$(Qt_LIBS_);%(AdditionalDependencies);Qt5Widgets.lib;Qt5OpenGL.lib;opengl32.lib;glu32.lib;Qt5Gui.lib;Qt5Core.lib;Qt5Network.lib;Qt5Xml.lib;Qt5Concurrent.lib;Qt5WebEngineCore.lib;Qt5WebEngine.lib;Qt5WebEngineWidgets.lib;version.lib;User32.lib;Advapi32.lib;Shell32.lib;winmm.lib;Qt5WebChannel.lib</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <ShowProgress>NotSet</ShowProgress>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(QTDIR)\lib</AdditionalLibraryDirectories>
     </Link>
     <QtMoc>
       <DebugInformationFormat>None</DebugInformationFormat>
@@ -91,7 +93,7 @@
       <UseFullPaths>true</UseFullPaths>
     </QtMoc>
     <PostBuildEvent>
-      <Command>$(QTDIR)\bin\windeployqt.exe $(OutDir)$(TargetName)$(TargetExt) --no-translations</Command>
+      <Command>call $(PostScriptFolderPath)post_build_debug.cmd $(QTDIR) $(ProjectDir) $(OutDir) $(TargetDir) $(TargetName) $(TargetExt) $(Base3rdpartyPath)</Command>
     </PostBuildEvent>
     <QtRcc>
       <QtRccDir>generated_files\qrc</QtRccDir>
@@ -114,14 +116,14 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
-      <AdditionalDependencies>$(Qt_LIBS_);%(AdditionalDependencies);Qt5Widgets.lib;Qt5OpenGL.lib;opengl32.lib;glu32.lib;Qt5Gui.lib;Qt5Core.lib;Qt5Network.lib;Qt5Xml.lib;Qt5Concurrent.lib;Qt5WebEngineCore.lib;Qt5WebEngine.lib;Qt5WebEngineWidgets.lib;version.lib;User32.lib;Advapi32.lib;Shell32.lib;winmm.lib;Qt5WebChannel.lib</AdditionalDependencies>
+      <AdditionalDependencies>$(Qt_LIBS_);%(AdditionalDependencies);Qt5Widgets.lib;Qt5OpenGL.lib;glu32.lib;Qt5Gui.lib;Qt5Core.lib;Qt5Concurrent.lib;version.lib;User32.lib;Advapi32.lib;Shell32.lib;winmm.lib</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalLibraryDirectories>$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>$(QTDIR)\bin\windeployqt.exe $(OutDir)$(TargetName)$(TargetExt) --no-translations</Command>
+      <Command>call $(PostScriptFolderPath)post_build_release.cmd $(QTDIR) $(ProjectDir) $(OutDir) $(TargetDir) $(TargetName) $(TargetExt) $(Base3rdpartyPath)</Command>
     </PostBuildEvent>
     <QtUic>
       <QtUicDir>generated_files\dialogs</QtUicDir>

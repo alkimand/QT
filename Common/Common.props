@@ -19,7 +19,7 @@
     <HeadersPath>$(BaseCodePath)definitions\</HeadersPath>
     <DefinitionPath>$(BaseCodePath)headers\</DefinitionPath>
     <BaseUICodePath>$(CurentSolutionDirectory)src\ui\</BaseUICodePath>
-    <PostScriptFolderPath>$(CurentSulutionDirectory)scripts\</PostScriptFolderPath>
+    <PostScriptFolderPath>$(CurentSolutionDirectory)scripts\</PostScriptFolderPath>
     <EnginePath>$(CurentSolutionDirectory)..\Engine\</EnginePath>
   </PropertyGroup>
   <PropertyGroup />

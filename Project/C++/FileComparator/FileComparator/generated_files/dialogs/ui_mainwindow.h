@@ -36,7 +36,9 @@ public:
     QGridLayout *gridLayout;
     QWidget *verticalWidget;
     QVBoxLayout *verticalLayout;
+    QWidget *VerticalllabelWgt;
     QVBoxLayout *verticalLayout_5;
+    QWidget *HorizontallabelWgt;
     QHBoxLayout *horizontalLayout_5;
     QLabel *addingLabel;
     QSpacerItem *horizontalSpacer_3;
@@ -54,7 +56,9 @@ public:
     QPushButton *stopBtn;
     QSpacerItem *verticalSpacer_3;
     QListView *comparedView;
+    QWidget *HorizontalFolderWgt;
     QHBoxLayout *horizontalLayout_2;
+    QWidget *VerticalFolderWgt;
     QVBoxLayout *verticalLayout_2;
     QWidget *addFolder1Wgt;
     QHBoxLayout *horizontalLayout_3;
@@ -87,16 +91,24 @@ public:
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(5, -1, 3, -1);
-        verticalLayout_5 = new QVBoxLayout();
+        verticalLayout->setContentsMargins(5, 0, 3, 5);
+        VerticalllabelWgt = new QWidget(verticalWidget);
+        VerticalllabelWgt->setObjectName(QStringLiteral("VerticalllabelWgt"));
+        verticalLayout_5 = new QVBoxLayout(VerticalllabelWgt);
         verticalLayout_5->setSpacing(0);
+        verticalLayout_5->setContentsMargins(11, 11, 11, 11);
         verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
-        horizontalLayout_5 = new QHBoxLayout();
+        verticalLayout_5->setContentsMargins(5, 0, 5, 0);
+        HorizontallabelWgt = new QWidget(VerticalllabelWgt);
+        HorizontallabelWgt->setObjectName(QStringLiteral("HorizontallabelWgt"));
+        horizontalLayout_5 = new QHBoxLayout(HorizontallabelWgt);
         horizontalLayout_5->setSpacing(7);
+        horizontalLayout_5->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
-        addingLabel = new QLabel(verticalWidget);
+        horizontalLayout_5->setContentsMargins(-1, 0, -1, 0);
+        addingLabel = new QLabel(HorizontallabelWgt);
         addingLabel->setObjectName(QStringLiteral("addingLabel"));
-        addingLabel->setStyleSheet(QStringLiteral("font: 15px \"Arial Black\";"));
+        addingLabel->setStyleSheet(QStringLiteral("font: 17px \"Arial Black\";"));
 
         horizontalLayout_5->addWidget(addingLabel);
 
@@ -104,19 +116,19 @@ public:
 
         horizontalLayout_5->addItem(horizontalSpacer_3);
 
-        comparingLbl = new QLabel(verticalWidget);
+        comparingLbl = new QLabel(HorizontallabelWgt);
         comparingLbl->setObjectName(QStringLiteral("comparingLbl"));
         comparingLbl->setLayoutDirection(Qt::LeftToRight);
-        comparingLbl->setStyleSheet(QStringLiteral("font: 15px \"Arial Black\";"));
+        comparingLbl->setStyleSheet(QStringLiteral("font: 17px \"Arial Black\";"));
         comparingLbl->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
 
         horizontalLayout_5->addWidget(comparingLbl);
 
 
-        verticalLayout_5->addLayout(horizontalLayout_5);
+        verticalLayout_5->addWidget(HorizontallabelWgt);
 
 
-        verticalLayout->addLayout(verticalLayout_5);
+        verticalLayout->addWidget(VerticalllabelWgt);
 
         horizontalWidget = new QWidget(verticalWidget);
         horizontalWidget->setObjectName(QStringLiteral("horizontalWidget"));
@@ -191,13 +203,19 @@ public:
 
         gridLayout->addWidget(verticalWidget, 1, 0, 1, 1);
 
-        horizontalLayout_2 = new QHBoxLayout();
+        HorizontalFolderWgt = new QWidget(centralWidget);
+        HorizontalFolderWgt->setObjectName(QStringLiteral("HorizontalFolderWgt"));
+        horizontalLayout_2 = new QHBoxLayout(HorizontalFolderWgt);
         horizontalLayout_2->setSpacing(6);
+        horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        verticalLayout_2 = new QVBoxLayout();
+        VerticalFolderWgt = new QWidget(HorizontalFolderWgt);
+        VerticalFolderWgt->setObjectName(QStringLiteral("VerticalFolderWgt"));
+        verticalLayout_2 = new QVBoxLayout(VerticalFolderWgt);
         verticalLayout_2->setSpacing(6);
+        verticalLayout_2->setContentsMargins(11, 11, 11, 11);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        addFolder1Wgt = new QWidget(centralWidget);
+        addFolder1Wgt = new QWidget(VerticalFolderWgt);
         addFolder1Wgt->setObjectName(QStringLiteral("addFolder1Wgt"));
         horizontalLayout_3 = new QHBoxLayout(addFolder1Wgt);
         horizontalLayout_3->setSpacing(6);
@@ -226,7 +244,7 @@ public:
 
         verticalLayout_2->addWidget(addFolder1Wgt);
 
-        addFolder2Wgt = new QWidget(centralWidget);
+        addFolder2Wgt = new QWidget(VerticalFolderWgt);
         addFolder2Wgt->setObjectName(QStringLiteral("addFolder2Wgt"));
         horizontalLayout_4 = new QHBoxLayout(addFolder2Wgt);
         horizontalLayout_4->setSpacing(6);
@@ -259,10 +277,10 @@ public:
         verticalLayout_2->addWidget(addFolder2Wgt);
 
 
-        horizontalLayout_2->addLayout(verticalLayout_2);
+        horizontalLayout_2->addWidget(VerticalFolderWgt);
 
 
-        gridLayout->addLayout(horizontalLayout_2, 0, 0, 1, 1);
+        gridLayout->addWidget(HorizontalFolderWgt, 0, 0, 1, 1);
 
         MainWindowWgt->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindowWgt);
@@ -289,9 +307,9 @@ public:
         searchBtn->setText(QApplication::translate("MainWindowWgt", "Search File", 0));
         compareBtn->setText(QApplication::translate("MainWindowWgt", "Compare", 0));
         stopBtn->setText(QApplication::translate("MainWindowWgt", "Stop", 0));
-        labelFirst->setText(QApplication::translate("MainWindowWgt", "C:/Users/serg/Desktop/temp/1", 0));
+        labelFirst->setText(QString());
         addFolderBtn1->setText(QApplication::translate("MainWindowWgt", "Add 1 Folder", 0));
-        labelSecond->setText(QApplication::translate("MainWindowWgt", "C:/Users/serg/Desktop/temp/2", 0));
+        labelSecond->setText(QString());
         addFolderBtn2->setText(QApplication::translate("MainWindowWgt", "Add 2 Folder", 0));
     } // retranslateUi
 

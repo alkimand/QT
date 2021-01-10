@@ -24,16 +24,19 @@ public:
     ~MainWindow();
 private slots:
     void onSearchBtn();
+    void onCompareBtn();
     void onCompareFinished(QList<QList<QString>> file_container);
     void onStopBtn();
 private:
     void onAddFolderBtn(eAddresType);
     QStringList getFilePaths(const QString& folder_path);
     void setupUI();
+    bool checkDirectory();
 signals:
 
 private:
     Ui::MainWindowWgt* ui;
     QScopedPointer <Engine>   engine_;
+    QStringList               files_;
 };
 

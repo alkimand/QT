@@ -17,8 +17,13 @@ void Engine::compareFiles(QStringList file_list) {
 
 
 void Engine::stopWorkingThread() {
-    if (workerking_thread_ != nullptr)
+    if (workerking_thread_ != nullptr) 
         workerking_thread_->terminate();
+    
 }
 
 
+
+Engine::~Engine() {
+    stopWorkingThread();
+}

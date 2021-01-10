@@ -17,6 +17,7 @@ public:
     Engine(QWidget* parent = nullptr) {};
     void compareFiles(QStringList file_list);
     void stopWorkingThread();
+    ~Engine();
 
 private:
     WorkingThread *workerking_thread_ = nullptr;
