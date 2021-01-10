@@ -8,27 +8,7 @@
 
 #include <mainwindow.h>
 
-
-QByteArray fileChecksum(const QString& fileName, QCryptographicHash::Algorithm hashAlgorithm) {
-    return QByteArray();
-}
 int main(int argc, char *argv[]) {
-    // Initialize a Fibonacci relation sequence.
-    //fibonacci_init(1, 1);
-    //// Write out the sequence values until overflow.
-    //do {
-    //    std::cout << fibonacci_index() << ": "
-    //        << fibonacci_current() << std::endl;
-    //} while (fibonacci_next());
-    //// Report count of values written before overflow.
-    //std::cout << fibonacci_index() + 1 <<
-    //    " Fibonacci sequence values fit in an " <<
-    //    "unsigned 64-bit integer." << std::endl;
-
-    //QList < QList<QString> > result_files;
-    //QList <QString> result_files_;
-    //result_files_.push_back("1252");
-    //result_files.push_back(result_files_);
 
     QCoreApplication::setApplicationName("FileComparator");
     QCoreApplication::setOrganizationName("QtProject");

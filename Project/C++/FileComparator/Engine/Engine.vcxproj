@@ -107,11 +107,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <QtMoc Include="src\C++\working_thread.h" />
     <QtMoc Include="src\C++\engine.h" />
     <ClInclude Include="src\C++\engine_global.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\C++\engine.cpp" />
+    <ClCompile Include="src\C++\working_thread.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

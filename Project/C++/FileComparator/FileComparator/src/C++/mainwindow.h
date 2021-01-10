@@ -25,17 +25,15 @@ public:
 private slots:
     void onSearchBtn();
     void onCompareFinished(QList<QList<QString>> file_container);
-
+    void onStopBtn();
 private:
     void onAddFolderBtn(eAddresType);
     QStringList getFilePaths(const QString& folder_path);
     void setupUI();
 signals:
-    //void folderParsed(QStringList list);
 
 private:
     Ui::MainWindowWgt* ui;
     QScopedPointer <Engine>   engine_;
-    QStringList               file_paths_;
 };
 

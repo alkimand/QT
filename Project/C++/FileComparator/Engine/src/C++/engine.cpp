@@ -1,5 +1,4 @@
 #include <QFile>
-#include <QDebug>
 #include <QTextCodec>
 #include <QMultiMap>
 #include <QByteArray>
@@ -7,45 +6,19 @@
 
 #include <engine.h>
 
-void Engine::setFiles(QStringList file_list) {
-    file_list_ = std::move(file_list);
+void Engine::compareFiles(QStringList file_list) {
+    stopWorkingThread();
+    workerking_thread_ = new WorkingThread();
+    QObject::connect(workerking_thread_, &WorkingThread::threadFinished, this, &Engine::compareFinished);
+    QObject::connect(workerking_thread_, &WorkingThread::parseProgress, this, &Engine::setProgress);
+    workerking_thread_->setFiles(file_list);
+    workerking_thread_->start();
 }
 
 
-void Engine::compareFiles() {
-    QMultiMap <QByteArray, QString> files;
-    foreach(const QString & file_path, file_list_) {
-        QFile file(file_path);
-        if (file.exists()) {
-            files.insert(getCheckSum(file_path, QCryptographicHash::Md5), file_path);
-        }
-    }
-
-    QList <QList<QString>> result_files;
-    for (auto& key : files.uniqueKeys()) {
-        QList<QString> equal_hash_container = files.values(key);
-        if (equal_hash_container.size() > 1) {
-            result_files.push_back(equal_hash_container);
-        }
-    }
-    emit compareFinished(result_files);
+void Engine::stopWorkingThread() {
+    if (workerking_thread_ != nullptr)
+        workerking_thread_->terminate();
 }
 
-
-QByteArray Engine::getCheckSum(const QString& fileName, QCryptographicHash::Algorithm hashAlgorithm) {
-    QFile file(fileName);
-    if (file.open(QFile::ReadOnly)) {
-        QCryptographicHash hash(hashAlgorithm);
-        if (hash.addData(&file)) {
-            //qDebug() << hash.result().toHex();
-            return hash.result();
-        }
-    }
-    return QByteArray();
-}
-
-
-Engine::~Engine() {
-
-};
 
