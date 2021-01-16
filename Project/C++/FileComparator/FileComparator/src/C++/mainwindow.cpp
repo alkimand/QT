@@ -52,16 +52,13 @@ void MainWindow::onSearchBtn() {
     QString first_dir = this->ui->labelFirst->text();
     QString second_dir = this->ui->labelSecond->text();
     if (checkDirectory()) {
-
         QStringList fist_folder_list;
         QStringList second_folder_list;
 
         auto fist_working_thread = QtConcurrent::run([&]() {
             fist_folder_list = getFilePaths(first_dir); });
-
         auto second_working_thread = QtConcurrent::run([&]() {
             second_folder_list = getFilePaths(second_dir); });
-
         fist_working_thread.waitForFinished();
         second_working_thread.waitForFinished();
 

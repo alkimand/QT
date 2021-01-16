@@ -1,3 +1,0 @@
-folderlineEdit - C:\Users\stimofey\Desktop\New folder
-progressBarStartDate - 26.09.2018
-progressBarEndDate - 21.12.2018
