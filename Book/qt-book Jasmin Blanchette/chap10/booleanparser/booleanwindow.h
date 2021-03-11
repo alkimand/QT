@@ -2,6 +2,7 @@
 #define BOOLEANWINDOW_H
 
 #include <QWidget>
+#include <QLabel>
 
 class QLabel;
 class QLineEdit;

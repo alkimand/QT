@@ -2,6 +2,7 @@
 #define BOOLEANMODEL_H
 
 #include <QAbstractItemModel>
+#include <QLabel>
 
 class Node;
 

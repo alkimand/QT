@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30804.86
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1022
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PuzzleGame", "..\C++\PuzzleGame\PuzzleGame\PuzzleGame.vcxproj", "{D7E06C1E-900F-402B-BCAC-642EFF49300C}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -32,14 +32,12 @@ Global
 		{D7E06C1E-900F-402B-BCAC-642EFF49300C}.Release|x86.Build.0 = Release|Win32
 		{BE50D4A1-81AC-4547-B6F0-F4565AF88FFE}.Debug|Win32.ActiveCfg = Debug|Win32
 		{BE50D4A1-81AC-4547-B6F0-F4565AF88FFE}.Debug|Win32.Build.0 = Debug|Win32
-		{BE50D4A1-81AC-4547-B6F0-F4565AF88FFE}.Debug|x64.ActiveCfg = Debug|x64
-		{BE50D4A1-81AC-4547-B6F0-F4565AF88FFE}.Debug|x64.Build.0 = Debug|x64
+		{BE50D4A1-81AC-4547-B6F0-F4565AF88FFE}.Debug|x64.ActiveCfg = Debug|Win32
 		{BE50D4A1-81AC-4547-B6F0-F4565AF88FFE}.Debug|x86.ActiveCfg = Debug|Win32
 		{BE50D4A1-81AC-4547-B6F0-F4565AF88FFE}.Debug|x86.Build.0 = Debug|Win32
 		{BE50D4A1-81AC-4547-B6F0-F4565AF88FFE}.Release|Win32.ActiveCfg = Release|Win32
 		{BE50D4A1-81AC-4547-B6F0-F4565AF88FFE}.Release|Win32.Build.0 = Release|Win32
-		{BE50D4A1-81AC-4547-B6F0-F4565AF88FFE}.Release|x64.ActiveCfg = Release|x64
-		{BE50D4A1-81AC-4547-B6F0-F4565AF88FFE}.Release|x64.Build.0 = Release|x64
+		{BE50D4A1-81AC-4547-B6F0-F4565AF88FFE}.Release|x64.ActiveCfg = Release|Win32
 		{BE50D4A1-81AC-4547-B6F0-F4565AF88FFE}.Release|x86.ActiveCfg = Release|Win32
 		{BE50D4A1-81AC-4547-B6F0-F4565AF88FFE}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection

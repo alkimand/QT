@@ -1,9 +1,10 @@
 #include <QObject>
-#include <QObject>
+#include <QWidget>
 #include <QSharedPointer>
 
 #include <QHash>
 #include <QList>
+#include <QPair>
 
 #include <QFile>
 #include <QFileInfo>
@@ -22,37 +23,37 @@
 #include <pathpoints.h>
 
 
-typedef  QHash<QString, QPixmap*> IndexPixmap;
+//typedef  QHash<QString, QPixmap*> IndexPixmap;
 //typedef  QHash<eType, QString> ImageControllerMap;
 
-class Screen : public QObject{
+class Screen : public QWidget {//: public QWidget 
 	Q_OBJECT
-		typedef std::list<int>  TaskList;
+		//typedef std::list<int>  TaskList;
 
 public:
-	explicit Screen(QString path, int id = -1, int rows = 0, int columns = 0, bool is_rotated = false, QObject* parent = nullptr);
+	explicit Screen(const int id = -1, const  QString image_path ="",
+		const QPair <int, int> cells_size = {0,0}, bool is_rotated = false, QWidget* parent = nullptr);
 
-	void setWindowSize(const QSize);
-	void setMaxWindowRow(int);
-	void setMaxWindowColumn(int);
-	int getTileIdby();
+
+	void setWindowSize(const QPair <int, int> window_size);
+	//void setMaxWindowRow(int);
+	//void setMaxWindowColumn(int);
 	int getId();
-	void  setId(int id);
 	eItemStatus getStatus();
 	void setStatus(eItemStatus);
 
-	void createPoints();
-	void createPaths();
-	void createTiles();
-	void setScreenSize(const int screen_width, const int screen_height);
+	//void createPoints();
+	//void createPaths();
+	//void createTiles();
+	void setScreenSize(const QSize new_window_size);
 	void loadUserImage();
 	//void cleanModel();
 	//ItemModelBase* getModel();
 
 signals:
-	void finished(bool win);
-	void back();
-	void exit();
+	//void finished(bool win);
+	//void back();
+	//void exit();
 
 public:
 	~Screen();
@@ -60,30 +61,31 @@ public:
 
 private:
 
-	QFile  file_;
-	QFileInfo file_info_;
-	QPixmap  user_pixmap_;
+	QFile  *file_;
+	QFileInfo *file_info_;
+	QPixmap  *user_pixmap_;
+	QImage *user_image_;
 	//QList<QList<pTile>> tiles_;
 
-	QSize window_size_ = { 0,0 };
-	int   max_row_ = 0;
-	int   max_column_ = 0;
-	int   indent_ = 2;
-	int   black_grid_border_indent_ = 1;
-	bool is_rotated_ = false;
-	QImage user_image_;
 	int id_ = -1;
+	QString image_path_;
+	QPair <int, int> cells_size_;
+	QPair <int, int> window_pixel_size_;
+	QSize size_ = { 0,0 };
+	bool is_rotated_ = false;
+
+
 	eItemStatus status_ = eItemStatus::kStatusNone;
 	int piece_count_;
 
 public:
 	//TileMatrix      tiles_matrix_;
 	//QVector<QVector<QString>> index_;
-	PathsMatrix     paths_matrix_;
+	//PathsMatrix     paths_matrix_;
 
 
-	QHash<eType, SidePointsConteinerMatrix> points_;
-	QHash<eType, PathsMatrix> paths_;
-	QHash<eType, SidePointsConteinerMatrix> vertical_points_;
-	QHash<eType, SidePointsConteinerMatrix> horizontal_points_;
+	//QHash<eType, SidePointsConteinerMatrix> points_;
+	//QHash<eType, PathsMatrix> paths_;
+	//QHash<eType, SidePointsConteinerMatrix> vertical_points_;
+	//QHash<eType, SidePointsConteinerMatrix> horizontal_points_;
 };

@@ -120,20 +120,20 @@ QStringList MainWindow::getFilePaths(const QString& folder_path) {
 
 
 void MainWindow::setupUI() {
-    QObject::connect(this->ui->addFolderBtn1, &QPushButton::clicked, this, [this]() {
-        onAddFolderBtn(eAddresType::first);});
+    //QObject::connect(this->ui->addFolderBtn1, &QPushButton::clicked, this, [this]() {
+    //    onAddFolderBtn(eAddresType::first);});
 
-    QObject::connect(this->ui->addFolderBtn2, &QPushButton::clicked, this, [this]() {
-        onAddFolderBtn(eAddresType::second);});
+    //QObject::connect(this->ui->addFolderBtn2, &QPushButton::clicked, this, [this]() {
+    //    onAddFolderBtn(eAddresType::second);});
 
-    QObject::connect(this->ui->searchBtn, &QPushButton::clicked, this, &MainWindow::onSearchBtn);
-    QObject::connect(this->ui->compareBtn, &QPushButton::clicked, this, &MainWindow::onCompareBtn);
-    QObject::connect(this->ui->stopBtn, &QPushButton::clicked, this, &MainWindow::onStopBtn);
+    //QObject::connect(this->ui->searchBtn, &QPushButton::clicked, this, &MainWindow::onSearchBtn);
+    //QObject::connect(this->ui->compareBtn, &QPushButton::clicked, this, &MainWindow::onCompareBtn);
+    //QObject::connect(this->ui->stopBtn, &QPushButton::clicked, this, &MainWindow::onStopBtn);
 
-    QObject::connect(engine_.data(), &Engine::setProgress, this, [this](const QPair <int, int> curent_progress) {
-        QString text = "progress " + QString::number(curent_progress.first) + " of " + QString::number(curent_progress.second);
-        this->ui->comparingLbl->setText(text);
-        });
+    //QObject::connect(engine_.data(), &Engine::setProgress, this, [this](const QPair <int, int> curent_progress) {
+    //    QString text = "progress " + QString::number(curent_progress.first) + " of " + QString::number(curent_progress.second);
+    //    this->ui->comparingLbl->setText(text);
+    //    });
 }
 
 

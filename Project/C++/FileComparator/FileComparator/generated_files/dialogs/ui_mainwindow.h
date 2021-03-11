@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.7.0
+** Created by: Qt User Interface Compiler version 5.15.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,12 +10,9 @@
 #define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
-#include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QListView>
 #include <QtWidgets/QMainWindow>
@@ -77,38 +74,38 @@ public:
     void setupUi(QMainWindow *MainWindowWgt)
     {
         if (MainWindowWgt->objectName().isEmpty())
-            MainWindowWgt->setObjectName(QStringLiteral("MainWindowWgt"));
+            MainWindowWgt->setObjectName(QString::fromUtf8("MainWindowWgt"));
         MainWindowWgt->resize(693, 678);
         centralWidget = new QWidget(MainWindowWgt);
-        centralWidget->setObjectName(QStringLiteral("centralWidget"));
+        centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         gridLayout = new QGridLayout(centralWidget);
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
-        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         verticalWidget = new QWidget(centralWidget);
-        verticalWidget->setObjectName(QStringLiteral("verticalWidget"));
+        verticalWidget->setObjectName(QString::fromUtf8("verticalWidget"));
         verticalLayout = new QVBoxLayout(verticalWidget);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         verticalLayout->setContentsMargins(5, 0, 3, 5);
         VerticalllabelWgt = new QWidget(verticalWidget);
-        VerticalllabelWgt->setObjectName(QStringLiteral("VerticalllabelWgt"));
+        VerticalllabelWgt->setObjectName(QString::fromUtf8("VerticalllabelWgt"));
         verticalLayout_5 = new QVBoxLayout(VerticalllabelWgt);
         verticalLayout_5->setSpacing(0);
         verticalLayout_5->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
+        verticalLayout_5->setObjectName(QString::fromUtf8("verticalLayout_5"));
         verticalLayout_5->setContentsMargins(5, 0, 5, 0);
         HorizontallabelWgt = new QWidget(VerticalllabelWgt);
-        HorizontallabelWgt->setObjectName(QStringLiteral("HorizontallabelWgt"));
+        HorizontallabelWgt->setObjectName(QString::fromUtf8("HorizontallabelWgt"));
         horizontalLayout_5 = new QHBoxLayout(HorizontallabelWgt);
         horizontalLayout_5->setSpacing(7);
         horizontalLayout_5->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
+        horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
         horizontalLayout_5->setContentsMargins(-1, 0, -1, 0);
         addingLabel = new QLabel(HorizontallabelWgt);
-        addingLabel->setObjectName(QStringLiteral("addingLabel"));
-        addingLabel->setStyleSheet(QStringLiteral("font: 17px \"Arial Black\";"));
+        addingLabel->setObjectName(QString::fromUtf8("addingLabel"));
+        addingLabel->setStyleSheet(QString::fromUtf8("font: 17px \"Arial Black\";"));
 
         horizontalLayout_5->addWidget(addingLabel);
 
@@ -117,9 +114,9 @@ public:
         horizontalLayout_5->addItem(horizontalSpacer_3);
 
         comparingLbl = new QLabel(HorizontallabelWgt);
-        comparingLbl->setObjectName(QStringLiteral("comparingLbl"));
+        comparingLbl->setObjectName(QString::fromUtf8("comparingLbl"));
         comparingLbl->setLayoutDirection(Qt::LeftToRight);
-        comparingLbl->setStyleSheet(QStringLiteral("font: 17px \"Arial Black\";"));
+        comparingLbl->setStyleSheet(QString::fromUtf8("font: 17px \"Arial Black\";"));
         comparingLbl->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
 
         horizontalLayout_5->addWidget(comparingLbl);
@@ -131,31 +128,31 @@ public:
         verticalLayout->addWidget(VerticalllabelWgt);
 
         horizontalWidget = new QWidget(verticalWidget);
-        horizontalWidget->setObjectName(QStringLiteral("horizontalWidget"));
+        horizontalWidget->setObjectName(QString::fromUtf8("horizontalWidget"));
         horizontalLayout = new QHBoxLayout(horizontalWidget);
         horizontalLayout->setSpacing(6);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, -1, 0, -1);
         addedView = new QListView(horizontalWidget);
-        addedView->setObjectName(QStringLiteral("addedView"));
+        addedView->setObjectName(QString::fromUtf8("addedView"));
 
         horizontalLayout->addWidget(addedView);
 
         verticalWidget_2 = new QWidget(horizontalWidget);
-        verticalWidget_2->setObjectName(QStringLiteral("verticalWidget_2"));
+        verticalWidget_2->setObjectName(QString::fromUtf8("verticalWidget_2"));
         buttonWgt = new QVBoxLayout(verticalWidget_2);
         buttonWgt->setSpacing(6);
         buttonWgt->setContentsMargins(11, 11, 11, 11);
-        buttonWgt->setObjectName(QStringLiteral("buttonWgt"));
+        buttonWgt->setObjectName(QString::fromUtf8("buttonWgt"));
         buttonWgt->setContentsMargins(10, -1, 10, -1);
         verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         buttonWgt->addItem(verticalSpacer_4);
 
         searchBtn = new QPushButton(verticalWidget_2);
-        searchBtn->setObjectName(QStringLiteral("searchBtn"));
-        searchBtn->setStyleSheet(QLatin1String("background-color: rgb(85, 85, 255);\n"
+        searchBtn->setObjectName(QString::fromUtf8("searchBtn"));
+        searchBtn->setStyleSheet(QString::fromUtf8("background-color: rgb(85, 85, 255);\n"
 "color: rgb(255, 255, 255);\n"
 ""));
 
@@ -166,8 +163,8 @@ public:
         buttonWgt->addItem(verticalSpacer);
 
         compareBtn = new QPushButton(verticalWidget_2);
-        compareBtn->setObjectName(QStringLiteral("compareBtn"));
-        compareBtn->setStyleSheet(QLatin1String("background-color: rgb(85, 85, 255);\n"
+        compareBtn->setObjectName(QString::fromUtf8("compareBtn"));
+        compareBtn->setStyleSheet(QString::fromUtf8("background-color: rgb(85, 85, 255);\n"
 "color: rgb(255, 255, 255);\n"
 ""));
 
@@ -178,8 +175,8 @@ public:
         buttonWgt->addItem(verticalSpacer_2);
 
         stopBtn = new QPushButton(verticalWidget_2);
-        stopBtn->setObjectName(QStringLiteral("stopBtn"));
-        stopBtn->setStyleSheet(QLatin1String("background-color: rgb(85, 85, 255);\n"
+        stopBtn->setObjectName(QString::fromUtf8("stopBtn"));
+        stopBtn->setStyleSheet(QString::fromUtf8("background-color: rgb(85, 85, 255);\n"
 "color: rgb(255, 255, 255);\n"
 ""));
 
@@ -193,7 +190,7 @@ public:
         horizontalLayout->addWidget(verticalWidget_2);
 
         comparedView = new QListView(horizontalWidget);
-        comparedView->setObjectName(QStringLiteral("comparedView"));
+        comparedView->setObjectName(QString::fromUtf8("comparedView"));
 
         horizontalLayout->addWidget(comparedView);
 
@@ -204,27 +201,27 @@ public:
         gridLayout->addWidget(verticalWidget, 1, 0, 1, 1);
 
         HorizontalFolderWgt = new QWidget(centralWidget);
-        HorizontalFolderWgt->setObjectName(QStringLiteral("HorizontalFolderWgt"));
+        HorizontalFolderWgt->setObjectName(QString::fromUtf8("HorizontalFolderWgt"));
         horizontalLayout_2 = new QHBoxLayout(HorizontalFolderWgt);
         horizontalLayout_2->setSpacing(6);
         horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         VerticalFolderWgt = new QWidget(HorizontalFolderWgt);
-        VerticalFolderWgt->setObjectName(QStringLiteral("VerticalFolderWgt"));
+        VerticalFolderWgt->setObjectName(QString::fromUtf8("VerticalFolderWgt"));
         verticalLayout_2 = new QVBoxLayout(VerticalFolderWgt);
         verticalLayout_2->setSpacing(6);
         verticalLayout_2->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         addFolder1Wgt = new QWidget(VerticalFolderWgt);
-        addFolder1Wgt->setObjectName(QStringLiteral("addFolder1Wgt"));
+        addFolder1Wgt->setObjectName(QString::fromUtf8("addFolder1Wgt"));
         horizontalLayout_3 = new QHBoxLayout(addFolder1Wgt);
         horizontalLayout_3->setSpacing(6);
         horizontalLayout_3->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
         labelFirst = new QLabel(addFolder1Wgt);
-        labelFirst->setObjectName(QStringLiteral("labelFirst"));
+        labelFirst->setObjectName(QString::fromUtf8("labelFirst"));
         labelFirst->setMinimumSize(QSize(100, 0));
-        labelFirst->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        labelFirst->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
 
         horizontalLayout_3->addWidget(labelFirst);
 
@@ -233,9 +230,9 @@ public:
         horizontalLayout_3->addItem(horizontalSpacer);
 
         addFolderBtn1 = new QPushButton(addFolder1Wgt);
-        addFolderBtn1->setObjectName(QStringLiteral("addFolderBtn1"));
+        addFolderBtn1->setObjectName(QString::fromUtf8("addFolderBtn1"));
         addFolderBtn1->setMaximumSize(QSize(100, 16777215));
-        addFolderBtn1->setStyleSheet(QLatin1String("background-color: rgb(85, 85, 255);\n"
+        addFolderBtn1->setStyleSheet(QString::fromUtf8("background-color: rgb(85, 85, 255);\n"
 "color: rgb(255, 255, 255);\n"
 ""));
 
@@ -245,15 +242,15 @@ public:
         verticalLayout_2->addWidget(addFolder1Wgt);
 
         addFolder2Wgt = new QWidget(VerticalFolderWgt);
-        addFolder2Wgt->setObjectName(QStringLiteral("addFolder2Wgt"));
+        addFolder2Wgt->setObjectName(QString::fromUtf8("addFolder2Wgt"));
         horizontalLayout_4 = new QHBoxLayout(addFolder2Wgt);
         horizontalLayout_4->setSpacing(6);
         horizontalLayout_4->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
+        horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
         labelSecond = new QLabel(addFolder2Wgt);
-        labelSecond->setObjectName(QStringLiteral("labelSecond"));
+        labelSecond->setObjectName(QString::fromUtf8("labelSecond"));
         labelSecond->setMinimumSize(QSize(100, 0));
-        labelSecond->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        labelSecond->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
         labelSecond->setScaledContents(false);
         labelSecond->setWordWrap(false);
 
@@ -264,10 +261,10 @@ public:
         horizontalLayout_4->addItem(horizontalSpacer_2);
 
         addFolderBtn2 = new QPushButton(addFolder2Wgt);
-        addFolderBtn2->setObjectName(QStringLiteral("addFolderBtn2"));
+        addFolderBtn2->setObjectName(QString::fromUtf8("addFolderBtn2"));
         addFolderBtn2->setMinimumSize(QSize(0, 0));
         addFolderBtn2->setMaximumSize(QSize(100, 100));
-        addFolderBtn2->setStyleSheet(QLatin1String("background-color: rgb(85, 85, 255);\n"
+        addFolderBtn2->setStyleSheet(QString::fromUtf8("background-color: rgb(85, 85, 255);\n"
 "color: rgb(255, 255, 255);\n"
 ""));
 
@@ -284,14 +281,14 @@ public:
 
         MainWindowWgt->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindowWgt);
-        menuBar->setObjectName(QStringLiteral("menuBar"));
+        menuBar->setObjectName(QString::fromUtf8("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 693, 21));
         MainWindowWgt->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindowWgt);
-        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
+        mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
         MainWindowWgt->addToolBar(Qt::TopToolBarArea, mainToolBar);
         statusBar = new QStatusBar(MainWindowWgt);
-        statusBar->setObjectName(QStringLiteral("statusBar"));
+        statusBar->setObjectName(QString::fromUtf8("statusBar"));
         MainWindowWgt->setStatusBar(statusBar);
 
         retranslateUi(MainWindowWgt);
@@ -301,16 +298,16 @@ public:
 
     void retranslateUi(QMainWindow *MainWindowWgt)
     {
-        MainWindowWgt->setWindowTitle(QApplication::translate("MainWindowWgt", "QtWidgetsApplication1", 0));
+        MainWindowWgt->setWindowTitle(QCoreApplication::translate("MainWindowWgt", "QtWidgetsApplication1", nullptr));
         addingLabel->setText(QString());
         comparingLbl->setText(QString());
-        searchBtn->setText(QApplication::translate("MainWindowWgt", "Search File", 0));
-        compareBtn->setText(QApplication::translate("MainWindowWgt", "Compare", 0));
-        stopBtn->setText(QApplication::translate("MainWindowWgt", "Stop", 0));
+        searchBtn->setText(QCoreApplication::translate("MainWindowWgt", "Search File", nullptr));
+        compareBtn->setText(QCoreApplication::translate("MainWindowWgt", "Compare", nullptr));
+        stopBtn->setText(QCoreApplication::translate("MainWindowWgt", "Stop", nullptr));
         labelFirst->setText(QString());
-        addFolderBtn1->setText(QApplication::translate("MainWindowWgt", "Add 1 Folder", 0));
+        addFolderBtn1->setText(QCoreApplication::translate("MainWindowWgt", "Add 1 Folder", nullptr));
         labelSecond->setText(QString());
-        addFolderBtn2->setText(QApplication::translate("MainWindowWgt", "Add 2 Folder", 0));
+        addFolderBtn2->setText(QCoreApplication::translate("MainWindowWgt", "Add 2 Folder", nullptr));
     } // retranslateUi
 
 };

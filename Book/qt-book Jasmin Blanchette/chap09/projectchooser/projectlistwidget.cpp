@@ -1,4 +1,5 @@
 #include <QtGui>
+#include <QApplication>
 
 #include "projectlistwidget.h"
 
@@ -18,8 +19,8 @@ void ProjectListWidget::mousePressEvent(QMouseEvent *event)
 void ProjectListWidget::mouseMoveEvent(QMouseEvent *event)
 {
     if (event->buttons() & Qt::LeftButton) {
-        int distance = (event->pos() - startPos).manhattanLength();
-        if (distance >= QApplication::startDragDistance())
+       // int distance = (event->pos() - startPos).manhattanLength();
+        if ((event->pos() - startPos).manhattanLength() >= QApplication::startDragDistance())
             performDrag();
     }
     QListWidget::mouseMoveEvent(event);

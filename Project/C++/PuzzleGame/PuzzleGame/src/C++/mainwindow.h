@@ -1,41 +1,42 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#pragma once
 
 #include <QMainWindow>
 #include <QSharedPointer>
 #include <QScopedPointer>
 
 #include <QList>
+#include <QStringList>
+#include <QtWidgets/QMainWindow>
 
-#include "engine_helper.h"
-#include <screen.h>
+#include <ui_mainwindow.h>
+#include <engine.h>
 
-typedef  QSharedPointer<Screen> pScreen;
-
-class MainWindow : public QMainWindow
-{
+class MainWindow : public QMainWindow {
     Q_OBJECT
+        enum class eAddresType {
+        first = 0,
+        second = 1
+    };
 
 public:
-    MainWindow();
+    MainWindow(QWidget* parent = Q_NULLPTR);
+
     ~MainWindow();
-
+private slots:
+    //void onSearchBtn();
+    //void onCompareBtn();
+    //void onCompareFinished(QList<QList<QString>> file_container);
+    //void onStopBtn();
+private:
+    //void onAddFolderBtn(eAddresType);
+    //QStringList getFilePaths(const QString& folder_path);
+    //void setupUI();
+    //bool checkDirectory();
+signals:
 
 private:
-    void Init();
-    void createScreen(int &picture_id, QString image_path, int rows, int columns, bool is_rotated);
-
-
-private:
-    QSharedPointer <EngineHelper>   engine_;
-    QList <pScreen>                app_data_;
-    int screen_width_ = 500;
-    int screen_height_ = 500;
-//private slots:
-
-
-
-   // void onAddNew();
+    Ui::MainWindowWgt* ui;
+    QScopedPointer <Engine>   engine_;
+    QStringList               files_;
 };
 
-#endif

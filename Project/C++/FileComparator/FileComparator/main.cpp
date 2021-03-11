@@ -44,8 +44,10 @@ int main(int argc, char *argv[]) {
     }
     QSurfaceFormat::setDefaultFormat(fmt);
 
-    MainWindow mainWindow;
-    mainWindow.show();
-
+    //MainWindow *mainWindow = new MainWindow();
+   MainWindow mainWindow;
+   mainWindow.show();
+   // mainWindow->show();
+    //delete mainWindow;
     return app.exec();
 }

@@ -16,7 +16,7 @@
 
  //  Q_ENUM(EItemProperty)
 
-    enum eItemStatus {
+    enum class eItemStatus {
         kStatusNone = -1,
         kDetected,
         kParsing,

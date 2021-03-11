@@ -2,6 +2,7 @@
 #define BOOLEANPARSER_H
 
 #include "node.h"
+#include <QLabel>
 
 class BooleanParser
 {

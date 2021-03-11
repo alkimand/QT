@@ -13,7 +13,6 @@
     <ZlibPath>$(Base3rdPartyPath)zlib-1.2.8-vc14-x64\</ZlibPath>
     <CurlPath_x64>$(Base3rdpartyPath)libcurl-7.63.0-4-vc15-x64\</CurlPath_x64>
     <BaseClientAPIPath>$(BaseCommonFilesPath)Client_IPI\</BaseClientAPIPath>
-    <QTDIR>$(Base3rdpartyPath)qt_5_7_0_sse\</QTDIR>
     <BuildPath>$(BaseRootPath)Project\builds\</BuildPath>
     <BaseCodePath>$(CurentSolutionDirectory)src\C++\</BaseCodePath>
     <HeadersPath>$(BaseCodePath)definitions\</HeadersPath>
@@ -61,9 +60,6 @@
     </BuildMacro>
     <BuildMacro Include="BaseClientAPIPath">
       <Value>$(BaseClientAPIPath)</Value>
-    </BuildMacro>
-    <BuildMacro Include="QTDIR">
-      <Value>$(QTDIR)</Value>
     </BuildMacro>
     <BuildMacro Include="BuildPath">
       <Value>$(BuildPath)</Value>

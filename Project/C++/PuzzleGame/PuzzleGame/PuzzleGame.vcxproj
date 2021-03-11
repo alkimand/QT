@@ -13,19 +13,19 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D7E06C1E-900F-402B-BCAC-642EFF49300C}</ProjectGuid>
     <Keyword>QtVS_v302</Keyword>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
     <ProjectName>PuzzleGame</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v120_xp</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v120_xp</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
@@ -45,22 +45,23 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(BuildPath)$(SolutionName)\</OutDir>
-    <TargetName>$(ProjectName)</TargetName>
+    <TargetName>$(SolutionName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(BuildPath)$(SolutionName)\</OutDir>
+    <TargetName>$(SolutionName)</TargetName>
   </PropertyGroup>
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
     <Import Project="$(QtMsBuild)\qt_defaults.props" />
   </ImportGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <QtInstall>qt_5_7_0_sse</QtInstall>
+    <QtInstall>qt_5_15_msvc2019</QtInstall>
     <QtModules>core;gui;widgets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
     <QtQMLDebugEnable>false</QtQMLDebugEnable>
   </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <QtInstall>qt_5_7_0_sse</QtInstall>
+    <QtInstall>qt_5_15_msvc2019</QtInstall>
     <QtModules>core;gui;widgets</QtModules>
     <QtQMLDebugEnable>false</QtQMLDebugEnable>
   </PropertyGroup>
@@ -74,7 +75,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-      <AdditionalIncludeDirectories>$(BaseCodePath);$(BaseUICodePath)dialogs;$(SolutionDir)generated_files\dialogs;$(Qt_INCLUDEPATH_);%(AdditionalIncludeDirectories);$(QTDIR)\include;$(QTDIR)\mkspecs\default;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtOpenGL;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\QtWebEngineWidgets;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtConcurrent;.\debug;$(QTDIR)\include\QtWebEngine;$(QTDIR)\include\QtWebEngineCore;$(QTDIR)\include\QtWebChannel;G:\QT_2\Project\C++\PuzzleGame\Engine\src\C++;$(EnginePath)\src\C++</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(EnginePath)src\C++;$(BaseCodePath);$(CurentSolutionDirectory);$(MSBuildProjectDirectory)\generated_files\dialogs;$(Qt_INCLUDEPATH_);$(BaseUICodePath)dialogs;%(AdditionalIncludeDirectories);$(QTDIR)\include;$(QTDIR)\mkspecs\default;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtOpenGL;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\QtWebEngineWidgets;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtConcurrent;.\debug;$(QTDIR)\include\QtWebEngine;$(QTDIR)\include\QtWebEngineCore;$(QTDIR)\include\QtWebChannel</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -83,6 +84,7 @@
       <AdditionalDependencies>$(Qt_LIBS_);%(AdditionalDependencies);Qt5Widgets.lib;Qt5OpenGL.lib;opengl32.lib;glu32.lib;Qt5Gui.lib;Qt5Core.lib;Qt5Network.lib;Qt5Xml.lib;Qt5Concurrent.lib;Qt5WebEngineCore.lib;Qt5WebEngine.lib;Qt5WebEngineWidgets.lib;version.lib;User32.lib;Advapi32.lib;Shell32.lib;winmm.lib;Qt5WebChannel.lib</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <ShowProgress>NotSet</ShowProgress>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(QTDIR)\lib</AdditionalLibraryDirectories>
     </Link>
     <QtMoc>
       <DebugInformationFormat>None</DebugInformationFormat>
@@ -91,7 +93,7 @@
       <UseFullPaths>true</UseFullPaths>
     </QtMoc>
     <PostBuildEvent>
-      <Command>$(QTDIR)\bin\windeployqt.exe $(OutDir)$(TargetName)$(TargetExt) --no-translations</Command>
+      <Command>call $(PostScriptFolderPath)post_build_debug.cmd $(QTDIR) $(ProjectDir) $(OutDir) $(TargetDir) $(TargetName) $(TargetExt) $(Base3rdpartyPath)</Command>
     </PostBuildEvent>
     <QtRcc>
       <QtRccDir>generated_files\qrc</QtRccDir>
@@ -110,18 +112,18 @@
       <DebugInformationFormat />
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-      <AdditionalIncludeDirectories>$(BaseCodePath);$(BaseUICodePath)dialogs;$(SolutionDir)generated_files\dialogs;$(Qt_INCLUDEPATH_);%(AdditionalIncludeDirectories);$(QTDIR)\include;$(QTDIR)\mkspecs\default;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtOpenGL;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\QtWebEngineWidgets;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtConcurrent;.\debug;$(QTDIR)\include\QtWebEngine;$(QTDIR)\include\QtWebEngineCore;$(QTDIR)\include\QtWebChannel;$(EnginePath)\src\C++</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(EnginePath)src\C++;$(BaseCodePath);$(CurentSolutionDirectory);$(MSBuildProjectDirectory)\generated_files\dialogs;$(Qt_INCLUDEPATH_);$(BaseUICodePath)dialogs;%(AdditionalIncludeDirectories);$(QTDIR)\include;$(QTDIR)\mkspecs\default;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtOpenGL;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\QtWebEngineWidgets;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtConcurrent;.\debug;$(QTDIR)\include\QtWebEngine;$(QTDIR)\include\QtWebEngineCore;$(QTDIR)\include\QtWebChannel</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
-      <AdditionalDependencies>$(Qt_LIBS_);%(AdditionalDependencies);Qt5Widgets.lib;Qt5OpenGL.lib;opengl32.lib;glu32.lib;Qt5Gui.lib;Qt5Core.lib;Qt5Network.lib;Qt5Xml.lib;Qt5Concurrent.lib;Qt5WebEngineCore.lib;Qt5WebEngine.lib;Qt5WebEngineWidgets.lib;version.lib;User32.lib;Advapi32.lib;Shell32.lib;winmm.lib;Qt5WebChannel.lib</AdditionalDependencies>
+      <AdditionalDependencies>$(Qt_LIBS_);%(AdditionalDependencies);Qt5Widgets.lib;Qt5OpenGL.lib;glu32.lib;Qt5Gui.lib;Qt5Core.lib;Qt5Concurrent.lib;version.lib;User32.lib;Advapi32.lib;Shell32.lib;winmm.lib</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalLibraryDirectories>$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>$(QTDIR)\bin\windeployqt.exe $(OutDir)$(TargetName)$(TargetExt) --no-translations</Command>
+      <Command>call $(PostScriptFolderPath)post_build_release.cmd $(QTDIR) $(ProjectDir) $(OutDir) $(TargetDir) $(TargetName) $(TargetExt) $(Base3rdpartyPath)</Command>
     </PostBuildEvent>
     <QtUic>
       <QtUicDir>generated_files\dialogs</QtUicDir>
@@ -136,37 +138,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="src\C++\engine_helper.cpp">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">input</DynamicSource>
-      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).moc</QtMocFileName>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">input</DynamicSource>
-      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(Filename).moc</QtMocFileName>
-    </ClCompile>
-    <ClCompile Include="src\C++\glwidget.cpp" />
-    <ClCompile Include="src\C++\logo.cpp" />
+    <ClCompile Include="src\C++\engine_helper.cpp" />
     <ClCompile Include="src\C++\mainwindow.cpp" />
     <ClCompile Include="src\C++\screen.cpp" />
-    <ClCompile Include="src\C++\window.cpp" />
-    <ClCompile Include="src\ui\dialogs\qtguiapplication1.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="forms\dialog\qtguiapplication1.ui">
-      <QtUicDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">generated_files\dialogs</QtUicDir>
-      <QtUicDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">generated_files\dialogs</QtUicDir>
-    </QtUic>
+    <QtUic Include="forms\dialog\mainwindow.ui" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="src\ui\dialogs\qtguiapplication1.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="generated_files\dialogs\ui_qtguiapplication1.h" />
+    <ClInclude Include="generated_files\dialogs\ui_mainwindow.h" />
     <QtMoc Include="src\C++\screen.h" />
     <QtMoc Include="src\C++\engine_helper.h" />
     <ClInclude Include="src\C++\itemenums.h" />
-    <ClInclude Include="src\C++\logo.h" />
-    <QtMoc Include="src\C++\window.h" />
     <QtMoc Include="src\C++\mainwindow.h" />
-    <QtMoc Include="src\C++\glwidget.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.vcxproj">

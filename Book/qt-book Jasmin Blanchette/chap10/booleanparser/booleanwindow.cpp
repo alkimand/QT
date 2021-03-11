@@ -1,4 +1,5 @@
 #include <QtGui>
+#include <QLabel>
 
 #include "booleanmodel.h"
 #include "booleanparser.h"

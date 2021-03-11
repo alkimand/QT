@@ -7,7 +7,7 @@
 
 class EngineHelper : public QObject{
 	Q_OBJECT
-		typedef std::list<int>  TaskList;
+		//typedef std::list<int>  TaskList;
 
 public:
 	EngineHelper(QWidget* parent = nullptr);
